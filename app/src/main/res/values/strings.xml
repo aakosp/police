@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">psb</string>
+
+    <string name="news">警务资讯</string>
+    <string name="navigation">一村一警</string>
+    <string name="guide">办事指南</string>
+    <string name="profile">个人中心</string>
+
+    <string name="loading">loading</string>
+    <string name="back">返回</string>
+
+
+</resources>

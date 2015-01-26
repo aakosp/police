@@ -1,0 +1,81 @@
+package com.psb.ui.activity;
+
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+
+import com.psb.R;
+import com.psb.ui.base.BaseFragmentActivity;
+import com.psb.ui.widget.NaviTabButton;
+
+/**
+ * Created by zl on 2014/11/21.
+ */
+public class ActivityMain extends BaseFragmentActivity {
+
+    private NaviTabButton mTabButtons[];
+    private Fragment mFragments[];
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        initTab();
+        initFragment();
+        setFragmentIndicator(1);
+    }
+
+    private void initTab() {
+        mTabButtons = new NaviTabButton[4];
+
+        mTabButtons[0] = (NaviTabButton) findViewById(R.id.tabbutton_news);
+        mTabButtons[1] = (NaviTabButton) findViewById(R.id.tabbutton_navigation);
+        mTabButtons[2] = (NaviTabButton) findViewById(R.id.tabbutton_gruid);
+        mTabButtons[3] = (NaviTabButton) findViewById(R.id.tabbutton_profile);
+
+        mTabButtons[0].setTitle(getString(R.string.news));
+        mTabButtons[0].setIndex(0);
+//        mTabButtons[0].setSelectedImage(getResources().getDrawable(R.drawable.tab_broadcast_press));
+//        mTabButtons[0].setUnselectedImage(getResources().getDrawable(R.drawable.tab_broadcast));
+
+        mTabButtons[1].setTitle(getString(R.string.navigation));
+        mTabButtons[1].setIndex(1);
+//        mTabButtons[1].setSelectedImage(getResources().getDrawable(R.drawable.informationicons3_33));
+//        mTabButtons[1].setUnselectedImage(getResources().getDrawable(R.drawable.informationicon3_3));
+
+        mTabButtons[2].setTitle(getString(R.string.guide));
+        mTabButtons[2].setIndex(2);
+//        mTabButtons[2].setSelectedImage(getResources().getDrawable(R.drawable.wishtalk));
+//        mTabButtons[2].setUnselectedImage(getResources().getDrawable(R.drawable.wishtalk));
+
+        mTabButtons[3].setTitle(getString(R.string.profile));
+        mTabButtons[3].setIndex(3);
+//        mTabButtons[3].setSelectedImage(getResources().getDrawable(R.drawable.found3_3));
+//        mTabButtons[3].setUnselectedImage(getResources().getDrawable(R.drawable.found3));
+    }
+
+    private void initFragment() {
+        mFragments = new Fragment[5];
+        mFragments[0] = getSupportFragmentManager().findFragmentById(R.id.fragment_news);
+        mFragments[1] = getSupportFragmentManager().findFragmentById(R.id.fragment_navigation);
+        mFragments[2] = getSupportFragmentManager().findFragmentById(R.id.fragment_gruid);
+        mFragments[3] = getSupportFragmentManager().findFragmentById(R.id.fragment_profile);
+    }
+
+    /**
+     *
+     * @param which
+     */
+    public void setFragmentIndicator(int which) {
+        getSupportFragmentManager().beginTransaction().hide(mFragments[0]).hide(mFragments[1]).hide(mFragments[2]).hide(mFragments[3]).show(mFragments[which]).commit();
+        mTabButtons[0].setSelectedButton(false);
+        mTabButtons[1].setSelectedButton(false);
+        mTabButtons[2].setSelectedButton(false);
+        mTabButtons[3].setSelectedButton(false);
+        mTabButtons[which].setSelectedButton(true);
+    }
+
+    public void btnSendClick() {
+
+    }
+}

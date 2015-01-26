@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 圆形图片 -->
+    <declare-styleable name="roundedimageview">
+        <attr name="border_thickness" format="dimension" />
+        <attr name="border_inside_color" format="color" />
+        <attr name="border_outside_color" format="color"></attr>
+        <attr name="round" format="integer"></attr>
+    </declare-styleable>
+
+    <!-- 图片文字按钮 -->
+    <declare-styleable name="imagetextbutton">
+        <attr name="img_src" format="reference" />
+        <attr name="img_width" format="dimension" />
+        <attr name="img_height" format="dimension" />
+        <attr name="text_src" format="reference" />
+        <attr name="text_color" format="reference" />
+        <attr name="text_size" format="dimension" />
+        <attr name="space" format="integer"></attr>
+    </declare-styleable>
+
+    <!-- viewpager -->
+    <declare-styleable name="widgetviewpager">
+        <attr name="cursor_color" format="reference" />
+        <attr name="tabs" format="reference" />
+        <attr name="tabs_color" format="reference" />
+        <attr name="tabs_selected_color" format="reference" />
+        <attr name="tab_text_size" format="dimension" />
+        <attr name="tabs_height" format="dimension" />
+    </declare-styleable>
+
+    <declare-styleable name="TopNavigationBar">
+        <attr name="barTitle" format="reference|string" />
+        <attr name="barTitleBackground" format="reference" />
+        <attr name="titleText" format="reference|string" />
+        <attr name="titleBackground" format="reference" />
+        <attr name="leftButtonBackground" format="reference" />
+        <attr name="leftButtonText" format="reference|string" />
+        <attr name="leftButtonVisible" format="boolean" />
+        <attr name="rightButtonBackground" format="reference" />
+        <attr name="rightButtonText" format="reference|string" />
+        <attr name="rightButtonVisible" format="boolean" />
+    </declare-styleable>
+
+    <string-array name="news_columns">
+        <item>警务新闻</item>
+        <item>警队风采</item>
+        <item>预警信息</item>
+        <item>安防攻略</item>
+    </string-array>
+</resources>

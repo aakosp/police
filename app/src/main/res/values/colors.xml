@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="transparent">#00000000</color>
+    <color name="black">#000000</color>
+    <color name="white">#FFFFFF</color>
+
+    <color name="background">#f2f0eb</color>
+
+    <color name="default_light_grey_color">#929292</color>
+    <color name="default_blue_color">#01aff4</color>
+
+    <color name="alert_title">#ee6f51</color>
+    <color name="alert_bkg">#282828</color>
+    <color name="alert_divider">#383838</color>
+
+    <color name="topbar">#EE6F51</color>
+    <color name="linecolor">#E5E5E5</color>
+</resources>

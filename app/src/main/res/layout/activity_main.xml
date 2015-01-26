@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/main_linear_layout"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@drawable/tab_bk"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <com.psb.ui.widget.NaviTabButton
+            android:id="@+id/tabbutton_news"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+
+        <com.psb.ui.widget.NaviTabButton
+            android:id="@+id/tabbutton_navigation"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+
+        <com.psb.ui.widget.NaviTabButton
+            android:id="@+id/tabbutton_gruid"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+
+        <com.psb.ui.widget.NaviTabButton
+            android:id="@+id/tabbutton_profile"
+            android:layout_width="0dip"
+            android:layout_height="fill_parent"
+            android:layout_weight="1" />
+    </LinearLayout>
+
+    <fragment
+        android:id="@+id/fragment_news"
+        class="com.psb.ui.activity.FragmentNews"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/main_linear_layout"
+        android:layout_weight="1" />
+
+    <fragment
+        android:id="@+id/fragment_navigation"
+        class="com.psb.ui.activity.FragmentNavigation"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fragment_news"
+        android:layout_above="@id/main_linear_layout"
+        android:layout_weight="1" />
+
+    <fragment
+        android:id="@+id/fragment_gruid"
+        class="com.psb.ui.activity.FragmentGuide"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fragment_navigation"
+        android:layout_above="@id/main_linear_layout"
+        android:layout_weight="1" />
+
+    <fragment
+        android:id="@+id/fragment_profile"
+        class="com.psb.ui.activity.FragmentProfile"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/fragment_gruid"
+        android:layout_above="@id/main_linear_layout"
+        android:layout_weight="1" />
+</RelativeLayout>
