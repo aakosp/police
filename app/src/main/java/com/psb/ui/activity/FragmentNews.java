@@ -2,25 +2,33 @@ package com.psb.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.view.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.psb.R;
+import com.psb.core.AppContext;
 import com.psb.ui.base.BaseFragment;
-import com.psb.ui.widget.WidgetViewPager;
+import com.psb.ui.widget.ViewPagerWithTitle;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by zl on 2015/1/26.
  */
-public class FragmentNews extends BaseFragment {
+public class FragmentNews extends BaseFragment implements PullToRefreshBase.OnRefreshListener<ViewPagerWithTitle> {
 
     private View mView;
-    private WidgetViewPager viewPager;
+    private ViewPagerWithTitle viewPager;
     private List<View> pageViews = new ArrayList<>();
-    private String newsColumns[] = this.getResources().getStringArray(R.array.news_columns);
+    private String newsColumns[] = AppContext.getInstance().getResources().getStringArray(R.array.news_columns);
+    private NewsPolice mNewsPolice;
+    private NewsPresence mNewsPresence;
+    private NewsWarning mNewsWarning;
+    private NewsSecurity mNewsSecurity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -29,46 +37,41 @@ public class FragmentNews extends BaseFragment {
             return mView;
         }
         mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_news, container, false);
-        viewPager = (WidgetViewPager) mView.findViewById(R.id.vp);
+        viewPager = (ViewPagerWithTitle) mView.findViewById(R.id.vp);
+        this.initView();
         return mView;
     }
 
     private void initView(){
-        pageViews.add(new NewsPolice(this.getActivity()));
-        pageViews.add(new NewsPresence(this.getActivity()));
-        pageViews.add(new NewsWarning(this.getActivity()));
-        pageViews.add(new NewsSecurity(this.getActivity()));
+        mNewsPolice = new NewsPolice(this.getActivity());
+        mNewsPresence = new NewsPresence(this.getActivity());
+        mNewsWarning = new NewsWarning(this.getActivity());
+        mNewsSecurity = new NewsSecurity(this.getActivity());
+
+        pageViews.add(mNewsPolice);
+        pageViews.add(mNewsPresence);
+        pageViews.add(mNewsWarning);
+        pageViews.add(mNewsSecurity);
         viewPager.setTabs(newsColumns);
-        viewPager.setAdapter(new MyViewPagerAdapter(pageViews));
+        viewPager.setPagerViews(pageViews);
         viewPager.setCurrentItem(0);
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        List<View> banner = new ArrayList<>();
+        ImageView iv1 = new ImageView(this.getActivity());
+        iv1.setImageResource(R.drawable.test_one);
+        ImageView iv2 = new ImageView(this.getActivity());
+        iv2.setImageResource(R.drawable.test_two);
+        ImageView iv3 = new ImageView(this.getActivity());
+        iv3.setImageResource(R.drawable.test_three);
+        banner.add(iv1);
+        banner.add(iv2);
+        banner.add(iv3);
+        mNewsPolice.setBanner(banner);
     }
 
-    public class MyViewPagerAdapter extends PagerAdapter {
-        private List<View> mListViews;
-
-        public MyViewPagerAdapter(List<View> mListViews) {
-            this.mListViews = mListViews;
-        }
-
-        @Override
-        public void destroyItem(ViewGroup container, int position, Object object) {
-            container.removeView(mListViews.get(position));
-        }
-
-        @Override
-        public Object instantiateItem(ViewGroup container, int position) {
-            container.addView(mListViews.get(position), 0);
-            return mListViews.get(position);
-        }
-
-        @Override
-        public int getCount() {
-            return mListViews.size();
-        }
-
-        @Override
-        public boolean isViewFromObject(View arg0, Object arg1) {
-            return arg0 == arg1;
-        }
+    @Override
+    public void onRefresh(PullToRefreshBase<ViewPagerWithTitle> refreshView) {
+        //TODO: requestDatas
     }
 }

@@ -22,7 +22,7 @@ public class ActivityMain extends BaseFragmentActivity {
 
         initTab();
         initFragment();
-        setFragmentIndicator(1);
+        setFragmentIndicator(0);
     }
 
     private void initTab() {
@@ -55,7 +55,7 @@ public class ActivityMain extends BaseFragmentActivity {
     }
 
     private void initFragment() {
-        mFragments = new Fragment[5];
+        mFragments = new Fragment[4];
         mFragments[0] = getSupportFragmentManager().findFragmentById(R.id.fragment_news);
         mFragments[1] = getSupportFragmentManager().findFragmentById(R.id.fragment_navigation);
         mFragments[2] = getSupportFragmentManager().findFragmentById(R.id.fragment_gruid);

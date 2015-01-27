@@ -7,9 +7,9 @@
 
     <LinearLayout
         android:id="@+id/main_linear_layout"
-        android:layout_alignParentBottom="true"
         android:layout_width="match_parent"
         android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/tab_bk"
         android:gravity="center"
         android:orientation="horizontal">
@@ -52,8 +52,8 @@
         class="com.psb.ui.activity.FragmentNavigation"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/fragment_news"
         android:layout_above="@id/main_linear_layout"
+        android:layout_below="@id/fragment_news"
         android:layout_weight="1" />
 
     <fragment
@@ -61,8 +61,8 @@
         class="com.psb.ui.activity.FragmentGuide"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/fragment_navigation"
         android:layout_above="@id/main_linear_layout"
+        android:layout_below="@id/fragment_navigation"
         android:layout_weight="1" />
 
     <fragment
@@ -70,7 +70,7 @@
         class="com.psb.ui.activity.FragmentProfile"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@id/fragment_gruid"
         android:layout_above="@id/main_linear_layout"
+        android:layout_below="@id/fragment_gruid"
         android:layout_weight="1" />
 </RelativeLayout>

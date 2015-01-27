@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 
 import com.psb.R;
 import com.psb.ui.base.BaseFragment;
-import com.psb.ui.widget.WidgetViewPager;
 
 /**
  * Created by zl on 2015/1/26.
@@ -16,7 +15,6 @@ import com.psb.ui.widget.WidgetViewPager;
 public class FragmentProfile extends BaseFragment{
 
     private View mView;
-    private WidgetViewPager viewPager;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -25,7 +23,6 @@ public class FragmentProfile extends BaseFragment{
             return mView;
         }
         mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_profile, container, false);
-        viewPager = (WidgetViewPager) mView.findViewById(R.id.vp);
         return mView;
     }
 }

@@ -9,13 +9,13 @@ public class AppContext extends Application {
 
     private static AppContext appContext;
 
-    private AppContext(){}
-
-    public synchronized static AppContext getInstance(){
-        if(null == appContext){
-            appContext = new AppContext();
-        }
+    public static Application getInstance() {
         return appContext;
     }
 
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        appContext = this;
+    }
 }

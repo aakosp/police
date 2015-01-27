@@ -15,4 +15,10 @@
 
     <color name="topbar">#EE6F51</color>
     <color name="linecolor">#E5E5E5</color>
+
+    <!-- viewpager_title -->
+    <color name="viewpager_title_selected">#d04300</color>
+    <color name="viewpager_title_normal">#aaaaaa</color>
+
+    <color name="news_title">#151515</color>
 </resources>

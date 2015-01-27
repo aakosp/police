@@ -3,7 +3,7 @@
     android:id="@+id/topbar_rly"
     android:layout_width="match_parent"
     android:layout_height="@dimen/topbar_top"
-    android:background="@color/topbar" >
+    android:background="@color/topbar">
 
     <Button
         android:id="@+id/buttonTopBarLeft"
@@ -37,7 +37,7 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_centerInParent="true"
-        android:gravity="center" >
+        android:gravity="center">
 
         <ImageView
             android:id="@+id/type_top_arrow"
