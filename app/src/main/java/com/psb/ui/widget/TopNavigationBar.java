@@ -17,8 +17,8 @@ import com.psb.R;
  */
 public class TopNavigationBar extends RelativeLayout {
 
-    private ImageView btnLeft,imgBtnRight;
-    private Button buttonLeft,btnRight = null;
+    private ImageView btnLeft, imgBtnRight;
+    private Button buttonLeft, btnRight = null;
     private TextView tvTitle = null;
     private ImageView arrow;
 
@@ -29,13 +29,13 @@ public class TopNavigationBar extends RelativeLayout {
 
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        layoutInflater.inflate(R.layout.widget_top_navigation_bar,null);
+        layoutInflater.inflate(R.layout.widget_top_navigation_bar, null);
 
         this.mtopbar = (RelativeLayout) findViewById(R.id.topbar_rly);
         this.btnLeft = (ImageView) findViewById(R.id.btnTopBarLeft);
         this.buttonLeft = (Button) findViewById(R.id.buttonTopBarLeft);
         this.btnRight = (Button) findViewById(R.id.btnTopBarRight);
-        this.imgBtnRight = (ImageView)findViewById(R.id.imgBtnTopBarRight);
+        this.imgBtnRight = (ImageView) findViewById(R.id.imgBtnTopBarRight);
         this.tvTitle = (TextView) findViewById(R.id.tvTopBarTitle);
         this.arrow = (ImageView) findViewById(R.id.type_top_arrow);
     }
@@ -51,7 +51,7 @@ public class TopNavigationBar extends RelativeLayout {
         this.btnLeft = (ImageView) findViewById(R.id.btnTopBarLeft);
         this.buttonLeft = (Button) findViewById(R.id.buttonTopBarLeft);
         this.btnRight = (Button) findViewById(R.id.btnTopBarRight);
-        this.imgBtnRight = (ImageView)findViewById(R.id.imgBtnTopBarRight);
+        this.imgBtnRight = (ImageView) findViewById(R.id.imgBtnTopBarRight);
         this.tvTitle = (TextView) findViewById(R.id.tvTopBarTitle);
         this.arrow = (ImageView) findViewById(R.id.type_top_arrow);
         // 初始化属性

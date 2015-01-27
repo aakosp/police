@@ -6,12 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
 import com.psb.R;
 import com.psb.adapter.NewsAdapter;
 import com.psb.entity.NewsTitle;
 import com.psb.ui.widget.ViewPagerWithPoint;
-
 import java.util.List;
 
 /**
@@ -36,6 +34,7 @@ public class NewsPolice extends LinearLayout{
 
     public void setBanner(List<View> banners){
         banner.setPagerViews(banners);
+        banner.setCurrentItem(0);
     }
 
     public void addNews(List<NewsTitle> news){

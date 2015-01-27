@@ -15,31 +15,31 @@ import com.psb.R;
  */
 public class LoadingDialog extends Dialog {
 
-	private Context mContext;
-	private LayoutInflater inflater;
-	private LayoutParams lp;
-	private TextView loadtext;
+    private Context mContext;
+    private LayoutInflater inflater;
+    private LayoutParams lp;
+    private TextView loadtext;
 
-	public LoadingDialog(Context context) {
-		super(context);
-		
-		this.mContext = context;
-		
-		inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View layout = inflater.inflate(R.layout.widget_loading, null);
-		loadtext = (TextView) layout.findViewById(R.id.loading_text);
-		setContentView(layout);
-		
-		// 设置window属性
-		lp = getWindow().getAttributes();
-		lp.gravity = Gravity.CENTER;
-		lp.dimAmount = 0; // 去背景遮盖
-		lp.alpha = 1.0f;
-		getWindow().setAttributes(lp);
+    public LoadingDialog(Context context) {
+        super(context);
 
-	}
+        this.mContext = context;
 
-	public void setLoadText(String content){
-		loadtext.setText(content);
-	}
+        inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = inflater.inflate(R.layout.widget_loading, null);
+        loadtext = (TextView) layout.findViewById(R.id.loading_text);
+        setContentView(layout);
+
+        // 设置window属性
+        lp = getWindow().getAttributes();
+        lp.gravity = Gravity.CENTER;
+        lp.dimAmount = 0; // 去背景遮盖
+        lp.alpha = 1.0f;
+        getWindow().setAttributes(lp);
+
+    }
+
+    public void setLoadText(String content) {
+        loadtext.setText(content);
+    }
 }

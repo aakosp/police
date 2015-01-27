@@ -12,25 +12,27 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
 import com.psb.R;
 import com.psb.ui.util.DisplayUtil;
+
 import java.util.List;
 
 
 /**
  * Created by zl on 2014/11/27.
  */
-public class ViewPagerWithTitle extends LinearLayout{
+public class ViewPagerWithTitle extends LinearLayout {
 
     private Context mContext;
-    private LinearLayout layoutTitle, layoutTabs;
-    private ImageView mCursor;
+    private LinearLayout layoutTabs;//layoutTitle,
+    //    private ImageView mCursor;
     private ViewPager mCustomViewPager;
     private int cursorColor = R.color.topbar;
-//    private int defaultTabColor = R.color.topbar;
+    //    private int defaultTabColor = R.color.topbar;
 //    private int selectedTabColor = R.color.default_light_grey_color;
     private int textSize = 18;
-//    private int offset = 0;// 动画图片偏移量
+    //    private int offset = 0;// 动画图片偏移量
 //    private int currIndex = 0;// 当前页卡编号
     private ViewPagerWithTitleAdapter adapter;
 
@@ -49,10 +51,10 @@ public class ViewPagerWithTitle extends LinearLayout{
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.widget_viewpager_title, this, true);
 
-        layoutTitle = (LinearLayout) findViewById(R.id.title);
+//        layoutTitle = (LinearLayout) findViewById(R.id.title);
         layoutTabs = (LinearLayout) findViewById(R.id.tabs);
-        mCursor = (ImageView) findViewById(R.id.cursor);
-        mCursor.setBackgroundColor(getResources().getColor(cursorColor));
+//        mCursor = (ImageView) findViewById(R.id.cursor);
+//        mCursor.setBackgroundColor(getResources().getColor(cursorColor));
         mCustomViewPager = (ViewPager) findViewById(R.id.custviewPager);
     }
 
@@ -64,7 +66,7 @@ public class ViewPagerWithTitle extends LinearLayout{
         mCustomViewPager.setCurrentItem(item, smoothScroll);
     }
 
-    public int getCurrentItem(){
+    public int getCurrentItem() {
         return mCustomViewPager.getCurrentItem();
     }
 
@@ -86,7 +88,7 @@ public class ViewPagerWithTitle extends LinearLayout{
         }
         LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
         params.weight = 1;
-        for (int i=0; i<tabs.length; i++) {
+        for (int i = 0; i < tabs.length; i++) {
             TextView tv = new TextView(mContext);
             tv.setText(tabs[i]);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, textSize);
@@ -97,7 +99,7 @@ public class ViewPagerWithTitle extends LinearLayout{
             tv.setPadding(padH, padS, padH, padS);
             tv.setLines(1);
             tv.setTag(i);
-            if(i==0){
+            if (i == 0) {
                 tv.setTextColor(mContext.getResources().getColor(R.color.viewpager_title_selected));
             }
             tv.setOnClickListener(new OnClickListener() {
@@ -107,7 +109,7 @@ public class ViewPagerWithTitle extends LinearLayout{
                     mCustomViewPager.setCurrentItem(i);
                 }
             });
-            layoutTitle.addView(tv);
+            layoutTabs.addView(tv);
         }
         mCustomViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -116,8 +118,8 @@ public class ViewPagerWithTitle extends LinearLayout{
 
             @Override
             public void onPageSelected(int index) {
-                for (int i = 0; i < layoutTitle.getChildCount(); i++) {
-                    TextView tv = (TextView) layoutTitle.getChildAt(i);
+                for (int i = 0; i < layoutTabs.getChildCount(); i++) {
+                    TextView tv = (TextView) layoutTabs.getChildAt(i);
                     if (i == index) {
                         tv.setTextColor(mContext.getResources().getColor(R.color.viewpager_title_selected));
                     } else {
@@ -130,21 +132,20 @@ public class ViewPagerWithTitle extends LinearLayout{
             public void onPageScrollStateChanged(int i) {
             }
         });
-        layoutTitle.setVisibility(View.VISIBLE);
+//        layoutTitle.setVisibility(View.VISIBLE);
     }
 
-    public void setPagerViews(List<View> views){
-        if(null == adapter){
+    public void setPagerViews(List<View> views) {
+        if (null == adapter) {
             adapter = new ViewPagerWithTitleAdapter(views);
             this.setAdapter(adapter);
-        }
-        else{
+        } else {
             adapter.setViews(views);
         }
         adapter.notifyDataSetChanged();
     }
 
-    public ViewPagerWithTitleAdapter getAdapter(){
+    public ViewPagerWithTitleAdapter getAdapter() {
         return adapter;
     }
 
@@ -167,7 +168,7 @@ public class ViewPagerWithTitle extends LinearLayout{
             this.mListViews = mListViews;
         }
 
-        public void setViews(List<View> views){
+        public void setViews(List<View> views) {
             this.mListViews = views;
         }
 

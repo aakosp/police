@@ -22,7 +22,7 @@
     <dimen name="album_list_item_name_size">15sp</dimen>
     <dimen name="album_top_cancel_size">14sp</dimen>
 
-    <dimen name="topbar_top">50dp</dimen>
+    <dimen name="topbar_top">54dp</dimen>
 
 
     <!-- msg -->
