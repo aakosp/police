@@ -11,6 +11,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.psb.R;
 
 /**
@@ -26,27 +27,27 @@ public class AlertMenu {
     private ListView menuListView;
 
 
-    public AlertMenu(Context context,String title,String... menuItem){
+    public AlertMenu(Context context, String title, String... menuItem) {
         this.context = context;
         this.title = title;
         this.menuItem = menuItem;
         init();
     }
 
-    public void setTitle(String title){
-        if(titleTv != null){
+    public void setTitle(String title) {
+        if (titleTv != null) {
             titleTv.setText(title);
         }
     }
 
-    private void init(){
+    private void init() {
         dialog = new Dialog(context);
         dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        View view = LayoutInflater.from(context).inflate(R.layout.widget_alert_menu,null);
+        View view = LayoutInflater.from(context).inflate(R.layout.widget_alert_menu, null);
         titleTv = (TextView) view.findViewById(R.id.titleTV);
         menuListView = (ListView) view.findViewById(R.id.menuListView);
         titleTv.setText(title);
-        if(title.length()>17){
+        if (title.length() > 17) {
             titleTv.setGravity(Gravity.CENTER);
         }
 
@@ -68,14 +69,14 @@ public class AlertMenu {
 
             @Override
             public View getView(int position, View convertView, ViewGroup parent) {
-                View view = LayoutInflater.from(context).inflate(R.layout.widget_alert_item,null);
+                View view = LayoutInflater.from(context).inflate(R.layout.widget_alert_item, null);
                 TextView alertBtn = (TextView) view.findViewById(R.id.alertBtn);
                 alertBtn.setText(menuItem[position]);
-                if(title.length()>16){
+                if (title.length() > 16) {
                     alertBtn.setGravity(Gravity.CENTER);
                 }
-                if(position == menuItem.length -1){
-                    ((View)view.findViewById(R.id.v)).setVisibility(View.GONE);
+                if (position == menuItem.length - 1) {
+                    ((View) view.findViewById(R.id.v)).setVisibility(View.GONE);
                 }
                 return view;
             }
@@ -86,7 +87,7 @@ public class AlertMenu {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 dialog.dismiss();
-                if(alertMenuItemClickListener != null){
+                if (alertMenuItemClickListener != null) {
                     alertMenuItemClickListener.onItemClick(position);
                 }
             }
@@ -96,17 +97,17 @@ public class AlertMenu {
 
     }
 
-    public void show(){
-        if(!dialog.isShowing()){
+    public void show() {
+        if (!dialog.isShowing()) {
             dialog.show();
         }
     }
 
-    public void setOnItemClickListener(AlertMenuItemClickListener alertMenuItemClickListener){
+    public void setOnItemClickListener(AlertMenuItemClickListener alertMenuItemClickListener) {
         this.alertMenuItemClickListener = alertMenuItemClickListener;
     }
 
-    public interface  AlertMenuItemClickListener{
+    public interface AlertMenuItemClickListener {
         void onItemClick(int position);
     }
 }
