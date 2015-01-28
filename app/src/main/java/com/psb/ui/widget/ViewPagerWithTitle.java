@@ -87,6 +87,7 @@ public class ViewPagerWithTitle extends LinearLayout {
             return;
         }
         LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
+        params.gravity = Gravity.CENTER_VERTICAL;
         params.weight = 1;
         for (int i = 0; i < tabs.length; i++) {
             TextView tv = new TextView(mContext);

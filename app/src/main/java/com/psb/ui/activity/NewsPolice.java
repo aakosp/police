@@ -2,21 +2,28 @@ package com.psb.ui.activity;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+
+import com.handmark.pulltorefresh.library.PullToRefreshBase;
+import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.psb.R;
 import com.psb.adapter.NewsAdapter;
 import com.psb.entity.NewsTitle;
 import com.psb.ui.widget.ViewPagerWithPoint;
+import com.psb.ui.widget.ViewPagerWithTitle;
+
 import java.util.List;
 
 /**
  * Created by zl on 2015/1/26.
  */
-public class NewsPolice extends LinearLayout{
+public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefreshListener<PullToRefreshScrollView>{
 
+    private PullToRefreshScrollView mPullToRefreshScrollView;
     private ViewPagerWithPoint banner;
     private ListView listView;
     private NewsAdapter adapter;
@@ -28,6 +35,7 @@ public class NewsPolice extends LinearLayout{
     public NewsPolice(Context context, AttributeSet attrs) {
         super(context, attrs);
         LayoutInflater.from(context).inflate(R.layout.news_police, this, true);
+        mPullToRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.refresh_view);
         banner = (ViewPagerWithPoint) findViewById(R.id.banner);
         listView = (ListView) findViewById(R.id.list);
     }
@@ -40,5 +48,16 @@ public class NewsPolice extends LinearLayout{
     public void addNews(List<NewsTitle> news){
         adapter = new NewsAdapter(news);
         listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onRefresh(PullToRefreshBase<PullToRefreshScrollView> refreshView) {
+        //TODO: Post Request
+        mPullToRefreshScrollView.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                mPullToRefreshScrollView.onRefreshComplete();
+            }
+        }, 5000);
     }
 }

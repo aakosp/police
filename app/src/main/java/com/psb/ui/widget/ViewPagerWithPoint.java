@@ -31,7 +31,6 @@ public class ViewPagerWithPoint extends LinearLayout {
     private int padS = DisplayUtil.dip2px(2);
     private List<ImageView> points = new ArrayList<>();
 
-    private PointF downPoint = new PointF();
     private OnSingleTouchListener onSingleTouchListener;
 
     public ViewPagerWithPoint(Context context) {
@@ -50,7 +49,7 @@ public class ViewPagerWithPoint extends LinearLayout {
         mInnerViewPager = (InnerViewPager) findViewById(R.id.viewPager);
     }
 
-    public ViewPager getCustomViewPager() {
+    public ViewPager getViewPager() {
         return mInnerViewPager;
     }
 
@@ -138,25 +137,13 @@ public class ViewPagerWithPoint extends LinearLayout {
         }
     }
 
-    public interface OnSingleTouchListener {
-        public void onSingleTouch(View v);
-    }
-
     public void setOnSingleTouchListener(
             OnSingleTouchListener onSingleTouchListener) {
         this.onSingleTouchListener = onSingleTouchListener;
     }
 
-    private class MyOnClickListener implements View.OnClickListener {
-        private int index = 0;
-
-        public MyOnClickListener(int i) {
-            index = i;
-        }
-
-        public void onClick(View v) {
-            setCurrentItem(index);
-        }
+    public interface OnSingleTouchListener {
+        public void onSingleTouch(View v);
     }
 
     public class ViewPagerWithPointAdapter extends PagerAdapter {
