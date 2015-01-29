@@ -1,5 +1,6 @@
 package com.psb.ui.widget;
 
+import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -25,15 +26,13 @@ import java.util.List;
 public class ViewPagerWithTitle extends LinearLayout {
 
     private Context mContext;
-    private LinearLayout layoutTabs;//layoutTitle,
-    //    private ImageView mCursor;
+    private LinearLayout layoutTabs, layoutTitle;
+    private ImageView mCursor;
     private ViewPager mCustomViewPager;
-    private int cursorColor = R.color.topbar;
-    //    private int defaultTabColor = R.color.topbar;
-//    private int selectedTabColor = R.color.default_light_grey_color;
-    private int textSize = 18;
-    //    private int offset = 0;// 动画图片偏移量
-//    private int currIndex = 0;// 当前页卡编号
+    private int cursorColor = R.color.default_red_dark;
+    private int textSize = 16;
+    private int offset = 0;// 动画图片偏移量
+    private int currIndex = 0;// 当前页卡编号
     private ViewPagerWithTitleAdapter adapter;
 
     private int padH = DisplayUtil.dip2px(8);
@@ -51,10 +50,10 @@ public class ViewPagerWithTitle extends LinearLayout {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         inflater.inflate(R.layout.widget_viewpager_title, this, true);
 
-//        layoutTitle = (LinearLayout) findViewById(R.id.title);
+        layoutTitle = (LinearLayout) findViewById(R.id.title);
         layoutTabs = (LinearLayout) findViewById(R.id.tabs);
-//        mCursor = (ImageView) findViewById(R.id.cursor);
-//        mCursor.setBackgroundColor(getResources().getColor(cursorColor));
+        mCursor = (ImageView) findViewById(R.id.cursor);
+        mCursor.setBackgroundColor(getResources().getColor(cursorColor));
         mCustomViewPager = (ViewPager) findViewById(R.id.custviewPager);
     }
 
@@ -112,6 +111,13 @@ public class ViewPagerWithTitle extends LinearLayout {
             });
             layoutTabs.addView(tv);
         }
+
+        //计算偏移量
+        offset = DisplayUtil.getDisplayMetrics().widthPixels / tabs.length;
+        LayoutParams cursorParams = new LayoutParams(offset,
+                DisplayUtil.dip2px(1));
+        mCursor.setLayoutParams(cursorParams);
+
         mCustomViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i2) {
@@ -119,6 +125,13 @@ public class ViewPagerWithTitle extends LinearLayout {
 
             @Override
             public void onPageSelected(int index) {
+
+                ObjectAnimator animation = ObjectAnimator.ofFloat(mCursor, "x",
+                        offset * currIndex, offset * index);
+                currIndex = index;
+                animation.setDuration(200);
+                animation.start();
+
                 for (int i = 0; i < layoutTabs.getChildCount(); i++) {
                     TextView tv = (TextView) layoutTabs.getChildAt(i);
                     if (i == index) {
@@ -133,7 +146,7 @@ public class ViewPagerWithTitle extends LinearLayout {
             public void onPageScrollStateChanged(int i) {
             }
         });
-//        layoutTitle.setVisibility(View.VISIBLE);
+        layoutTitle.setVisibility(View.VISIBLE);
     }
 
     public void setPagerViews(List<View> views) {

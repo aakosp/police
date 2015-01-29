@@ -15,4 +15,4 @@
         android:topLeftRadius="@dimen/indicator_corner_radius"
         android:topRightRadius="@dimen/indicator_corner_radius" />
 
-</shape><!-- From: file:/E:/Project/police/library/src/main/res/drawable/indicator_bg_bottom.xml --><!-- From: file:/E:/Project/police/library/build/intermediates/bundles/debug/res/drawable/indicator_bg_bottom.xml -->
+</shape><!-- From: file:/E:/project/police/library/src/main/res/drawable/indicator_bg_bottom.xml --><!-- From: file:/E:/project/police/library/build/intermediates/bundles/debug/res/drawable/indicator_bg_bottom.xml -->

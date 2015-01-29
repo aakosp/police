@@ -46,8 +46,20 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
     }
 
     public void addNews(List<NewsTitle> news){
-        adapter = new NewsAdapter(news);
-        listView.setAdapter(adapter);
+        if(null == adapter){
+            adapter = new NewsAdapter(news);
+            listView.setAdapter(adapter);
+        }
+        else{
+            adapter.addNews(news);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    public void scrollTop(){
+        if(null != mPullToRefreshScrollView){
+            mPullToRefreshScrollView.getRefreshableView().smoothScrollTo(0, 0);
+        }
     }
 
     @Override

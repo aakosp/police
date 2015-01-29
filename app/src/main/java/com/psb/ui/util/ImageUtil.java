@@ -28,6 +28,8 @@ import android.os.Build;
 import android.os.Environment;
 import android.provider.DocumentsContract;
 import android.provider.MediaStore;
+
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.psb.core.AppContext;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -44,6 +46,12 @@ import java.util.Map;
 
 @SuppressLint("UseSparseArrays")
 public class ImageUtil {
+
+    public static DisplayImageOptions options = new DisplayImageOptions.Builder()
+            .cacheInMemory(true)
+            .cacheOnDisc(true)
+            .build();
+
     private static Map<Integer, Bitmap> bitmaps = new HashMap<Integer, Bitmap>();
 
     private static float hRadius = 4f;

@@ -36,7 +36,7 @@ public class TextViewTag extends TextView {
         try {
             if (Integer.valueOf(this.getText().toString()) > 0)
                 this.setTextColor(mcontext.getResources().getColor(
-                        R.color.topbar));
+                        R.color.default_red_dark));
             else
                 this.setTextColor(mcontext.getResources().getColor(
                         R.color.linecolor));

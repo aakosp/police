@@ -3,19 +3,16 @@ package com.psb.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
-
-import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.psb.R;
 import com.psb.core.AppContext;
+import com.psb.entity.NewsTitle;
 import com.psb.ui.base.BaseFragment;
 import com.psb.ui.widget.ViewPagerWithTitle;
-import com.util.LocationUtils;
+import com.util.TimeUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +57,7 @@ public class FragmentNews extends BaseFragment {
         viewPager.setPagerViews(pageViews);
         viewPager.setCurrentItem(0);
 
-        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        //LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         List<View> banner = new ArrayList<>();
         ImageView iv1 = new ImageView(this.getActivity());
         iv1.setImageResource(R.drawable.test_one);
@@ -75,6 +72,20 @@ public class FragmentNews extends BaseFragment {
         banner.add(iv2);
         banner.add(iv3);
         mNewsPolice.setBanner(banner);
+
+        List<NewsTitle> news = new ArrayList<>();
+        for(int i=0 ;i<5 ;i++){
+            NewsTitle item = new NewsTitle();
+            item.setId(""+i);
+            item.setImg("http://imgsrc.baidu.com/forum/pic/item/7e3e6709c93d70cf97cf8c93f8dcd100baa12b72.jpg");
+            item.setTitle("第"+i+"条新闻");
+            item.setTime(TimeUtil.getYYYYMMDDDate());
+            news.add(item);
+        }
+
+        mNewsPolice.addNews(news);
+
+        mNewsPolice.scrollTop();
 
         iv1.setOnClickListener(new View.OnClickListener() {
             @Override

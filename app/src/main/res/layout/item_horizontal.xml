@@ -1,17 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:padding="@dimen/default_padding">
 
     <ImageView
         android:id="@+id/img"
         android:layout_width="@dimen/horizontal_item_img_width"
-        android:layout_height="@dimen/horizontal_item_img_height" />
+        android:layout_height="@dimen/horizontal_item_img_height"
+        android:layout_alignParentLeft="true" />
 
     <TextView
         android:id="@+id/text"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_toLeftOf="@+id/arrow"
+        android:layout_toRightOf="@+id/img"
+        android:ellipsize="end"
+        android:lines="2"
         android:text="@string/police_info"
         android:textSize="@dimen/horizontal_item_text_size" />
 
@@ -19,8 +27,8 @@
         android:id="@+id/arrow"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="right|center_vertical"
+        android:layout_alignParentRight="true"
         android:padding="16dp"
         android:src="@drawable/arrow_more" />
 
-</LinearLayout>
+</RelativeLayout>

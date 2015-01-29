@@ -3,17 +3,19 @@ package com.psb.ui.widget;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.psb.R;
 
 /**
  * Created by zl on 2015/1/29.
  */
-public class ItemHorizontal extends LinearLayout {
+public class ItemHorizontal extends RelativeLayout {
 
     private ImageView img, arrow;
     private TextView textView;
@@ -33,7 +35,7 @@ public class ItemHorizontal extends LinearLayout {
 
     private void initializeAttributes(Context context, AttributeSet attrs) {
         if (attrs == null) return;
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TopNavigationBar);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.ItemHorizontal);
 
         if (this.img != null) {
             int resId = typedArray.getResourceId(R.styleable.ItemHorizontal_ItemHorizontal_img_src, 0);
@@ -57,9 +59,11 @@ public class ItemHorizontal extends LinearLayout {
 
         if (this.textView != null) {
             CharSequence cs = typedArray.getText(R.styleable.ItemHorizontal_ItemHorizontal_text);
+            Log.d("item", cs.toString());
             this.textView.setText(cs);
+
             int color = typedArray.getColor(R.styleable.ItemHorizontal_ItemHorizontal_text_color, 0);
-            this.textView.setTextColor(color);
+            this.textView.setTextColor(context.getResources().getColor(R.color.black));
             int size = typedArray.getDimensionPixelSize(R.styleable.ItemHorizontal_ItemHorizontal_text_size, 16);
             this.textView.setTextSize(size);
         }

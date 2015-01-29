@@ -7,12 +7,14 @@ import android.util.Log;
 import com.psb.R;
 import com.psb.ui.base.BaseFragmentActivity;
 import com.psb.ui.widget.NaviTabButton;
+import com.psb.ui.widget.TopNavigationBar;
 
 /**
  * Created by zl on 2014/11/21.
  */
 public class ActivityMain extends BaseFragmentActivity {
 
+    private TopNavigationBar topbar;
     private NaviTabButton mTabButtons[];
     private Fragment mFragments[];
 
@@ -20,7 +22,7 @@ public class ActivityMain extends BaseFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        topbar = (TopNavigationBar) findViewById(R.id.topbar);
         initTab();
         initFragment();
         setFragmentIndicator(0);
@@ -68,15 +70,25 @@ public class ActivityMain extends BaseFragmentActivity {
      * @param which
      */
     public void setFragmentIndicator(int which) {
+        switch (which){
+            case 0:
+                topbar.setTitleText(this.getResources().getText(R.string.news));
+                break;
+            case 1:
+                topbar.setTitleText(this.getResources().getText(R.string.navigation));
+                break;
+            case 2:
+                topbar.setTitleText(this.getResources().getText(R.string.guide));
+                break;
+            case 3:
+                topbar.setTitleText(this.getResources().getText(R.string.profile));
+                break;
+        }
         getSupportFragmentManager().beginTransaction().hide(mFragments[0]).hide(mFragments[1]).hide(mFragments[2]).hide(mFragments[3]).show(mFragments[which]).commit();
         mTabButtons[0].setSelectedButton(false);
         mTabButtons[1].setSelectedButton(false);
         mTabButtons[2].setSelectedButton(false);
         mTabButtons[3].setSelectedButton(false);
         mTabButtons[which].setSelectedButton(true);
-    }
-
-    public void btnSendClick() {
-
     }
 }

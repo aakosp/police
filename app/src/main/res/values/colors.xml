@@ -8,12 +8,12 @@
 
     <color name="default_light_grey_color">#929292</color>
     <color name="default_blue_color">#01aff4</color>
+    <color name="default_red_dark">#ffcc0000</color>
 
     <color name="alert_title">#ee6f51</color>
     <color name="alert_bkg">#282828</color>
     <color name="alert_divider">#383838</color>
 
-    <color name="topbar">#EE6F51</color>
     <color name="linecolor">#E5E5E5</color>
 
     <!-- viewpager_title -->

@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="horizontal"
+    android:padding="@dimen/default_padding">
 
     <ImageView
         android:id="@+id/img"
@@ -15,15 +17,19 @@
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/img"
         android:minHeight="25dp"
         android:textColor="@color/news_title"
-        android:textSize="@dimen/newstitle_text_size" />
+        android:textSize="@dimen/newstitle_title_size" />
 
-    <ImageView
+    <TextView
+        android:id="@+id/time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_vertical"
-        android:padding="16dp"
-        android:src="@drawable/arrow_more" />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:minHeight="25dp"
+        android:textColor="@color/default_light_grey_color"
+        android:textSize="@dimen/newstitle_time_size" />
 
-</LinearLayout>
+</RelativeLayout>

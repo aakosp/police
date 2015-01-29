@@ -56,6 +56,7 @@ public class PullToRefreshScrollView extends PullToRefreshBase<ScrollView> {
 		}
 
 		scrollView.setId(R.id.scrollview);
+        scrollView.setVerticalScrollBarEnabled(false);
 		return scrollView;
 	}
 

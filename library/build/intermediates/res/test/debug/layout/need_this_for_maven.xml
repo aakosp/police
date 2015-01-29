@@ -6,4 +6,4 @@
     
     <!-- Need this for Maven, otherwise it doesn't build. I hate Maven. -->
 
-</LinearLayout><!-- From: file:/E:/Project/police/library/src/main/res/layout/need_this_for_maven.xml --><!-- From: file:/E:/Project/police/library/build/intermediates/bundles/debug/res/layout/need_this_for_maven.xml -->
+</LinearLayout><!-- From: file:/E:/project/police/library/src/main/res/layout/need_this_for_maven.xml --><!-- From: file:/E:/project/police/library/build/intermediates/bundles/debug/res/layout/need_this_for_maven.xml -->

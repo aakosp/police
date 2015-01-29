@@ -2,8 +2,14 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/white"
     android:orientation="vertical">
+
+    <com.psb.ui.widget.TopNavigationBar
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true" />
 
     <LinearLayout
         android:id="@+id/main_linear_layout"
@@ -45,6 +51,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/main_linear_layout"
+        android:layout_below="@+id/topbar"
         android:layout_weight="1" />
 
     <fragment
