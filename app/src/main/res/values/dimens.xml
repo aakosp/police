@@ -24,7 +24,16 @@
 
     <dimen name="topbar_top">54dp</dimen>
 
+    <!-- dvivder -->
+    <dimen name="dvivder">0.5dp</dimen>
 
-    <!-- msg -->
-    <dimen name="usernameSize">16sp</dimen>
+    <!-- news -->
+    <dimen name="newstitle_img_width">90dp</dimen>
+    <dimen name="newstitle_img_height">60dp</dimen>
+    <dimen name="newstitle_text_size">24sp</dimen>
+
+    <!-- horizontal_item -->
+    <dimen name="horizontal_item_img_width">48dp</dimen>
+    <dimen name="horizontal_item_img_height">48dp</dimen>
+    <dimen name="horizontal_item_text_size">16sp</dimen>
 </resources>

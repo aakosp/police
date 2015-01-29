@@ -25,11 +25,10 @@
     <application
         android:name=".core.AppContext"
         android:allowBackup="true" android:label="@string/app_name"
-        android:icon="@drawable/yuanbao_img" android:theme="@style/AppTheme">
+        android:icon="@drawable/yuanbao_img" android:theme="@android:style/Theme.NoTitleBar">
         <activity
             android:name=".ui.activity.ActivityMain"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -38,14 +37,14 @@
         </activity>
         <activity
             android:name=".ui.activity.LocationDemo"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".ui.activity.OverlayDemo"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" >
-        </activity>
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".ui.activity.ActivityRegister"
+            android:screenOrientation="portrait"/>
 
         <service
             android:name="com.baidu.location.f"

@@ -1,11 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <TextView
+    <com.psb.ui.widget.ItemHorizontal
+        android:id="@+id/info"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/navigation" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        app:ItemHorizontal_text="@string/police_info"/>
+
+    <com.psb.ui.widget.ItemHorizontal
+        android:id="@+id/office_map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:orientation="horizontal"
+        app:ItemHorizontal_text="@string/office_map"/>
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/dvivder"
+        android:background="@color/alert_divider" />
+
+    <com.psb.ui.widget.ItemHorizontal
+        android:id="@+id/office_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:ItemHorizontal_text="@string/office_info"/>
+
 
 </LinearLayout>

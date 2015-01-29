@@ -10,4 +10,8 @@
     <string name="back">返回</string>
 
 
+    <string name="police_info">查询民警信息</string>
+    <string name="office_map">警务室地图</string>
+    <string name="office_info">警务室列表</string>
+
 </resources>

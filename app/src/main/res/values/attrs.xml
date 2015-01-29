@@ -43,6 +43,16 @@
         <attr name="rightButtonVisible" format="boolean" />
     </declare-styleable>
 
+    <declare-styleable name="ItemHorizontal">
+        <attr name="ItemHorizontal_text" format="reference|string" />
+        <attr name="ItemHorizontal_text_size" format="reference|dimension" />
+        <attr name="ItemHorizontal_text_color" format="reference|color" />
+        <attr name="ItemHorizontal_img_width" format="reference|dimension" />
+        <attr name="ItemHorizontal_img_height" format="reference|dimension" />
+        <attr name="ItemHorizontal_img_src" format="reference" />
+        <attr name="ItemHorizontal_arrow_visible" format="boolean" />
+    </declare-styleable>
+
     <string-array name="news_columns">
         <item>警务新闻</item>
         <item>警队风采</item>

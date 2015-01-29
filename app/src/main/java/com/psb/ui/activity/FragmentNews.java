@@ -80,7 +80,7 @@ public class FragmentNews extends BaseFragment {
             @Override
             public void onClick(View v) {
                 Intent t = new Intent();
-                t.setClass(FragmentNews.this.getActivity(), OverlayDemo.class);
+                t.setClass(FragmentNews.this.getActivity(), ActivityRegister.class);
                 FragmentNews.this.getActivity().startActivity(t);
             }
         });
