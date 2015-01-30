@@ -66,11 +66,10 @@ public class ActivityMain extends BaseFragmentActivity {
     }
 
     /**
-     *
      * @param which
      */
     public void setFragmentIndicator(int which) {
-        switch (which){
+        switch (which) {
             case 0:
                 topbar.setTitleText(this.getResources().getText(R.string.news));
                 break;

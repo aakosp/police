@@ -41,6 +41,9 @@
         <activity
             android:name=".ui.activity.OverlayDemo"
             android:screenOrientation="portrait"/>
+        <activity
+            android:name=".ui.activity.ActivityNewsDetail"
+            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".ui.activity.ActivityRegister"

@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+
 import com.psb.R;
 import com.psb.core.AppContext;
 import com.psb.entity.NewsTitle;
@@ -43,7 +44,7 @@ public class FragmentNews extends BaseFragment {
         return mView;
     }
 
-    private void initView(){
+    private void initView() {
         mNewsPolice = new NewsPolice(this.getActivity());
         mNewsPresence = new NewsPresence(this.getActivity());
         mNewsWarning = new NewsWarning(this.getActivity());
@@ -74,11 +75,11 @@ public class FragmentNews extends BaseFragment {
         mNewsPolice.setBanner(banner);
 
         List<NewsTitle> news = new ArrayList<>();
-        for(int i=0 ;i<5 ;i++){
+        for (int i = 0; i < 5; i++) {
             NewsTitle item = new NewsTitle();
-            item.setId(""+i);
+            item.setId("" + i);
             item.setImg("http://imgsrc.baidu.com/forum/pic/item/7e3e6709c93d70cf97cf8c93f8dcd100baa12b72.jpg");
-            item.setTitle("第"+i+"条新闻");
+            item.setTitle("第" + i + "条新闻");
             item.setTime(TimeUtil.getYYYYMMDDDate());
             news.add(item);
         }

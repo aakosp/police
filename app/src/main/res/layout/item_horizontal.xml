@@ -15,7 +15,7 @@
         android:id="@+id/text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
+        android:layout_marginLeft="@dimen/default_padding"
         android:layout_toLeftOf="@+id/arrow"
         android:layout_toRightOf="@+id/img"
         android:ellipsize="end"

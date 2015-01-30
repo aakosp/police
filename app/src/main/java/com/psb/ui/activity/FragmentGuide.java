@@ -12,7 +12,7 @@ import com.psb.ui.base.BaseFragment;
 /**
  * Created by zl on 2015/1/26.
  */
-public class FragmentGuide extends BaseFragment{
+public class FragmentGuide extends BaseFragment {
 
     private View mView;
 

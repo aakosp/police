@@ -1,5 +1,6 @@
 package com.psb.ui.widget;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
@@ -15,29 +16,18 @@ import com.psb.R;
 /**
  * Created by Orgtec on 2014/12/30.
  */
-public class TopNavigationBar extends RelativeLayout {
+public class TopNavigationBar extends RelativeLayout implements View.OnClickListener{
 
     private ImageView btnLeft, imgBtnRight;
     private Button buttonLeft, btnRight = null;
     private TextView tvTitle = null;
     private ImageView arrow;
-
     private RelativeLayout mtopbar;
 
+    private Activity activity;
+
     public TopNavigationBar(Context context) {
-        super(context);
-
-        LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        layoutInflater.inflate(R.layout.widget_top_navigation_bar, null);
-
-        this.mtopbar = (RelativeLayout) findViewById(R.id.topbar_rly);
-        this.btnLeft = (ImageView) findViewById(R.id.btnTopBarLeft);
-        this.buttonLeft = (Button) findViewById(R.id.buttonTopBarLeft);
-        this.btnRight = (Button) findViewById(R.id.btnTopBarRight);
-        this.imgBtnRight = (ImageView) findViewById(R.id.imgBtnTopBarRight);
-        this.tvTitle = (TextView) findViewById(R.id.tvTopBarTitle);
-        this.arrow = (ImageView) findViewById(R.id.type_top_arrow);
+        this(context, null);
     }
 
     public TopNavigationBar(Context context, AttributeSet attrs) {
@@ -54,6 +44,8 @@ public class TopNavigationBar extends RelativeLayout {
         this.imgBtnRight = (ImageView) findViewById(R.id.imgBtnTopBarRight);
         this.tvTitle = (TextView) findViewById(R.id.tvTopBarTitle);
         this.arrow = (ImageView) findViewById(R.id.type_top_arrow);
+        this.btnLeft.setOnClickListener(this);
+        this.buttonLeft.setOnClickListener(this);
         // 初始化属性
         this.initializeAttributes(context, attrs);
     }
@@ -154,9 +146,6 @@ public class TopNavigationBar extends RelativeLayout {
 
         if (this.tvTitle != null) {
             CharSequence cs = typedArray.getText(R.styleable.TopNavigationBar_titleText);
-            if (cs == null || cs.length() == 0) {
-                cs = typedArray.getText(R.styleable.TopNavigationBar_barTitle);
-            }
             this.tvTitle.setText(cs);
             resId = typedArray.getResourceId(R.styleable.TopNavigationBar_titleBackground, 0);
             if (resId != 0) {
@@ -169,6 +158,20 @@ public class TopNavigationBar extends RelativeLayout {
             if (resId != -1) {
                 this.mtopbar.setBackgroundResource(resId);
             }
+        }
+    }
+
+    public void setActivity(Activity activity){
+        this.activity = activity;
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.buttonTopBarLeft:
+            case R.id.btnTopBarLeft:
+                this.activity.finish();
+                break;
         }
     }
 }

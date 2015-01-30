@@ -14,7 +14,7 @@
         <com.psb.ui.widget.ViewPagerWithPoint
             android:id="@+id/banner"
             android:layout_width="match_parent"
-            android:layout_height="162dp"
+            android:layout_height="@dimen/banner_img_height"
             android:gravity="top" />
 
         <com.psb.ui.widget.InnerListView

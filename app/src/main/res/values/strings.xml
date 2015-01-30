@@ -6,12 +6,25 @@
     <string name="guide">办事指南</string>
     <string name="profile">个人中心</string>
 
+    <string name="news_detail">咨询详情</string>
+
     <string name="loading">loading</string>
     <string name="back">返回</string>
-
 
     <string name="police_info">查询民警信息</string>
     <string name="office_map">警务室地图</string>
     <string name="office_info">警务室列表</string>
 
+    <string name="notice">通知通报</string>
+    <string name="processing">意见处理</string>
+    <string name="record">填写工作记录</string>
+    <string name="record_history">我的工作记录</string>
+    <string name="sign">签到</string>
+    <string name="change_pwd">修改密码</string>
+
+    <string name="id">账号</string>
+    <string name="pwd">密码</string>
+    <string name="login">登录</string>
+    <string name="register">注册</string>
+    <string name="anonymous">匿名举报</string>
 </resources>

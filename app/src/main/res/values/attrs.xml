@@ -31,7 +31,6 @@
     </declare-styleable>
 
     <declare-styleable name="TopNavigationBar">
-        <attr name="barTitle" format="reference|string" />
         <attr name="barTitleBackground" format="reference" />
         <attr name="titleText" format="reference|string" />
         <attr name="titleBackground" format="reference" />
