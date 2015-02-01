@@ -4,6 +4,7 @@
     <style name="AppTheme" parent="android:Theme.Light">
         <!-- Customize your theme here. -->
         <item name="android:windowNoTitle">true</item>
+        <item name="android:screenOrientation">portrait</item>
     </style>
 
 

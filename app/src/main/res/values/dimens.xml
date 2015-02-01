@@ -4,6 +4,8 @@
     <dimen name="activity_horizontal_margin">16dp</dimen>
     <dimen name="activity_vertical_margin">16dp</dimen>
 
+    <dimen name="login_padding">32dp</dimen>
+
     <!-- top bar -->
     <dimen name="top_bar_default_height">60dp</dimen>
     <dimen name="top_bar_icon_vertical_padding">8dp</dimen>

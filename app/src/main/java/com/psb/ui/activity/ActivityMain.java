@@ -38,23 +38,23 @@ public class ActivityMain extends BaseFragmentActivity {
 
         mTabButtons[0].setTitle(getString(R.string.news));
         mTabButtons[0].setIndex(0);
-//        mTabButtons[0].setSelectedImage(getResources().getDrawable(R.drawable.tab_broadcast_press));
-//        mTabButtons[0].setUnselectedImage(getResources().getDrawable(R.drawable.tab_broadcast));
+        mTabButtons[0].setSelectedImage(getResources().getDrawable(R.drawable.tab_broadcast_press));
+        mTabButtons[0].setUnselectedImage(getResources().getDrawable(R.drawable.tab_broadcast));
 
         mTabButtons[1].setTitle(getString(R.string.navigation));
         mTabButtons[1].setIndex(1);
-//        mTabButtons[1].setSelectedImage(getResources().getDrawable(R.drawable.informationicons3_33));
-//        mTabButtons[1].setUnselectedImage(getResources().getDrawable(R.drawable.informationicon3_3));
+        mTabButtons[1].setSelectedImage(getResources().getDrawable(R.drawable.tab_msg_press));
+        mTabButtons[1].setUnselectedImage(getResources().getDrawable(R.drawable.tab_msg));
 
         mTabButtons[2].setTitle(getString(R.string.guide));
         mTabButtons[2].setIndex(2);
-//        mTabButtons[2].setSelectedImage(getResources().getDrawable(R.drawable.wishtalk));
-//        mTabButtons[2].setUnselectedImage(getResources().getDrawable(R.drawable.wishtalk));
+        mTabButtons[2].setSelectedImage(getResources().getDrawable(R.drawable.tab_contacts_press));
+        mTabButtons[2].setUnselectedImage(getResources().getDrawable(R.drawable.tab_contacts));
 
         mTabButtons[3].setTitle(getString(R.string.profile));
         mTabButtons[3].setIndex(3);
-//        mTabButtons[3].setSelectedImage(getResources().getDrawable(R.drawable.found3_3));
-//        mTabButtons[3].setUnselectedImage(getResources().getDrawable(R.drawable.found3));
+        mTabButtons[3].setSelectedImage(getResources().getDrawable(R.drawable.tab_settings_press));
+        mTabButtons[3].setUnselectedImage(getResources().getDrawable(R.drawable.tab_settings));
     }
 
     private void initFragment() {
@@ -69,6 +69,7 @@ public class ActivityMain extends BaseFragmentActivity {
      * @param which
      */
     public void setFragmentIndicator(int which) {
+        Log.d("setFragmentIndicator", ""+which);
         switch (which) {
             case 0:
                 topbar.setTitleText(this.getResources().getText(R.string.news));
