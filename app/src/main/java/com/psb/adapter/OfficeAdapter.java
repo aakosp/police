@@ -1,16 +1,20 @@
 package com.psb.adapter;
 
+import android.content.ClipData;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import com.psb.R;
 import com.psb.entity.OfficeInfo;
 import com.psb.ui.util.ToastUtil;
+import com.psb.ui.widget.ItemHorizontal;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -59,10 +63,10 @@ public class OfficeAdapter extends BaseAdapter implements View.OnClickListener {
             convertView = View.inflate(parent.getContext(), R.layout.item_office_info, null);
             officeViewHolder = new OfficeViewHolder();
             officeViewHolder.name = (TextView) convertView.findViewById(R.id.name);
-            officeViewHolder.tel = (TextView) convertView.findViewById(R.id.tel);
-            officeViewHolder.addr = (TextView) convertView.findViewById(R.id.addr);
-            officeViewHolder.phone = (Button) convertView.findViewById(R.id.phone);
-            officeViewHolder.map = (Button) convertView.findViewById(R.id.map);
+            officeViewHolder.tel = (ItemHorizontal) convertView.findViewById(R.id.tel);
+            officeViewHolder.addr = (ItemHorizontal) convertView.findViewById(R.id.addr);
+            officeViewHolder.phone = (ImageView) convertView.findViewById(R.id.phone);
+            officeViewHolder.map = (ImageView) convertView.findViewById(R.id.map);
             officeViewHolder.phone.setOnClickListener(this);
             officeViewHolder.map.setOnClickListener(this);
             convertView.setTag(officeViewHolder);
@@ -93,7 +97,8 @@ public class OfficeAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
     private static class OfficeViewHolder{
-        public TextView name, tel, addr;
-        public Button phone, map;
+        public TextView name;
+        public ItemHorizontal tel, addr;
+        public ImageView phone, map;
     }
 }

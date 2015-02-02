@@ -44,5 +44,7 @@
     <!-- banner -->
     <dimen name="banner_img_height">162dp</dimen>
 
-    <dimen name="avatar_size">48sp</dimen>
+    <dimen name="avatar_size">48dp</dimen>
+
+    <dimen name="icon_size">18dp</dimen>
 </resources>

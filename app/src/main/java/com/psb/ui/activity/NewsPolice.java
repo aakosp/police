@@ -3,21 +3,17 @@ package com.psb.ui.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-
 import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshScrollView;
 import com.psb.R;
 import com.psb.adapter.NewsAdapter;
-import com.psb.entity.NewsTitle;
+import com.psb.entity.NewsInfo;
 import com.psb.ui.widget.ViewPagerWithPoint;
-import com.psb.ui.widget.ViewPagerWithTitle;
-
 import java.util.List;
 
 /**
@@ -51,7 +47,7 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
         banner.setCurrentItem(0);
     }
 
-    public void addNews(List<NewsTitle> news) {
+    public void addNews(List<NewsInfo> news) {
         if (null == adapter) {
             adapter = new NewsAdapter(news);
             listView.setAdapter(adapter);
@@ -80,7 +76,7 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        NewsTitle news = (NewsTitle) parent.getAdapter().getItem(position);
+        NewsInfo news = (NewsInfo) parent.getAdapter().getItem(position);
         this.getContext().startActivity(intent);
     }
 }

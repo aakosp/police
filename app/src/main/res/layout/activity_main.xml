@@ -18,7 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/tab_bk"
+        android:background="@color/white"
         android:gravity="center"
         android:orientation="horizontal">
 
@@ -28,17 +28,32 @@
             android:layout_height="fill_parent"
             android:layout_weight="1" />
 
+        <View
+            android:layout_width="@dimen/divider"
+            android:layout_height="match_parent"
+            android:background="@color/alert_divider" />
+
         <com.psb.ui.widget.NaviTabButton
             android:id="@+id/tabbutton_navigation"
             android:layout_width="0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1" />
 
+        <View
+            android:layout_width="@dimen/divider"
+            android:layout_height="match_parent"
+            android:background="@color/alert_divider" />
+
         <com.psb.ui.widget.NaviTabButton
             android:id="@+id/tabbutton_gruid"
             android:layout_width="0dip"
             android:layout_height="fill_parent"
             android:layout_weight="1" />
+
+        <View
+            android:layout_width="@dimen/divider"
+            android:layout_height="match_parent"
+            android:background="@color/alert_divider" />
 
         <com.psb.ui.widget.NaviTabButton
             android:id="@+id/tabbutton_profile"
