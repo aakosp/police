@@ -21,4 +21,5 @@
     <color name="viewpager_title_normal">#aaaaaa</color>
 
     <color name="news_title">#151515</color>
+    <color name="news_time">#929292</color>
 </resources>

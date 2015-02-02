@@ -22,7 +22,7 @@ public class FragmentGuide extends BaseFragment {
             ((ViewGroup) mView.getParent()).removeView(mView);
             return mView;
         }
-        mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_profile, container, false);
+        mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_guide, container, false);
         return mView;
     }
 }

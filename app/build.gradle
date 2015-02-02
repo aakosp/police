@@ -28,4 +28,5 @@ dependencies {
     compile fileTree(include: ['*.jar'], dir: 'libs')
     compile project(':library')
     compile files('libs/BaiduLBS_Android.jar')
+    compile 'com.android.support:support-v4:21.0.3'
 }

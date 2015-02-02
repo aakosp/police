@@ -6,6 +6,8 @@ import com.psb.R;
 import com.psb.adapter.OfficeAdapter;
 import com.psb.entity.OfficeInfo;
 import com.psb.ui.base.BaseActivity;
+import com.psb.ui.widget.TopNavigationBar;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,6 +16,7 @@ import java.util.List;
  */
 public class ActivityOffice extends BaseActivity{
 
+    private TopNavigationBar topbar;
     private ListView mList;
     private OfficeAdapter officeAdapter;
 
@@ -21,7 +24,9 @@ public class ActivityOffice extends BaseActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_office);
+        this.topbar = (TopNavigationBar) findViewById(R.id.topbar);
         this.mList = (ListView) findViewById(R.id.list);
+        this.topbar.setActivity(this);
 
         officeAdapter = new OfficeAdapter(this);
         List<OfficeInfo> list = new ArrayList<>();

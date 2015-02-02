@@ -11,11 +11,13 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.psb.R;
+import com.psb.ui.activity.ActivityMain;
 
 /**
  * Created by zl on 2014/11/21.
  */
-public class NaviTabButton extends FrameLayout {
+public class NaviTabButton extends FrameLayout implements View.OnClickListener{
+
     private int mIndex;
     private ImageView mImage;
     private TextView mTitle;
@@ -45,7 +47,7 @@ public class NaviTabButton extends FrameLayout {
         mTitle = (TextView) findViewById(R.id.tab_btn_title);
         mNotify = (TextView) findViewById(R.id.tab_unread_notify);
 
-        //container.setOnClickListener(clickListner);
+        container.setOnClickListener(this);
     }
 
     public void setIndex(int index) {
@@ -98,5 +100,10 @@ public class NaviTabButton extends FrameLayout {
 
         mNotify.setText(notify);
         mNotify.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void onClick(View v) {
+        ((ActivityMain) mContext).setFragmentIndicator(mIndex);
     }
 }
