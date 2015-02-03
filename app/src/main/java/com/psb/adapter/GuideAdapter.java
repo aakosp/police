@@ -5,8 +5,10 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
 import com.psb.R;
 import com.psb.entity.NewsInfo;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,16 +20,16 @@ public class GuideAdapter extends BaseAdapter {
     private List<NewsInfo> list = new ArrayList<>();
     private Context context;
 
-    public GuideAdapter(Context context){
+    public GuideAdapter(Context context) {
         this.context = context;
     }
 
-    public void setList(List<NewsInfo> list){
+    public void setList(List<NewsInfo> list) {
         this.list.clear();
         this.list.addAll(list);
     }
 
-    public void addList(List<NewsInfo> list){
+    public void addList(List<NewsInfo> list) {
         this.list.addAll(list);
     }
 
@@ -49,7 +51,7 @@ public class GuideAdapter extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         TextView title = null;
-        if(null == convertView){
+        if (null == convertView) {
             convertView = View.inflate(context, R.layout.item_news_noimg, null);
         }
         title = (TextView) convertView.findViewById(R.id.title);

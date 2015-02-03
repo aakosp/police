@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -16,7 +17,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_marginLeft="@dimen/default_padding"
             android:gravity="center_vertical"
             android:orientation="horizontal">
 
@@ -56,14 +56,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
-        app:ItemHorizontal_text="@string/notice" />
+        app:ItemHorizontal_img_height="@dimen/icon_size"
+        app:ItemHorizontal_img_src="@drawable/notice"
+        app:ItemHorizontal_img_width="@dimen/icon_size"
+        app:ItemHorizontal_text="@string/notice"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
     <com.psb.ui.widget.ItemHorizontal
         android:id="@+id/processing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
-        app:ItemHorizontal_text="@string/processing" />
+        app:ItemHorizontal_img_height="@dimen/icon_size"
+        app:ItemHorizontal_img_src="@drawable/opinion_handle"
+        app:ItemHorizontal_img_width="@dimen/icon_size"
+        app:ItemHorizontal_text="@string/processing"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
     <View
         android:layout_width="match_parent"
@@ -75,7 +83,11 @@
         android:id="@+id/record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:ItemHorizontal_text="@string/record" />
+        app:ItemHorizontal_img_height="@dimen/icon_size"
+        app:ItemHorizontal_img_src="@drawable/wrok_record"
+        app:ItemHorizontal_img_width="@dimen/icon_size"
+        app:ItemHorizontal_text="@string/record"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
     <View
         android:layout_width="match_parent"
@@ -87,7 +99,11 @@
         android:id="@+id/record_history"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:ItemHorizontal_text="@string/record_history" />
+        app:ItemHorizontal_img_height="@dimen/icon_size"
+        app:ItemHorizontal_img_src="@drawable/work_record_list"
+        app:ItemHorizontal_img_width="@dimen/icon_size"
+        app:ItemHorizontal_text="@string/record_history"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
 
     <com.psb.ui.widget.ItemHorizontal
@@ -95,13 +111,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
-        app:ItemHorizontal_text="@string/sign" />
+        app:ItemHorizontal_img_height="@dimen/icon_size"
+        app:ItemHorizontal_img_src="@drawable/sgin"
+        app:ItemHorizontal_img_width="@dimen/icon_size"
+        app:ItemHorizontal_text="@string/sign"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
     <com.psb.ui.widget.ItemHorizontal
         android:id="@+id/pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
-        app:ItemHorizontal_text="@string/change_pwd" />
+        app:ItemHorizontal_img_height="@dimen/icon_size"
+        app:ItemHorizontal_img_src="@drawable/change_pwd"
+        app:ItemHorizontal_img_width="@dimen/icon_size"
+        app:ItemHorizontal_text="@string/change_pwd"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
 </LinearLayout>

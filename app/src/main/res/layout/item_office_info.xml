@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,34 +10,55 @@
         android:id="@+id/name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
         android:textSize="@dimen/newstitle_title_size" />
-
-    <com.psb.ui.widget.ItemHorizontal
-        android:id="@+id/tel"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:ItemHorizontal_arrow_visible="false"
-        app:ItemHorizontal_img_height="@dimen/icon_size"
-        app:ItemHorizontal_img_src="@drawable/phone"
-        app:ItemHorizontal_img_width="@dimen/icon_size"
-        app:ItemHorizontal_text_color="@color/news_time"
-        app:ItemHorizontal_text_size="@dimen/newstitle_time_size" />
-
-    <com.psb.ui.widget.ItemHorizontal
-        android:id="@+id/addr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:ItemHorizontal_arrow_visible="false"
-        app:ItemHorizontal_img_height="@dimen/icon_size"
-        app:ItemHorizontal_img_src="@drawable/position"
-        app:ItemHorizontal_img_width="@dimen/icon_size"
-        app:ItemHorizontal_text_color="@color/news_time"
-        app:ItemHorizontal_text_size="@dimen/newstitle_time_size" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:scaleType="centerInside"
+            android:src="@drawable/tel" />
+
+        <TextView
+            android:id="@+id/tel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/news_time"
+            android:textSize="@dimen/newstitle_detail_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="@dimen/icon_size"
+            android:layout_height="@dimen/icon_size"
+            android:scaleType="centerInside"
+            android:src="@drawable/position" />
+
+        <TextView
+            android:id="@+id/addr"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/news_time"
+            android:textSize="@dimen/newstitle_detail_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@color/background"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 
@@ -54,7 +74,7 @@
         <View
             android:layout_width="@dimen/divider"
             android:layout_height="match_parent"
-            android:background="@color/alert_divider" />
+            android:background="@color/news_time" />
 
         <ImageView
             android:id="@+id/map"

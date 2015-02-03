@@ -35,23 +35,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.activity.LocationDemo"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".ui.activity.OverlayDemo"
-            android:screenOrientation="portrait"/>
-        <activity
-            android:name=".ui.activity.ActivityNewsDetail"
-            android:screenOrientation="portrait"/>
-
-        <activity
-            android:name=".ui.activity.ActivityRegister"
-            android:screenOrientation="portrait"/>
-
-        <activity
-            android:name=".ui.activity.ActivityOffice"
-            android:screenOrientation="portrait"/>
+        <activity android:name=".ui.activity.LocationDemo"/>
+        <activity android:name=".ui.activity.ActivityMap"/>
+        <activity android:name=".ui.activity.ActivityNewsDetail"/>
+        <activity android:name=".ui.activity.ActivityRegister"/>
+        <activity android:name=".ui.activity.ActivityOffice"/>
+        <activity android:name=".ui.activity.ActivityOpinionFeedBack"/>
 
         <service
             android:name="com.baidu.location.f"

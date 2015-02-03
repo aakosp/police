@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.psb.R;
 import com.psb.entity.NewsInfo;
@@ -17,21 +18,21 @@ import java.util.List;
 /**
  * Created by zl on 2015/1/27.
  */
-public class NewsAdapter extends BaseAdapter{
+public class NewsAdapter extends BaseAdapter {
 
     private List<NewsInfo> news;
 
-    public NewsAdapter(List<NewsInfo> titles){
+    public NewsAdapter(List<NewsInfo> titles) {
         news = new ArrayList<>();
         news.addAll(titles);
     }
 
-    public void setNews(List<NewsInfo> titles){
+    public void setNews(List<NewsInfo> titles) {
         news.clear();
         news.addAll(titles);
     }
 
-    public void addNews(List<NewsInfo> titles){
+    public void addNews(List<NewsInfo> titles) {
         news.addAll(titles);
     }
 
@@ -64,7 +65,7 @@ public class NewsAdapter extends BaseAdapter{
             holder = (NewsInfoHolder) convertView.getTag();
         }
         NewsInfo item = news.get(position);
-        Log.d("get", position+" "+news.size());
+        Log.d("get", position + " " + news.size());
         ImageLoader.getInstance().displayImage(item.getImg(), holder.img, ImageUtil.options);
         holder.title.setText(item.getTitle());
         holder.time.setText(item.getTime());

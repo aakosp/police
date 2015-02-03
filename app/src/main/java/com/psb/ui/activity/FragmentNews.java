@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import com.psb.R;
 import com.psb.core.AppContext;
 import com.psb.entity.NewsInfo;
+import com.psb.protocol.Api;
 import com.psb.ui.base.BaseFragment;
 import com.psb.ui.widget.ViewPagerWithTitle;
 import com.util.TimeUtil;
@@ -39,6 +40,8 @@ public class FragmentNews extends BaseFragment {
         mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_news, container, false);
         viewPager = (ViewPagerWithTitle) mView.findViewById(R.id.vp);
         this.initView();
+
+        Api.getInstance().getArticle(1);
         return mView;
     }
 

@@ -46,7 +46,7 @@ public class FragmentNavigation extends BaseFragment implements View.OnClickList
 //                intent.setClass(this.getActivity(), );
                 break;
             case R.id.office_map:
-                intent.setClass(this.getActivity(), OverlayDemo.class);
+                intent.setClass(this.getActivity(), ActivityMap.class);
                 break;
             case R.id.office_info:
                 intent.setClass(this.getActivity(), ActivityOffice.class);

@@ -11,7 +11,9 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:background="@color/white"
-        app:ItemHorizontal_text="@string/police_info" />
+        app:ItemHorizontal_img_src="@drawable/query_police"
+        app:ItemHorizontal_text="@string/police_info"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
     <com.psb.ui.widget.ItemHorizontal
         android:id="@+id/office_map"
@@ -20,12 +22,14 @@
         android:layout_marginTop="16dp"
         android:background="@color/white"
         android:orientation="horizontal"
-        app:ItemHorizontal_text="@string/office_map" />
+        app:ItemHorizontal_img_src="@drawable/map_office"
+        app:ItemHorizontal_text="@string/office_map"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider"
-        android:background="@color/alert_divider" />
+        android:background="@color/news_time" />
 
     <com.psb.ui.widget.ItemHorizontal
         android:id="@+id/office_info"
@@ -33,7 +37,9 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         android:orientation="horizontal"
-        app:ItemHorizontal_text="@string/office_info" />
+        app:ItemHorizontal_img_src="@drawable/office_list"
+        app:ItemHorizontal_text="@string/office_info"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
 
 </LinearLayout>

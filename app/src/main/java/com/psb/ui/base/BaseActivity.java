@@ -6,15 +6,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
-import android.view.View;
 import android.view.inputmethod.InputMethodManager;
-
 import com.psb.R;
 
 /**
  *
  */
-public class BaseActivity extends Activity implements View.OnClickListener {
+public class BaseActivity extends Activity {
 
     private boolean allowFullScreen = true;
     private boolean allowBreakDestroy = true;
@@ -94,7 +92,4 @@ public class BaseActivity extends Activity implements View.OnClickListener {
     protected void handlerPacketMsg(Message msg) {
     }
 
-    @Override
-    public void onClick(View v) {
-    }
 }

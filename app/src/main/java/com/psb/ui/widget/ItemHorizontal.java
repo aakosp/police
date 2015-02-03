@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-
 import com.psb.R;
 
 /**
@@ -62,11 +62,10 @@ public class ItemHorizontal extends RelativeLayout {
             if(null != cs){
                 this.textView.setText(cs);
             }
-            int color = typedArray.getColor(R.styleable.ItemHorizontal_ItemHorizontal_text_color, 0XFFFFFFFF);
+            int color = typedArray.getColor(R.styleable.ItemHorizontal_ItemHorizontal_text_color, 0xFF000000);
             this.textView.setTextColor(color);
-            float s = typedArray.getDimension(R.styleable.ItemHorizontal_ItemHorizontal_text_size, 12);
-            Log.d("size", ""+s);
-            this.textView.setTextSize(18);
+            int size = typedArray.getDimensionPixelSize(R.styleable.ItemHorizontal_ItemHorizontal_text_size, 22);
+            this.textView.setTextSize(TypedValue.COMPLEX_UNIT_PX, size);
         }
     }
 

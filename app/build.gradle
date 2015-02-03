@@ -29,4 +29,5 @@ dependencies {
     compile project(':library')
     compile files('libs/BaiduLBS_Android.jar')
     compile 'com.android.support:support-v4:21.0.3'
+    compile 'org.apache.httpcomponents:httpclient-android:4.3.5.1'
 }

@@ -1,21 +1,16 @@
 package com.psb.adapter;
 
-import android.content.ClipData;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.media.Image;
-import android.view.LayoutInflater;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.psb.R;
 import com.psb.entity.OfficeInfo;
-import com.psb.ui.util.ToastUtil;
-import com.psb.ui.widget.ItemHorizontal;
-
+import com.psb.ui.activity.ActivityMap;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,17 +22,17 @@ public class OfficeAdapter extends BaseAdapter implements View.OnClickListener {
     private List<OfficeInfo> officeInfoList;
     private Context context;
 
-    public OfficeAdapter(Context context){
+    public OfficeAdapter(Context context) {
         this.context = context;
         officeInfoList = new ArrayList<>();
     }
 
-    public void setOfficeInfoList(List<OfficeInfo> infos){
+    public void setOfficeInfoList(List<OfficeInfo> infos) {
         officeInfoList.clear();
         officeInfoList.addAll(infos);
     }
 
-    public void addOfficeInfo(List<OfficeInfo> infos){
+    public void addOfficeInfo(List<OfficeInfo> infos) {
         officeInfoList.addAll(infos);
     }
 
@@ -59,46 +54,50 @@ public class OfficeAdapter extends BaseAdapter implements View.OnClickListener {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         OfficeViewHolder officeViewHolder = null;
-        if(null == convertView){
+        if (null == convertView) {
             convertView = View.inflate(parent.getContext(), R.layout.item_office_info, null);
             officeViewHolder = new OfficeViewHolder();
             officeViewHolder.name = (TextView) convertView.findViewById(R.id.name);
-            officeViewHolder.tel = (ItemHorizontal) convertView.findViewById(R.id.tel);
-            officeViewHolder.addr = (ItemHorizontal) convertView.findViewById(R.id.addr);
+            officeViewHolder.tel = (TextView) convertView.findViewById(R.id.tel);
+            officeViewHolder.addr = (TextView) convertView.findViewById(R.id.addr);
             officeViewHolder.phone = (ImageView) convertView.findViewById(R.id.phone);
             officeViewHolder.map = (ImageView) convertView.findViewById(R.id.map);
             officeViewHolder.phone.setOnClickListener(this);
             officeViewHolder.map.setOnClickListener(this);
             convertView.setTag(officeViewHolder);
-        }
-        else{
+        } else {
             officeViewHolder = (OfficeViewHolder) convertView.getTag();
         }
 
         OfficeInfo info = this.officeInfoList.get(position);
         officeViewHolder.name.setText(info.getName());
-        officeViewHolder.tel.setText(info.getTel());
-        officeViewHolder.addr.setText(info.getAddr());
+        officeViewHolder.tel.setText("电话：" + info.getTel());
+        officeViewHolder.phone.setTag(info.getTel());
+        officeViewHolder.addr.setText("地址：" + info.getAddr());
         return convertView;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        Intent intent = null;
+        switch (v.getId()) {
             case R.id.phone:
-                ToastUtil.showLongToast(this.context, "phone click", 0);
+                Uri telUri = Uri.parse("tel:"+v.getTag());
+                intent = new Intent(Intent.ACTION_DIAL, telUri);
                 break;
 
             case R.id.map:
-                ToastUtil.showLongToast(this.context, "map click", 0);
+                intent = new Intent();
+                intent.setClass(context, ActivityMap.class);
                 break;
+            default:
+                return;
         }
-
+        this.context.startActivity(intent);
     }
 
-    private static class OfficeViewHolder{
-        public TextView name;
-        public ItemHorizontal tel, addr;
+    private static class OfficeViewHolder {
+        public TextView name, tel, addr;
         public ImageView phone, map;
     }
 }

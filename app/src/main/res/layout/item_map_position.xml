@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bkg_position"
+    android:minWidth="@dimen/map_min_width"
+    android:orientation="vertical"
+    android:padding="@dimen/map_padding">
+
+    <TextView
+        android:id="@+id/name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/newstitle_detail_size" />
+
+
+    <TextView
+        android:id="@+id/tel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/map_padding"
+        android:textColor="@color/news_time"
+        android:textSize="@dimen/newstitle_time_size" />
+
+
+    <TextView
+        android:id="@+id/addr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/news_time"
+        android:textSize="@dimen/newstitle_time_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/map_padding"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/call"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:background="@drawable/call_press" />
+
+        <View
+            android:layout_width="2dp"
+            android:layout_height="match_parent" />
+
+        <View
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="3"
+            android:background="@drawable/navigation" />
+
+    </LinearLayout>
+
+</LinearLayout>

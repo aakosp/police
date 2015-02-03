@@ -21,7 +21,7 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@color/alert_divider"
+            android:divider="@color/news_time"
             android:dividerHeight="@dimen/divider" />
     </LinearLayout>
 </com.handmark.pulltorefresh.library.PullToRefreshScrollView>
