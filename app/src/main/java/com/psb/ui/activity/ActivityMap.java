@@ -78,7 +78,7 @@ public class ActivityMap extends BaseActivity implements OnClickListener{
                     positionViewHolder.addr.setText("汤阴大付庄村");
                     positionViewHolder.call.setTag("32323553");
                     LatLng ll = marker.getPosition();
-                    mInfoWindow = new InfoWindow(officeInfo, ll, -47);
+                    mInfoWindow = new InfoWindow(officeInfo, ll, 240);
                     mBaiduMap.showInfoWindow(mInfoWindow);
                 }
                 /*else if (marker == mMarkerC) {
