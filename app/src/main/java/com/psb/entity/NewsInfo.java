@@ -5,15 +5,26 @@ package com.psb.entity;
  */
 public class NewsInfo {
 
-    private NewsTitle title;
+    private int id;
+    private String title;
     private String info;
+    private String img;
+    private String time;
 
-    public NewsTitle getTitle() {
-        return title;
+    public int getId() {
+        return id;
     }
 
-    public void setTitle(NewsTitle title) {
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public void setTitle(String title){
         this.title = title;
+    }
+
+    public String getTitle(){
+        return this.title;
     }
 
     public String getInfo() {
@@ -22,5 +33,21 @@ public class NewsInfo {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public String getImg() {
+        return img;
+    }
+
+    public void setImg(String img) {
+        this.img = img;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
     }
 }

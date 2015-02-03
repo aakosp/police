@@ -2,8 +2,10 @@ package com.psb.ui.widget;
 
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.transition.Visibility;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -38,6 +40,8 @@ public class ViewPagerWithTitle extends LinearLayout {
     private int padH = DisplayUtil.dip2px(8);
     private int padS = DisplayUtil.dip2px(12);
 
+    private boolean mCursorVisible;
+
     public ViewPagerWithTitle(Context context) {
         this(context, null);
     }
@@ -55,6 +59,26 @@ public class ViewPagerWithTitle extends LinearLayout {
         mCursor = (ImageView) findViewById(R.id.cursor);
         mCursor.setBackgroundColor(getResources().getColor(cursorColor));
         mCustomViewPager = (ViewPager) findViewById(R.id.custviewPager);
+
+        this.initializeAttributes(context, attrs);
+    }
+
+    private void initializeAttributes(Context context, AttributeSet attrs) {
+        if (attrs == null) return;
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.widgetviewpager);
+        if(null != mCursor){
+            mCursorVisible = typedArray.getBoolean(R.styleable.widgetviewpager_tab_cursor_visible, true);
+            this.setCursorVisible(mCursorVisible);
+        }
+    }
+
+    public void setCursorVisible(boolean visibility){
+        if(visibility){
+            mCursor.setVisibility(View.VISIBLE);
+        }
+        else{
+            mCursor.setVisibility(View.GONE);
+        }
     }
 
     public ViewPager getCustomViewPager() {
@@ -125,13 +149,13 @@ public class ViewPagerWithTitle extends LinearLayout {
 
             @Override
             public void onPageSelected(int index) {
-
-                ObjectAnimator animation = ObjectAnimator.ofFloat(mCursor, "x",
-                        offset * currIndex, offset * index);
-                currIndex = index;
-                animation.setDuration(200);
-                animation.start();
-
+                if(mCursorVisible){
+                    ObjectAnimator animation = ObjectAnimator.ofFloat(mCursor, "x",
+                            offset * currIndex, offset * index);
+                    currIndex = index;
+                    animation.setDuration(200);
+                    animation.start();
+                }
                 for (int i = 0; i < layoutTabs.getChildCount(); i++) {
                     TextView tv = (TextView) layoutTabs.getChildAt(i);
                     if (i == index) {

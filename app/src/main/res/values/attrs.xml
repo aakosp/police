@@ -28,6 +28,7 @@
         <attr name="tabs_selected_color" format="reference" />
         <attr name="tab_text_size" format="dimension" />
         <attr name="tabs_height" format="dimension" />
+        <attr name="tab_cursor_visible" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="TopNavigationBar">
@@ -57,5 +58,13 @@
         <item>警队风采</item>
         <item>预警信息</item>
         <item>安防攻略</item>
+    </string-array>
+
+    <string-array name="guide_columns">
+        <item>户政</item>
+        <item>治安</item>
+        <item>交通</item>
+        <item>消防</item>
+        <item>出入境</item>
     </string-array>
 </resources>

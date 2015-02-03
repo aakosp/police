@@ -35,22 +35,22 @@ public class ActivityMain extends BaseFragmentActivity {
         mTabButtons[2] = (NaviTabButton) findViewById(R.id.tabbutton_gruid);
         mTabButtons[3] = (NaviTabButton) findViewById(R.id.tabbutton_profile);
 
-        mTabButtons[0].setTitle(getString(R.string.news));
+        //mTabButtons[0].setTitle(getString(R.string.news));
         mTabButtons[0].setIndex(0);
         mTabButtons[0].setSelectedImage(getResources().getDrawable(R.drawable.tab_news_press));
         mTabButtons[0].setUnselectedImage(getResources().getDrawable(R.drawable.tab_news));
 
-        mTabButtons[1].setTitle(getString(R.string.navigation));
+        //mTabButtons[1].setTitle(getString(R.string.navigation));
         mTabButtons[1].setIndex(1);
         mTabButtons[1].setSelectedImage(getResources().getDrawable(R.drawable.tab_navigation_press));
         mTabButtons[1].setUnselectedImage(getResources().getDrawable(R.drawable.tab_navigation));
 
-        mTabButtons[2].setTitle(getString(R.string.guide));
+        //mTabButtons[2].setTitle(getString(R.string.guide));
         mTabButtons[2].setIndex(2);
         mTabButtons[2].setSelectedImage(getResources().getDrawable(R.drawable.tab_guide_press));
         mTabButtons[2].setUnselectedImage(getResources().getDrawable(R.drawable.tab_guide));
 
-        mTabButtons[3].setTitle(getString(R.string.profile));
+        //mTabButtons[3].setTitle(getString(R.string.profile));
         mTabButtons[3].setIndex(3);
         mTabButtons[3].setSelectedImage(getResources().getDrawable(R.drawable.tab_profile_press));
         mTabButtons[3].setUnselectedImage(getResources().getDrawable(R.drawable.tab_profile));

@@ -59,14 +59,19 @@ public class ItemHorizontal extends RelativeLayout {
 
         if (this.textView != null) {
             CharSequence cs = typedArray.getText(R.styleable.ItemHorizontal_ItemHorizontal_text);
-            Log.d("item", cs.toString());
-            this.textView.setText(cs);
-
-            int color = typedArray.getColor(R.styleable.ItemHorizontal_ItemHorizontal_text_color, 0);
-            this.textView.setTextColor(context.getResources().getColor(R.color.black));
-            int size = typedArray.getDimensionPixelSize(R.styleable.ItemHorizontal_ItemHorizontal_text_size, 16);
-            this.textView.setTextSize(size);
+            if(null != cs){
+                this.textView.setText(cs);
+            }
+            int color = typedArray.getColor(R.styleable.ItemHorizontal_ItemHorizontal_text_color, 0XFFFFFFFF);
+            this.textView.setTextColor(color);
+            float s = typedArray.getDimension(R.styleable.ItemHorizontal_ItemHorizontal_text_size, 12);
+            Log.d("size", ""+s);
+            this.textView.setTextSize(18);
         }
+    }
+
+    public void setText(String text){
+        this.textView.setText(text);
     }
 
 }
