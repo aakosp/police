@@ -3,6 +3,7 @@ package com.psb.ui.activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
+
 import com.psb.R;
 import com.psb.ui.base.BaseFragmentActivity;
 import com.psb.ui.widget.NaviTabButton;
@@ -68,7 +69,7 @@ public class ActivityMain extends BaseFragmentActivity {
      * @param which
      */
     public void setFragmentIndicator(int which) {
-        Log.d("setFragmentIndicator", ""+which);
+        Log.d("setFragmentIndicator", "" + which);
         switch (which) {
             case 0:
                 topbar.setTitleText(this.getResources().getText(R.string.news));

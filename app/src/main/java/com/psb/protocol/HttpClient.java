@@ -2,9 +2,10 @@ package com.psb.protocol;
 
 import android.net.http.AndroidHttpClient;
 import android.util.Log;
-
+import com.alibaba.fastjson.JSON;
+import com.psb.entity.Article;
+import com.psb.event.EventNotifyCenter;
 import com.util.StringUtils;
-
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
@@ -152,7 +153,7 @@ public class HttpClient {
             e.printStackTrace();
         } finally {
             // 释放连接
-            httpClient.close();
+//            httpClient.close();
         }
     }
 
@@ -187,13 +188,14 @@ public class HttpClient {
             }
             InputStream is = response.getEntity().getContent();
             String responseBody = StringUtils.toConvertString(is);
-            Log.d("url get", responseBody);
+            Cache.getInstance().parse(responseBody, event);
         } catch (Exception e) {
             // 发生网络异常
             e.printStackTrace();
         } finally {
             // 释放连接
-            httpClient.close();
+//            httpClient.close();
+//            Log.d("httpClient.close()", "httpClient.close()");
         }
     }
 }

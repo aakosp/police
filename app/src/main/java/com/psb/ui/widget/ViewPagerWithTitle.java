@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.transition.Visibility;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.Gravity;
@@ -41,6 +40,8 @@ public class ViewPagerWithTitle extends LinearLayout {
     private int padS = DisplayUtil.dip2px(12);
 
     private boolean mCursorVisible;
+
+    private ViewPager.OnPageChangeListener onPageChangeListener;
 
     public ViewPagerWithTitle(Context context) {
         this(context, null);
@@ -102,7 +103,7 @@ public class ViewPagerWithTitle extends LinearLayout {
     }
 
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
-        mCustomViewPager.setOnPageChangeListener(listener);
+        onPageChangeListener = listener;
     }
 
     public void setTabs(String tabs[]) {
@@ -144,7 +145,10 @@ public class ViewPagerWithTitle extends LinearLayout {
 
         mCustomViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int i, float v, int i2) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+                if(null != onPageChangeListener){
+                    onPageChangeListener.onPageScrolled(position, positionOffset, positionOffsetPixels);
+                }
             }
 
             @Override
@@ -164,10 +168,16 @@ public class ViewPagerWithTitle extends LinearLayout {
                         tv.setTextColor(mContext.getResources().getColor((R.color.viewpager_title_normal)));
                     }
                 }
+                if(null != onPageChangeListener){
+                    onPageChangeListener.onPageSelected(index);
+                }
             }
 
             @Override
             public void onPageScrollStateChanged(int i) {
+                if(null != onPageChangeListener){
+                    onPageChangeListener.onPageScrollStateChanged(i);
+                }
             }
         });
         layoutTitle.setVisibility(View.VISIBLE);

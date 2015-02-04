@@ -28,7 +28,8 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/banner_img_height"
             android:padding="@dimen/default_padding"
-            android:scaleType="centerCrop" />
+            android:scaleType="centerCrop"
+            android:visibility="gone"/>
 
         <TextView
             android:id="@+id/detail"

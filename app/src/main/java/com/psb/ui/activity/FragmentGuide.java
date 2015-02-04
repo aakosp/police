@@ -2,18 +2,20 @@ package com.psb.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v4.view.ViewPager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.psb.R;
-import com.psb.adapter.GuideAdapter;
 import com.psb.core.AppContext;
 import com.psb.entity.NewsInfo;
+import com.psb.event.Event;
+import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseFragment;
 import com.psb.ui.widget.ViewPagerWithTitle;
 import java.util.ArrayList;
@@ -22,7 +24,7 @@ import java.util.List;
 /**
  * Created by zl on 2015/1/26.
  */
-public class FragmentGuide extends BaseFragment implements AdapterView.OnItemClickListener{
+public class FragmentGuide extends BaseFragment implements AdapterView.OnItemClickListener, ViewPager.OnPageChangeListener {
 
     private View mView;
     private EditText query;
@@ -42,19 +44,17 @@ public class FragmentGuide extends BaseFragment implements AdapterView.OnItemCli
         mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_guide, container, false);
         query = (EditText) mView.findViewById(R.id.query);
         viewPager = (ViewPagerWithTitle) mView.findViewById(R.id.vp);
+        viewPager.setOnPageChangeListener(this);
         this.initView();
         intent = new Intent();
         return mView;
     }
 
     private void initView() {
-        for(int i=0; i<guideColumns.length; i++){
-            PullToRefreshListView list = new PullToRefreshListView(this.getActivity());
-//            list.setVerticalScrollBarEnabled(false);
+        for (int i = 0; i < guideColumns.length; i++) {
+            NewsGuide list = new NewsGuide(this.getActivity());
+            list.setEvent(i + 5);
             list.getRefreshableView().setVerticalScrollBarEnabled(false);
-            GuideAdapter adapter = new GuideAdapter(this.getActivity());
-            adapter.setList(getTest(i));
-            list.setAdapter(adapter);
             list.setOnItemClickListener(this);
             pageViews.add(list);
         }
@@ -63,46 +63,26 @@ public class FragmentGuide extends BaseFragment implements AdapterView.OnItemCli
         viewPager.setCurrentItem(0);
     }
 
-    public List<NewsInfo> getTest(int index){
-        String strTitle = "";
-        String strInfo = "";
-        switch (index){
-            case 0:
-                strTitle = "户政新闻";
-                strInfo = "户政新闻内容1234567890 户政新闻内容1234567890 户政新闻内容1234567890 户政新闻内容1234567890 户政新闻内容1234567890";
-                break;
-            case 1:
-                strTitle = "治安新闻";
-                strInfo = "治安新闻内容1234567890 治安新闻内容1234567890 治安新闻内容1234567890 治安新闻内容1234567890 治安新闻内容1234567890";
-                break;
-            case 2:
-                strTitle = "交通新闻";
-                strInfo = "交通新闻内容1234567890 交通新闻内容1234567890 交通新闻内容1234567890 交通新闻内容1234567890 交通新闻内容1234567890";
-                break;
-            case 3:
-                strTitle = "消防新闻";
-                strInfo = "消防新闻内容1234567890 消防新闻内容1234567890 消防新闻内容1234567890 消防新闻内容1234567890 消防新闻内容1234567890";
-                break;
-            case 4:
-                strTitle = "出入境新闻";
-                strInfo = "出入境新闻内容1234567890 出入境新闻内容1234567890 出入境新闻内容1234567890 出入境新闻内容1234567890 出入境新闻内容1234567890";
+    @Override
+    protected void handlerPacketMsg(Message msg) {
+        switch (msg.what) {
+            case Event.NEWS_5:
+            case Event.NEWS_6:
+            case Event.NEWS_7:
+            case Event.NEWS_8:
+            case Event.NEWS_9:
+                NewsGuide news = (NewsGuide) pageViews.get(msg.what - 5);
+                news.onRefreshComplete();
+                news.setArticle(Cache.getInstance().getArticle(msg.what));
                 break;
         }
-        List<NewsInfo> list = new ArrayList<>();
-        for(int i=0; i<7; i++){
-            NewsInfo title = new NewsInfo();
-            title.setTitle(strTitle);
-            title.setId(i);
-            list.add(title);
-        }
-        return list;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         NewsInfo title = (NewsInfo) parent.getAdapter().getItem(position);
         Log.d("onItemClick", title.getTitle());
-        switch (title.getId()){
+        switch (title.getId()) {
             case 99:
                 break;
             default:
@@ -110,4 +90,21 @@ public class FragmentGuide extends BaseFragment implements AdapterView.OnItemCli
         }
         this.startActivity(intent);
     }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        NewsGuide guide = (NewsGuide) pageViews.get(position);
+        guide.autoGetArticle();
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
+    }
+
 }

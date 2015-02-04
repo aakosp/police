@@ -32,7 +32,7 @@
     <!-- news -->
     <dimen name="newstitle_img_width">90dp</dimen>
     <dimen name="newstitle_img_height">60dp</dimen>
-    <dimen name="newstitle_title_size">20sp</dimen>
+    <dimen name="newstitle_title_size">18sp</dimen>
     <dimen name="newstitle_time_size">12sp</dimen>
     <dimen name="newstitle_detail_size">16sp</dimen>
 

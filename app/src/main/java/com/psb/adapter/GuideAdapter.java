@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.psb.R;
+import com.psb.entity.Article;
 import com.psb.entity.NewsInfo;
 
 import java.util.ArrayList;
@@ -22,6 +23,14 @@ public class GuideAdapter extends BaseAdapter {
 
     public GuideAdapter(Context context) {
         this.context = context;
+    }
+
+    public void setArticle(Article articles){
+        if(articles.getPer_page() == 1){
+            this.setList(articles.getData());
+        } else{
+            this.addList(articles.getData());
+        }
     }
 
     public void setList(List<NewsInfo> list) {

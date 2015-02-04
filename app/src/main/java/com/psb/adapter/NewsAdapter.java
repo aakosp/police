@@ -1,17 +1,15 @@
 package com.psb.adapter;
 
-import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.psb.R;
+import com.psb.entity.Article;
 import com.psb.entity.NewsInfo;
 import com.psb.ui.util.ImageUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,6 +23,14 @@ public class NewsAdapter extends BaseAdapter {
     public NewsAdapter(List<NewsInfo> titles) {
         news = new ArrayList<>();
         news.addAll(titles);
+    }
+
+    public void setArticle(Article articles){
+        if(articles.getPer_page() == 1){
+            this.setNews(articles.getData());
+        } else{
+            this.addNews(articles.getData());
+        }
     }
 
     public void setNews(List<NewsInfo> titles) {
@@ -65,8 +71,7 @@ public class NewsAdapter extends BaseAdapter {
             holder = (NewsInfoHolder) convertView.getTag();
         }
         NewsInfo item = news.get(position);
-        Log.d("get", position + " " + news.size());
-        ImageLoader.getInstance().displayImage(item.getImg(), holder.img, ImageUtil.options);
+        ImageLoader.getInstance().displayImage(item.getThumb(), holder.img, ImageUtil.options);
         holder.title.setText(item.getTitle());
         holder.time.setText(item.getTime());
         return convertView;

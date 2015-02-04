@@ -14,10 +14,10 @@ import com.psb.ui.widget.ItemHorizontal;
 /**
  * Created by zl on 2015/1/26.
  */
-public class FragmentNavigation extends BaseFragment implements View.OnClickListener{
+public class FragmentNavigation extends BaseFragment implements View.OnClickListener {
 
     private View mView;
-    private ItemHorizontal info ,map ,officelist;
+    private ItemHorizontal info, map, officelist;
     private Intent intent;
 
     @Override
@@ -38,10 +38,10 @@ public class FragmentNavigation extends BaseFragment implements View.OnClickList
 
     @Override
     public void onClick(View v) {
-        if(null == intent){
+        if (null == intent) {
             intent = new Intent();
         }
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.info:
 //                intent.setClass(this.getActivity(), );
                 break;

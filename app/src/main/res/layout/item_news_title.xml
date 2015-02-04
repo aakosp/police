@@ -19,6 +19,8 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="@dimen/default_padding"
         android:layout_toRightOf="@+id/img"
+        android:ellipsize="end"
+        android:gravity="top"
         android:lines="2"
         android:minHeight="25dp"
         android:textColor="@color/news_title"
@@ -30,6 +32,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+        android:layout_below="@+id/title"
         android:minHeight="25dp"
         android:textColor="@color/news_time"
         android:textSize="@dimen/newstitle_time_size" />

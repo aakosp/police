@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.baidu.mapapi.map.BaiduMap;
 import com.baidu.mapapi.map.BaiduMap.OnMarkerClickListener;
 import com.baidu.mapapi.map.BaiduMap.OnMarkerDragListener;
@@ -32,7 +33,7 @@ import com.psb.ui.widget.TopNavigationBar;
 /**
  * 演示覆盖物的用法
  */
-public class ActivityMap extends BaseActivity implements OnClickListener{
+public class ActivityMap extends BaseActivity implements OnClickListener {
 
     /**
      * MapView 是地图主控件
@@ -209,10 +210,10 @@ public class ActivityMap extends BaseActivity implements OnClickListener{
 
     @Override
     public void onClick(View v) {
-        Log.d("onClick", "" + (v.getId()==R.id.call));
-        switch (v.getId()){
+        Log.d("onClick", "" + (v.getId() == R.id.call));
+        switch (v.getId()) {
             case R.id.call:
-                Uri telUri = Uri.parse("tel:"+v.getTag());
+                Uri telUri = Uri.parse("tel:" + v.getTag());
                 Intent intent = new Intent(Intent.ACTION_DIAL, telUri);
                 ActivityMap.this.startActivity(intent);
                 break;
@@ -222,7 +223,7 @@ public class ActivityMap extends BaseActivity implements OnClickListener{
         }
     }
 
-    private static class PositionViewHolder{
+    private static class PositionViewHolder {
         public TextView name, tel, addr;
         public View call, navigation;
     }

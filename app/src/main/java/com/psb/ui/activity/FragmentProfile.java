@@ -16,7 +16,7 @@ import com.psb.ui.widget.RoundImageView;
 /**
  * Created by zl on 2015/1/26.
  */
-public class FragmentProfile extends BaseFragment implements View.OnClickListener{
+public class FragmentProfile extends BaseFragment implements View.OnClickListener {
 
     private View mView, profile;
     private RoundImageView avatar;
@@ -56,7 +56,7 @@ public class FragmentProfile extends BaseFragment implements View.OnClickListene
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.profile:
                 break;
             case R.id.notice:

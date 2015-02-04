@@ -2,6 +2,7 @@ package com.psb.ui.activity;
 
 import android.os.Bundle;
 import android.widget.ListView;
+
 import com.psb.R;
 import com.psb.adapter.OfficeAdapter;
 import com.psb.entity.OfficeInfo;
@@ -14,7 +15,7 @@ import java.util.List;
 /**
  * Created by aako on 2015/2/1.
  */
-public class ActivityOffice extends BaseActivity{
+public class ActivityOffice extends BaseActivity {
 
     private TopNavigationBar topbar;
     private ListView mList;
@@ -30,9 +31,9 @@ public class ActivityOffice extends BaseActivity{
 
         officeAdapter = new OfficeAdapter(this);
         List<OfficeInfo> list = new ArrayList<>();
-        for(int i=0; i<6; i++){
+        for (int i = 0; i < 6; i++) {
             OfficeInfo info = new OfficeInfo();
-            info.setId(""+i);
+            info.setId("" + i);
             info.setAddr("汤阴大付庄村");
             info.setTel("32323553");
             info.setName("汤阴大付庄警务室");
