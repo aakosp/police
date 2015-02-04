@@ -23,7 +23,7 @@
             android:layout_width="wrap_content"
             android:layout_height="2dp"
             android:layout_gravity="bottom"
-            android:background="@color/default_red_dark"
+            android:background="@color/selected_red"
             android:scaleType="matrix" />
     </LinearLayout>
 

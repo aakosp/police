@@ -55,7 +55,7 @@ public class OfficeAdapter extends BaseAdapter implements View.OnClickListener {
     public View getView(int position, View convertView, ViewGroup parent) {
         OfficeViewHolder officeViewHolder = null;
         if (null == convertView) {
-            convertView = View.inflate(parent.getContext(), R.layout.item_office_info, null);
+            convertView = View.inflate(context, R.layout.item_office_info, null);
             officeViewHolder = new OfficeViewHolder();
             officeViewHolder.name = (TextView) convertView.findViewById(R.id.name);
             officeViewHolder.tel = (TextView) convertView.findViewById(R.id.tel);

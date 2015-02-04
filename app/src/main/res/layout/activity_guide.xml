@@ -9,6 +9,7 @@
         android:id="@+id/query"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/bkg_query"
         android:padding="@dimen/default_padding" />
 
     <com.psb.ui.widget.ViewPagerWithTitle

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/item_office_info_divider"
     android:orientation="vertical">
 
     <RelativeLayout
@@ -30,12 +30,15 @@
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/map_padding"
+                android:textColor="@color/news_title"
                 android:textSize="@dimen/newstitle_title_size" />
 
             <TextView
                 android:id="@+id/id"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/map_padding"
                 android:textColor="@color/news_time"
                 android:textSize="@dimen/newstitle_time_size" />
 
@@ -60,6 +63,7 @@
         app:ItemHorizontal_img_src="@drawable/notice"
         app:ItemHorizontal_img_width="@dimen/icon_size"
         app:ItemHorizontal_text="@string/notice"
+        app:ItemHorizontal_text_color="@color/news_title"
         app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
     <com.psb.ui.widget.ItemHorizontal
@@ -71,6 +75,7 @@
         app:ItemHorizontal_img_src="@drawable/opinion_handle"
         app:ItemHorizontal_img_width="@dimen/icon_size"
         app:ItemHorizontal_text="@string/processing"
+        app:ItemHorizontal_text_color="@color/news_title"
         app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
     <View
@@ -87,6 +92,7 @@
         app:ItemHorizontal_img_src="@drawable/wrok_record"
         app:ItemHorizontal_img_width="@dimen/icon_size"
         app:ItemHorizontal_text="@string/record"
+        app:ItemHorizontal_text_color="@color/news_title"
         app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
     <View
@@ -103,6 +109,7 @@
         app:ItemHorizontal_img_src="@drawable/work_record_list"
         app:ItemHorizontal_img_width="@dimen/icon_size"
         app:ItemHorizontal_text="@string/record_history"
+        app:ItemHorizontal_text_color="@color/news_title"
         app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
 
@@ -115,6 +122,7 @@
         app:ItemHorizontal_img_src="@drawable/sgin"
         app:ItemHorizontal_img_width="@dimen/icon_size"
         app:ItemHorizontal_text="@string/sign"
+        app:ItemHorizontal_text_color="@color/news_title"
         app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
     <com.psb.ui.widget.ItemHorizontal
@@ -126,6 +134,7 @@
         app:ItemHorizontal_img_src="@drawable/change_pwd"
         app:ItemHorizontal_img_width="@dimen/icon_size"
         app:ItemHorizontal_text="@string/change_pwd"
+        app:ItemHorizontal_text_color="@color/news_title"
         app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
 </LinearLayout>

@@ -33,7 +33,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_below="@+id/title"
-        android:minHeight="25dp"
         android:textColor="@color/news_time"
         android:textSize="@dimen/newstitle_time_size" />
 

@@ -22,7 +22,7 @@
             android:id="@+id/list"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:divider="@color/news_time"
+            android:divider="@color/background"
             android:dividerHeight="@dimen/divider" />
     </LinearLayout>
 </com.handmark.pulltorefresh.library.PullToRefreshScrollView>

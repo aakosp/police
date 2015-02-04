@@ -65,10 +65,10 @@ public class NaviTabButton extends FrameLayout implements View.OnClickListener{
     private void setSelectedColor(Boolean selected) {
         if (selected) {
             mTitle.setTextColor(getResources().getColor(
-                    R.color.default_blue_color));
+                    R.color.selected_red));
         } else {
             mTitle.setTextColor(getResources().getColor(
-                    R.color.default_light_grey_color));
+                    R.color.news_time));
         }
     }
 

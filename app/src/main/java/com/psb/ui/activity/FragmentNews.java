@@ -1,6 +1,5 @@
 package com.psb.ui.activity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
@@ -8,21 +7,14 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-
-import com.handmark.pulltorefresh.library.PullToRefreshListView;
 import com.psb.R;
-import com.psb.adapter.GuideAdapter;
 import com.psb.core.AppContext;
-import com.psb.entity.NewsInfo;
 import com.psb.event.Event;
 import com.psb.event.EventNotifyCenter;
 import com.psb.protocol.Api;
 import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseFragment;
 import com.psb.ui.widget.ViewPagerWithTitle;
-import com.util.TimeUtil;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -52,7 +44,11 @@ public class FragmentNews extends BaseFragment implements ViewPager.OnPageChange
         this.initView();
 
         EventNotifyCenter.getInstance().register(this.getHandler(), Event.NEWS_1, Event.NEWS_2, Event.NEWS_3, Event.NEWS_4);
-        Api.getInstance().getArticle(1);
+        //Api.getInstance().getArticle(1);
+
+        NewsPolice news = (NewsPolice) pageViews.get(0);
+        news.autoGetArticle();
+
         return mView;
     }
 

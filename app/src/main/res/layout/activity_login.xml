@@ -2,6 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     android:orientation="vertical"
     android:padding="@dimen/default_padding">
 
@@ -29,19 +30,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
+        android:background="@color/default_blue_color"
         android:padding="@dimen/default_padding"
-        android:text="@string/login" />
+        android:text="@string/login"
+        android:textColor="@color/white" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/item_office_info_divider"
         android:padding="@dimen/default_padding"
-        android:text="@string/register" />
+        android:text="@string/register"
+        android:textColor="@color/news_content" />
 
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/item_office_info_divider"
         android:padding="@dimen/default_padding"
-        android:text="@string/anonymous" />
+        android:text="@string/anonymous"
+        android:textColor="@color/news_content" />
 
 </LinearLayout>

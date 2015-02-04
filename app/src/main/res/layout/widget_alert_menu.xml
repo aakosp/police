@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/alert_bkg"
+    android:background="@color/bkg_query"
     android:orientation="vertical">
 
     <TextView
@@ -11,14 +11,14 @@
         android:layout_height="60dp"
         android:layout_marginLeft="10dp"
         android:gravity="center_vertical"
-        android:textColor="@color/alert_title"
+        android:textColor="@color/selected_red"
         android:textSize="18sp" />
 
     <View
         android:layout_width="match_parent"
         android:layout_height="2dp"
         android:layout_marginTop="5dp"
-        android:background="@color/alert_title" />
+        android:background="@color/selected_red" />
 
     <ListView
         android:id="@+id/menuListView"

@@ -30,7 +30,7 @@ public class ViewPagerWithTitle extends LinearLayout {
     private LinearLayout layoutTabs, layoutTitle;
     private ImageView mCursor;
     private ViewPager mCustomViewPager;
-    private int cursorColor = R.color.default_red_dark;
+    private int cursorColor = R.color.selected_red;
     private int textSize = 16;
     private int offset = 0;// 动画图片偏移量
     private int currIndex = 0;// 当前页卡编号
@@ -120,12 +120,12 @@ public class ViewPagerWithTitle extends LinearLayout {
             tv.setGravity(Gravity.CENTER);
             tv.setLayoutParams(params);
             tv.setTextSize(textSize);
-            tv.setTextColor(mContext.getResources().getColor(R.color.viewpager_title_normal));
+            tv.setTextColor(mContext.getResources().getColor(R.color.unselected_text));
             tv.setPadding(padH, padS, padH, padS);
             tv.setLines(1);
             tv.setTag(i);
             if (i == 0) {
-                tv.setTextColor(mContext.getResources().getColor(R.color.viewpager_title_selected));
+                tv.setTextColor(mContext.getResources().getColor(R.color.selected_red));
             }
             tv.setOnClickListener(new OnClickListener() {
                 @Override
@@ -163,9 +163,9 @@ public class ViewPagerWithTitle extends LinearLayout {
                 for (int i = 0; i < layoutTabs.getChildCount(); i++) {
                     TextView tv = (TextView) layoutTabs.getChildAt(i);
                     if (i == index) {
-                        tv.setTextColor(mContext.getResources().getColor(R.color.viewpager_title_selected));
+                        tv.setTextColor(mContext.getResources().getColor(R.color.selected_red));
                     } else {
-                        tv.setTextColor(mContext.getResources().getColor((R.color.viewpager_title_normal)));
+                        tv.setTextColor(mContext.getResources().getColor((R.color.unselected_text)));
                     }
                 }
                 if(null != onPageChangeListener){

@@ -4,22 +4,19 @@
     <color name="black">#000000</color>
     <color name="white">#FFFFFF</color>
 
-    <color name="background">#F7F7F7</color>
+    <color name="background">#D1D1D1</color>
+    <color name="default_blue_color">#4B74D2</color>
+    <color name="selected_red">#E00000</color>
+    <color name="unselected_text">#999999</color>
+    <color name="news_title">#333333</color>
+    <color name="news_content">#666666</color>
+    <color name="news_time">#999999</color>
+    <color name="bkg_query">#E7E7E7</color>
+    <color name="bkg_tab">#F6F6F6</color>
 
-    <color name="default_light_grey_color">#929292</color>
-    <color name="default_blue_color">#01aff4</color>
-    <color name="default_red_dark">#ffcc0000</color>
+    <color name="item_office_info_divider">#DCDCDC</color>
+    <color name="item_office_info_bkg">#F7F7F7</color>
 
-    <color name="alert_title">#ee6f51</color>
-    <color name="alert_bkg">#282828</color>
-
-
-    <color name="linecolor">#E5E5E5</color>
-
-    <!-- viewpager_title -->
-    <color name="viewpager_title_selected">#d04300</color>
-    <color name="viewpager_title_normal">#aaaaaa</color>
-
-    <color name="news_title">#151515</color>
-    <color name="news_time">#DCDCDC</color>
+    <color name="shiming">#E11F1F</color>
+    <color name="niming">#4C971F</color>
 </resources>

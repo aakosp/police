@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/default_padding"
+            android:textColor="@color/news_title"
             android:textSize="@dimen/newstitle_title_size" />
 
         <ImageView
@@ -29,13 +30,14 @@
             android:layout_height="@dimen/banner_img_height"
             android:padding="@dimen/default_padding"
             android:scaleType="centerCrop"
-            android:visibility="gone"/>
+            android:visibility="gone" />
 
         <TextView
             android:id="@+id/detail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:padding="@dimen/default_padding"
+            android:textColor="@color/news_content"
             android:textSize="@dimen/newstitle_detail_size" />
     </LinearLayout>
 
