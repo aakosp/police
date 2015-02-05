@@ -25,10 +25,10 @@ public class GuideAdapter extends BaseAdapter {
         this.context = context;
     }
 
-    public void setArticle(Article articles){
-        if(articles.getPer_page() == 1){
+    public void setArticle(Article articles) {
+        if (articles.getPer_page() == 1) {
             this.setList(articles.getData());
-        } else{
+        } else {
             this.addList(articles.getData());
         }
     }

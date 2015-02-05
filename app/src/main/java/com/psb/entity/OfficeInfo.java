@@ -1,22 +1,22 @@
 package com.psb.entity;
 
 /**
- * Created by aako on 2015/2/1.
+ * Created by zl on 2015/2/5.
  */
 public class OfficeInfo {
 
-    private String id;
+    private int id;
     private String name;
-    private String addr;
-    private String tel;
-    private float latitude;
-    private float lontitude;
+    private String phone;
+    private String address;
+    private float location_x;
+    private float location_y;
 
-    public String getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -28,35 +28,35 @@ public class OfficeInfo {
         this.name = name;
     }
 
-    public String getAddr() {
-        return addr;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setAddr(String addr) {
-        this.addr = addr;
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 
-    public String getTel() {
-        return tel;
+    public String getAddress() {
+        return address;
     }
 
-    public void setTel(String tel) {
-        this.tel = tel;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
-    public float getLatitude() {
-        return latitude;
+    public float getLocation_x() {
+        return location_x;
     }
 
-    public void setLatitude(float latitude) {
-        this.latitude = latitude;
+    public void setLocation_x(float location_x) {
+        this.location_x = location_x;
     }
 
-    public float getLontitude() {
-        return lontitude;
+    public float getLocation_y() {
+        return location_y;
     }
 
-    public void setLontitude(float lontitude) {
-        this.lontitude = lontitude;
+    public void setLocation_y(float location_y) {
+        this.location_y = location_y;
     }
 }

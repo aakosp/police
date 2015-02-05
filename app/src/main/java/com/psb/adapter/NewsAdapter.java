@@ -5,11 +5,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.psb.R;
 import com.psb.entity.Article;
 import com.psb.entity.NewsInfo;
 import com.psb.ui.util.ImageUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,10 +27,10 @@ public class NewsAdapter extends BaseAdapter {
         news.addAll(titles);
     }
 
-    public void setArticle(Article articles){
-        if(articles.getPer_page() == 1){
+    public void setArticle(Article articles) {
+        if (articles.getPer_page() == 1) {
             this.setNews(articles.getData());
-        } else{
+        } else {
             this.addNews(articles.getData());
         }
     }

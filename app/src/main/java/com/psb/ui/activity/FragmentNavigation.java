@@ -43,7 +43,7 @@ public class FragmentNavigation extends BaseFragment implements View.OnClickList
         }
         switch (v.getId()) {
             case R.id.info:
-//                intent.setClass(this.getActivity(), );
+                intent.setClass(this.getActivity(), ActivityPoliceInfo.class);
                 break;
             case R.id.office_map:
                 intent.setClass(this.getActivity(), ActivityMap.class);

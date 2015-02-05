@@ -21,7 +21,7 @@ public class FragmentProfile extends BaseFragment implements View.OnClickListene
     private View mView, profile;
     private RoundImageView avatar;
     private TextView name, id;
-    private ItemHorizontal notice, processing, record, history;
+    private ItemHorizontal notice, processing, record, history, sign;
     private Intent intent;
 
     @Override
@@ -39,13 +39,13 @@ public class FragmentProfile extends BaseFragment implements View.OnClickListene
         processing = (ItemHorizontal) mView.findViewById(R.id.processing);
         record = (ItemHorizontal) mView.findViewById(R.id.record);
         history = (ItemHorizontal) mView.findViewById(R.id.record_history);
-
+        sign = (ItemHorizontal) mView.findViewById(R.id.sign);
         profile.setOnClickListener(this);
         notice.setOnClickListener(this);
         processing.setOnClickListener(this);
         record.setOnClickListener(this);
         history.setOnClickListener(this);
-
+        sign.setOnClickListener(this);
         avatar.setImageResource(R.drawable.yuanbao_img);
         name.setText("张三");
         id.setText("aakosp@gmail.com");
@@ -65,6 +65,9 @@ public class FragmentProfile extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.processing:
                 intent.setClass(this.getActivity(), ActivityOpinionFeedBack.class);
+                break;
+            case R.id.sign:
+                intent.setClass(this.getActivity(), ActivitySign.class);
                 break;
             case R.id.record:
                 break;

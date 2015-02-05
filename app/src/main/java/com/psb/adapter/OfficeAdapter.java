@@ -8,9 +8,11 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.psb.R;
 import com.psb.entity.OfficeInfo;
 import com.psb.ui.activity.ActivityMap;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,9 +73,9 @@ public class OfficeAdapter extends BaseAdapter implements View.OnClickListener {
 
         OfficeInfo info = this.officeInfoList.get(position);
         officeViewHolder.name.setText(info.getName());
-        officeViewHolder.tel.setText("电话：" + info.getTel());
-        officeViewHolder.phone.setTag(info.getTel());
-        officeViewHolder.addr.setText("地址：" + info.getAddr());
+        officeViewHolder.tel.setText("电话：" + info.getPhone());
+        officeViewHolder.phone.setTag(info.getPhone());
+        officeViewHolder.addr.setText("地址：" + info.getAddress());
         return convertView;
     }
 
@@ -82,7 +84,7 @@ public class OfficeAdapter extends BaseAdapter implements View.OnClickListener {
         Intent intent = null;
         switch (v.getId()) {
             case R.id.phone:
-                Uri telUri = Uri.parse("tel:"+v.getTag());
+                Uri telUri = Uri.parse("tel:" + v.getTag());
                 intent = new Intent(Intent.ACTION_DIAL, telUri);
                 break;
 

@@ -34,7 +34,8 @@
     <dimen name="newstitle_img_height">60dp</dimen>
     <dimen name="newstitle_title_size">16sp</dimen>
     <dimen name="newstitle_time_size">12sp</dimen>
-    <dimen name="newstitle_detail_size">16sp</dimen>
+    <dimen name="news_title_size">18sp</dimen>
+    <dimen name="news_detail_size">16sp</dimen>
 
     <!-- horizontal_item -->
     <dimen name="horizontal_item_img_width">48dp</dimen>
@@ -52,4 +53,6 @@
     <dimen name="map_min_width">200dp</dimen>
 
     <dimen name="feedback_info_height">300dp</dimen>
+
+    <dimen name="register_textview_width">70dp</dimen>
 </resources>

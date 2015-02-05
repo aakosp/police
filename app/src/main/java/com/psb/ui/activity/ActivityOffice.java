@@ -33,12 +33,12 @@ public class ActivityOffice extends BaseActivity {
         List<OfficeInfo> list = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
             OfficeInfo info = new OfficeInfo();
-            info.setId("" + i);
-            info.setAddr("汤阴大付庄村");
-            info.setTel("32323553");
+            info.setId(i);
+            info.setAddress("汤阴大付庄村");
+            info.setPhone("32323553");
             info.setName("汤阴大付庄警务室");
-            info.setLatitude(34.736352f);
-            info.setLontitude(113.606382f);
+            info.setLocation_x(34.736352f);
+            info.setLocation_y(113.606382f);
             list.add(info);
         }
         officeAdapter.setOfficeInfoList(list);

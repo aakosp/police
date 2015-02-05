@@ -22,7 +22,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/default_padding"
             android:textColor="@color/news_title"
-            android:textSize="@dimen/newstitle_title_size" />
+            android:textSize="@dimen/news_title_size" />
 
         <ImageView
             android:id="@+id/img"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:padding="@dimen/default_padding"
             android:textColor="@color/news_content"
-            android:textSize="@dimen/newstitle_detail_size" />
+            android:textSize="@dimen/news_detail_size" />
     </LinearLayout>
 
 </ScrollView>

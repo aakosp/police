@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
+
 import com.psb.R;
 import com.psb.core.AppContext;
 import com.psb.entity.NewsInfo;
@@ -18,6 +19,7 @@ import com.psb.event.Event;
 import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseFragment;
 import com.psb.ui.widget.ViewPagerWithTitle;
+
 import java.util.ArrayList;
 import java.util.List;
 

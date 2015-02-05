@@ -1,52 +1,99 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <com.baidu.mapapi.map.MapView
-        android:id="@+id/bmapView"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:clickable="true" />
+    <com.psb.ui.widget.TopNavigationBar
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="@string/police_sign" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="80dip"
-        android:background="#D000"
-        android:minWidth="100dip"
-        android:orientation="vertical"
-        android:padding="2dp">
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <RadioGroup
-            android:id="@+id/radioGroup"
-            android:layout_width="wrap_content"
+        <com.baidu.mapapi.map.MapView
+            android:id="@+id/bmapView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:clickable="true" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:contentDescription="定位icon">
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding">
 
-            <RadioButton
-                android:id="@+id/defaulticon"
-                android:layout_width="wrap_content"
+            <TextView
+                android:layout_width="@dimen/register_textview_width"
                 android:layout_height="wrap_content"
-                android:checked="true"
-                android:text="默认图标"></RadioButton>
+                android:gravity="right"
+                android:text="@string/time"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
 
-            <RadioButton
-                android:id="@+id/customicon"
-                android:layout_width="wrap_content"
+            <EditText
+                android:id="@+id/time"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="自定义图标"></RadioButton>
-        </RadioGroup>
+                android:layout_marginLeft="@dimen/map_padding"
+                android:background="@null"
+                android:inputType="number"
+                android:maxLength="11" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding">
+
+            <TextView
+                android:layout_width="@dimen/register_textview_width"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/work"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
+
+            <EditText
+                android:id="@+id/work"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/map_padding"
+                android:background="@null"
+                android:maxLines="6"
+                android:minHeight="@dimen/newstitle_img_height"
+                android:minLines="4" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider" />
     </LinearLayout>
 
-    <Button
-        android:id="@+id/button1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginRight="25dp"
-        android:layout_marginTop="10dip" />
 
-</RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_padding"
+        android:background="@color/selected_red"
+        android:padding="@dimen/default_padding"
+        android:text="@string/sign_now"
+        android:textColor="@color/white"
+        android:textSize="@dimen/newstitle_title_size" />
+
+</LinearLayout>

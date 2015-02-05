@@ -1,6 +1,7 @@
 package com.psb.protocol;
 
 import android.util.Log;
+
 import com.alibaba.fastjson.JSON;
 import com.psb.entity.Article;
 import com.psb.event.Event;
@@ -18,18 +19,19 @@ public class Cache {
 
     private Map<Integer, Article> articleMap = new HashMap<>();
 
-    private Cache(){}
+    private Cache() {
+    }
 
-    public synchronized static Cache getInstance(){
-        if(null == cache){
+    public synchronized static Cache getInstance() {
+        if (null == cache) {
             cache = new Cache();
         }
         return cache;
     }
 
-    public void parse(String responseBody, int event){
+    public void parse(String responseBody, int event) {
 
-        switch (event){
+        switch (event) {
             case Event.NEWS_1:
             case Event.NEWS_2:
             case Event.NEWS_3:
@@ -48,7 +50,7 @@ public class Cache {
         EventNotifyCenter.getInstance().doNotify(event);
     }
 
-    public Article getArticle(int event){
+    public Article getArticle(int event) {
         return articleMap.get(event);
     }
 

@@ -7,6 +7,7 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
 import com.psb.R;
 import com.psb.core.AppContext;
 import com.psb.event.Event;
@@ -15,6 +16,7 @@ import com.psb.protocol.Api;
 import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseFragment;
 import com.psb.ui.widget.ViewPagerWithTitle;
+
 import java.util.ArrayList;
 import java.util.List;
 

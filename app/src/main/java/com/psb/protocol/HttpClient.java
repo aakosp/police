@@ -2,10 +2,12 @@ package com.psb.protocol;
 
 import android.net.http.AndroidHttpClient;
 import android.util.Log;
+
 import com.alibaba.fastjson.JSON;
 import com.psb.entity.Article;
 import com.psb.event.EventNotifyCenter;
 import com.util.StringUtils;
+
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
@@ -19,6 +21,7 @@ import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.protocol.HttpContext;
+
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
@@ -60,21 +63,21 @@ public class HttpClient {
     }
 
     private static AndroidHttpClient getHttpClient() {
-        if(null == client){
+        if (null == client) {
             client = AndroidHttpClient.newInstance(getUserAgent());
         }
         return client;
     }
 
     private static HttpHost getHttpHost() {
-        if(null == httpHost){
+        if (null == httpHost) {
             httpHost = new HttpHost(SERVER, PORT);
         }
         return httpHost;
     }
 
     private static HttpContext getHttpContext() {
-        if(null == context){
+        if (null == context) {
             RequestConfig defaultRequestConfig = RequestConfig.custom()
                     .setCookieSpec(CookieSpecs.BEST_MATCH)
                     .setExpectContinueEnabled(true)
@@ -92,7 +95,7 @@ public class HttpClient {
         return context;
     }
 
-    private static HttpRequest getHttpRequest(String url,  RequestType type) {
+    private static HttpRequest getHttpRequest(String url, RequestType type) {
 
         HttpRequest httpRequest = null;
         switch (type) {
@@ -116,6 +119,7 @@ public class HttpClient {
 
     /**
      * 公用post方法
+     *
      * @param url
      * @param params
      */
@@ -159,10 +163,11 @@ public class HttpClient {
 
     /**
      * 公用post方法
+     *
      * @param url
      * @param event
      */
-    public static void get(String url ,int event) {
+    public static void get(String url, int event) {
 
         AndroidHttpClient httpClient = null;
         HttpGet get = null;

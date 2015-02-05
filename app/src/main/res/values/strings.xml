@@ -30,4 +30,25 @@
     <string name="info">详细内容：</string>
     <string name="shiming">实名举报</string>
     <string name="anonymous">匿名举报</string>
+
+    <string name="zhanghao">账号</string>
+    <string name="mima">密码</string>
+    <string name="zaicishuru">再次输入</string>
+    <string name="name">姓名</string>
+    <string name="sex">性别</string>
+    <string name="tel">联系电话</string>
+    <string name="addr">乡镇、村</string>
+
+    <string name="hit_zhanghao">6至20个字母或数字</string>
+    <string name="hit_mima">6至20个字母、数字或下划线</string>
+    <string name="hit_zaici">再次输入要设置的密码</string>
+    <string name="hit_xuanze">点击选择</string>
+
+    <string name="all_addr">所有乡镇</string>
+    <string name="query_police">民警查询</string>
+    <string name="police_sign">民警签到</string>
+
+    <string name="time">时间：</string>
+    <string name="work">工作内容：</string>
+    <string name="sign_now">在当前位置签到</string>
 </resources>
