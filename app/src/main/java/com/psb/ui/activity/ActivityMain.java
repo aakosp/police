@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.psb.R;
+import com.psb.protocol.Api;
 import com.psb.ui.base.BaseFragmentActivity;
 import com.psb.ui.widget.NaviTabButton;
 import com.psb.ui.widget.TopNavigationBar;
@@ -22,6 +23,9 @@ public class ActivityMain extends BaseFragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Api.getInstance().getUser("1");
+
         topbar = (TopNavigationBar) findViewById(R.id.topbar);
         initTab();
         initFragment();

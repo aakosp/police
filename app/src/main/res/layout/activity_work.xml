@@ -3,21 +3,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/item_office_info_divider"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <com.psb.ui.widget.TopNavigationBar
         android:id="@+id/topbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:titleText="@string/feedback" />
+        app:titleText="@string/record" />
 
     <EditText
         android:id="@+id/title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
-        android:background="@color/white"
+        android:background="@null"
         android:hint="@string/title"
         android:padding="@dimen/default_padding"
         android:textColor="@color/news_title"
@@ -28,23 +28,42 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider"
         android:layout_marginLeft="@dimen/default_padding"
-        android:layout_marginRight="@dimen/default_padding" />
+        android:layout_marginRight="@dimen/default_padding"
+        android:background="@color/item_office_info_divider" />
+
+    <EditText
+        android:id="@+id/type"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:hint="@string/type"
+        android:padding="@dimen/default_padding"
+        android:textColor="@color/news_title"
+        android:textColorHint="@color/news_title"
+        android:textSize="@dimen/newstitle_title_size" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:layout_marginLeft="@dimen/default_padding"
+        android:layout_marginRight="@dimen/default_padding"
+        android:background="@color/item_office_info_divider" />
 
     <EditText
         android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:background="@null"
         android:gravity="top|left"
         android:hint="@string/info"
-        android:lines="6"
+        android:lines="7"
         android:minHeight="@dimen/feedback_info_height"
         android:padding="@dimen/default_padding"
         android:textColorHint="@color/news_title" />
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="@dimen/default_padding">
 
         <TableRow>
@@ -108,34 +127,14 @@
         </TableRow>
     </TableLayout>
 
-    <LinearLayout
+    <Button
+        android:id="@+id/shiming"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="@dimen/default_padding">
-
-        <Button
-            android:id="@+id/shiming"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/horizontal_item_img_height"
-            android:layout_weight="1"
-            android:background="@color/shiming"
-            android:text="@string/shiming"
-            android:textColor="@color/white" />
-
-        <View
-            android:layout_width="@dimen/default_padding"
-            android:layout_height="match_parent" />
-
-        <Button
-            android:id="@+id/niming"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/horizontal_item_img_height"
-            android:layout_weight="1"
-            android:background="@color/niming"
-            android:text="@string/anonymous"
-            android:textColor="@color/white" />
-
-    </LinearLayout>
+        android:layout_height="@dimen/horizontal_item_img_height"
+        android:layout_margin="@dimen/default_padding"
+        android:background="@color/shiming"
+        android:padding="@dimen/default_padding"
+        android:text="@string/commit"
+        android:textColor="@color/white" />
 
 </LinearLayout>

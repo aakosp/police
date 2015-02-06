@@ -52,10 +52,10 @@ public class Api {
         executor.execute(data);
     }
 
-    public void sgin(String id, float location_x, float location_y) {
+    public void sgin(int id, double location_x, double location_y) {
         String url = base_url + "/sign_up";
         List<NameValuePair> params = new ArrayList<>();
-        NameValuePair user = new BasicNameValuePair("user_id", id);
+        NameValuePair user = new BasicNameValuePair("user_id", ""+ id);
         NameValuePair x = new BasicNameValuePair("sign_up_location_x", "" + location_x);
         NameValuePair y = new BasicNameValuePair("sign_up_location_y", "" + location_y);
         params.add(user);
@@ -110,7 +110,7 @@ public class Api {
 
     public void getOffice() {
         String url = base_url + "/police_station";
-        HttpRequestData data = new HttpRequestData(url, Event.GET_ADDRS);
+        HttpRequestData data = new HttpRequestData(url, Event.GET_OFFICE_LIST);
         executor.execute(data);
     }
 }

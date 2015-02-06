@@ -30,6 +30,7 @@ import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.psb.R;
 import com.psb.core.AppContext;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -47,10 +48,20 @@ import java.util.Map;
 @SuppressLint("UseSparseArrays")
 public class ImageUtil {
 
+    private static Bitmap defalut_img;
+
     public static DisplayImageOptions options = new DisplayImageOptions.Builder()
+            .showDefault(getDefalut_img())
             .cacheInMemory(true)
             .cacheOnDisc(true)
             .build();
+
+    public static Bitmap getDefalut_img(){
+        if(null == defalut_img){
+            defalut_img = BitmapFactory.decodeResource(AppContext.getInstance().getResources(), R.drawable.default_img);
+        }
+        return  defalut_img;
+    }
 
     private static Map<Integer, Bitmap> bitmaps = new HashMap<Integer, Bitmap>();
 

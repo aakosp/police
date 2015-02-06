@@ -152,6 +152,7 @@ public class HttpClient {
             }
             InputStream is = response.getEntity().getContent();
             String responseBody = StringUtils.toConvertString(is);
+            Cache.getInstance().parse(responseBody, event);
         } catch (Exception e) {
             // 发生网络异常
             e.printStackTrace();

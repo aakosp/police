@@ -9,8 +9,8 @@ public class OfficeInfo {
     private String name;
     private String phone;
     private String address;
-    private float location_x;
-    private float location_y;
+    private double location_x;
+    private double location_y;
 
     public int getId() {
         return id;
@@ -44,19 +44,19 @@ public class OfficeInfo {
         this.address = address;
     }
 
-    public float getLocation_x() {
+    public double getLocation_x() {
         return location_x;
     }
 
-    public void setLocation_x(float location_x) {
+    public void setLocation_x(double location_x) {
         this.location_x = location_x;
     }
 
-    public float getLocation_y() {
+    public double getLocation_y() {
         return location_y;
     }
 
-    public void setLocation_y(float location_y) {
+    public void setLocation_y(double location_y) {
         this.location_y = location_y;
     }
 }

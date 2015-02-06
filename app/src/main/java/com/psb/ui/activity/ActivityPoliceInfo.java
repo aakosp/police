@@ -31,6 +31,7 @@ public class ActivityPoliceInfo extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_police_list);
         topbar = (TopNavigationBar) findViewById(R.id.topbar);
+        topbar.setActivity(this);
         addr = (TextView) findViewById(R.id.addr);
         name = (TextView) findViewById(R.id.name);
         office_addr = (TextView) findViewById(R.id.office_name);

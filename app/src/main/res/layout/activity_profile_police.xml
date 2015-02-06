@@ -55,20 +55,20 @@
     </RelativeLayout>
 
     <com.psb.ui.widget.ItemHorizontal
-        android:id="@+id/minyi"
+        android:id="@+id/notice"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
         android:background="@color/white"
         app:ItemHorizontal_img_height="@dimen/icon_size"
-        app:ItemHorizontal_img_src="@drawable/survey"
+        app:ItemHorizontal_img_src="@drawable/notice"
         app:ItemHorizontal_img_width="@dimen/icon_size"
-        app:ItemHorizontal_text="@string/minyi"
+        app:ItemHorizontal_text="@string/notice"
         app:ItemHorizontal_text_color="@color/news_title"
         app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
     <com.psb.ui.widget.ItemHorizontal
-        android:id="@+id/feedback"
+        android:id="@+id/processing"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
@@ -76,7 +76,7 @@
         app:ItemHorizontal_img_height="@dimen/icon_size"
         app:ItemHorizontal_img_src="@drawable/opinion_handle"
         app:ItemHorizontal_img_width="@dimen/icon_size"
-        app:ItemHorizontal_text="@string/feedback"
+        app:ItemHorizontal_text="@string/processing"
         app:ItemHorizontal_text_color="@color/news_title"
         app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
@@ -94,14 +94,52 @@
 
 
     <com.psb.ui.widget.ItemHorizontal
-        android:id="@+id/opinion"
+        android:id="@+id/record"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:ItemHorizontal_img_height="@dimen/icon_size"
         app:ItemHorizontal_img_src="@drawable/wrok_record"
         app:ItemHorizontal_img_width="@dimen/icon_size"
-        app:ItemHorizontal_text="@string/opinion"
+        app:ItemHorizontal_text="@string/record"
+        app:ItemHorizontal_text_color="@color/news_title"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/white">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:layout_marginLeft="50dp"
+            android:background="@color/item_office_info_divider" />
+    </LinearLayout>
+
+    <com.psb.ui.widget.ItemHorizontal
+        android:id="@+id/record_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:ItemHorizontal_img_height="@dimen/icon_size"
+        app:ItemHorizontal_img_src="@drawable/work_record_list"
+        app:ItemHorizontal_img_width="@dimen/icon_size"
+        app:ItemHorizontal_text="@string/record_history"
+        app:ItemHorizontal_text_color="@color/news_title"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
+
+
+    <com.psb.ui.widget.ItemHorizontal
+        android:id="@+id/sign"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@color/white"
+        app:ItemHorizontal_img_height="@dimen/icon_size"
+        app:ItemHorizontal_img_src="@drawable/sgin"
+        app:ItemHorizontal_img_width="@dimen/icon_size"
+        app:ItemHorizontal_text="@string/sign"
         app:ItemHorizontal_text_color="@color/news_title"
         app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 

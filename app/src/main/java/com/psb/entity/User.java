@@ -5,6 +5,8 @@ package com.psb.entity;
  */
 public class User {
 
+    public static final String POLICE = "POLICE";
+
     private int id;
     private String user_name;
     private String role;

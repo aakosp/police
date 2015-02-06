@@ -3,6 +3,7 @@ package com.psb.ui.activity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -26,36 +27,29 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.baidu.mapapi.model.LatLngBounds;
 import com.psb.R;
+import com.psb.entity.OfficeInfo;
+import com.psb.event.Event;
+import com.psb.event.EventNotifyCenter;
+import com.psb.protocol.Api;
 import com.psb.ui.base.BaseActivity;
 import com.psb.ui.widget.TopNavigationBar;
+
+import java.util.List;
 
 
 /**
  * 演示覆盖物的用法
  */
-public class ActivityMap extends BaseActivity implements OnClickListener {
+public class ActivityMap extends BaseActivity implements OnClickListener, OnMarkerClickListener {
 
     /**
      * MapView 是地图主控件
      */
     private MapView mMapView;
     private BaiduMap mBaiduMap;
-    private Marker mMarkerA;
-    private Marker mMarkerB;
-    private Marker mMarkerC;
-    private Marker mMarkerD;
     private InfoWindow mInfoWindow;
     private View officeInfo;
-
-    // 初始化全局 bitmap 信息，不用时及时 recycle
-    BitmapDescriptor bdA = BitmapDescriptorFactory
-            .fromResource(R.drawable.icon_marka);
-    BitmapDescriptor bdB = BitmapDescriptorFactory
-            .fromResource(R.drawable.icon_markb);
-    BitmapDescriptor bdC = BitmapDescriptorFactory
-            .fromResource(R.drawable.icon_markc);
-    BitmapDescriptor bdD = BitmapDescriptorFactory
-            .fromResource(R.drawable.icon_markd);
+    private BitmapDescriptor mark = BitmapDescriptorFactory.fromResource(R.drawable.mark);
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -68,35 +62,7 @@ public class ActivityMap extends BaseActivity implements OnClickListener {
         MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(14.0f);
         mBaiduMap.setMapStatus(msu);
         initOverlay();
-        mBaiduMap.setOnMarkerClickListener(new OnMarkerClickListener() {
-            public boolean onMarkerClick(final Marker marker) {
-
-                OnInfoWindowClickListener listener = null;
-                if (marker == mMarkerA || marker == mMarkerD) {
-                    PositionViewHolder positionViewHolder = (PositionViewHolder) officeInfo.getTag();
-                    positionViewHolder.name.setText("汤阴大付庄警务室");
-                    positionViewHolder.tel.setText("电话：32323553");
-                    positionViewHolder.addr.setText("汤阴大付庄村");
-                    positionViewHolder.call.setTag("32323553");
-                    LatLng ll = marker.getPosition();
-                    mInfoWindow = new InfoWindow(officeInfo, ll, 235);
-                    mBaiduMap.showInfoWindow(mInfoWindow);
-                }
-                /*else if (marker == mMarkerC) {
-                    button.setText("删除");
-                    button.setOnClickListener(new OnClickListener() {
-                        public void onClick(View v) {
-                            marker.remove();
-                            mBaiduMap.hideInfoWindow();
-                        }
-                    });
-                    LatLng ll = marker.getPosition();
-                    mInfoWindow = new InfoWindow(button, ll, -47);
-                    mBaiduMap.showInfoWindow(mInfoWindow);
-                }*/
-                return true;
-            }
-        });
+        mBaiduMap.setOnMarkerClickListener(this);
         mBaiduMap.setOnMapClickListener(new BaiduMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -109,6 +75,9 @@ public class ActivityMap extends BaseActivity implements OnClickListener {
                 return false;
             }
         });
+
+        Api.getInstance().getOffice();
+        EventNotifyCenter.getInstance().register(this.getHandler(), Event.GET_OFFICE_LIST);
     }
 
     public void initOverlay() {
@@ -124,19 +93,19 @@ public class ActivityMap extends BaseActivity implements OnClickListener {
         positionViewHolder.navigation.setOnClickListener(this);
 
         // add marker overlay
-        LatLng llA = new LatLng(34.736352, 113.606382);
-        LatLng llB = new LatLng(34.732673, 113.608322);
-        LatLng llC = new LatLng(34.738221, 113.600381);
-        LatLng llD = new LatLng(34.732703, 113.616586);
-
-        OverlayOptions ooA = new MarkerOptions().position(llA).icon(bdA).zIndex(9).draggable(true);
-        mMarkerA = (Marker) (mBaiduMap.addOverlay(ooA));
-        OverlayOptions ooB = new MarkerOptions().position(llB).icon(bdB).zIndex(5);
-        mMarkerB = (Marker) (mBaiduMap.addOverlay(ooB));
-        OverlayOptions ooC = new MarkerOptions().position(llC).icon(bdC).perspective(false).anchor(0.5f, 0.5f).rotate(30).zIndex(7);
-        mMarkerC = (Marker) (mBaiduMap.addOverlay(ooC));
-        OverlayOptions ooD = new MarkerOptions().position(llD).icon(bdD).perspective(false).zIndex(7);
-        mMarkerD = (Marker) (mBaiduMap.addOverlay(ooD));
+//        LatLng llA = new LatLng(34.736352, 113.606382);
+//        LatLng llB = new LatLng(34.732673, 113.608322);
+//        LatLng llC = new LatLng(34.738221, 113.600381);
+//        LatLng llD = new LatLng(34.732703, 113.616586);
+//
+//        OverlayOptions ooA = new MarkerOptions().position(llA).icon(bdA).zIndex(9).draggable(true);
+//        mMarkerA = (Marker) (mBaiduMap.addOverlay(ooA));
+//        OverlayOptions ooB = new MarkerOptions().position(llB).icon(bdB).zIndex(5);
+//        mMarkerB = (Marker) (mBaiduMap.addOverlay(ooB));
+//        OverlayOptions ooC = new MarkerOptions().position(llC).icon(bdC).perspective(false).anchor(0.5f, 0.5f).rotate(30).zIndex(7);
+//        mMarkerC = (Marker) (mBaiduMap.addOverlay(ooC));
+//        OverlayOptions ooD = new MarkerOptions().position(llD).icon(bdD).perspective(false).zIndex(7);
+//        mMarkerD = (Marker) (mBaiduMap.addOverlay(ooD));
 
         // add ground overlay
         LatLng southwest = new LatLng(34.738562, 113.620144);
@@ -163,25 +132,6 @@ public class ActivityMap extends BaseActivity implements OnClickListener {
         });
     }
 
-    /**
-     * 清除所有Overlay
-     *
-     * @param view
-     */
-    public void clearOverlay(View view) {
-        mBaiduMap.clear();
-    }
-
-    /**
-     * 重新添加Overlay
-     *
-     * @param view
-     */
-    public void resetOverlay(View view) {
-        clearOverlay(null);
-        initOverlay();
-    }
-
     @Override
     protected void onPause() {
         // MapView的生命周期与Activity同步，当activity挂起时需调用MapView.onPause()
@@ -202,10 +152,7 @@ public class ActivityMap extends BaseActivity implements OnClickListener {
         mMapView.onDestroy();
         super.onDestroy();
         // 回收 bitmap 资源
-        bdA.recycle();
-        bdB.recycle();
-        bdC.recycle();
-        bdD.recycle();
+        mark.recycle();
     }
 
     @Override
@@ -221,6 +168,36 @@ public class ActivityMap extends BaseActivity implements OnClickListener {
                 mBaiduMap.hideInfoWindow();
                 return;
         }
+    }
+
+    @Override
+    protected void handlerPacketMsg(Message msg) {
+        switch (msg.what){
+            case Event.GET_OFFICE_LIST:
+                break;
+        }
+    }
+
+    private void init(List<OfficeInfo> offices){
+        for(OfficeInfo office : offices){
+            LatLng ll = new LatLng(office.getLocation_y(), office.getLocation_x());
+            OverlayOptions ooA = new MarkerOptions().position(ll).icon(mark).zIndex(office.getId()).draggable(true);
+            Marker item = (Marker) (mBaiduMap.addOverlay(ooA));
+        }
+
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        PositionViewHolder positionViewHolder = (PositionViewHolder) officeInfo.getTag();
+        positionViewHolder.name.setText("汤阴大付庄警务室");
+        positionViewHolder.tel.setText("电话：32323553");
+        positionViewHolder.addr.setText("汤阴大付庄村");
+        positionViewHolder.call.setTag("32323553");
+        LatLng ll = marker.getPosition();
+        mInfoWindow = new InfoWindow(officeInfo, ll, 235);
+        mBaiduMap.showInfoWindow(mInfoWindow);
+        return true;
     }
 
     private static class PositionViewHolder {

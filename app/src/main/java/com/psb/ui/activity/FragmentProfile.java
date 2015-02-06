@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
 import com.psb.R;
 import com.psb.ui.base.BaseFragment;
 import com.psb.ui.widget.ItemHorizontal;
@@ -18,10 +19,16 @@ import com.psb.ui.widget.RoundImageView;
  */
 public class FragmentProfile extends BaseFragment implements View.OnClickListener {
 
+    private boolean isPolice = true;
     private View mView, profile;
     private RoundImageView avatar;
     private TextView name, id;
+    //police
     private ItemHorizontal notice, processing, record, history, sign;
+    //Villager
+    private ItemHorizontal minyi, feedback, opinion;
+
+    private ItemHorizontal pwd;
     private Intent intent;
 
     @Override
@@ -30,29 +37,53 @@ public class FragmentProfile extends BaseFragment implements View.OnClickListene
             ((ViewGroup) mView.getParent()).removeView(mView);
             return mView;
         }
-        mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_profile, container, false);
+        if(isPolice){
+            this.initPolice(container);
+        }
+        else{
+            this.initVillager(container);
+        }
         profile = mView.findViewById(R.id.profile);
         avatar = (RoundImageView) mView.findViewById(R.id.avatar);
         name = (TextView) mView.findViewById(R.id.name);
         id = (TextView) mView.findViewById(R.id.id);
+        pwd = (ItemHorizontal) mView.findViewById(R.id.pwd);
+        profile.setOnClickListener(this);
+        pwd.setOnClickListener(this);
+        intent = new Intent();
+
+        avatar.setImageResource(R.drawable.default_img);
+        name.setText("张三");
+        id.setText("aakosp@gmail.com");
+        return mView;
+    }
+
+    private void initPolice(ViewGroup container){
+        mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_profile_police, container, false);
         notice = (ItemHorizontal) mView.findViewById(R.id.notice);
         processing = (ItemHorizontal) mView.findViewById(R.id.processing);
         record = (ItemHorizontal) mView.findViewById(R.id.record);
         history = (ItemHorizontal) mView.findViewById(R.id.record_history);
         sign = (ItemHorizontal) mView.findViewById(R.id.sign);
-        profile.setOnClickListener(this);
+
         notice.setOnClickListener(this);
         processing.setOnClickListener(this);
         record.setOnClickListener(this);
         history.setOnClickListener(this);
         sign.setOnClickListener(this);
-        avatar.setImageResource(R.drawable.yuanbao_img);
-        name.setText("张三");
-        id.setText("aakosp@gmail.com");
-
-        intent = new Intent();
-        return mView;
     }
+
+    private void initVillager(ViewGroup container){
+        mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_profile, container, false);
+        minyi = (ItemHorizontal) mView.findViewById(R.id.minyi);
+        feedback = (ItemHorizontal) mView.findViewById(R.id.feedback);
+        opinion = (ItemHorizontal) mView.findViewById(R.id.opinion);
+
+        minyi.setOnClickListener(this);
+        feedback.setOnClickListener(this);
+        opinion.setOnClickListener(this);
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -61,17 +92,25 @@ public class FragmentProfile extends BaseFragment implements View.OnClickListene
                 break;
             case R.id.notice:
                 break;
-            case R.id.id:
-                break;
             case R.id.processing:
-                intent.setClass(this.getActivity(), ActivityOpinionFeedBack.class);
+                intent.setClass(this.getActivity(), ActivityOpinionProcessing.class);
                 break;
             case R.id.sign:
                 intent.setClass(this.getActivity(), ActivitySign.class);
                 break;
             case R.id.record:
+                intent.setClass(this.getActivity(), ActivityWork.class);
                 break;
             case R.id.record_history:
+                break;
+            case R.id.pwd:
+                break;
+            case R.id.minyi:
+                break;
+            case R.id.feedback:
+                intent.setClass(this.getActivity(), ActivityOpinionFeedBack.class);
+                break;
+            case R.id.opinion:
                 break;
             default:
                 return;

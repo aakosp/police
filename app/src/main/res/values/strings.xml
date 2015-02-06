@@ -27,9 +27,13 @@
     <string name="login">登录</string>
     <string name="register">注册</string>
     <string name="title">标题：</string>
+    <string name="type">类型：</string>
     <string name="info">详细内容：</string>
-    <string name="shiming">实名举报</string>
-    <string name="anonymous">匿名举报</string>
+    <string name="shiming">实名提交</string>
+    <string name="anonymous">匿名提交</string>
+    <string name="minyi">民意测评</string>
+    <string name="feedback">意见反馈</string>
+    <string name="opinion">我的意见</string>
 
     <string name="zhanghao">账号</string>
     <string name="mima">密码</string>
@@ -51,4 +55,9 @@
     <string name="time">时间：</string>
     <string name="work">工作内容：</string>
     <string name="sign_now">在当前位置签到</string>
+
+    <string name="commit">提交</string>
+
+    <string name="un_process">未处理</string>
+    <string name="process">已处理</string>
 </resources>

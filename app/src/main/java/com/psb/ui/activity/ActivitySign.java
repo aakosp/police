@@ -2,11 +2,9 @@ package com.psb.ui.activity;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.widget.Button;
-import android.widget.RadioGroup;
-import android.widget.RadioGroup.OnCheckedChangeListener;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -23,99 +21,69 @@ import com.baidu.mapapi.map.MyLocationConfiguration.LocationMode;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.psb.R;
+import com.psb.protocol.Api;
+import com.psb.ui.base.BaseActivity;
+import com.psb.ui.widget.TopNavigationBar;
+import com.util.LocationUtils;
 
 /**
  * 此demo用来展示如何结合定位SDK实现定位，并使用MyLocationOverlay绘制定位位置 同时展示如何使用自定义图标绘制并点击时弹出泡泡
  */
-public class ActivitySign extends Activity {
+public class ActivitySign extends BaseActivity implements View.OnClickListener {
 
+    private TopNavigationBar topbar;
     // 定位相关
     LocationClient mLocClient;
     public MyLocationListenner myListener = new MyLocationListenner();
-    private LocationMode mCurrentMode;
+    private LocationMode mCurrentMode = LocationMode.FOLLOWING;
     BitmapDescriptor mCurrentMarker;
-
     MapView mMapView;
     BaiduMap mBaiduMap;
-
-    // UI相关
-    OnCheckedChangeListener radioButtonListener;
-    Button requestLocButton;
     boolean isFirstLoc = true;// 是否首次定位
+    private Button sign;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_location);
-        requestLocButton = (Button) findViewById(R.id.button1);
-        mCurrentMode = LocationMode.NORMAL;
-        requestLocButton.setText("普通");
-        OnClickListener btnClickListener = new OnClickListener() {
-            public void onClick(View v) {
-                switch (mCurrentMode) {
-                    case NORMAL:
-                        requestLocButton.setText("跟随");
-                        mCurrentMode = LocationMode.FOLLOWING;
-                        mBaiduMap
-                                .setMyLocationConfigeration(new MyLocationConfiguration(
-                                        mCurrentMode, true, mCurrentMarker));
-                        break;
-                    case COMPASS:
-                        requestLocButton.setText("普通");
-                        mCurrentMode = LocationMode.NORMAL;
-                        mBaiduMap
-                                .setMyLocationConfigeration(new MyLocationConfiguration(
-                                        mCurrentMode, true, mCurrentMarker));
-                        break;
-                    case FOLLOWING:
-                        requestLocButton.setText("罗盘");
-                        mCurrentMode = LocationMode.COMPASS;
-                        mBaiduMap
-                                .setMyLocationConfigeration(new MyLocationConfiguration(
-                                        mCurrentMode, true, mCurrentMarker));
-                        break;
-                }
-            }
-        };
-        requestLocButton.setOnClickListener(btnClickListener);
-
-        RadioGroup group = (RadioGroup) this.findViewById(R.id.radioGroup);
-        radioButtonListener = new OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.defaulticon) {
-                    // 传入null则，恢复默认图标
-                    mCurrentMarker = null;
-                    mBaiduMap
-                            .setMyLocationConfigeration(new MyLocationConfiguration(
-                                    mCurrentMode, true, null));
-                }
-                if (checkedId == R.id.customicon) {
-                    // 修改为自定义marker
-                    mCurrentMarker = BitmapDescriptorFactory
-                            .fromResource(R.drawable.arrow_more);
-                    mBaiduMap
-                            .setMyLocationConfigeration(new MyLocationConfiguration(
-                                    mCurrentMode, true, mCurrentMarker));
-                }
-            }
-        };
-        group.setOnCheckedChangeListener(radioButtonListener);
-
+        setContentView(R.layout.activity_sign);
+        topbar = (TopNavigationBar) findViewById(R.id.topbar);
+        topbar.setActivity(this);
         // 地图初始化
         mMapView = (MapView) findViewById(R.id.bmapView);
         mBaiduMap = mMapView.getMap();
         // 开启定位图层
         mBaiduMap.setMyLocationEnabled(true);
+//        LatLng southwest = new LatLng(34.738562, 113.620144);
+//        LatLng northeast = new LatLng(34.738562, 113.620144);
+//        LatLngBounds bounds = new LatLngBounds.Builder().include(northeast).include(southwest).build();
+//        MapStatusUpdate msu = MapStatusUpdateFactory.newLatLng(bounds.getCenter());
+        MapStatusUpdate zoom = MapStatusUpdateFactory.zoomTo(14.0f);
+        mBaiduMap.setMapStatus(zoom);
+//        mBaiduMap.setMapStatus(msu);
+        mCurrentMarker = BitmapDescriptorFactory.fromResource(R.drawable.position);
+        mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker));
         // 定位初始化
         mLocClient = new LocationClient(this);
         mLocClient.registerLocationListener(myListener);
         LocationClientOption option = new LocationClientOption();
         option.setOpenGps(true);// 打开gps
         option.setCoorType("bd09ll"); // 设置坐标类型
-        option.setScanSpan(1000);
+        option.setScanSpan(5000);
         mLocClient.setLocOption(option);
         mLocClient.start();
+
+        sign = (Button) findViewById(R.id.sign);
+        sign.setOnClickListener(this);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.sign:
+                Log.d("sign", ""+LocationUtils.getInstance().getmBDLocation().getLatitude()+" "+LocationUtils.getInstance().getmBDLocation().getLongitude());
+                Api.getInstance().sgin(1, LocationUtils.getInstance().getmBDLocation().getLongitude(), LocationUtils.getInstance().getmBDLocation().getLatitude());
+                break;
+        }
     }
 
     /**
@@ -136,8 +104,7 @@ public class ActivitySign extends Activity {
             mBaiduMap.setMyLocationData(locData);
             if (isFirstLoc) {
                 isFirstLoc = false;
-                LatLng ll = new LatLng(location.getLatitude(),
-                        location.getLongitude());
+                LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
                 MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
                 mBaiduMap.animateMapStatus(u);
             }

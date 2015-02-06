@@ -3,10 +3,11 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Light">
         <!-- Customize your theme here. -->
+        <item name="android:windowFullscreen">false</item>
         <item name="android:windowNoTitle">true</item>
         <item name="android:screenOrientation">portrait</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
     </style>
-
 
 
 </resources>
