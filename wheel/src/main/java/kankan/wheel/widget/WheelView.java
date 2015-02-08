@@ -70,12 +70,12 @@ public class WheelView extends View {
 	private Drawable centerDrawable;
 
 	// Wheel drawables
-	private int wheelBackground = R.drawable.wheel_bg;
+//	private int wheelBackground = R.drawable.wheel_bg;
 	private int wheelForeground = R.drawable.wheel_val;
 
 	// Shadows drawables
-	private GradientDrawable topShadow;
-	private GradientDrawable bottomShadow;
+//	private GradientDrawable topShadow;
+//	private GradientDrawable bottomShadow;
 
 	// Draw Shadows
 	private boolean drawShadows = true;
@@ -442,8 +442,8 @@ public class WheelView extends View {
 	 * @param resource
 	 */
 	public void setWheelBackground(int resource) {
-		wheelBackground = resource;
-		setBackgroundResource(wheelBackground);
+//		wheelBackground = resource;
+		setBackgroundResource(resource);
 	}
 
 	/**
@@ -482,15 +482,15 @@ public class WheelView extends View {
 			centerDrawable = getContext().getResources().getDrawable(wheelForeground);
 		}
 
-		if (topShadow == null) {
-			topShadow = new GradientDrawable(Orientation.TOP_BOTTOM, SHADOWS_COLORS);
-		}
+//		if (topShadow == null) {
+//			topShadow = new GradientDrawable(Orientation.TOP_BOTTOM, SHADOWS_COLORS);
+//		}
 
-		if (bottomShadow == null) {
-			bottomShadow = new GradientDrawable(Orientation.BOTTOM_TOP, SHADOWS_COLORS);
-		}
+//		if (bottomShadow == null) {
+//			bottomShadow = new GradientDrawable(Orientation.BOTTOM_TOP, Te);
+//		}
 
-		setBackgroundResource(wheelBackground);
+//		setBackgroundResource(wheelBackground);
 	}
 
 	/**
@@ -622,11 +622,11 @@ public class WheelView extends View {
 	 */
 	private void drawShadows(Canvas canvas) {
 		int height = (int)(1.5 * getItemHeight());
-		topShadow.setBounds(0, 0, getWidth(), height);
-		topShadow.draw(canvas);
-
-		bottomShadow.setBounds(0, getHeight() - height, getWidth(), getHeight());
-		bottomShadow.draw(canvas);
+//		topShadow.setBounds(0, 0, getWidth(), height);
+//		topShadow.draw(canvas);
+//
+//		bottomShadow.setBounds(0, getHeight() - height, getWidth(), getHeight());
+//		bottomShadow.draw(canvas);
 	}
 
 	/**

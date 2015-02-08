@@ -19,4 +19,6 @@
 
     <color name="shiming">#E11F1F</color>
     <color name="niming">#4C971F</color>
+
+    <color name="test">#70333333</color>
 </resources>

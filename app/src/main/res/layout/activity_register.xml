@@ -250,23 +250,42 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal">
 
+            <View
+                android:layout_width="@dimen/map_padding"
+                android:layout_height="match_parent" />
+
             <kankan.wheel.widget.WheelView
                 android:id="@+id/xian"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"></kankan.wheel.widget.WheelView>
+                android:layout_weight="1"
+                android:background="@color/white" />
+
+            <View
+                android:layout_width="@dimen/map_padding"
+                android:layout_height="match_parent" />
 
             <kankan.wheel.widget.WheelView
                 android:id="@+id/xiang"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"></kankan.wheel.widget.WheelView>
+                android:layout_weight="1"
+                android:background="@color/white" />
+
+            <View
+                android:layout_width="@dimen/map_padding"
+                android:layout_height="match_parent" />
 
             <kankan.wheel.widget.WheelView
                 android:id="@+id/cun"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"></kankan.wheel.widget.WheelView>
+                android:layout_weight="1"
+                android:background="@color/white" />
+
+            <View
+                android:layout_width="@dimen/map_padding"
+                android:layout_height="match_parent" />
         </LinearLayout>
 
         <!--</LinearLayout>-->
@@ -275,6 +294,7 @@
             android:id="@+id/register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/login_padding"
             android:layout_marginLeft="@dimen/default_padding"
             android:layout_marginRight="@dimen/default_padding"
             android:layout_marginTop="@dimen/login_padding"
