@@ -4,12 +4,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ScrollView;
 
@@ -23,6 +25,7 @@ import com.psb.entity.Article;
 import com.psb.entity.NewsInfo;
 import com.psb.protocol.Api;
 import com.psb.ui.util.ImageUtil;
+import com.psb.ui.widget.InnerLayout;
 import com.psb.ui.widget.ViewPagerWithPoint;
 
 import java.util.ArrayList;
@@ -35,7 +38,7 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
 
     private PullToRefreshScrollView mPullToRefreshScrollView;
     private ViewPagerWithPoint banner;
-    private ListView listView;
+    private InnerLayout listView;
     private NewsAdapter adapter;
     private Intent intent;
     private int event = 0;
@@ -56,7 +59,7 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
         mPullToRefreshScrollView.setMode(PullToRefreshBase.Mode.BOTH);
         mPullToRefreshScrollView.setOnRefreshListener(this);
         banner = (ViewPagerWithPoint) findViewById(R.id.banner);
-        listView = (ListView) findViewById(R.id.list);
+        listView = (InnerLayout) findViewById(R.id.list);
         listView.setOnItemClickListener(this);
     }
 
@@ -115,11 +118,11 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
     }
 
     public void autoGetArticle() {
-        if (this.current_page == 1) {
-            this.scrollTop();
-        }
         if (System.currentTimeMillis() - request_time > AppContext.auto_request_time_lag) {
             request_time = System.currentTimeMillis();
+            if (this.current_page == 1) {
+                this.scrollTop();
+            }
             mPullToRefreshScrollView.setRefreshing(true);
             Api.getInstance().getArticle(event, 0);
         }
@@ -131,7 +134,7 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        NewsInfo news = (NewsInfo) parent.getAdapter().getItem(position);
+        NewsInfo news = (NewsInfo) adapter.getItem(position);
         Bundle bundle = new Bundle();
         bundle.putString("title", news.getTitle());
         bundle.putString("content", news.getContent());
@@ -164,6 +167,11 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+        if(current_page == last_page){
+            this.onRefreshComplete();
+            return;
+        }
+        request_time = System.currentTimeMillis();
         Api.getInstance().getArticle(event, last_page);
     }
 

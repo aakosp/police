@@ -19,6 +19,7 @@ public class NewsGuide extends PullToRefreshListView implements PullToRefreshBas
 
     private int event = 0;
     private long request_time = 0;
+    private int current_page = 1;
     private int lastPage = 1;
     private GuideAdapter adapter;
 
@@ -45,10 +46,10 @@ public class NewsGuide extends PullToRefreshListView implements PullToRefreshBas
     }
 
     public void setArticle(Article article) {
-        Log.d("setArticle", "" + article.getData().size());
         if (null == article) {
             return;
         }
+        current_page = article.getCurrent_page();
         lastPage = article.getLast_page();
         if (null == adapter) {
             adapter = new GuideAdapter(this.getContext());
@@ -67,7 +68,10 @@ public class NewsGuide extends PullToRefreshListView implements PullToRefreshBas
 
     @Override
     public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
-        Log.d("onRefresh", "onRefresh");
+        if(current_page == lastPage){
+            this.onRefreshComplete();
+            return;
+        }
         request_time = System.currentTimeMillis();
         Api.getInstance().getArticle(event, lastPage);
     }

@@ -1,44 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:background="@color/white"
+    android:orientation="vertical">
 
-    <LinearLayout
+    <com.psb.ui.widget.TopNavigationBar
+        android:id="@+id/topbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="vertical">
+        android:layout_height="@dimen/top_bar_default_height"
+        app:titleText="@string/news_detail" />
 
-        <com.psb.ui.widget.TopNavigationBar
-            android:id="@+id/topbar"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/top_bar_default_height"
-            app:titleText="@string/news_detail" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/default_padding"
-            android:textColor="@color/news_title"
-            android:textSize="@dimen/news_title_size" />
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/banner_img_height"
-            android:padding="@dimen/default_padding"
-            android:scaleType="centerCrop"
-            android:visibility="gone" />
+            <TextView
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_padding"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/news_title_size" />
 
-        <TextView
-            android:id="@+id/detail"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="@dimen/default_padding"
-            android:textColor="@color/news_content"
-            android:textSize="@dimen/news_detail_size" />
-    </LinearLayout>
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/banner_img_height"
+                android:padding="@dimen/default_padding"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
 
-</ScrollView>
+            <TextView
+                android:id="@+id/detail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_padding"
+                android:textColor="@color/news_content"
+                android:textSize="@dimen/news_detail_size" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
+
+
+

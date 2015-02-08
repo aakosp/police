@@ -122,7 +122,6 @@ public class ViewPagerWithPoint extends LinearLayout {
         } else {
             adapter.setViews(views);
         }
-        Log.d("count", "" + adapter.getCount());
         setPoints(adapter.getCount());
         adapter.notifyDataSetChanged();
     }
