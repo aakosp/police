@@ -68,11 +68,13 @@ final class LoadAndDisplayImageTask implements Runnable {
     private static final String ERROR_PROCESSOR_FOR_DISC_CACHE_NULL = "Bitmap processor for disc cache returned null [%s]";
 
     private static final int BUFFER_SIZE = 32 * 1024; // 32 Kb
-
+    final String uri;
+    final Reference<ImageView> imageViewRef;
+    final DisplayImageOptions options;
+    final ImageLoadingListener listener;
     private final ImageLoaderEngine engine;
     private final ImageLoadingInfo imageLoadingInfo;
     private final Handler handler;
-
     // Helper references
     private final ImageLoaderConfiguration configuration;
     private final ImageDownloader downloader;
@@ -80,13 +82,8 @@ final class LoadAndDisplayImageTask implements Runnable {
     private final ImageDownloader slowNetworkDownloader;
     private final ImageDecoder decoder;
     private final boolean writeLogs;
-    final String uri;
     private final String memoryCacheKey;
-    final Reference<ImageView> imageViewRef;
     private final ImageSize targetSize;
-    final DisplayImageOptions options;
-    final ImageLoadingListener listener;
-
     // State vars
     private LoadedFrom loadedFrom = LoadedFrom.NETWORK;
     private boolean imageViewCollected = false;

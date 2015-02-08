@@ -11,16 +11,15 @@ import android.view.View;
  * Created by aako on 2015/1/27.
  */
 public class InnerViewPager extends ViewPager {
+    private PointF downPoint = new PointF();
+    private OnSingleTouchListener onSingleTouchListener;
+
     public InnerViewPager(Context context) {
         super(context);
     }
-
     public InnerViewPager(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
-
-    private PointF downPoint = new PointF();
-    private OnSingleTouchListener onSingleTouchListener;
 
     @Override
     public boolean onTouchEvent(MotionEvent evt) {
@@ -58,12 +57,12 @@ public class InnerViewPager extends ViewPager {
         }
     }
 
-    public interface OnSingleTouchListener {
-        public void onSingleTouch(View v);
-    }
-
     public void setOnSingleTouchListener(
             OnSingleTouchListener onSingleTouchListener) {
         this.onSingleTouchListener = onSingleTouchListener;
+    }
+
+    public interface OnSingleTouchListener {
+        public void onSingleTouch(View v);
     }
 }

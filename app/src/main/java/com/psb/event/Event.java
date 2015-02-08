@@ -4,7 +4,7 @@ package com.psb.event;
  * Created by zl on 2014/12/3.
  */
 
-public class Event{
+public class Event {
 
     public static final int NEWS_1 = 1;                 //警务新闻
     public static final int NEWS_2 = 2;                 //警队风采
@@ -26,4 +26,7 @@ public class Event{
 
     public static final int GET_ADDRS = 16;             //获取乡镇列表
     public static final int GET_OFFICE_LIST = 17;       //获取警务室列表
+    public static final int GET_PLOICE_LIST = 18;       //获取民警信息
+    public static final int REGISTER = 19;              //注册
+    public static final int CHANGE_PWD = 20;            //修改密码
 }

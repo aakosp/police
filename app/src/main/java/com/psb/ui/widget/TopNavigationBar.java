@@ -16,7 +16,7 @@ import com.psb.R;
 /**
  * Created by Orgtec on 2014/12/30.
  */
-public class TopNavigationBar extends RelativeLayout implements View.OnClickListener{
+public class TopNavigationBar extends RelativeLayout implements View.OnClickListener {
 
     private ImageView btnLeft, imgBtnRight;
     private Button buttonLeft, btnRight = null;
@@ -161,13 +161,13 @@ public class TopNavigationBar extends RelativeLayout implements View.OnClickList
         }
     }
 
-    public void setActivity(Activity activity){
+    public void setActivity(Activity activity) {
         this.activity = activity;
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.buttonTopBarLeft:
             case R.id.btnTopBarLeft:
                 this.activity.finish();

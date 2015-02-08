@@ -41,17 +41,6 @@ public class RoundedBitmapDisplayer implements BitmapDisplayer {
         this.roundPixels = roundPixels;
     }
 
-    public int getRound() {
-        return roundPixels;
-    }
-
-    @Override
-    public Bitmap display(Bitmap bitmap, ImageView imageView, LoadedFrom loadedFrom) {
-        Bitmap roundedBitmap = roundCorners(bitmap, imageView, roundPixels);
-        imageView.setImageBitmap(roundedBitmap);
-        return roundedBitmap;
-    }
-
     /**
      * Process incoming {@linkplain Bitmap} to make rounded corners according to target {@link ImageView}.<br />
      * This method <b>doesn't display</b> result bitmap in {@link ImageView}
@@ -272,5 +261,16 @@ public class RoundedBitmapDisplayer implements BitmapDisplayer {
         canvas.drawBitmap(bitmap, srcRect, destRectF, paint);
 
         return output;
+    }
+
+    public int getRound() {
+        return roundPixels;
+    }
+
+    @Override
+    public Bitmap display(Bitmap bitmap, ImageView imageView, LoadedFrom loadedFrom) {
+        Bitmap roundedBitmap = roundCorners(bitmap, imageView, roundPixels);
+        imageView.setImageBitmap(roundedBitmap);
+        return roundedBitmap;
     }
 }

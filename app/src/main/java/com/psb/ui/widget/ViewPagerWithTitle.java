@@ -27,8 +27,10 @@ import java.util.List;
 public class ViewPagerWithTitle extends LinearLayout {
 
     private Context mContext;
+
     private LinearLayout layoutTabs, layoutTitle;
     private ImageView mCursor;
+    private View divider;
     private ViewPager mCustomViewPager;
     private int cursorColor = R.color.selected_red;
     private int textSize = 16;
@@ -60,25 +62,36 @@ public class ViewPagerWithTitle extends LinearLayout {
         mCursor = (ImageView) findViewById(R.id.cursor);
         mCursor.setBackgroundColor(getResources().getColor(cursorColor));
         mCustomViewPager = (ViewPager) findViewById(R.id.custviewPager);
-
+        divider = findViewById(R.id.divider);
         this.initializeAttributes(context, attrs);
     }
 
     private void initializeAttributes(Context context, AttributeSet attrs) {
         if (attrs == null) return;
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.widgetviewpager);
-        if(null != mCursor){
+        if (null != mCursor) {
             mCursorVisible = typedArray.getBoolean(R.styleable.widgetviewpager_tab_cursor_visible, true);
             this.setCursorVisible(mCursorVisible);
         }
+        if (null != divider) {
+            boolean dividerVisible = typedArray.getBoolean(R.styleable.widgetviewpager_tab_divider_visible, false);
+            this.setDividerVisible(dividerVisible);
+        }
     }
 
-    public void setCursorVisible(boolean visibility){
-        if(visibility){
+    public void setCursorVisible(boolean visibility) {
+        if (visibility) {
             mCursor.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             mCursor.setVisibility(View.GONE);
+        }
+    }
+
+    public void setDividerVisible(boolean visibility) {
+        if (visibility) {
+            divider.setVisibility(View.VISIBLE);
+        } else {
+            divider.setVisibility(View.GONE);
         }
     }
 
@@ -96,10 +109,6 @@ public class ViewPagerWithTitle extends LinearLayout {
 
     public void setCurrentItem(int item) {
         mCustomViewPager.setCurrentItem(item);
-    }
-
-    public void setAdapter(PagerAdapter adapter) {
-        mCustomViewPager.setAdapter(adapter);
     }
 
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
@@ -146,14 +155,14 @@ public class ViewPagerWithTitle extends LinearLayout {
         mCustomViewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                if(null != onPageChangeListener){
+                if (null != onPageChangeListener) {
                     onPageChangeListener.onPageScrolled(position, positionOffset, positionOffsetPixels);
                 }
             }
 
             @Override
             public void onPageSelected(int index) {
-                if(mCursorVisible){
+                if (mCursorVisible) {
                     ObjectAnimator animation = ObjectAnimator.ofFloat(mCursor, "x",
                             offset * currIndex, offset * index);
                     currIndex = index;
@@ -168,14 +177,14 @@ public class ViewPagerWithTitle extends LinearLayout {
                         tv.setTextColor(mContext.getResources().getColor((R.color.unselected_text)));
                     }
                 }
-                if(null != onPageChangeListener){
+                if (null != onPageChangeListener) {
                     onPageChangeListener.onPageSelected(index);
                 }
             }
 
             @Override
             public void onPageScrollStateChanged(int i) {
-                if(null != onPageChangeListener){
+                if (null != onPageChangeListener) {
                     onPageChangeListener.onPageScrollStateChanged(i);
                 }
             }
@@ -195,6 +204,10 @@ public class ViewPagerWithTitle extends LinearLayout {
 
     public ViewPagerWithTitleAdapter getAdapter() {
         return adapter;
+    }
+
+    public void setAdapter(PagerAdapter adapter) {
+        mCustomViewPager.setAdapter(adapter);
     }
 
     private class MyOnClickListener implements OnClickListener {

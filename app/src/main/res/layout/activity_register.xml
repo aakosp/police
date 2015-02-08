@@ -1,243 +1,288 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/background"
+    android:background="@color/white"
     android:orientation="vertical">
 
-    <com.psb.ui.widget.TopNavigationBar
-        android:id="@+id/topbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleText="@string/register" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"
-        android:layout_marginTop="@dimen/default_padding"
-        android:background="@color/item_office_info_divider" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-
+        android:layout_height="match_parent"
         android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/default_padding">
+        android:orientation="vertical">
 
-        <TextView
-            android:layout_width="@dimen/register_textview_width"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="@string/zhanghao"
-            android:textColor="@color/news_title"
-            android:textSize="@dimen/newstitle_title_size" />
-
-        <EditText
-            android:id="@+id/id"
+        <com.psb.ui.widget.TopNavigationBar
+            android:id="@+id/topbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/map_padding"
-            android:background="@null"
-            android:hint="@string/hit_zhanghao"
-            android:maxLength="20" />
+            app:titleText="@string/register" />
 
-    </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:layout_marginTop="@dimen/default_padding"
+            android:background="@color/item_office_info_divider" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"
-        android:background="@color/item_office_info_divider" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/default_padding">
-
-        <TextView
-            android:layout_width="@dimen/register_textview_width"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="@string/mima"
-            android:textColor="@color/news_title"
-            android:textSize="@dimen/newstitle_title_size" />
-
-        <EditText
-            android:id="@+id/pwd"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/map_padding"
-            android:background="@null"
-            android:hint="@string/hit_mima"
-            android:maxLength="20" />
 
-    </LinearLayout>
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding">
 
-    <View
-        android:layout_width="@dimen/horizontal_item_img_width"
-        android:layout_height="@dimen/divider"
-        android:background="@color/item_office_info_divider" />
+            <TextView
+                android:layout_width="@dimen/register_textview_width"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/zhanghao"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/default_padding">
+            <EditText
+                android:id="@+id/id"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/map_padding"
+                android:background="@null"
+                android:hint="@string/hit_zhanghao"
+                android:maxLength="20" />
 
-        <TextView
-            android:layout_width="@dimen/register_textview_width"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="@string/zaicishuru"
-            android:textColor="@color/news_title"
-            android:textSize="@dimen/newstitle_title_size" />
+        </LinearLayout>
 
-        <EditText
-            android:id="@+id/zaici"
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:background="@color/item_office_info_divider" />
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/map_padding"
-            android:background="@null"
-            android:hint="@string/zaicishuru"
-            android:maxLength="20" />
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="@dimen/register_textview_width"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/mima"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"
-        android:background="@color/item_office_info_divider" />
+            <EditText
+                android:id="@+id/pwd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/map_padding"
+                android:background="@null"
+                android:hint="@string/hit_mima"
+                android:inputType="textPassword"
+                android:maxLength="20" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/default_padding">
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="@dimen/register_textview_width"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="@string/name"
-            android:textColor="@color/news_title"
-            android:textSize="@dimen/newstitle_title_size" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:background="@color/item_office_info_divider" />
 
-        <EditText
-            android:id="@+id/name"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/map_padding"
-            android:background="@null"
-            android:maxLength="20" />
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="@dimen/register_textview_width"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/zaicishuru"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"
-        android:background="@color/item_office_info_divider" />
+            <EditText
+                android:id="@+id/zaici"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/map_padding"
+                android:background="@null"
+                android:hint="@string/zaicishuru"
+                android:inputType="textPassword"
+                android:maxLength="20" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/default_padding">
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="@dimen/register_textview_width"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="@string/sex"
-            android:textColor="@color/news_title"
-            android:textSize="@dimen/newstitle_title_size" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:background="@color/item_office_info_divider" />
 
-        <Spinner
-            android:id="@+id/sex"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/map_padding"
-            android:entries="@array/sex_columns"
-            android:spinnerMode="dropdown" />
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="@dimen/register_textview_width"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/name"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"
-        android:background="@color/item_office_info_divider" />
+            <EditText
+                android:id="@+id/name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/map_padding"
+                android:background="@null"
+                android:maxLength="20" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/default_padding">
+        </LinearLayout>
 
-        <TextView
-            android:layout_width="@dimen/register_textview_width"
-            android:layout_height="wrap_content"
-            android:gravity="right"
-            android:text="@string/tel"
-            android:textColor="@color/news_title"
-            android:textSize="@dimen/newstitle_title_size" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:background="@color/item_office_info_divider" />
 
-        <EditText
-            android:id="@+id/tel"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/map_padding"
-            android:background="@null"
-            android:inputType="number"
-            android:maxLength="11" />
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding">
 
-    </LinearLayout>
+            <TextView
+                android:layout_width="@dimen/register_textview_width"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/sex"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"
-        android:background="@color/item_office_info_divider" />
+            <RadioGroup
+                android:id="@+id/sex"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/default_padding">
+                <RadioButton
+                    android:id="@+id/male"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="@string/men"
+                    android:text="男" />
+
+                <RadioButton
+                    android:id="@+id/female"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:tag="@string/women"
+                    android:text="女" />
+
+            </RadioGroup>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:background="@color/item_office_info_divider" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding">
+
+            <TextView
+                android:layout_width="@dimen/register_textview_width"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="@string/tel"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
+
+            <EditText
+                android:id="@+id/tel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/map_padding"
+                android:background="@null"
+                android:inputType="number"
+                android:maxLength="11" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:background="@color/item_office_info_divider" />
+
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_padding">-->
 
         <TextView
             android:layout_width="@dimen/register_textview_width"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_padding"
+            android:background="@color/white"
             android:gravity="right"
+            android:paddingBottom="@dimen/default_padding"
+            android:paddingTop="@dimen/default_padding"
             android:text="@string/addr"
             android:textColor="@color/news_title"
             android:textSize="@dimen/newstitle_title_size" />
 
-        <Spinner
-            android:id="@+id/addr"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/map_padding"
-            android:spinnerMode="dropdown" />
+            android:orientation="horizontal">
+
+            <kankan.wheel.widget.WheelView
+                android:id="@+id/xian"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"></kankan.wheel.widget.WheelView>
+
+            <kankan.wheel.widget.WheelView
+                android:id="@+id/xiang"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"></kankan.wheel.widget.WheelView>
+
+            <kankan.wheel.widget.WheelView
+                android:id="@+id/cun"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"></kankan.wheel.widget.WheelView>
+        </LinearLayout>
+
+        <!--</LinearLayout>-->
+
+        <Button
+            android:id="@+id/register"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_padding"
+            android:layout_marginRight="@dimen/default_padding"
+            android:layout_marginTop="@dimen/login_padding"
+            android:background="@color/default_blue_color"
+            android:padding="@dimen/default_padding"
+            android:text="@string/register"
+            android:textColor="@color/white"
+            android:textSize="@dimen/newstitle_title_size" />
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/register"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/default_padding"
-        android:layout_marginRight="@dimen/default_padding"
-        android:layout_marginTop="@dimen/login_padding"
-        android:background="@color/news_content"
-        android:padding="@dimen/default_padding"
-        android:text="@string/register"
-        android:textColor="@color/white"
-        android:textSize="@dimen/newstitle_title_size" />
-
-</LinearLayout>
+</ScrollView>

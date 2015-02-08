@@ -1,11 +1,16 @@
 package com.psb.ui.activity;
 
 import android.os.Bundle;
+import android.os.Message;
 import android.widget.ListView;
 
 import com.psb.R;
 import com.psb.adapter.OfficeAdapter;
 import com.psb.entity.OfficeInfo;
+import com.psb.event.Event;
+import com.psb.event.EventNotifyCenter;
+import com.psb.protocol.Api;
+import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseActivity;
 import com.psb.ui.widget.TopNavigationBar;
 
@@ -30,18 +35,20 @@ public class ActivityOffice extends BaseActivity {
         this.topbar.setActivity(this);
 
         officeAdapter = new OfficeAdapter(this);
-        List<OfficeInfo> list = new ArrayList<>();
-        for (int i = 0; i < 6; i++) {
-            OfficeInfo info = new OfficeInfo();
-            info.setId(i);
-            info.setAddress("汤阴大付庄村");
-            info.setPhone("32323553");
-            info.setName("汤阴大付庄警务室");
-            info.setLocation_x(34.736352f);
-            info.setLocation_y(113.606382f);
-            list.add(info);
-        }
-        officeAdapter.setOfficeInfoList(list);
+        officeAdapter.setOfficeInfoList(Cache.getInstance().getOffice());
         mList.setAdapter(officeAdapter);
+        EventNotifyCenter.getInstance().register(this.getHandler(), Event.GET_OFFICE_LIST);
+        Api.getInstance().getOffice();
+
+    }
+
+    @Override
+    protected void handlerPacketMsg(Message msg) {
+        switch (msg.what) {
+            case Event.GET_OFFICE_LIST:
+                officeAdapter.setOfficeInfoList(Cache.getInstance().getOffice());
+                officeAdapter.notifyDataSetChanged();
+                break;
+        }
     }
 }

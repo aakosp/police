@@ -41,17 +41,14 @@ import java.util.concurrent.locks.ReentrantLock;
 class ImageLoaderEngine {
 
     final ImageLoaderConfiguration configuration;
-
-    private Executor taskExecutor;
-    private Executor taskExecutorForCachedImages;
-    private ExecutorService taskDistributor;
-
     private final Map<Integer, String> cacheKeysForImageViews = Collections.synchronizedMap(new HashMap<Integer, String>());
     private final Map<String, ReentrantLock> uriLocks = new WeakHashMap<String, ReentrantLock>();
-
     private final AtomicBoolean paused = new AtomicBoolean(false);
     private final AtomicBoolean networkDenied = new AtomicBoolean(false);
     private final AtomicBoolean slowNetwork = new AtomicBoolean(false);
+    private Executor taskExecutor;
+    private Executor taskExecutorForCachedImages;
+    private ExecutorService taskDistributor;
 
     ImageLoaderEngine(ImageLoaderConfiguration configuration) {
         this.configuration = configuration;

@@ -25,6 +25,13 @@
             android:layout_gravity="bottom"
             android:background="@color/selected_red"
             android:scaleType="matrix" />
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:background="@color/item_office_info_divider"
+            android:visibility="gone" />
     </LinearLayout>
 
     <android.support.v4.view.ViewPager

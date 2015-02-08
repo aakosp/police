@@ -51,14 +51,14 @@ public class ImageLoader {
     private static final String ERROR_WRONG_ARGUMENTS = "Wrong arguments were passed to displayImage() method (ImageView reference must not be null)";
     private static final String ERROR_NOT_INIT = "ImageLoader must be init with configuration before using";
     private static final String ERROR_INIT_CONFIG_WITH_NULL = "ImageLoader configuration can not be initialized with null";
-
+    private volatile static ImageLoader instance;
+    private final ImageLoadingListener emptyListener = new SimpleImageLoadingListener();
+    private final BitmapDisplayer fakeBitmapDisplayer = new FakeBitmapDisplayer();
     private ImageLoaderConfiguration configuration;
     private ImageLoaderEngine engine;
 
-    private final ImageLoadingListener emptyListener = new SimpleImageLoadingListener();
-    private final BitmapDisplayer fakeBitmapDisplayer = new FakeBitmapDisplayer();
-
-    private volatile static ImageLoader instance;
+    protected ImageLoader() {
+    }
 
     /**
      * Returns singleton class instance
@@ -72,9 +72,6 @@ public class ImageLoader {
             }
         }
         return instance;
-    }
-
-    protected ImageLoader() {
     }
 
     /**

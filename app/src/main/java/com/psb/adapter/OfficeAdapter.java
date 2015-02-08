@@ -3,6 +3,7 @@ package com.psb.adapter;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -30,11 +31,17 @@ public class OfficeAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
     public void setOfficeInfoList(List<OfficeInfo> infos) {
+        if (null == infos) {
+            return;
+        }
         officeInfoList.clear();
         officeInfoList.addAll(infos);
     }
 
     public void addOfficeInfo(List<OfficeInfo> infos) {
+        if (null == infos) {
+            return;
+        }
         officeInfoList.addAll(infos);
     }
 
@@ -76,6 +83,7 @@ public class OfficeAdapter extends BaseAdapter implements View.OnClickListener {
         officeViewHolder.tel.setText("电话：" + info.getPhone());
         officeViewHolder.phone.setTag(info.getPhone());
         officeViewHolder.addr.setText("地址：" + info.getAddress());
+        officeViewHolder.map.setTag(info.getId());
         return convertView;
     }
 
@@ -90,6 +98,7 @@ public class OfficeAdapter extends BaseAdapter implements View.OnClickListener {
 
             case R.id.map:
                 intent = new Intent();
+                intent.putExtra("id", (int) v.getTag());
                 intent.setClass(context, ActivityMap.class);
                 break;
             default:

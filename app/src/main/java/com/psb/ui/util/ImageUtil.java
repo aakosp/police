@@ -32,6 +32,7 @@ import android.provider.MediaStore;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
 import com.psb.R;
 import com.psb.core.AppContext;
+
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -48,28 +49,23 @@ import java.util.Map;
 @SuppressLint("UseSparseArrays")
 public class ImageUtil {
 
-    private static Bitmap defalut_img;
-
     public static DisplayImageOptions options = new DisplayImageOptions.Builder()
             .showDefault(getDefalut_img())
             .cacheInMemory(true)
             .cacheOnDisc(true)
             .build();
+    private static Bitmap defalut_img;
+    private static Map<Integer, Bitmap> bitmaps = new HashMap<Integer, Bitmap>();
+    private static float hRadius = 4f;
+    private static float vRadius = 4f;
+    private static int iterations = 1;
 
-    public static Bitmap getDefalut_img(){
-        if(null == defalut_img){
+    public static Bitmap getDefalut_img() {
+        if (null == defalut_img) {
             defalut_img = BitmapFactory.decodeResource(AppContext.getInstance().getResources(), R.drawable.default_img);
         }
-        return  defalut_img;
+        return defalut_img;
     }
-
-    private static Map<Integer, Bitmap> bitmaps = new HashMap<Integer, Bitmap>();
-
-    private static float hRadius = 4f;
-
-    private static float vRadius = 4f;
-
-    private static int iterations = 1;
 
     public static Bitmap zoomBitmap(Bitmap bitmap, int w, int h) {
         int width = bitmap.getWidth();
@@ -263,32 +259,6 @@ public class ImageUtil {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        }
-    }
-
-    public static class MediaScannerConnectClientClient implements
-            MediaScannerConnectionClient {
-
-        private MediaScannerConnection mScanner;
-
-        private String mScanPath;
-
-        public MediaScannerConnectClientClient(String scanPath) {
-            mScanPath = scanPath;
-        }
-
-        public void setScanner(MediaScannerConnection con) {
-            mScanner = con;
-        }
-
-        @Override
-        public void onMediaScannerConnected() {
-            mScanner.scanFile(mScanPath, "image/*");
-        }
-
-        @Override
-        public void onScanCompleted(String path, Uri uri) {
-            mScanner.disconnect();
         }
     }
 
@@ -796,5 +766,31 @@ public class ImageUtil {
         Bitmap newBitmap = Bitmap.createBitmap(bitmap, 0, 0, width, height,
                 matrix, true);
         return new BitmapDrawable(null, newBitmap);
+    }
+
+    public static class MediaScannerConnectClientClient implements
+            MediaScannerConnectionClient {
+
+        private MediaScannerConnection mScanner;
+
+        private String mScanPath;
+
+        public MediaScannerConnectClientClient(String scanPath) {
+            mScanPath = scanPath;
+        }
+
+        public void setScanner(MediaScannerConnection con) {
+            mScanner = con;
+        }
+
+        @Override
+        public void onMediaScannerConnected() {
+            mScanner.scanFile(mScanPath, "image/*");
+        }
+
+        @Override
+        public void onScanCompleted(String path, Uri uri) {
+            mScanner.disconnect();
+        }
     }
 }

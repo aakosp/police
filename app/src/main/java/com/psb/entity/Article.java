@@ -14,6 +14,7 @@ public class Article {
     private int from;
     private int to;
     private List<NewsInfo> data;
+    private List<NewsInfo> banner;
 
     public int getTotal() {
         return total;
@@ -69,5 +70,13 @@ public class Article {
 
     public void setData(List<NewsInfo> data) {
         this.data = data;
+    }
+
+    public List<NewsInfo> getBanner() {
+        return banner;
+    }
+
+    public void setBanner(List<NewsInfo> banner) {
+        this.banner = banner;
     }
 }

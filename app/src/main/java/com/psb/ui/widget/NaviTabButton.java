@@ -16,7 +16,7 @@ import com.psb.ui.activity.ActivityMain;
 /**
  * Created by zl on 2014/11/21.
  */
-public class NaviTabButton extends FrameLayout implements View.OnClickListener{
+public class NaviTabButton extends FrameLayout implements View.OnClickListener {
 
     private int mIndex;
     private ImageView mImage;

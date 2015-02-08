@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">psb</string>
+    <string name="app_name">汤阴县一村一警</string>
 
     <string name="news">警务资讯</string>
     <string name="navigation">一村一警</string>
@@ -25,6 +25,7 @@
     <string name="id">账号</string>
     <string name="pwd">密码</string>
     <string name="login">登录</string>
+    <string name="goto_login">去登录</string>
     <string name="register">注册</string>
     <string name="title">标题：</string>
     <string name="type">类型：</string>
@@ -35,13 +36,18 @@
     <string name="feedback">意见反馈</string>
     <string name="opinion">我的意见</string>
 
-    <string name="zhanghao">账号</string>
-    <string name="mima">密码</string>
-    <string name="zaicishuru">再次输入</string>
-    <string name="name">姓名</string>
-    <string name="sex">性别</string>
-    <string name="tel">联系电话</string>
-    <string name="addr">乡镇、村</string>
+    <string name="zhanghao">账号：</string>
+    <string name="mima">密码：</string>
+    <string name="zaicishuru">再次输入：</string>
+    <string name="name">姓名：</string>
+    <string name="sex">性别：</string>
+    <string name="men">MEN</string>
+    <string name="women">WOMEN</string>
+    <string name="tel">联系电话：</string>
+    <string name="addr">乡镇、村：</string>
+    <string name="old_pwd">原密码：</string>
+    <string name="new_pwd">新密码：</string>
+    <string name="ok">确定</string>
 
     <string name="hit_zhanghao">6至20个字母或数字</string>
     <string name="hit_mima">6至20个字母、数字或下划线</string>

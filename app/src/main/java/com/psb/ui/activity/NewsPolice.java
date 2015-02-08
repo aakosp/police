@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.AttributeSet;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,7 +31,7 @@ import java.util.List;
 /**
  * Created by zl on 2015/1/26.
  */
-public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefreshListener<ScrollView>, AdapterView.OnItemClickListener, View.OnClickListener {
+public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefreshListener2<ScrollView>, AdapterView.OnItemClickListener, View.OnClickListener {
 
     private PullToRefreshScrollView mPullToRefreshScrollView;
     private ViewPagerWithPoint banner;
@@ -39,6 +40,8 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
     private Intent intent;
     private int event = 0;
     private long request_time = 0;
+    private int current_page = 1;
+    private int last_page = 1;
 
     public NewsPolice(Context context) {
         this(context, null);
@@ -50,50 +53,59 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
         intent.setClass(context, ActivityNewsDetail.class);
         LayoutInflater.from(context).inflate(R.layout.news_police, this, true);
         mPullToRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.refresh_view);
+        mPullToRefreshScrollView.setMode(PullToRefreshBase.Mode.BOTH);
         mPullToRefreshScrollView.setOnRefreshListener(this);
         banner = (ViewPagerWithPoint) findViewById(R.id.banner);
         listView = (ListView) findViewById(R.id.list);
         listView.setOnItemClickListener(this);
     }
 
-    public void setEvent(int event) {
-        this.event = event;
-    }
-
     public int getEvent() {
         return this.event;
     }
 
-    public void setBanner(List<String> urls) {
-        if (urls.size() > 0) {
-            banner.setVisibility(View.VISIBLE);
-        } else {
+    public void setEvent(int event) {
+        this.event = event;
+    }
+
+    public void setBanner(List<NewsInfo> banners) {
+        if (null == banners || banners.size() == 0) {
             banner.setVisibility(View.GONE);
             return;
         }
-        List<View> banners = new ArrayList<>();
-        for (String url : urls) {
+        banner.setVisibility(View.VISIBLE);
+        List<View> vBanners = new ArrayList<>();
+        for (NewsInfo info : banners) {
+            LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
             ImageView img = new ImageView(this.getContext());
             img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            ImageLoader.getInstance().displayImage(url, img, ImageUtil.options);
-            banners.add(img);
+            img.setLayoutParams(params);
+            ImageLoader.getInstance().displayImage(info.getThumb(), img, ImageUtil.options);
+            vBanners.add(img);
+            img.setTag(info);
             img.setOnClickListener(this);
         }
-        banner.setPagerViews(banners);
+        banner.setPagerViews(vBanners);
         banner.setCurrentItem(0);
     }
 
     public void setArticle(Article article) {
+        if (null == article) {
+            return;
+        }
+        current_page = article.getCurrent_page();
+        last_page = article.getLast_page();
+        this.setBanner(article.getBanner());
         if (null == adapter) {
             adapter = new NewsAdapter(article.getData());
             listView.setAdapter(adapter);
         } else {
             adapter.setArticle(article);
         }
-        if (article.getPer_page() == 1) {
+        adapter.notifyDataSetChanged();
+        if (article.getCurrent_page() == 1) {
             this.scrollTop();
         }
-        adapter.notifyDataSetChanged();
     }
 
     public void scrollTop() {
@@ -103,10 +115,13 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
     }
 
     public void autoGetArticle() {
+        if (this.current_page == 1) {
+            this.scrollTop();
+        }
         if (System.currentTimeMillis() - request_time > AppContext.auto_request_time_lag) {
             request_time = System.currentTimeMillis();
             mPullToRefreshScrollView.setRefreshing(true);
-            Api.getInstance().getArticle(event);
+            Api.getInstance().getArticle(event, 0);
         }
     }
 
@@ -126,22 +141,30 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
     }
 
     @Override
-    public void onRefresh(PullToRefreshBase<ScrollView> refreshView) {
-        request_time = System.currentTimeMillis();
-        Api.getInstance().getArticle(event);
-        //TODO: Post Request
-//        mPullToRefreshScrollView.postDelayed(new Runnable() {
-//            @Override
-//            public void run() {
-//                mPullToRefreshScrollView.onRefreshComplete();
-//            }
-//        }, 5000);
+    public void onClick(View v) {
+        NewsInfo news = (NewsInfo) v.getTag();
+        if (null == news) {
+            return;
+        }
+        Bundle bundle = new Bundle();
+        bundle.putString("title", news.getTitle());
+        bundle.putString("content", news.getContent());
+        bundle.putString("url", news.getThumb());
+        intent.putExtras(bundle);
+        this.getContext().startActivity(intent);
     }
 
     @Override
-    public void onClick(View v) {
-        Intent t = new Intent();
-        t.setClass(this.getContext(), ActivityRegister.class);
-        this.getContext().startActivity(t);
+    public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+        request_time = System.currentTimeMillis();
+        if (!Api.getInstance().getArticle(event, 0)) {
+            this.onRefreshComplete();
+        }
     }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+        Api.getInstance().getArticle(event, last_page);
+    }
+
 }

@@ -102,6 +102,26 @@ public final class DisplayImageOptions {
         handler = builder.handler;
     }
 
+    /**
+     * Creates options appropriate for single displaying:
+     * <ul>
+     * <li>View will <b>not</b> be reset before loading</li>
+     * <li>Loaded image will <b>not</b> be cached in memory</li>
+     * <li>Loaded image will <b>not</b> be cached on disc</li>
+     * <li>{@link ImageScaleType#IN_SAMPLE_POWER_OF_2} decoding type will be
+     * used</li>
+     * <li>{@link Bitmap.Config#ARGB_8888} bitmap config will be used for image
+     * decoding</li>
+     * <li>{@link SimpleBitmapDisplayer} will be used for image displaying</li>
+     * </ul>
+     * <p/>
+     * These option are appropriate for simple single-use image (from drawables
+     * or from Internet) displaying.
+     */
+    public static DisplayImageOptions createSimple() {
+        return new Builder().build();
+    }
+
     public boolean shouldShowStubImage() {
         return stubImage != 0;
     }
@@ -455,25 +475,5 @@ public final class DisplayImageOptions {
         public DisplayImageOptions build() {
             return new DisplayImageOptions(this);
         }
-    }
-
-    /**
-     * Creates options appropriate for single displaying:
-     * <ul>
-     * <li>View will <b>not</b> be reset before loading</li>
-     * <li>Loaded image will <b>not</b> be cached in memory</li>
-     * <li>Loaded image will <b>not</b> be cached on disc</li>
-     * <li>{@link ImageScaleType#IN_SAMPLE_POWER_OF_2} decoding type will be
-     * used</li>
-     * <li>{@link Bitmap.Config#ARGB_8888} bitmap config will be used for image
-     * decoding</li>
-     * <li>{@link SimpleBitmapDisplayer} will be used for image displaying</li>
-     * </ul>
-     * <p/>
-     * These option are appropriate for simple single-use image (from drawables
-     * or from Internet) displaying.
-     */
-    public static DisplayImageOptions createSimple() {
-        return new Builder().build();
     }
 }

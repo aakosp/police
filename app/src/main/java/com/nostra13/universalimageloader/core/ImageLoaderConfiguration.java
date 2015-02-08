@@ -141,27 +141,27 @@ public final class ImageLoaderConfiguration {
      */
     public static class Builder {
 
+        /**
+         * {@value}
+         */
+        public static final int DEFAULT_THREAD_POOL_SIZE = 5;
+        private int threadPoolSize = DEFAULT_THREAD_POOL_SIZE;
+        /**
+         * {@value}
+         */
+        public static final int DEFAULT_THREAD_PRIORITY = Thread.NORM_PRIORITY - 1;
+        private int threadPriority = DEFAULT_THREAD_PRIORITY;
+        /**
+         * {@value}
+         */
+        public static final QueueProcessingType DEFAULT_TASK_PROCESSING_TYPE = QueueProcessingType.FIFO;
+        private QueueProcessingType tasksProcessingType = DEFAULT_TASK_PROCESSING_TYPE;
         private static final String WARNING_OVERLAP_DISC_CACHE_PARAMS = "discCache(), discCacheSize() and discCacheFileCount calls overlap each other";
         private static final String WARNING_OVERLAP_DISC_CACHE_NAME_GENERATOR = "discCache() and discCacheFileNameGenerator() calls overlap each other";
         private static final String WARNING_OVERLAP_MEMORY_CACHE = "memoryCache() and memoryCacheSize() calls overlap each other";
         private static final String WARNING_OVERLAP_EXECUTOR = "threadPoolSize(), threadPriority() and tasksProcessingOrder() calls "
                 + "can overlap taskExecutor() and taskExecutorForCachedImages() calls.";
-
-        /**
-         * {@value}
-         */
-        public static final int DEFAULT_THREAD_POOL_SIZE = 5;
-        /**
-         * {@value}
-         */
-        public static final int DEFAULT_THREAD_PRIORITY = Thread.NORM_PRIORITY - 1;
-        /**
-         * {@value}
-         */
-        public static final QueueProcessingType DEFAULT_TASK_PROCESSING_TYPE = QueueProcessingType.FIFO;
-
         private Context context;
-
         private int maxImageWidthForMemoryCache = 0;
         private int maxImageHeightForMemoryCache = 0;
         private int maxImageWidthForDiscCache = 0;
@@ -169,17 +169,11 @@ public final class ImageLoaderConfiguration {
         private CompressFormat imageCompressFormatForDiscCache = null;
         private int imageQualityForDiscCache = 0;
         private BitmapProcessor processorForDiscCache = null;
-
         private Executor taskExecutor = null;
         private Executor taskExecutorForCachedImages = null;
         private boolean customExecutor = false;
         private boolean customExecutorForCachedImages = false;
-
-        private int threadPoolSize = DEFAULT_THREAD_POOL_SIZE;
-        private int threadPriority = DEFAULT_THREAD_PRIORITY;
         private boolean denyCacheImageMultipleSizesInMemory = false;
-        private QueueProcessingType tasksProcessingType = DEFAULT_TASK_PROCESSING_TYPE;
-
         private int memoryCacheSize = 0;
         private int discCacheSize = 0;
         private int discCacheFileCount = 0;

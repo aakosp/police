@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android" package="com.psb">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.psb">
 
 
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -24,49 +25,78 @@
 
     <application
         android:name=".core.AppContext"
-        android:allowBackup="true" android:label="@string/app_name"
-        android:icon="@drawable/tab_navigation" android:theme="@style/AppTheme">
+        android:allowBackup="true"
+        android:icon="@drawable/app_ico"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme">
         <activity
-            android:name=".ui.activity.ActivityLogin">
+            android:name=".ui.activity.ActivityLogin"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.activity.ActivitySign"/>
-        <activity android:name=".ui.activity.ActivityMap"/>
-        <activity android:name=".ui.activity.ActivityNewsDetail"/>
-        <activity android:name=".ui.activity.ActivityRegister"/>
-        <activity android:name=".ui.activity.ActivityOffice"/>
-        <activity android:name=".ui.activity.ActivityOpinionFeedBack"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ui.activity.ActivityMain"/>
-        <activity android:name=".ui.activity.ActivityPoliceInfo"/>
-        <activity android:name=".ui.activity.ActivityWork"/>
-        <activity android:name=".ui.activity.ActivityOpinionProcessing"/>
+        <activity
+            android:name=".ui.activity.ActivitySign"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityMap"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityNewsDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityRegister"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityOffice"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityOpinionFeedBack"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityMain"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityPoliceInfo"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityWork"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityOpinionProcessing"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityRegisterSuccess"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityPoliceDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityChangePwd"
+            android:screenOrientation="portrait" />
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote" >
+            android:process=":remote">
             <intent-filter>
                 <action android:name="com.baidu.location.service_v2.2" />
             </intent-filter>
         </service>
 
-        <!-- company-->
+        <!-- company
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="eGRRzIYHNG2VfkfOknkAvifA"/>
+            android:value="eGRRzIYHNG2VfkfOknkAvifA"/>-->
 
-        <!-- home
+        <!-- home-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="eulwukjkSVyRtDOMoSUlQHC8"/>-->
+            android:value="eulwukjkSVyRtDOMoSUlQHC8" />
 
     </application>
-
 
 
 </manifest>

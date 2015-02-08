@@ -54,5 +54,9 @@
 
     <dimen name="feedback_info_height">200dp</dimen>
 
-    <dimen name="register_textview_width">70dp</dimen>
+    <dimen name="register_textview_width">80dp</dimen>
+
+    <!-- police_info_img -->
+    <dimen name="police_img_width">120dp</dimen>
+    <dimen name="police_img_height">180dp</dimen>
 </resources>

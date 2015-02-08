@@ -22,9 +22,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
         android:background="@color/bkg_tab"
-        android:padding="@dimen/default_padding"
+        android:paddingBottom="@dimen/map_padding"
+        android:paddingLeft="@dimen/default_padding"
+        android:paddingTop="@dimen/map_padding"
         android:textColor="@color/news_time"
-        android:textSize="@dimen/news_detail_size" />
+        android:textSize="@dimen/newstitle_time_size" />
 
     <View
         android:layout_width="match_parent"
@@ -33,14 +35,15 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="horizontal"
         android:padding="@dimen/default_padding">
 
         <ImageView
             android:id="@+id/img"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:scaleType="centerInside" />
+            android:layout_width="@dimen/police_img_width"
+            android:layout_height="@dimen/police_img_height"
+            android:scaleType="centerCrop" />
 
         <LinearLayout
             android:layout_width="match_parent"

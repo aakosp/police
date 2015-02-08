@@ -10,6 +10,8 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.psb.R;
+import com.psb.entity.User;
+import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseFragment;
 import com.psb.ui.widget.ItemHorizontal;
 import com.psb.ui.widget.RoundImageView;
@@ -37,10 +39,10 @@ public class FragmentProfile extends BaseFragment implements View.OnClickListene
             ((ViewGroup) mView.getParent()).removeView(mView);
             return mView;
         }
-        if(isPolice){
+        isPolice = User.POLICE.equals(Cache.getInstance().getUser().getRole());
+        if (isPolice) {
             this.initPolice(container);
-        }
-        else{
+        } else {
             this.initVillager(container);
         }
         profile = mView.findViewById(R.id.profile);
@@ -51,14 +53,12 @@ public class FragmentProfile extends BaseFragment implements View.OnClickListene
         profile.setOnClickListener(this);
         pwd.setOnClickListener(this);
         intent = new Intent();
-
-        avatar.setImageResource(R.drawable.default_img);
-        name.setText("张三");
-        id.setText("aakosp@gmail.com");
+        name.setText(Cache.getInstance().getUser().getName());
+        id.setText(Cache.getInstance().getUser().getUser_name());
         return mView;
     }
 
-    private void initPolice(ViewGroup container){
+    private void initPolice(ViewGroup container) {
         mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_profile_police, container, false);
         notice = (ItemHorizontal) mView.findViewById(R.id.notice);
         processing = (ItemHorizontal) mView.findViewById(R.id.processing);
@@ -73,7 +73,7 @@ public class FragmentProfile extends BaseFragment implements View.OnClickListene
         sign.setOnClickListener(this);
     }
 
-    private void initVillager(ViewGroup container){
+    private void initVillager(ViewGroup container) {
         mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_profile, container, false);
         minyi = (ItemHorizontal) mView.findViewById(R.id.minyi);
         feedback = (ItemHorizontal) mView.findViewById(R.id.feedback);
@@ -89,9 +89,9 @@ public class FragmentProfile extends BaseFragment implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.profile:
-                break;
+                return;
             case R.id.notice:
-                break;
+                return;
             case R.id.processing:
                 intent.setClass(this.getActivity(), ActivityOpinionProcessing.class);
                 break;
@@ -102,16 +102,17 @@ public class FragmentProfile extends BaseFragment implements View.OnClickListene
                 intent.setClass(this.getActivity(), ActivityWork.class);
                 break;
             case R.id.record_history:
-                break;
+                return;
             case R.id.pwd:
+                intent.setClass(this.getActivity(), ActivityChangePwd.class);
                 break;
             case R.id.minyi:
-                break;
+                return;
             case R.id.feedback:
                 intent.setClass(this.getActivity(), ActivityOpinionFeedBack.class);
                 break;
             case R.id.opinion:
-                break;
+                return;
             default:
                 return;
         }

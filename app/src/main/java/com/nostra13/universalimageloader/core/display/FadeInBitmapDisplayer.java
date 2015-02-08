@@ -36,15 +36,6 @@ public class FadeInBitmapDisplayer implements BitmapDisplayer {
         this.durationMillis = durationMillis;
     }
 
-    @Override
-    public Bitmap display(Bitmap bitmap, ImageView imageView, LoadedFrom loadedFrom) {
-        imageView.setImageBitmap(bitmap);
-
-        animate(imageView, durationMillis);
-
-        return bitmap;
-    }
-
     /**
      * Animates {@link ImageView} with "fade-in" effect
      *
@@ -56,5 +47,14 @@ public class FadeInBitmapDisplayer implements BitmapDisplayer {
         fadeImage.setDuration(durationMillis);
         fadeImage.setInterpolator(new DecelerateInterpolator());
         imageView.startAnimation(fadeImage);
+    }
+
+    @Override
+    public Bitmap display(Bitmap bitmap, ImageView imageView, LoadedFrom loadedFrom) {
+        imageView.setImageBitmap(bitmap);
+
+        animate(imageView, durationMillis);
+
+        return bitmap;
     }
 }

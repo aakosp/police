@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical">
+
+    <com.psb.ui.widget.TopNavigationBar
+        android:id="@+id/topbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="@string/change_pwd" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@color/item_office_info_divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/default_padding">
+
+        <TextView
+            android:layout_width="@dimen/register_textview_width"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/old_pwd"
+            android:textColor="@color/news_title"
+            android:textSize="@dimen/newstitle_title_size" />
+
+        <EditText
+            android:id="@+id/old"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/map_padding"
+            android:background="@null"
+            android:maxLength="20" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/item_office_info_divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/default_padding">
+
+        <TextView
+            android:layout_width="@dimen/register_textview_width"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/new_pwd"
+            android:textColor="@color/news_title"
+            android:textSize="@dimen/newstitle_title_size" />
+
+        <EditText
+            android:id="@+id/newpwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/map_padding"
+            android:background="@null"
+            android:inputType="textPassword"
+            android:maxLength="20" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/item_office_info_divider" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:padding="@dimen/default_padding">
+
+        <TextView
+            android:layout_width="@dimen/register_textview_width"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="@string/zaicishuru"
+            android:textColor="@color/news_title"
+            android:textSize="@dimen/newstitle_title_size" />
+
+        <EditText
+            android:id="@+id/zaici"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/map_padding"
+            android:background="@null"
+            android:inputType="textPassword"
+            android:maxLength="20" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/item_office_info_divider" />
+
+    <Button
+        android:id="@+id/btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/default_padding"
+        android:layout_marginRight="@dimen/default_padding"
+        android:layout_marginTop="@dimen/login_padding"
+        android:background="@color/default_blue_color"
+        android:padding="@dimen/default_padding"
+        android:text="@string/ok"
+        android:textColor="@color/white"
+        android:textSize="@dimen/newstitle_title_size" />
+
+</LinearLayout>

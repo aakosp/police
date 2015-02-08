@@ -24,8 +24,6 @@ public class ActivityMain extends BaseFragmentActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Api.getInstance().getUser("1");
-
         topbar = (TopNavigationBar) findViewById(R.id.topbar);
         initTab();
         initFragment();

@@ -15,10 +15,11 @@ import com.psb.protocol.Api;
 /**
  * Created by zl on 2015/2/4.
  */
-public class NewsGuide extends PullToRefreshListView implements PullToRefreshBase.OnRefreshListener<ListView> {
+public class NewsGuide extends PullToRefreshListView implements PullToRefreshBase.OnRefreshListener2<ListView> {
 
     private int event = 0;
     private long request_time = 0;
+    private int lastPage = 1;
     private GuideAdapter adapter;
 
     public NewsGuide(Context context) {
@@ -27,6 +28,7 @@ public class NewsGuide extends PullToRefreshListView implements PullToRefreshBas
 
     public NewsGuide(Context context, AttributeSet attrs) {
         super(context, attrs);
+        this.setMode(Mode.BOTH);
         this.setOnRefreshListener(this);
     }
 
@@ -38,24 +40,35 @@ public class NewsGuide extends PullToRefreshListView implements PullToRefreshBas
         if (System.currentTimeMillis() - request_time > AppContext.auto_request_time_lag) {
             request_time = System.currentTimeMillis();
             this.setRefreshing(true);
-            Api.getInstance().getArticle(event);
+            Api.getInstance().getArticle(event, 0);
         }
     }
 
     public void setArticle(Article article) {
+        Log.d("setArticle", "" + article.getData().size());
+        if (null == article) {
+            return;
+        }
+        lastPage = article.getLast_page();
         if (null == adapter) {
             adapter = new GuideAdapter(this.getContext());
             this.setAdapter(adapter);
-        } else {
-            adapter.setArticle(article);
         }
+        adapter.setArticle(article);
         adapter.notifyDataSetChanged();
     }
 
     @Override
-    public void onRefresh(PullToRefreshBase<ListView> refreshView) {
+    public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
         Log.d("onRefresh", "onRefresh");
         request_time = System.currentTimeMillis();
-        Api.getInstance().getArticle(event);
+        Api.getInstance().getArticle(event, 0);
+    }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase<ListView> refreshView) {
+        Log.d("onRefresh", "onRefresh");
+        request_time = System.currentTimeMillis();
+        Api.getInstance().getArticle(event, lastPage);
     }
 }

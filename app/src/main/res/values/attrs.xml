@@ -29,6 +29,7 @@
         <attr name="tab_text_size" format="dimension" />
         <attr name="tabs_height" format="dimension" />
         <attr name="tab_cursor_visible" format="boolean" />
+        <attr name="tab_divider_visible" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="TopNavigationBar">

@@ -5,6 +5,7 @@ import android.graphics.PointF;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,10 +66,6 @@ public class ViewPagerWithPoint extends LinearLayout {
         mInnerViewPager.setCurrentItem(item);
     }
 
-    public void setAdapter(PagerAdapter adapter) {
-        mInnerViewPager.setAdapter(adapter);
-    }
-
     public void setOnPageChangeListener(ViewPager.OnPageChangeListener listener) {
         mInnerViewPager.setOnPageChangeListener(listener);
     }
@@ -77,6 +74,8 @@ public class ViewPagerWithPoint extends LinearLayout {
         if (count <= 0) {
             return;
         }
+        layoutPoint.removeAllViews();
+        points.clear();
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT, 1);
         for (int i = 0; i < count; i++) {
             ImageView iv = new ImageView(mContext);
@@ -123,12 +122,17 @@ public class ViewPagerWithPoint extends LinearLayout {
         } else {
             adapter.setViews(views);
         }
+        Log.d("count", "" + adapter.getCount());
         setPoints(adapter.getCount());
         adapter.notifyDataSetChanged();
     }
 
     public ViewPagerWithPointAdapter getAdapter() {
         return adapter;
+    }
+
+    public void setAdapter(PagerAdapter adapter) {
+        mInnerViewPager.setAdapter(adapter);
     }
 
     public void onSingleTouch(View v) {

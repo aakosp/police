@@ -34,11 +34,10 @@ import com.nostra13.universalimageloader.core.ImageLoader;
  */
 public class PauseOnScrollListener implements OnScrollListener {
 
-    private ImageLoader imageLoader;
-
     private final boolean pauseOnScroll;
     private final boolean pauseOnFling;
     private final OnScrollListener externalListener;
+    private ImageLoader imageLoader;
 
     /**
      * Constructor

@@ -16,6 +16,7 @@ import com.psb.R;
 import com.psb.core.AppContext;
 import com.psb.entity.NewsInfo;
 import com.psb.event.Event;
+import com.psb.event.EventNotifyCenter;
 import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseFragment;
 import com.psb.ui.widget.ViewPagerWithTitle;
@@ -29,7 +30,7 @@ import java.util.List;
 public class FragmentGuide extends BaseFragment implements AdapterView.OnItemClickListener, ViewPager.OnPageChangeListener {
 
     private View mView;
-    private EditText query;
+    private View query;
     private ViewPagerWithTitle viewPager;
 
     private String guideColumns[] = AppContext.getInstance().getResources().getStringArray(R.array.guide_columns);
@@ -44,17 +45,21 @@ public class FragmentGuide extends BaseFragment implements AdapterView.OnItemCli
             return mView;
         }
         mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_guide, container, false);
-        query = (EditText) mView.findViewById(R.id.query);
+        query = mView.findViewById(R.id.query);
         viewPager = (ViewPagerWithTitle) mView.findViewById(R.id.vp);
         viewPager.setOnPageChangeListener(this);
         this.initView();
         intent = new Intent();
+        EventNotifyCenter.getInstance().register(this.getHandler(), Event.NEWS_5, Event.NEWS_6, Event.NEWS_7, Event.NEWS_8, Event.NEWS_9);
         return mView;
     }
 
     private void initView() {
+        ViewGroup.LayoutParams params = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
         for (int i = 0; i < guideColumns.length; i++) {
+
             NewsGuide list = new NewsGuide(this.getActivity());
+            list.setLayoutParams(params);
             list.setEvent(i + 5);
             list.getRefreshableView().setVerticalScrollBarEnabled(false);
             list.setOnItemClickListener(this);
@@ -63,6 +68,9 @@ public class FragmentGuide extends BaseFragment implements AdapterView.OnItemCli
         viewPager.setTabs(guideColumns);
         viewPager.setPagerViews(pageViews);
         viewPager.setCurrentItem(0);
+
+        NewsGuide news = (NewsGuide) pageViews.get(0);
+        news.autoGetArticle();
     }
 
     @Override
@@ -73,6 +81,7 @@ public class FragmentGuide extends BaseFragment implements AdapterView.OnItemCli
             case Event.NEWS_7:
             case Event.NEWS_8:
             case Event.NEWS_9:
+                Log.d("news", "" + msg.what);
                 NewsGuide news = (NewsGuide) pageViews.get(msg.what - 5);
                 news.onRefreshComplete();
                 news.setArticle(Cache.getInstance().getArticle(msg.what));
@@ -82,15 +91,14 @@ public class FragmentGuide extends BaseFragment implements AdapterView.OnItemCli
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        NewsInfo title = (NewsInfo) parent.getAdapter().getItem(position);
-        Log.d("onItemClick", title.getTitle());
-        switch (title.getId()) {
-            case 99:
-                break;
-            default:
-                return;
-        }
-        this.startActivity(intent);
+        NewsInfo news = (NewsInfo) parent.getAdapter().getItem(position);
+        Bundle bundle = new Bundle();
+        bundle.putString("title", news.getTitle());
+        bundle.putString("content", news.getContent());
+        bundle.putString("url", news.getThumb());
+        intent.setClass(this.getActivity(), ActivityNewsDetail.class);
+        intent.putExtras(bundle);
+        this.getActivity().startActivity(intent);
     }
 
     @Override

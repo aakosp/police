@@ -8,6 +8,7 @@
 
 
     <EditText
+        android:id="@+id/id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/newstitle_img_width"
@@ -24,6 +25,7 @@
         android:background="@color/background" />
 
     <EditText
+        android:id="@+id/pwd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@null"

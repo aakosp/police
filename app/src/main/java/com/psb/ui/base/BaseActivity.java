@@ -7,6 +7,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.view.KeyEvent;
 import android.view.inputmethod.InputMethodManager;
+
 import com.psb.R;
 
 /**
@@ -14,15 +15,13 @@ import com.psb.R;
  */
 public class BaseActivity extends Activity {
 
-    private boolean allowFullScreen = true;
-    private boolean allowBreakDestroy = true;
     protected WeakReferenceHandler handler = null;
+    private boolean allowBreakDestroy = true;
     private int enterAnim = 0, exitAnim = R.anim.slide_out_right;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        allowFullScreen = true;
         handler = new WeakReferenceHandler(this);
         AppManager.getAppManager().addContext(this);
     }
@@ -68,17 +67,9 @@ public class BaseActivity extends Activity {
         return super.onKeyDown(keyCode, event);
     }
 
-    public boolean isAllowFullScreen() {
-        return allowFullScreen;
-    }
-
     public void setAnim(int enterAnim, int exitAnim) {
         this.enterAnim = enterAnim;
         this.exitAnim = exitAnim;
-    }
-
-    public void setAllowFullScreen(boolean allowFullScreen) {
-        this.allowFullScreen = allowFullScreen;
     }
 
     public void setAllowBreakDestroy(boolean allowDestroy) {

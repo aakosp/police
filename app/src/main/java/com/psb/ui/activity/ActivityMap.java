@@ -31,6 +31,7 @@ import com.psb.entity.OfficeInfo;
 import com.psb.event.Event;
 import com.psb.event.EventNotifyCenter;
 import com.psb.protocol.Api;
+import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseActivity;
 import com.psb.ui.widget.TopNavigationBar;
 
@@ -50,11 +51,18 @@ public class ActivityMap extends BaseActivity implements OnClickListener, OnMark
     private InfoWindow mInfoWindow;
     private View officeInfo;
     private BitmapDescriptor mark = BitmapDescriptorFactory.fromResource(R.drawable.mark);
+    private List<OfficeInfo> officeInfos;
+    private int focId = -1;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_overlay);
+        Bundle b = this.getIntent().getExtras();
+        if (null != b) {
+            focId = b.getInt("id");
+        }
+
         TopNavigationBar topbar = (TopNavigationBar) findViewById(R.id.topbar);
         topbar.setActivity(this);
         mMapView = (MapView) findViewById(R.id.bmapView);
@@ -150,9 +158,10 @@ public class ActivityMap extends BaseActivity implements OnClickListener, OnMark
     protected void onDestroy() {
         // MapView的生命周期与Activity同步，当activity销毁时需调用MapView.destroy()
         mMapView.onDestroy();
-        super.onDestroy();
         // 回收 bitmap 资源
         mark.recycle();
+        EventNotifyCenter.getInstance().unregister(this.getHandler(), Event.GET_OFFICE_LIST);
+        super.onDestroy();
     }
 
     @Override
@@ -172,28 +181,47 @@ public class ActivityMap extends BaseActivity implements OnClickListener, OnMark
 
     @Override
     protected void handlerPacketMsg(Message msg) {
-        switch (msg.what){
+        switch (msg.what) {
             case Event.GET_OFFICE_LIST:
+                this.init(Cache.getInstance().getOffice());
                 break;
         }
     }
 
-    private void init(List<OfficeInfo> offices){
-        for(OfficeInfo office : offices){
-            LatLng ll = new LatLng(office.getLocation_y(), office.getLocation_x());
-            OverlayOptions ooA = new MarkerOptions().position(ll).icon(mark).zIndex(office.getId()).draggable(true);
-            Marker item = (Marker) (mBaiduMap.addOverlay(ooA));
+    private void init(List<OfficeInfo> offices) {
+        if (null == offices) {
+            return;
         }
-
+        officeInfos = offices;
+        for (int i = 0; i < offices.size(); i++) {
+            OfficeInfo info = offices.get(i);
+            LatLng ll = new LatLng(info.getLocation_y(), info.getLocation_x());
+            OverlayOptions ooA = new MarkerOptions().position(ll).icon(mark).zIndex(i).draggable(true);
+            Marker item = (Marker) (mBaiduMap.addOverlay(ooA));
+            if (focId == info.getId()) {
+                PositionViewHolder positionViewHolder = (PositionViewHolder) officeInfo.getTag();
+                positionViewHolder.name.setText(info.getName());
+                positionViewHolder.tel.setText(info.getPhone());
+                positionViewHolder.addr.setText(info.getAddress());
+                positionViewHolder.call.setTag(info.getPhone());
+                LatLng at = item.getPosition();
+                mInfoWindow = new InfoWindow(officeInfo, at, 235);
+                mBaiduMap.showInfoWindow(mInfoWindow);
+            }
+        }
     }
 
     @Override
     public boolean onMarkerClick(Marker marker) {
+        if (null == officeInfos) {
+            return true;
+        }
         PositionViewHolder positionViewHolder = (PositionViewHolder) officeInfo.getTag();
-        positionViewHolder.name.setText("汤阴大付庄警务室");
-        positionViewHolder.tel.setText("电话：32323553");
-        positionViewHolder.addr.setText("汤阴大付庄村");
-        positionViewHolder.call.setTag("32323553");
+        OfficeInfo info = officeInfos.get(marker.getZIndex());
+        positionViewHolder.name.setText(info.getName());
+        positionViewHolder.tel.setText(info.getPhone());
+        positionViewHolder.addr.setText(info.getAddress());
+        positionViewHolder.call.setTag(info.getPhone());
         LatLng ll = marker.getPosition();
         mInfoWindow = new InfoWindow(officeInfo, ll, 235);
         mBaiduMap.showInfoWindow(mInfoWindow);

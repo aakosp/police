@@ -23,10 +23,11 @@ public class DisplayUtil {
 
     /**
      * 获取屏幕高度
+     *
      * @return
      */
-    public static int getHeight(){
-        if(null == displaysMetrics){
+    public static int getHeight() {
+        if (null == displaysMetrics) {
             getDisplayMetrics();
         }
         return displaysMetrics.heightPixels;
@@ -34,10 +35,11 @@ public class DisplayUtil {
 
     /**
      * 获取屏幕宽度
+     *
      * @return
      */
-    public static int getWidth(){
-        if(null == displaysMetrics){
+    public static int getWidth() {
+        if (null == displaysMetrics) {
             getDisplayMetrics();
         }
         return displaysMetrics.widthPixels;

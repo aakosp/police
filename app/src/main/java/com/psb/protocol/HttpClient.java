@@ -19,6 +19,7 @@ import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
+import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.protocol.HttpContext;
 
@@ -31,35 +32,22 @@ import java.util.List;
  */
 public class HttpClient {
 
-    private static final String LOG_TAG = "HttpClient";
-
-    enum RequestType {
-        POST,
-        GET
-    }
-
     public static final String UTF_8 = "UTF-8";
+    public final static String SERVER = "112.126.81.69";
+    public final static int PORT = 80;
+    private static final String LOG_TAG = "HttpClient";
     private final static int TIMEOUT_CONNECTION = 20000;
     private final static int TIMEOUT_SOCKET = 20000;
     private final static int TIMEOUT_REQUEST = 20000;
-
-    public final static String SERVER = "106.186.29.221";
-    public final static int PORT = 8080;
-
-    private final static String authorization = "API lidong:03db45e2904663c5c9305a9c6ed62af3";
+    private final static String authorization = "Basic API:03db45e2904663c5c9305a9c6ed62af3";
     private static String appCookie;
     private static String appUserAgent;
-
     private static HttpHost httpHost;
     private static HttpClientContext context;
     private static AndroidHttpClient client;
 
     private static String getUserAgent() {
         return appUserAgent;
-    }
-
-    private void cleanCookie() {
-        appCookie = "";
     }
 
     private static AndroidHttpClient getHttpClient() {
@@ -105,6 +93,9 @@ public class HttpClient {
                 break;
             case GET:
                 httpRequest = new HttpGet(url);
+                break;
+            case PUT:
+                httpRequest = new HttpPut(url);
                 break;
         }
         httpRequest.addHeader("Host", SERVER);
@@ -203,5 +194,61 @@ public class HttpClient {
 //            httpClient.close();
 //            Log.d("httpClient.close()", "httpClient.close()");
         }
+    }
+
+    /**
+     * 公用post方法
+     *
+     * @param url
+     * @param event
+     */
+    public static void put(String url, List<NameValuePair> params, int event) {
+        Log.d("put", url);
+        AndroidHttpClient httpClient = null;
+        HttpPut put = null;
+        //post表单参数处理
+        try {
+            httpClient = getHttpClient();
+            put = (HttpPut) getHttpRequest(url, RequestType.PUT);
+            if (null != params && params.size() > 0) {
+                put.setEntity(new UrlEncodedFormEntity(params, UTF_8));
+            }
+            HttpResponse response = httpClient.execute(getHttpHost(), put, getHttpContext());
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode != HttpStatus.SC_OK) {
+                //throw AppException.http(statusCode);
+            } else if (statusCode == HttpStatus.SC_OK) {
+//                    Cookie[] cookies =
+//                    String tmpcookies = "";
+//                    for (Cookie ck : cookies) {
+//                        tmpcookies += ck.toString()+";";
+//                    }
+//                    //保存cookie
+//                    if(appContext != null && tmpcookies != ""){
+//                        AppConfig.getAppConfig(AppContext.getInstance()).set("cookie", tmpcookies);
+//                        appCookie = tmpcookies;
+//                    }
+            }
+            InputStream is = response.getEntity().getContent();
+            String responseBody = StringUtils.toConvertString(is);
+            Cache.getInstance().parse(responseBody, event);
+        } catch (Exception e) {
+            // 发生网络异常
+            e.printStackTrace();
+        } finally {
+            // 释放连接
+//            httpClient.close();
+//            Log.d("httpClient.close()", "httpClient.close()");
+        }
+    }
+
+    private void cleanCookie() {
+        appCookie = "";
+    }
+
+    enum RequestType {
+        POST,
+        GET,
+        PUT
     }
 }

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 import android.os.Handler;
 
 /**
@@ -15,14 +16,14 @@ public class EventNotifyCenter {
     private static EventNotifyCenter instance = null;
     private static Map<Integer, List<Handler>> eventHandlers = new HashMap<>();
 
+    private EventNotifyCenter() {
+    }
+
     public static EventNotifyCenter getInstance() {
         if (null == instance) {
             instance = new EventNotifyCenter();
         }
         return instance;
-    }
-
-    private EventNotifyCenter() {
     }
 
     /**
@@ -52,12 +53,12 @@ public class EventNotifyCenter {
      * 注册一个事件消息通知
      */
     public void register(Handler handler, Integer event) {
-        if(!eventHandlers.containsKey(event)){
+        if (!eventHandlers.containsKey(event)) {
             List<Handler> handlers = new ArrayList<>();
             eventHandlers.put(event, handlers);
         }
         List<Handler> handlers = eventHandlers.get(event);
-        if(!handlers.contains(handler)){
+        if (!handlers.contains(handler)) {
             handlers.add(handler);
         }
     }
@@ -66,13 +67,13 @@ public class EventNotifyCenter {
      * 注册一组事件消息通知
      */
     public void register(Handler handler, Integer... events) {
-        for(int event : events){
-            if(!eventHandlers.containsKey(event)){
+        for (int event : events) {
+            if (!eventHandlers.containsKey(event)) {
                 List<Handler> handlers = new ArrayList<>();
                 eventHandlers.put(event, handlers);
             }
             List<Handler> handlers = eventHandlers.get(event);
-            if(!handlers.contains(handler)){
+            if (!handlers.contains(handler)) {
                 handlers.add(handler);
             }
         }
@@ -81,11 +82,11 @@ public class EventNotifyCenter {
     /**
      * 反注册一个事件消息通知
      */
-    public void unregister(Integer event, Handler handler) {
-        if(eventHandlers.containsKey(event)){
+    public void unregister(Handler handler, Integer event) {
+        if (eventHandlers.containsKey(event)) {
             List<Handler> handlers = eventHandlers.get(event);
             handlers.remove(handler);
-            if(handlers.size() == 0){
+            if (handlers.size() == 0) {
                 eventHandlers.remove(event);
             }
         }

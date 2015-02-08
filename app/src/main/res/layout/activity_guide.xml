@@ -3,20 +3,31 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bkg_query"
     android:orientation="vertical">
 
-    <EditText
+    <LinearLayout
         android:id="@+id/query"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bkg_query"
-        android:padding="@dimen/default_padding" />
+        android:layout_margin="@dimen/default_padding"
+        android:background="@color/white"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="@dimen/avatar_size"
+            android:layout_height="@dimen/avatar_size"
+            android:layout_gravity="center"
+            android:scaleType="centerInside"
+            android:src="@drawable/query" />
+    </LinearLayout>
 
     <com.psb.ui.widget.ViewPagerWithTitle
         android:id="@+id/vp"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/white"
-        app:tab_cursor_visible="false" />
+        app:tab_cursor_visible="false"
+        app:tab_divider_visible="true" />
 
 </LinearLayout>

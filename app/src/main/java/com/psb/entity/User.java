@@ -11,8 +11,10 @@ public class User {
     private String user_name;
     private String role;
     private String name;
+    private String password;
     private int police_station_id;
     private String phone;
+    private int address_id;
     private String description;
 
     public int getId() {
@@ -69,5 +71,21 @@ public class User {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public int getAddress_id() {
+        return address_id;
+    }
+
+    public void setAddress_id(int address_id) {
+        this.address_id = address_id;
     }
 }

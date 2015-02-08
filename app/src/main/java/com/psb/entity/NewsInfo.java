@@ -7,7 +7,7 @@ public class NewsInfo {
 
     private int id;
     private int article_cat_id;
-    private int is_hot;
+    //    private int is_hot;
     private String title;
     private String content;
     private String thumb;
@@ -29,13 +29,13 @@ public class NewsInfo {
         this.article_cat_id = article_cat_id;
     }
 
-    public int getIs_hot() {
-        return is_hot;
-    }
-
-    public void setIs_hot(int is_hot) {
-        this.is_hot = is_hot;
-    }
+//    public int getIs_hot() {
+//        return is_hot;
+//    }
+//
+//    public void setIs_hot(int is_hot) {
+//        this.is_hot = is_hot;
+//    }
 
     public String getTitle() {
         return title;

@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
 import com.psb.R;
 
 /**
@@ -59,7 +60,7 @@ public class ItemHorizontal extends RelativeLayout {
 
         if (this.textView != null) {
             CharSequence cs = typedArray.getText(R.styleable.ItemHorizontal_ItemHorizontal_text);
-            if(null != cs){
+            if (null != cs) {
                 this.textView.setText(cs);
             }
             int color = typedArray.getColor(R.styleable.ItemHorizontal_ItemHorizontal_text_color, 0xFF000000);
@@ -69,7 +70,7 @@ public class ItemHorizontal extends RelativeLayout {
         }
     }
 
-    public void setText(String text){
+    public void setText(String text) {
         this.textView.setText(text);
     }
 

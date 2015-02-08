@@ -1,6 +1,7 @@
 package com.util;
 
 import android.util.Log;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -9,19 +10,18 @@ import java.util.Locale;
 public class TimeUtil {
 
     private static String pat1 = "yyyy-MM-dd HH:mm:ss";
-    private static String pat3 = "MM-dd";
-    private static String pat4 = "HH:mm";
-    private static String pat5 = "yyyyMMdd";
-    private static String pat6 = "MM-dd HH:mm";
-
     private static SimpleDateFormat sdf1 = new SimpleDateFormat(pat1,
             Locale.getDefault());
+    private static String pat3 = "MM-dd";
     private static SimpleDateFormat sdf3 = new SimpleDateFormat(pat3,
             Locale.getDefault());
+    private static String pat4 = "HH:mm";
     private static SimpleDateFormat sdf4 = new SimpleDateFormat(pat4,
             Locale.getDefault());
+    private static String pat5 = "yyyyMMdd";
     private static SimpleDateFormat sdf5 = new SimpleDateFormat(pat5,
             Locale.getDefault());
+    private static String pat6 = "MM-dd HH:mm";
     private static SimpleDateFormat sdf6 = new SimpleDateFormat(pat6,
             Locale.getDefault());
 

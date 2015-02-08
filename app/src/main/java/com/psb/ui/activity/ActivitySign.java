@@ -1,10 +1,11 @@
 package com.psb.ui.activity;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
@@ -21,6 +22,8 @@ import com.baidu.mapapi.map.MyLocationConfiguration.LocationMode;
 import com.baidu.mapapi.map.MyLocationData;
 import com.baidu.mapapi.model.LatLng;
 import com.psb.R;
+import com.psb.event.Event;
+import com.psb.event.EventNotifyCenter;
 import com.psb.protocol.Api;
 import com.psb.ui.base.BaseActivity;
 import com.psb.ui.widget.TopNavigationBar;
@@ -31,15 +34,15 @@ import com.util.LocationUtils;
  */
 public class ActivitySign extends BaseActivity implements View.OnClickListener {
 
-    private TopNavigationBar topbar;
+    public MyLocationListenner myListener = new MyLocationListenner();
     // 定位相关
     LocationClient mLocClient;
-    public MyLocationListenner myListener = new MyLocationListenner();
-    private LocationMode mCurrentMode = LocationMode.FOLLOWING;
     BitmapDescriptor mCurrentMarker;
     MapView mMapView;
     BaiduMap mBaiduMap;
     boolean isFirstLoc = true;// 是否首次定位
+    private TopNavigationBar topbar;
+    private LocationMode mCurrentMode = LocationMode.FOLLOWING;
     private Button sign;
 
     @Override
@@ -60,8 +63,8 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
         MapStatusUpdate zoom = MapStatusUpdateFactory.zoomTo(14.0f);
         mBaiduMap.setMapStatus(zoom);
 //        mBaiduMap.setMapStatus(msu);
-        mCurrentMarker = BitmapDescriptorFactory.fromResource(R.drawable.position);
-        mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(mCurrentMode, true, mCurrentMarker));
+        mCurrentMarker = BitmapDescriptorFactory.fromResource(R.drawable.mark);
+        mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(mCurrentMode, false, mCurrentMarker));
         // 定位初始化
         mLocClient = new LocationClient(this);
         mLocClient.registerLocationListener(myListener);
@@ -74,14 +77,49 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
 
         sign = (Button) findViewById(R.id.sign);
         sign.setOnClickListener(this);
+
+        EventNotifyCenter.getInstance().register(this.getHandler(), Event.SGIN);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.sign:
-                Log.d("sign", ""+LocationUtils.getInstance().getmBDLocation().getLatitude()+" "+LocationUtils.getInstance().getmBDLocation().getLongitude());
+                Log.d("sign", "" + LocationUtils.getInstance().getmBDLocation().getLatitude() + " " + LocationUtils.getInstance().getmBDLocation().getLongitude());
                 Api.getInstance().sgin(1, LocationUtils.getInstance().getmBDLocation().getLongitude(), LocationUtils.getInstance().getmBDLocation().getLatitude());
+                break;
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        mMapView.onPause();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        mMapView.onResume();
+        super.onResume();
+    }
+
+    @Override
+    protected void onDestroy() {
+        // 退出时销毁定位
+        mLocClient.stop();
+        // 关闭定位图层
+        mBaiduMap.setMyLocationEnabled(false);
+        mMapView.onDestroy();
+        mMapView = null;
+        EventNotifyCenter.getInstance().unregister(this.getHandler(), Event.SGIN);
+        super.onDestroy();
+    }
+
+    @Override
+    protected void handlerPacketMsg(Message msg) {
+        switch (msg.what) {
+            case Event.SGIN:
+                Toast.makeText(this, "签到成功", 0);
                 break;
         }
     }
@@ -113,28 +151,4 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
         public void onReceivePoi(BDLocation poiLocation) {
         }
     }
-
-    @Override
-    protected void onPause() {
-        mMapView.onPause();
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        mMapView.onResume();
-        super.onResume();
-    }
-
-    @Override
-    protected void onDestroy() {
-        // 退出时销毁定位
-        mLocClient.stop();
-        // 关闭定位图层
-        mBaiduMap.setMyLocationEnabled(false);
-        mMapView.onDestroy();
-        mMapView = null;
-        super.onDestroy();
-    }
-
 }

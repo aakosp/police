@@ -1,5 +1,7 @@
 package com.psb.entity;
 
+import java.util.List;
+
 /**
  * Created by zl on 2015/2/5.
  */
@@ -9,6 +11,7 @@ public class Addr {
     private int parentid;
     private String name;
     private int order;
+    private List<Addr> child;
 
     public int getId() {
         return id;
@@ -40,5 +43,13 @@ public class Addr {
 
     public void setOrder(int order) {
         this.order = order;
+    }
+
+    public List<Addr> getChild() {
+        return child;
+    }
+
+    public void setChild(List<Addr> child) {
+        this.child = child;
     }
 }

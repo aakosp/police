@@ -15,10 +15,9 @@ import com.util.LocationUtils;
  */
 public class AppContext extends Application {
 
-    private static AppContext appContext;
-
     public static final long auto_request_time_lag = 10 * 60 * 1000;
     public static final long request_time_lag = 5 * 1000;
+    private static AppContext appContext;
 
     public static Application getInstance() {
         return appContext;
