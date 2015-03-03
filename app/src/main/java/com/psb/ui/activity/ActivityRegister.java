@@ -143,7 +143,9 @@ public class ActivityRegister extends BaseActivity implements OnWheelChangedList
     }
 
     private void initDatas() {
-
+        if (null == Cache.getInstance().getAddr()) {
+            return;
+        }
         mProvinceDatas = new String[Cache.getInstance().getAddr().size()];
         for (int i = 0; i < Cache.getInstance().getAddr().size(); i++) {
             Addr addrxian = Cache.getInstance().getAddr().get(i);

@@ -7,6 +7,8 @@ import com.psb.entity.Addr;
 import com.psb.entity.Article;
 import com.psb.entity.ID;
 import com.psb.entity.OfficeInfo;
+import com.psb.entity.Opinion;
+import com.psb.entity.Opinions;
 import com.psb.entity.PoliceInfo;
 import com.psb.entity.User;
 import com.psb.event.Event;
@@ -29,6 +31,7 @@ public class Cache {
     private Map<String, User> users = new HashMap<>();
     private List<OfficeInfo> office;
     private List<Addr> addr;
+    private Opinions opinions;
     private ID register;
     private PoliceInfo policeInfo;
 
@@ -43,7 +46,7 @@ public class Cache {
     }
 
     public void parse(String responseBody, int event) {
-//        Log.d("EVENT: " + event, " " + responseBody);
+        Log.d("EVENT: " + event, " " + responseBody);
         switch (event) {
             case Event.NEWS_1:
             case Event.NEWS_2:
@@ -85,6 +88,10 @@ public class Cache {
                 break;
 
             case Event.CHANGE_PWD:
+                break;
+
+            case Event.GET_OPINION_LIST:
+                opinions = JSON.parseObject(responseBody, Opinions.class);
                 break;
         }
 
@@ -138,5 +145,9 @@ public class Cache {
 
     public List<OfficeInfo> getOffice() {
         return this.office;
+    }
+
+    public Opinions getOpinions(){
+        return opinions;
     }
 }

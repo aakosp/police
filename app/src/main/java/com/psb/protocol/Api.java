@@ -61,13 +61,15 @@ public class Api {
         executor.execute(data);
     }
 
-    public void sgin(int id, double location_x, double location_y) {
+    public void sgin(int id, String content, double location_x, double location_y) {
         String url = base_url + "/sign_up";
         List<NameValuePair> params = new ArrayList<>();
         NameValuePair user = new BasicNameValuePair("user_id", "" + id);
+        NameValuePair c = new BasicNameValuePair("sign_up_content", content);
         NameValuePair x = new BasicNameValuePair("sign_up_location_x", "" + location_x);
         NameValuePair y = new BasicNameValuePair("sign_up_location_y", "" + location_y);
         params.add(user);
+        params.add(c);
         params.add(x);
         params.add(y);
         HttpRequestData data = new HttpRequestData(params, url, Event.SGIN);

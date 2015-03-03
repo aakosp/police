@@ -13,7 +13,8 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding">
 
         <Button
             android:id="@+id/un_process"
@@ -34,11 +35,9 @@
             android:textColor="@color/white" />
     </LinearLayout>
 
-    <ListView
-        android:id="@+id/list"
+    <com.psb.ui.widget.ViewPagerWithTitle
+        android:id="@+id/vp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:divider="@color/item_office_info_divider"
-        android:dividerHeight="@dimen/divider" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

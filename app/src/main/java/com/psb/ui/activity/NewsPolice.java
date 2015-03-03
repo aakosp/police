@@ -106,23 +106,23 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
             adapter.setArticle(article);
         }
         adapter.notifyDataSetChanged();
-        if (article.getCurrent_page() == 1) {
-            this.scrollTop();
-        }
+//        if (article.getCurrent_page() == 1) {
+//            this.scrollTop();
+//        }
     }
 
-    public void scrollTop() {
-        if (null != mPullToRefreshScrollView) {
-            mPullToRefreshScrollView.getRefreshableView().smoothScrollTo(0, 0);
-        }
-    }
+//    public void scrollTop() {
+//        if (null != mPullToRefreshScrollView) {
+//            mPullToRefreshScrollView.getRefreshableView().smoothScrollTo(0, 0);
+//        }
+//    }
 
     public void autoGetArticle() {
         if (System.currentTimeMillis() - request_time > AppContext.auto_request_time_lag) {
             request_time = System.currentTimeMillis();
-            if (this.current_page == 1) {
-                this.scrollTop();
-            }
+//            if (this.current_page == 1) {
+//                this.scrollTop();
+//            }
             mPullToRefreshScrollView.setRefreshing(true);
             Api.getInstance().getArticle(event, 0);
         }
@@ -159,20 +159,24 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-        request_time = System.currentTimeMillis();
         if (!Api.getInstance().getArticle(event, 0)) {
-            this.onRefreshComplete();
-        }
-    }
-
-    @Override
-    public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
-        if(current_page == last_page){
             this.onRefreshComplete();
             return;
         }
         request_time = System.currentTimeMillis();
-        Api.getInstance().getArticle(event, last_page);
+    }
+
+    @Override
+    public void onPullUpToRefresh(PullToRefreshBase<ScrollView> refreshView) {
+        if (current_page == last_page) {
+            this.onRefreshComplete();
+            return;
+        }
+        if (!Api.getInstance().getArticle(event, last_page)) {
+            this.onRefreshComplete();
+            return;
+        }
+        request_time = System.currentTimeMillis();
     }
 
 }

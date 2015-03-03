@@ -75,4 +75,9 @@
         <item>女</item>
     </string-array>
 
+    <string-array name="options_columns">
+        <item>未处理</item>
+        <item>已处理</item>
+    </string-array>
+
 </resources>

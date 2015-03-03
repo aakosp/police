@@ -1,38 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/white"
-    android:orientation="horizontal"
-    android:padding="@dimen/default_padding">
+    android:orientation="vertical">
 
-    <ImageView
-        android:id="@+id/img"
-        android:layout_width="@dimen/newstitle_img_width"
-        android:layout_height="@dimen/newstitle_img_height"
-        android:scaleType="centerInside" />
-
-    <TextView
-        android:id="@+id/title"
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="@dimen/default_padding"
-        android:layout_toRightOf="@+id/img"
-        android:ellipsize="end"
-        android:gravity="top"
-        android:lines="2"
-        android:minHeight="25dp"
-        android:textColor="@color/news_title"
-        android:textSize="@dimen/newstitle_title_size" />
+        android:padding="@dimen/default_padding">
 
-    <TextView
-        android:id="@+id/time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_below="@+id/title"
-        android:textColor="@color/news_time"
-        android:textSize="@dimen/newstitle_time_size" />
+        <ImageView
+            android:id="@+id/img"
+            android:layout_width="@dimen/newstitle_img_width"
+            android:layout_height="@dimen/newstitle_img_height"
+            android:scaleType="centerInside" />
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_padding"
+            android:layout_toRightOf="@+id/img"
+            android:ellipsize="end"
+            android:gravity="top"
+            android:lines="2"
+            android:minHeight="25dp"
+            android:textColor="@color/news_title"
+            android:textSize="@dimen/newstitle_title_size" />
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_below="@+id/title"
+            android:textColor="@color/news_time"
+            android:textSize="@dimen/newstitle_time_size" />
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/item_office_info_divider" />
+
+</LinearLayout>

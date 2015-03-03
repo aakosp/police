@@ -1,5 +1,6 @@
 package com.psb.adapter;
 
+import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -7,49 +8,50 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.psb.R;
-import com.psb.entity.Article;
 import com.psb.entity.NewsInfo;
+import com.psb.entity.Opinion;
+import com.psb.entity.Opinions;
 import com.psb.ui.util.ImageUtil;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Created by zl on 2015/1/27.
+ * Created by zl on 2015/3/3.
  */
-public class NewsAdapter extends BaseAdapter {
+public class OpinionsAdapter extends BaseAdapter {
 
-    private List<NewsInfo> news;
+    private List<Opinion> list;
 
-    public NewsAdapter(List<NewsInfo> titles) {
-        news = new ArrayList<>();
-        news.addAll(titles);
+    public OpinionsAdapter(List<Opinion> opinions) {
+        list = new ArrayList<>();
+        list.addAll(opinions);
     }
 
-    public void setArticle(Article articles) {
-        if (articles.getCurrent_page() == 1) {
-            this.setNews(articles.getData());
+    public void setOpinions(Opinions opinions) {
+        if (opinions.getCurrent_page() == 1) {
+            this.setOpinions(opinions.getData());
         } else {
-            this.addNews(articles.getData());
+            this.addOpinions(opinions.getData());
         }
     }
 
-    public void setNews(List<NewsInfo> titles) {
-        news.clear();
-        news.addAll(titles);
+    public void setOpinions(List<Opinion> opinions) {
+        list.clear();
+        list.addAll(opinions);
     }
 
-    public void addNews(List<NewsInfo> titles) {
-        news.addAll(titles);
+    public void addOpinions(List<Opinion> opinions) {
+        list.addAll(opinions);
     }
 
     @Override
     public int getCount() {
-        return news.size();
+        return list.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return news.get(position);
+        return list.get(position);
     }
 
     @Override
@@ -70,8 +72,8 @@ public class NewsAdapter extends BaseAdapter {
         } else {
             holder = (NewsInfoHolder) convertView.getTag();
         }
-        NewsInfo item = news.get(position);
-        ImageLoader.getInstance().displayImage(item.getThumb(), holder.img, ImageUtil.options);
+        Opinion item = list.get(position);
+//        ImageLoader.getInstance().displayImage(item.getThumb(), holder.img, ImageUtil.options);
         holder.title.setText(item.getTitle());
         holder.time.setText(item.getTime());
         return convertView;
@@ -82,4 +84,3 @@ public class NewsAdapter extends BaseAdapter {
         public TextView title;
         public TextView time;
     }
-}

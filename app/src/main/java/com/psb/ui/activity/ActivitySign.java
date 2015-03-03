@@ -5,6 +5,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.baidu.location.BDLocation;
@@ -25,7 +26,9 @@ import com.psb.R;
 import com.psb.event.Event;
 import com.psb.event.EventNotifyCenter;
 import com.psb.protocol.Api;
+import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseActivity;
+import com.psb.ui.util.ToastUtil;
 import com.psb.ui.widget.TopNavigationBar;
 import com.util.LocationUtils;
 
@@ -43,6 +46,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
     boolean isFirstLoc = true;// 是否首次定位
     private TopNavigationBar topbar;
     private LocationMode mCurrentMode = LocationMode.FOLLOWING;
+    private EditText content;
     private Button sign;
 
     @Override
@@ -75,6 +79,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
         mLocClient.setLocOption(option);
         mLocClient.start();
 
+        content = (EditText) findViewById(R.id.work);
         sign = (Button) findViewById(R.id.sign);
         sign.setOnClickListener(this);
 
@@ -85,8 +90,9 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sign:
+                String work = content.getText().toString();
                 Log.d("sign", "" + LocationUtils.getInstance().getmBDLocation().getLatitude() + " " + LocationUtils.getInstance().getmBDLocation().getLongitude());
-                Api.getInstance().sgin(1, LocationUtils.getInstance().getmBDLocation().getLongitude(), LocationUtils.getInstance().getmBDLocation().getLatitude());
+                Api.getInstance().sgin(Cache.getInstance().getInfo().getId(), work, LocationUtils.getInstance().getmBDLocation().getLongitude(), LocationUtils.getInstance().getmBDLocation().getLatitude());
                 break;
         }
     }
@@ -119,7 +125,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
     protected void handlerPacketMsg(Message msg) {
         switch (msg.what) {
             case Event.SGIN:
-                Toast.makeText(this, "签到成功", 0);
+                ToastUtil.showToast(this, "签到成功", 0);
                 break;
         }
     }

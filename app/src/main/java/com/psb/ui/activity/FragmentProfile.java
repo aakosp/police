@@ -40,7 +40,7 @@ public class FragmentProfile extends BaseFragment implements View.OnClickListene
             return mView;
         }
         isPolice = User.POLICE.equals(Cache.getInstance().getUser().getRole());
-        if (isPolice) {
+        if (!isPolice) {
             this.initPolice(container);
         } else {
             this.initVillager(container);

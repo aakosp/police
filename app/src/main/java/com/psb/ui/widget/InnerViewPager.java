@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.PointF;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 

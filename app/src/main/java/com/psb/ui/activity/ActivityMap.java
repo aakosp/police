@@ -53,6 +53,7 @@ public class ActivityMap extends BaseActivity implements OnClickListener, OnMark
     private BitmapDescriptor mark = BitmapDescriptorFactory.fromResource(R.drawable.mark);
     private List<OfficeInfo> officeInfos;
     private int focId = -1;
+    LatLng southwest, northeast;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,7 +68,7 @@ public class ActivityMap extends BaseActivity implements OnClickListener, OnMark
         topbar.setActivity(this);
         mMapView = (MapView) findViewById(R.id.bmapView);
         mBaiduMap = mMapView.getMap();
-        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(14.0f);
+        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(4.0f);
         mBaiduMap.setMapStatus(msu);
         initOverlay();
         mBaiduMap.setOnMarkerClickListener(this);
@@ -116,28 +117,27 @@ public class ActivityMap extends BaseActivity implements OnClickListener, OnMark
 //        mMarkerD = (Marker) (mBaiduMap.addOverlay(ooD));
 
         // add ground overlay
-        LatLng southwest = new LatLng(34.738562, 113.620144);
-        LatLng northeast = new LatLng(34.738562, 113.620144);
+        southwest = new LatLng(35.762629, 114.09137);
+        northeast = new LatLng(36.082503, 114.823813);
         LatLngBounds bounds = new LatLngBounds.Builder().include(northeast).include(southwest).build();
-
         MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(bounds.getCenter());
         mBaiduMap.setMapStatus(u);
 
-        mBaiduMap.setOnMarkerDragListener(new OnMarkerDragListener() {
-            public void onMarkerDrag(Marker marker) {
-            }
-
-            public void onMarkerDragEnd(Marker marker) {
-                Toast.makeText(
-                        ActivityMap.this,
-                        "拖拽结束，新位置：" + marker.getPosition().latitude + ", "
-                                + marker.getPosition().longitude,
-                        Toast.LENGTH_LONG).show();
-            }
-
-            public void onMarkerDragStart(Marker marker) {
-            }
-        });
+//        mBaiduMap.setOnMarkerDragListener(new OnMarkerDragListener() {
+//            public void onMarkerDrag(Marker marker) {
+//            }
+//
+//            public void onMarkerDragEnd(Marker marker) {
+//                Toast.makeText(
+//                        ActivityMap.this,
+//                        "拖拽结束，新位置：" + marker.getPosition().latitude + ", "
+//                                + marker.getPosition().longitude,
+//                        Toast.LENGTH_LONG).show();
+//            }
+//
+//            public void onMarkerDragStart(Marker marker) {
+//            }
+//        });
     }
 
     @Override
@@ -207,6 +207,11 @@ public class ActivityMap extends BaseActivity implements OnClickListener, OnMark
                 LatLng at = item.getPosition();
                 mInfoWindow = new InfoWindow(officeInfo, at, 235);
                 mBaiduMap.showInfoWindow(mInfoWindow);
+
+                MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(at);
+                mBaiduMap.setMapStatus(u);
+                MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(14.0f);
+                mBaiduMap.setMapStatus(msu);
             }
         }
     }
