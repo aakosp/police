@@ -13,8 +13,9 @@ public class User {
     private String name;
     private String password;
     private int police_station_id;
+    private int address;
     private String phone;
-    private int address_id;
+
     private String description;
 
     public int getId() {
@@ -81,11 +82,11 @@ public class User {
         this.password = password;
     }
 
-    public int getAddress_id() {
-        return address_id;
+    public int getAddress() {
+        return address;
     }
 
-    public void setAddress_id(int address_id) {
-        this.address_id = address_id;
+    public void setAddress(int address) {
+        this.address = address;
     }
 }

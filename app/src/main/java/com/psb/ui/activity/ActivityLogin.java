@@ -3,6 +3,7 @@ package com.psb.ui.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -90,6 +91,7 @@ public class ActivityLogin extends BaseActivity implements View.OnClickListener 
                 if (md5.equals(user.getPassword())) {
                     Cache.getInstance().setId(strId);
                     Cache.getInstance().setUser(user);
+                    Log.d(user.getName(), ""+user.getAddress());
                     intent.setClass(this, ActivityMain.class);
                     this.startActivity(intent);
                     this.finish();

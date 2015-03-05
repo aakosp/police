@@ -7,7 +7,7 @@ public class PoliceInfo {
     private int id;
     private int address_id;
     private int police_id;
-    private Addr addr;
+    private Addr address;
     private User police;
 
     public int getId() {
@@ -35,11 +35,11 @@ public class PoliceInfo {
     }
 
     public Addr getAddr() {
-        return addr;
+        return address;
     }
 
     public void setAddr(Addr addr) {
-        this.addr = addr;
+        this.address = addr;
     }
 
     public User getPolice() {

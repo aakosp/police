@@ -84,3 +84,4 @@ public class OpinionsAdapter extends BaseAdapter {
         public TextView title;
         public TextView time;
     }
+}

@@ -33,7 +33,7 @@ public class Cache {
     private List<Addr> addr;
     private Opinions opinions;
     private ID register;
-    private PoliceInfo policeInfo;
+    private List<PoliceInfo> policeInfo;
 
     private Cache() {
     }
@@ -80,7 +80,7 @@ public class Cache {
                 break;
 
             case Event.GET_PLOICE_LIST:
-                policeInfo = JSON.parseObject(responseBody, PoliceInfo.class);
+                policeInfo = JSON.parseArray(responseBody, PoliceInfo.class);
                 break;
 
             case Event.GET_OFFICE_LIST:
@@ -109,15 +109,6 @@ public class Cache {
     public List<Addr> getAddr() {
         return addr;
     }
-
-//    public void disAddr(List<Addr> addrs) {
-//        for (Addr addr : addrs) {
-////            Log.d("addr", addr.getId() + " " + addr.getName() + " ");
-//            if (null != addr.getChild()) {
-//                disAddr(addr.getChild());
-//            }
-//        }
-//    }
 
     public ID getReg() {
         return register;

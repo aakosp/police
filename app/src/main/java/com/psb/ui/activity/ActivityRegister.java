@@ -40,15 +40,13 @@ public class ActivityRegister extends BaseActivity implements OnWheelChangedList
     private RadioButton female = null;
     private Intent intent;
 
-    private WheelView xian;
-    private WheelView xiang;
-    private WheelView cun;
-    private String[] mProvinceDatas;
-    private Map<String, String[]> mCitisDatasMap = new HashMap<>();
-    private Map<String, String[]> mAreaDatasMap = new HashMap<>();
-    private String mCurrentProviceName;
-    private String mCurrentCityName;
-    private String mCurrentAreaName = "";
+    private WheelView wvXian;
+    private WheelView wvXiang;
+    private WheelView wvCun;
+    private AddrItem[] mProvinceDatas;
+    private Map<Integer, AddrItem[]> mCitisDatasMap = new HashMap<>();
+    private Map<Integer, AddrItem[]> mAreaDatasMap = new HashMap<>();
+    private int mCurrentProviceName, mCurrentCityName, mCurrentAreaName;
 
 
     @Override
@@ -66,18 +64,18 @@ public class ActivityRegister extends BaseActivity implements OnWheelChangedList
         male.setChecked(true);
         female = (RadioButton) findViewById(R.id.female);
         reg = (Button) findViewById(R.id.register);
-        xian = (WheelView) findViewById(R.id.xian);
-        xiang = (WheelView) findViewById(R.id.xiang);
-        cun = (WheelView) findViewById(R.id.cun);
+        wvXian = (WheelView) findViewById(R.id.xian);
+        wvXiang = (WheelView) findViewById(R.id.xiang);
+        wvCun = (WheelView) findViewById(R.id.cun);
 
         initDatas();
-        xian.setViewAdapter(new ArrayWheelAdapter<String>(this, mProvinceDatas));
-        xian.addChangingListener(this);
-        xiang.addChangingListener(this);
-        cun.addChangingListener(this);
-        xian.setVisibleItems(5);
-        xiang.setVisibleItems(5);
-        cun.setVisibleItems(5);
+        wvXian.setViewAdapter(new ArrayWheelAdapter<AddrItem>(this, mProvinceDatas));
+        wvXian.addChangingListener(this);
+        wvXiang.addChangingListener(this);
+        wvCun.addChangingListener(this);
+        wvXian.setVisibleItems(5);
+        wvXiang.setVisibleItems(5);
+        wvCun.setVisibleItems(5);
         updateCities();
         updateAreas();
 
@@ -123,7 +121,8 @@ public class ActivityRegister extends BaseActivity implements OnWheelChangedList
         if (male.isChecked()) {
             s = "MEN";
         }
-        Api.getInstance().register(strId, strPwd, strName, 2, s, strTel);
+//        Log.d("mCurrentAreaName", "======================    "+mCurrentAreaName);
+        Api.getInstance().register(strId, strPwd, strName, mCurrentAreaName, s, strTel);
     }
 
     @Override
@@ -146,62 +145,84 @@ public class ActivityRegister extends BaseActivity implements OnWheelChangedList
         if (null == Cache.getInstance().getAddr()) {
             return;
         }
-        mProvinceDatas = new String[Cache.getInstance().getAddr().size()];
+        mProvinceDatas = new AddrItem[Cache.getInstance().getAddr().size()];
         for (int i = 0; i < Cache.getInstance().getAddr().size(); i++) {
             Addr addrxian = Cache.getInstance().getAddr().get(i);
-            String strXian = addrxian.getName();
-            mProvinceDatas[i] = strXian;
-            String mCitiesDatas[] = new String[addrxian.getChild().size()];
+            AddrItem xianItem = new AddrItem(addrxian.getId(), addrxian.getName());
+            mProvinceDatas[i] = xianItem;
+            AddrItem mCitiesDatas[] = new AddrItem[addrxian.getChild().size()];
             for (int j = 0; j < addrxian.getChild().size(); j++) {
                 Addr xiang = addrxian.getChild().get(j);
-                String strXiang = xiang.getName();
-//                Log.d("strXiang", strXiang);
-                mCitiesDatas[j] = strXiang;
-                String mAreasDatas[] = new String[xiang.getChild().size()];
+                AddrItem xiangItem = new AddrItem(xiang.getId(), xiang.getName());
+                mCitiesDatas[j] = xiangItem;
+                AddrItem mAreasDatas[] = new AddrItem[xiang.getChild().size()];
                 for (int k = 0; k < xiang.getChild().size(); k++) {
-                    mAreasDatas[k] = xiang.getChild().get(k).getName();
+                    Addr cun = xiang.getChild().get(k);
+                    mAreasDatas[k] = new AddrItem(cun.getId(), cun.getName());
 //                    Log.d("mAreasDatas", xiang.getChild().get(k).getName());
                 }
-                mAreaDatasMap.put(strXiang, mAreasDatas);
+                mAreaDatasMap.put(xiang.getId(), mAreasDatas);
             }
 
-            mCitisDatasMap.put(strXian, mCitiesDatas);
+            mCitisDatasMap.put(addrxian.getId(), mCitiesDatas);
         }
 
     }
 
     @Override
     public void onChanged(WheelView wheel, int oldValue, int newValue) {
-        if (wheel == xian) {
+        if (wheel == wvXian) {
             updateCities();
-        } else if (wheel == xiang) {
+        } else if (wheel == wvXiang) {
             updateAreas();
-        } else if (wheel == cun) {
-            mCurrentAreaName = mAreaDatasMap.get(mCurrentCityName)[newValue];
+        } else if (wheel == wvCun) {
+            mCurrentAreaName = mAreaDatasMap.get(mCurrentCityName)[newValue].id;
+            Log.d("     onChanged  ", "mCurrentAreaName : "+mCurrentAreaName);
         }
     }
 
     private void updateCities() {
-        int pCurrent = xian.getCurrentItem();
-        mCurrentProviceName = mProvinceDatas[pCurrent];
-        String[] cities = mCitisDatasMap.get(mCurrentProviceName);
+        int pCurrent = wvXian.getCurrentItem();
+        mCurrentProviceName = mProvinceDatas[pCurrent].id;
+        Log.d("     updateCities  ", "mCurrentProviceName : "+mCurrentProviceName);
+        AddrItem[] cities = mCitisDatasMap.get(mCurrentProviceName);
         if (cities == null) {
-            cities = new String[]{""};
+            return;
         }
-        xiang.setViewAdapter(new ArrayWheelAdapter<String>(this, cities));
-        xiang.setCurrentItem(0);
+        wvXiang.setViewAdapter(new ArrayWheelAdapter<AddrItem>(this, cities));
+        wvXiang.setCurrentItem(0);
         updateAreas();
     }
 
     private void updateAreas() {
-        int pCurrent = xiang.getCurrentItem();
-        mCurrentCityName = mCitisDatasMap.get(mCurrentProviceName)[pCurrent];
-        String[] areas = mAreaDatasMap.get(mCurrentCityName);
+        int pCurrent = wvXiang.getCurrentItem();
+        mCurrentCityName = mCitisDatasMap.get(mCurrentProviceName)[pCurrent].id;
+        Log.d("     mCurrentCityName  ", "mCurrentCityName : "+mCurrentCityName);
+        AddrItem[] areas = mAreaDatasMap.get(mCurrentCityName);
 
         if (areas == null) {
-            areas = new String[]{""};
+            return;
         }
-        cun.setViewAdapter(new ArrayWheelAdapter<String>(this, areas));
-        cun.setCurrentItem(0);
+        wvCun.setViewAdapter(new ArrayWheelAdapter<AddrItem>(this, areas));
+        wvCun.setCurrentItem(0);
+        mCurrentAreaName = mAreaDatasMap.get(mCurrentCityName)[0].id;
+        Log.d("mCurrentAreaName", "mCurrentAreaName : "+mCurrentAreaName);
+    }
+
+
+    private class AddrItem {
+
+        public AddrItem(int id, String addr){
+            this.id = id;
+            this.addr = addr;
+        }
+
+        public String addr;
+        public int id;
+
+        @Override
+        public String toString() {
+            return addr;
+        }
     }
 }

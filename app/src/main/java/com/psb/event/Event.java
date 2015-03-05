@@ -29,4 +29,6 @@ public class Event {
     public static final int GET_PLOICE_LIST = 18;       //获取民警信息
     public static final int REGISTER = 19;              //注册
     public static final int CHANGE_PWD = 20;            //修改密码
+
+    public static final int COMMIT_WORK = 21;            //提交工作记录
 }

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
+    android:background="@color/background"
     android:orientation="vertical">
 
     <com.psb.ui.widget.TopNavigationBar
@@ -12,58 +12,65 @@
         android:layout_height="wrap_content"
         app:titleText="@string/record" />
 
-    <EditText
-        android:id="@+id/title"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/default_padding"
-        android:background="@null"
-        android:hint="@string/title"
-        android:padding="@dimen/default_padding"
-        android:textColor="@color/news_title"
-        android:textColorHint="@color/news_title"
-        android:textSize="@dimen/newstitle_title_size" />
+        android:background="@color/white"
+        android:orientation="vertical">
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"
-        android:layout_marginLeft="@dimen/default_padding"
-        android:layout_marginRight="@dimen/default_padding"
-        android:background="@color/item_office_info_divider" />
+        <EditText
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/title"
+            android:padding="@dimen/default_padding"
+            android:textColor="@color/news_title"
+            android:textColorHint="@color/news_title"
+            android:textSize="@dimen/newstitle_title_size" />
 
-    <EditText
-        android:id="@+id/type"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:hint="@string/type"
-        android:padding="@dimen/default_padding"
-        android:textColor="@color/news_title"
-        android:textColorHint="@color/news_title"
-        android:textSize="@dimen/newstitle_title_size" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:layout_marginLeft="@dimen/default_padding"
+            android:layout_marginRight="@dimen/default_padding"
+            android:background="@color/item_office_info_divider" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"
-        android:layout_marginLeft="@dimen/default_padding"
-        android:layout_marginRight="@dimen/default_padding"
-        android:background="@color/item_office_info_divider" />
+        <EditText
+            android:id="@+id/type"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:hint="@string/type"
+            android:padding="@dimen/default_padding"
+            android:textColor="@color/news_title"
+            android:textColorHint="@color/news_title"
+            android:textSize="@dimen/newstitle_title_size" />
 
-    <EditText
-        android:id="@+id/info"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@null"
-        android:gravity="top|left"
-        android:hint="@string/info"
-        android:lines="7"
-        android:minHeight="@dimen/feedback_info_height"
-        android:padding="@dimen/default_padding"
-        android:textColorHint="@color/news_title" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:layout_marginLeft="@dimen/default_padding"
+            android:layout_marginRight="@dimen/default_padding"
+            android:background="@color/item_office_info_divider" />
+
+        <EditText
+            android:id="@+id/info"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:gravity="top|left"
+            android:hint="@string/info"
+            android:lines="7"
+            android:minHeight="@dimen/feedback_info_height"
+            android:padding="@dimen/default_padding"
+            android:textColorHint="@color/news_title" />
+    </LinearLayout>
 
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:padding="@dimen/default_padding">
 
         <TableRow>
@@ -72,7 +79,9 @@
                 android:id="@+id/img1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/map_padding"
                 android:layout_weight="1"
+                android:background="@color/white"
                 android:minHeight="@dimen/newstitle_img_height"
                 android:scaleType="centerInside"
                 android:src="@drawable/add" />
@@ -81,7 +90,9 @@
                 android:id="@+id/img2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/map_padding"
                 android:layout_weight="1"
+                android:background="@color/white"
                 android:minHeight="@dimen/newstitle_img_height"
                 android:scaleType="centerInside"
                 android:src="@drawable/add" />
@@ -90,7 +101,9 @@
                 android:id="@+id/img3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/map_padding"
                 android:layout_weight="1"
+                android:background="@color/white"
                 android:minHeight="@dimen/newstitle_img_height"
                 android:scaleType="centerInside"
                 android:src="@drawable/add" />
@@ -102,7 +115,9 @@
                 android:id="@+id/img4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/map_padding"
                 android:layout_weight="1"
+                android:background="@color/white"
                 android:minHeight="@dimen/newstitle_img_height"
                 android:scaleType="centerInside"
                 android:src="@drawable/add" />
@@ -111,7 +126,9 @@
                 android:id="@+id/img5"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/map_padding"
                 android:layout_weight="1"
+                android:background="@color/white"
                 android:minHeight="@dimen/newstitle_img_height"
                 android:scaleType="centerInside"
                 android:src="@drawable/add" />
@@ -120,7 +137,9 @@
                 android:id="@+id/img6"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/map_padding"
                 android:layout_weight="1"
+                android:background="@color/white"
                 android:minHeight="@dimen/newstitle_img_height"
                 android:scaleType="centerInside"
                 android:src="@drawable/add" />
@@ -128,10 +147,11 @@
     </TableLayout>
 
     <Button
-        android:id="@+id/shiming"
+        android:id="@+id/commit"
         android:layout_width="match_parent"
         android:layout_height="@dimen/horizontal_item_img_height"
         android:layout_margin="@dimen/default_padding"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
         android:background="@color/shiming"
         android:padding="@dimen/default_padding"
         android:text="@string/commit"

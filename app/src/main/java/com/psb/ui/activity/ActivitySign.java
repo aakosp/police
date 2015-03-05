@@ -91,8 +91,8 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.sign:
                 String work = content.getText().toString();
-                Log.d("sign", "" + LocationUtils.getInstance().getmBDLocation().getLatitude() + " " + LocationUtils.getInstance().getmBDLocation().getLongitude());
-                Api.getInstance().sgin(Cache.getInstance().getInfo().getId(), work, LocationUtils.getInstance().getmBDLocation().getLongitude(), LocationUtils.getInstance().getmBDLocation().getLatitude());
+//                Log.d("sign", "" + LocationUtils.getInstance().getmBDLocation().getLatitude() + " " + LocationUtils.getInstance().getmBDLocation().getLongitude());
+                Api.getInstance().sgin(work, LocationUtils.getInstance().getmBDLocation().getLongitude(), LocationUtils.getInstance().getmBDLocation().getLatitude());
                 break;
         }
     }

@@ -61,10 +61,10 @@ public class Api {
         executor.execute(data);
     }
 
-    public void sgin(int id, String content, double location_x, double location_y) {
+    public void sgin(String content, double location_x, double location_y) {
         String url = base_url + "/sign_up";
         List<NameValuePair> params = new ArrayList<>();
-        NameValuePair user = new BasicNameValuePair("user_id", "" + id);
+        NameValuePair user = new BasicNameValuePair("user_id", "" + Cache.getInstance().getUser().getId());
         NameValuePair c = new BasicNameValuePair("sign_up_content", content);
         NameValuePair x = new BasicNameValuePair("sign_up_location_x", "" + location_x);
         NameValuePair y = new BasicNameValuePair("sign_up_location_y", "" + location_y);
@@ -132,12 +132,29 @@ public class Api {
         executor.execute(data);
     }
 
-    public void changePwd(int id, String pwd) {
-        String url = base_url + "/user/" + id;
+    public void changePwd(String pwd) {
+        String url = base_url + "/user/" + Cache.getInstance().getUser().getId();
         List<NameValuePair> params = new ArrayList<>();
         NameValuePair nameValuePair1 = new BasicNameValuePair("password", pwd);
         params.add(nameValuePair1);
         HttpRequestData data = new HttpRequestData(params, url, Event.CHANGE_PWD, HttpClient.RequestType.PUT);
+        executor.execute(data);
+    }
+
+    public void commitWork(String strTitle, String info, String pic){
+        String url = base_url + "/daily_log";
+        List<NameValuePair> params = new ArrayList<>();
+        NameValuePair id = new BasicNameValuePair("user_id", ""+Cache.getInstance().getUser().getId());
+        params.add(id);
+        NameValuePair title = new BasicNameValuePair("title", strTitle);
+        params.add(title);
+        NameValuePair content = new BasicNameValuePair("content", info);
+        params.add(content);
+        if(!StringUtils.isEmpty(pic)){
+            NameValuePair picture = new BasicNameValuePair("password", pic);
+            params.add(picture);
+        }
+        HttpRequestData data = new HttpRequestData(params, url, Event.COMMIT_WORK);
         executor.execute(data);
     }
 

@@ -45,7 +45,7 @@ public class ActivityPoliceInfo extends BaseActivity implements AdapterView.OnIt
         img = (ImageView) findViewById(R.id.img);
         list = (ListView) findViewById(R.id.list);
         intent = new Intent();
-//        Api.getInstance().getPolice(Cache.getInstance().getUser().getAddress_id());
+        Api.getInstance().getPolice(Cache.getInstance().getUser().getAddress());
         this.init();
     }
 

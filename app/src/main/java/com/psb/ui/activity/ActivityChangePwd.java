@@ -51,7 +51,7 @@ public class ActivityChangePwd extends BaseActivity {
                 if (!pwd.equals(zaici.getText().toString())) {
                     ToastUtil.showToast(ActivityChangePwd.this, "两次输入的密码不一致,请重新输入", 0);
                 }
-                Api.getInstance().changePwd(Cache.getInstance().getUser().getId(), pwd);
+                Api.getInstance().changePwd(pwd);
             }
         });
         EventNotifyCenter.getInstance().register(this.getHandler(), Event.CHANGE_PWD);

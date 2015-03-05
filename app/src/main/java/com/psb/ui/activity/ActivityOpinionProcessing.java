@@ -27,7 +27,6 @@ import java.util.List;
 public class ActivityOpinionProcessing extends BaseActivity implements ViewPager.OnPageChangeListener {
 
     private TopNavigationBar topbar;
-    private Button unProcess, process;
     List<View> pageViews;
     private ViewPagerWithTitle viewPager;
     private String titles[] = AppContext.getInstance().getResources().getStringArray(R.array.options_columns);
@@ -38,10 +37,8 @@ public class ActivityOpinionProcessing extends BaseActivity implements ViewPager
         setContentView(R.layout.activity_process_opinion);
         topbar = (TopNavigationBar) findViewById(R.id.topbar);
         topbar.setActivity(this);
-        unProcess = (Button) findViewById(R.id.un_process);
-        process = (Button) findViewById(R.id.processed);
         viewPager = (ViewPagerWithTitle) findViewById(R.id.vp);
-
+        this.initView();
         EventNotifyCenter.getInstance().register(this.getHandler(), Event.GET_OPINION_LIST);
         Api.getInstance().getOpinions();
     }

@@ -57,6 +57,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
+                android:padding="16dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/arrow_more" />
 
