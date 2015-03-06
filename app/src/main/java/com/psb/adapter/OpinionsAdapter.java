@@ -63,25 +63,27 @@ public class OpinionsAdapter extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         NewsInfoHolder holder = null;
         if (null == convertView) {
-            convertView = View.inflate(parent.getContext(), R.layout.item_news_title, null);
+            convertView = View.inflate(parent.getContext(), R.layout.item_opinion, null);
             holder = new NewsInfoHolder();
-            holder.img = (ImageView) convertView.findViewById(R.id.img);
             holder.title = (TextView) convertView.findViewById(R.id.title);
-            holder.time = (TextView) convertView.findViewById(R.id.time);
+            holder.name = (TextView) convertView.findViewById(R.id.name);
             convertView.setTag(holder);
         } else {
             holder = (NewsInfoHolder) convertView.getTag();
         }
         Opinion item = list.get(position);
-//        ImageLoader.getInstance().displayImage(item.getThumb(), holder.img, ImageUtil.options);
         holder.title.setText(item.getTitle());
-        holder.time.setText(item.getTime());
+        if(Opinion.ANONYMOUS.equals(item.getType())){
+            holder.name.setText("匿名");
+        }
+        else{
+            holder.name.setText(item.getUser().getName());
+        }
         return convertView;
     }
 
     private static class NewsInfoHolder {
-        public ImageView img;
         public TextView title;
-        public TextView time;
+        public TextView name;
     }
 }

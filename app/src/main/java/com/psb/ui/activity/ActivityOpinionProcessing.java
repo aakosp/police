@@ -47,6 +47,8 @@ public class ActivityOpinionProcessing extends BaseActivity implements ViewPager
         pageViews = new ArrayList<>();
         PullToRefreshListView unList = new PullToRefreshListView(this);
         PullToRefreshListView processList = new PullToRefreshListView(this);
+        pageViews.add(unList);
+        pageViews.add(processList);
         viewPager.setTabs(titles);
         viewPager.setPagerViews(pageViews);
         viewPager.setCurrentItem(0);

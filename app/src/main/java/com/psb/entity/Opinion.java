@@ -5,6 +5,8 @@ package com.psb.entity;
  */
 public class Opinion {
 
+    public static final String ANONYMOUS = "ANONYMOUS";
+
     private int id;
     private int user_id;
     private String type;
@@ -12,6 +14,7 @@ public class Opinion {
     private String picture;
     private String content;
     private String time;
+    private User user;
 
     public int getId() {
         return id;
@@ -67,5 +70,13 @@ public class Opinion {
 
     public void setTime(String time) {
         this.time = time;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }
