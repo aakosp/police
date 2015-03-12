@@ -17,6 +17,7 @@ import com.psb.protocol.Api;
 import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseActivity;
 import com.psb.ui.util.ToastUtil;
+import com.psb.ui.widget.TopNavigationBar;
 import com.util.Md5Helper;
 import com.util.StringUtils;
 
@@ -25,6 +26,7 @@ import com.util.StringUtils;
  */
 public class ActivityLogin extends BaseActivity implements View.OnClickListener {
 
+    private TopNavigationBar topbar;
     private EditText id, pwd;
     private Button login, register, report;
     private Intent intent;
@@ -37,6 +39,8 @@ public class ActivityLogin extends BaseActivity implements View.OnClickListener 
         setContentView(R.layout.activity_login);
         Api.getInstance().getAddrs();
         intent = new Intent();
+        topbar = (TopNavigationBar) findViewById(R.id.topbar);
+        topbar.setActivity(this);
         id = (EditText) findViewById(R.id.id);
         pwd = (EditText) findViewById(R.id.pwd);
         login = (Button) findViewById(R.id.login);
@@ -71,6 +75,7 @@ public class ActivityLogin extends BaseActivity implements View.OnClickListener 
                 break;
             case R.id.report:
                 intent.setClass(this, ActivityOpinionFeedBack.class);
+                intent.putExtra("login", true);
                 break;
             default:
                 return;
@@ -91,9 +96,10 @@ public class ActivityLogin extends BaseActivity implements View.OnClickListener 
                 if (md5.equals(user.getPassword())) {
                     Cache.getInstance().setId(strId);
                     Cache.getInstance().setUser(user);
-                    Log.d(user.getName(), ""+user.getAddress());
-                    intent.setClass(this, ActivityMain.class);
-                    this.startActivity(intent);
+                    Cache.getInstance().setLogin(true);
+//                    Log.d(user.getName(), "" + user.getAddress());
+//                    intent.setClass(this, ActivityMain.class);
+//                    this.startActivity(intent);
                     this.finish();
                 } else {
                     ToastUtil.showToast(this, "用户名或密码错误", 0);

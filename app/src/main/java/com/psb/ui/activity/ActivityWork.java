@@ -71,7 +71,7 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.commit:
                 this.commit();
                 break;
@@ -100,7 +100,7 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
             Bitmap bitmap = ImageUtil.getBitmapFromUri(uri);
             ImageView img = (ImageView) findViewById(requestCode);
             img.setImageBitmap(bitmap);
-            if(null == uris){
+            if (null == uris) {
                 uris = new HashMap<>();
             }
             uris.put(resultCode, uri);
@@ -108,28 +108,28 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
     }
 
-    public void commit(){
+    public void commit() {
         final String strTitle = title.getText().toString();
-        if(StringUtils.isEmpty(strTitle)){
+        if (StringUtils.isEmpty(strTitle)) {
             ToastUtil.showToast(this, "请填写标题", 0);
             return;
         }
         final String strInfo = info.getText().toString();
-        if(StringUtils.isEmpty(strInfo)){
+        if (StringUtils.isEmpty(strInfo)) {
             ToastUtil.showToast(this, "请填写内容", 0);
             return;
         }
-        for(int key : uris.keySet()){
+        for (int key : uris.keySet()) {
             final Uri uri = uris.get(key);
             ImageUploadTask task = new ImageUploadTask(key);
             task.setOnUploadListener(new ImageUploadTask.OnImageUploadListener() {
                 @Override
                 public void onUploadComplete(int id, String path) {
-                    if(null == urls){
+                    if (null == urls) {
                         urls = new HashMap<Integer, String>();
                     }
                     urls.put(id, path);
-                    if(urls.size() == uris.size()){
+                    if (urls.size() == uris.size()) {
                         String pic = JSON.toJSONString(urls.values());
                         Log.d("pic", pic);
                         Api.getInstance().commitWork(strTitle, strInfo, pic);
@@ -138,7 +138,7 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
 
                 @Override
                 public void onUploadFailed(int id) {
-                    if(null == urls){
+                    if (null == urls) {
                         urls = new HashMap<Integer, String>();
                     }
                     urls.remove(id);
@@ -151,7 +151,7 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
 
     @Override
     protected void handlerPacketMsg(Message msg) {
-        switch (msg.what){
+        switch (msg.what) {
             case Event.COMMIT_WORK:
                 ToastUtil.showToast(this, "提交成功", 0);
                 break;

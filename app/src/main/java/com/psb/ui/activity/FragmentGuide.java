@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.EditText;
 
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 import com.psb.R;
 import com.psb.core.AppContext;
 import com.psb.entity.NewsInfo;
@@ -63,6 +65,7 @@ public class FragmentGuide extends BaseFragment implements AdapterView.OnItemCli
             list.setEvent(i + 5);
             list.getRefreshableView().setVerticalScrollBarEnabled(false);
             list.setOnItemClickListener(this);
+            list.setOnScrollListener(new PauseOnScrollListener(ImageLoader.getInstance(), true, true));
             pageViews.add(list);
         }
         viewPager.setTabs(guideColumns);

@@ -1,15 +1,11 @@
 package com.psb.protocol;
 
-import android.util.Log;
-
 import com.psb.ThreadUtil.ThreadPoolExecutorFactory;
 import com.psb.core.AppContext;
 import com.psb.event.Event;
 import com.util.StringUtils;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -76,6 +72,25 @@ public class Api {
         executor.execute(data);
     }
 
+    public void commitOpinion(String strTitle, String info, String pic, String strType){
+        String url = base_url + "/opinion";
+        List<NameValuePair> params = new ArrayList<>();
+        NameValuePair id = new BasicNameValuePair("user_id", ""+Cache.getInstance().getUser().getId());
+        params.add(id);
+        NameValuePair type = new BasicNameValuePair("title", strType);
+        params.add(type);
+        NameValuePair title = new BasicNameValuePair("title", strTitle);
+        params.add(title);
+        NameValuePair content = new BasicNameValuePair("content", info);
+        params.add(content);
+        if(!StringUtils.isEmpty(pic)){
+            NameValuePair picture = new BasicNameValuePair("picture", pic);
+            params.add(picture);
+        }
+        HttpRequestData data = new HttpRequestData(params, url, Event.COMMIT_WORK);
+        executor.execute(data);
+    }
+
     public void getFeedBack(String id) {
         String url = base_url + "/opinion_reply/" + id;
         HttpRequestData data = new HttpRequestData(url, Event.GET_FEEDBACK);
@@ -127,8 +142,7 @@ public class Api {
 
     public void getPolice(int addr) {
         String url = base_url + "/address/" + addr;
-        Log.d("url", url);
-        HttpRequestData data = new HttpRequestData(url, Event.GET_PLOICE_LIST);
+        HttpRequestData data = new HttpRequestData(url, Event.GET_POLICE_LIST);
         executor.execute(data);
     }
 
@@ -151,7 +165,7 @@ public class Api {
         NameValuePair content = new BasicNameValuePair("content", info);
         params.add(content);
         if(!StringUtils.isEmpty(pic)){
-            NameValuePair picture = new BasicNameValuePair("password", pic);
+            NameValuePair picture = new BasicNameValuePair("picture", pic);
             params.add(picture);
         }
         HttpRequestData data = new HttpRequestData(params, url, Event.COMMIT_WORK);

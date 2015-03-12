@@ -8,7 +8,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.psb.R;
+import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseFragment;
+import com.psb.ui.util.TipsLogin;
 import com.psb.ui.widget.ItemHorizontal;
 
 /**
@@ -19,6 +21,7 @@ public class FragmentNavigation extends BaseFragment implements View.OnClickList
     private View mView;
     private ItemHorizontal info, map, officelist;
     private Intent intent;
+    private TipsLogin login;
 
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class FragmentNavigation extends BaseFragment implements View.OnClickList
         info.setOnClickListener(this);
         map.setOnClickListener(this);
         officelist.setOnClickListener(this);
+        login = new TipsLogin(this.getActivity());
         return mView;
     }
 
@@ -43,6 +47,10 @@ public class FragmentNavigation extends BaseFragment implements View.OnClickList
         }
         switch (v.getId()) {
             case R.id.info:
+                if(!Cache.getInstance().isLogin()){
+                    login.initPopuptWindow(mView);
+                    return;
+                }
                 intent.setClass(this.getActivity(), ActivityPoliceInfo.class);
                 break;
             case R.id.office_map:

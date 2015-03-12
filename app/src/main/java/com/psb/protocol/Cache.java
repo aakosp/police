@@ -7,13 +7,12 @@ import com.psb.entity.Addr;
 import com.psb.entity.Article;
 import com.psb.entity.ID;
 import com.psb.entity.OfficeInfo;
-import com.psb.entity.Opinion;
 import com.psb.entity.Opinions;
 import com.psb.entity.PoliceInfo;
 import com.psb.entity.User;
 import com.psb.event.Event;
 import com.psb.event.EventNotifyCenter;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,6 +24,7 @@ public class Cache {
 
     private static Cache cache;
 
+    private boolean isLogin = false;
     private String id;
     private User user;
     private Map<Integer, Article> articleMap = new HashMap<>();
@@ -33,7 +33,7 @@ public class Cache {
     private List<Addr> addr;
     private Opinions opinions;
     private ID register;
-    private List<PoliceInfo> policeInfo;
+    private List<PoliceInfo> policeInfo = new ArrayList<>();
 
     private Cache() {
     }
@@ -79,7 +79,7 @@ public class Cache {
                 register = JSON.parseObject(responseBody, ID.class);
                 break;
 
-            case Event.GET_PLOICE_LIST:
+            case Event.GET_POLICE_LIST:
                 policeInfo = JSON.parseArray(responseBody, PoliceInfo.class);
                 break;
 
@@ -98,7 +98,15 @@ public class Cache {
         EventNotifyCenter.getInstance().doNotify(event);
     }
 
-    public Article getArticle(int event) {
+    public boolean isLogin() {
+        return isLogin;
+    }
+
+    public void setLogin(boolean isLogin) {
+        this.isLogin = isLogin;
+    }
+
+    public synchronized Article getArticle(int event) {
         return articleMap.get(event);
     }
 
@@ -106,7 +114,7 @@ public class Cache {
         return users.get(id);
     }
 
-    public List<Addr> getAddr() {
+    public synchronized List<Addr> getAddr() {
         return addr;
     }
 
@@ -130,15 +138,19 @@ public class Cache {
         return user;
     }
 
-    public void setUser(User user) {
+    public synchronized void setUser(User user) {
         this.user = user;
     }
 
-    public List<OfficeInfo> getOffice() {
+    public synchronized List<OfficeInfo> getOffice() {
         return this.office;
     }
 
     public Opinions getOpinions(){
         return opinions;
+    }
+
+    public synchronized List<PoliceInfo> getPoliceInfo() {
+        return policeInfo;
     }
 }

@@ -104,7 +104,9 @@ public class OfficeAdapter extends BaseAdapter implements View.OnClickListener {
             default:
                 return;
         }
-        this.context.startActivity(intent);
+        if(null != intent){
+            this.context.startActivity(intent);
+        }
     }
 
     private static class OfficeViewHolder {

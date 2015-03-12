@@ -66,4 +66,6 @@
 
     <string name="un_process">未处理</string>
     <string name="process">已处理</string>
+
+    <string name="to_login">请登录后再继续操作</string>
 </resources>

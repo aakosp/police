@@ -1,7 +1,9 @@
 package com.psb.ui.activity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Message;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -12,6 +14,9 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.psb.R;
 import com.psb.adapter.AddrAdapter;
 import com.psb.entity.Addr;
+import com.psb.entity.PoliceInfo;
+import com.psb.event.Event;
+import com.psb.event.EventNotifyCenter;
 import com.psb.protocol.Api;
 import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseActivity;
@@ -24,7 +29,7 @@ import java.util.List;
 /**
  * Created by zl on 2015/2/5.
  */
-public class ActivityPoliceInfo extends BaseActivity implements AdapterView.OnItemClickListener {
+public class ActivityPoliceInfo extends BaseActivity implements AdapterView.OnItemClickListener, View.OnClickListener {
 
     private TopNavigationBar topbar;
     private TextView addr, name, office_addr, tel;
@@ -41,22 +46,20 @@ public class ActivityPoliceInfo extends BaseActivity implements AdapterView.OnIt
         addr = (TextView) findViewById(R.id.addr);
         name = (TextView) findViewById(R.id.name);
         office_addr = (TextView) findViewById(R.id.office_name);
+        office_addr.setOnClickListener(this);
         tel = (TextView) findViewById(R.id.tel);
+        tel.setOnClickListener(this);
         img = (ImageView) findViewById(R.id.img);
         list = (ListView) findViewById(R.id.list);
         intent = new Intent();
+        EventNotifyCenter.getInstance().register(this.getHandler(), Event.GET_POLICE_LIST);
         Api.getInstance().getPolice(Cache.getInstance().getUser().getAddress());
         this.init();
     }
 
     public void init() {
-        addr.setText("白营镇张官屯");
-        name.setText("张三");
-        office_addr.setText("大付庄警务室");
-        tel.setText("18503888888");
-        ImageLoader.getInstance().displayImage("", img, ImageUtil.options);
         //取2级乡镇
-        List<Addr> addrs = Cache.getInstance().getAddr().get(0).getChild();
+        List<Addr> addrs = Cache.getInstance().getAddr();
         AddrAdapter addrAdapter = new AddrAdapter();
         addrAdapter.setAddrs(addrs);
         list.setAdapter(addrAdapter);
@@ -72,5 +75,41 @@ public class ActivityPoliceInfo extends BaseActivity implements AdapterView.OnIt
         intent.putExtra("addr", addr.getId());
         intent.putExtra("strAddr", addr.getName());
         this.startActivity(intent);
+    }
+
+    @Override
+    protected void handlerPacketMsg(Message msg) {
+        switch (msg.what) {
+            case Event.GET_POLICE_LIST:
+                if (Cache.getInstance().getPoliceInfo().size() == 0) {
+                    return;
+                }
+                PoliceInfo info = Cache.getInstance().getPoliceInfo().get(0);
+                addr.setText(info.getAddress().getName());
+                name.setText(info.getPolice().getPolice_name());
+                office_addr.setText(info.getPolice().getPolice_station_id() + "警务室");
+                office_addr.setTag(info.getPolice().getPolice_station_id());
+                tel.setText(info.getPolice().getPhone());
+                tel.setTag(info.getPolice().getPhone());
+                ImageLoader.getInstance().displayImage("", img, ImageUtil.options);
+                break;
+        }
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.office_name:
+                Intent intent = new Intent();
+                intent.putExtra("id", (int) v.getTag());
+                intent.setClass(this, ActivityMap.class);
+                this.startActivity(intent);
+                break;
+            case R.id.tel:
+                Uri telUri = Uri.parse("tel:" + v.getTag());
+                Intent telIntent = new Intent(Intent.ACTION_DIAL, telUri);
+                this.startActivity(telIntent);
+                break;
+        }
     }
 }

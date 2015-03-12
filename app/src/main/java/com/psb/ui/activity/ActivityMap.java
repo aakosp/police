@@ -68,7 +68,7 @@ public class ActivityMap extends BaseActivity implements OnClickListener, OnMark
         topbar.setActivity(this);
         mMapView = (MapView) findViewById(R.id.bmapView);
         mBaiduMap = mMapView.getMap();
-        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(4.0f);
+        MapStatusUpdate msu = MapStatusUpdateFactory.zoomTo(12.0f);
         mBaiduMap.setMapStatus(msu);
         initOverlay();
         mBaiduMap.setOnMarkerClickListener(this);
@@ -117,8 +117,8 @@ public class ActivityMap extends BaseActivity implements OnClickListener, OnMark
 //        mMarkerD = (Marker) (mBaiduMap.addOverlay(ooD));
 
         // add ground overlay
-        southwest = new LatLng(35.762629, 114.09137);
-        northeast = new LatLng(36.082503, 114.823813);
+        southwest = new LatLng(35.758397, 114.148159);
+        northeast = new LatLng(36.068486, 114.877727);
         LatLngBounds bounds = new LatLngBounds.Builder().include(northeast).include(southwest).build();
         MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(bounds.getCenter());
         mBaiduMap.setMapStatus(u);

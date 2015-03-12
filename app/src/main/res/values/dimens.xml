@@ -59,4 +59,6 @@
     <!-- police_info_img -->
     <dimen name="police_img_width">120dp</dimen>
     <dimen name="police_img_height">180dp</dimen>
+
+    <dimen name="item_img_size">120dp</dimen>
 </resources>

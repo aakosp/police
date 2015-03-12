@@ -1,13 +1,7 @@
 package com.psb.protocol;
 
 import android.net.http.AndroidHttpClient;
-import android.util.Log;
-
-import com.alibaba.fastjson.JSON;
-import com.psb.entity.Article;
-import com.psb.event.EventNotifyCenter;
 import com.util.StringUtils;
-
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
@@ -22,7 +16,6 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.protocol.HttpContext;
-
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;
@@ -203,7 +196,6 @@ public class HttpClient {
      * @param event
      */
     public static void put(String url, List<NameValuePair> params, int event) {
-        Log.d("put", url);
         AndroidHttpClient httpClient = null;
         HttpPut put = null;
         //post表单参数处理

@@ -56,8 +56,8 @@
 
                 <ImageView
                     android:id="@+id/img1"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/item_img_size"
+                    android:layout_height="@dimen/item_img_size"
                     android:layout_margin="@dimen/map_padding"
                     android:layout_weight="1"
                     android:background="@color/white"
@@ -67,8 +67,8 @@
 
                 <ImageView
                     android:id="@+id/img2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/item_img_size"
+                    android:layout_height="@dimen/item_img_size"
                     android:layout_margin="@dimen/map_padding"
                     android:layout_weight="1"
                     android:background="@color/white"
@@ -78,8 +78,8 @@
 
                 <ImageView
                     android:id="@+id/img3"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/item_img_size"
+                    android:layout_height="@dimen/item_img_size"
                     android:layout_margin="@dimen/map_padding"
                     android:layout_weight="1"
                     android:background="@color/white"
@@ -92,8 +92,8 @@
 
                 <ImageView
                     android:id="@+id/img4"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/item_img_size"
+                    android:layout_height="@dimen/item_img_size"
                     android:layout_margin="@dimen/map_padding"
                     android:layout_weight="1"
                     android:background="@color/white"
@@ -103,8 +103,8 @@
 
                 <ImageView
                     android:id="@+id/img5"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/item_img_size"
+                    android:layout_height="@dimen/item_img_size"
                     android:layout_margin="@dimen/map_padding"
                     android:layout_weight="1"
                     android:background="@color/white"
@@ -114,8 +114,8 @@
 
                 <ImageView
                     android:id="@+id/img6"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_width="@dimen/item_img_size"
+                    android:layout_height="@dimen/item_img_size"
                     android:layout_margin="@dimen/map_padding"
                     android:layout_weight="1"
                     android:background="@color/white"
@@ -128,6 +128,7 @@
 
 
     <LinearLayout
+        android:id="@+id/def"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -156,5 +157,16 @@
             android:text="@string/anonymous"
             android:textColor="@color/white" />
     </LinearLayout>
+
+
+    <Button
+        android:id="@+id/login_niming"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/horizontal_item_img_height"
+        android:layout_alignParentBottom="true"
+        android:background="@color/niming"
+        android:text="@string/anonymous"
+        android:textColor="@color/white"
+        android:visibility="gone" />
 
 </RelativeLayout>
