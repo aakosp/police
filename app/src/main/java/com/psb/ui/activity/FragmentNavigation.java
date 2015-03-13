@@ -47,7 +47,7 @@ public class FragmentNavigation extends BaseFragment implements View.OnClickList
         }
         switch (v.getId()) {
             case R.id.info:
-                if(!Cache.getInstance().isLogin()){
+                if (!Cache.getInstance().isLogin()) {
                     login.initPopuptWindow(mView);
                     return;
                 }

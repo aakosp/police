@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/item_office_info_divider"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:padding="@dimen/default_padding">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.psb.ui.widget.RoundImageView
+                android:id="@+id/avatar"
+                android:layout_width="@dimen/avatar_size"
+                android:layout_height="@dimen/avatar_size"
+                android:layout_alignParentLeft="true"
+                android:scaleType="centerInside"
+                android:src="@drawable/id" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_padding"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/news_title_size" />
+
+            <TextView
+                android:id="@+id/id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_padding"
+                android:textColor="@color/news_time"
+                android:textSize="@dimen/news_detail_size" />
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:padding="16dp"
+            android:scaleType="centerInside"
+            android:src="@drawable/arrow_more" />
+
+    </RelativeLayout>
+
+    <com.psb.ui.widget.ItemHorizontal
+        android:id="@+id/minyi"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@color/white"
+        app:ItemHorizontal_img_height="@dimen/icon_size"
+        app:ItemHorizontal_img_src="@drawable/survey"
+        app:ItemHorizontal_img_width="@dimen/icon_size"
+        app:ItemHorizontal_text="@string/minyi"
+        app:ItemHorizontal_text_color="@color/news_title"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
+
+    <com.psb.ui.widget.ItemHorizontal
+        android:id="@+id/feedback"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@color/white"
+        app:ItemHorizontal_img_height="@dimen/icon_size"
+        app:ItemHorizontal_img_src="@drawable/opinion_handle"
+        app:ItemHorizontal_img_width="@dimen/icon_size"
+        app:ItemHorizontal_text="@string/feedback"
+        app:ItemHorizontal_text_color="@color/news_title"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/white">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:layout_marginLeft="50dp"
+            android:background="@color/item_office_info_divider" />
+    </LinearLayout>
+
+
+    <com.psb.ui.widget.ItemHorizontal
+        android:id="@+id/opinion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:ItemHorizontal_img_height="@dimen/icon_size"
+        app:ItemHorizontal_img_src="@drawable/wrok_record"
+        app:ItemHorizontal_img_width="@dimen/icon_size"
+        app:ItemHorizontal_text="@string/opinion"
+        app:ItemHorizontal_text_color="@color/news_title"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
+
+    <com.psb.ui.widget.ItemHorizontal
+        android:id="@+id/pwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@color/white"
+        app:ItemHorizontal_img_height="@dimen/icon_size"
+        app:ItemHorizontal_img_src="@drawable/change_pwd"
+        app:ItemHorizontal_img_width="@dimen/icon_size"
+        app:ItemHorizontal_text="@string/change_pwd"
+        app:ItemHorizontal_text_color="@color/news_title"
+        app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
+
+</LinearLayout>

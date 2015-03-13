@@ -84,7 +84,7 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
             ImageView img = new ImageView(this.getContext());
             img.setScaleType(ImageView.ScaleType.CENTER_CROP);
             img.setLayoutParams(params);
-            ImageLoader.getInstance().displayImage(info.getThumb(), img, ImageUtil.options);
+            ImageLoader.getInstance().displayImage(info.getThumb() + ImageUtil.BANNER, img, ImageUtil.options);
             vBanners.add(img);
             img.setTag(info);
             img.setOnClickListener(this);
@@ -107,23 +107,11 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
             adapter.setArticle(article);
         }
         adapter.notifyDataSetChanged();
-//        if (article.getCurrent_page() == 1) {
-//            this.scrollTop();
-//        }
     }
-
-//    public void scrollTop() {
-//        if (null != mPullToRefreshScrollView) {
-//            mPullToRefreshScrollView.getRefreshableView().smoothScrollTo(0, 0);
-//        }
-//    }
 
     public void autoGetArticle() {
         if (System.currentTimeMillis() - request_time > AppContext.auto_request_time_lag) {
             request_time = System.currentTimeMillis();
-//            if (this.current_page == 1) {
-//                this.scrollTop();
-//            }
             mPullToRefreshScrollView.setRefreshing(true);
             Api.getInstance().getArticle(event, 0);
         }

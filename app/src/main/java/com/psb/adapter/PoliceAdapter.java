@@ -25,7 +25,7 @@ public class PoliceAdapter extends BaseAdapter implements View.OnClickListener {
     List<PoliceInfo> policeInfos = new ArrayList<>();
     private Context context;
 
-    public PoliceAdapter(Context context){
+    public PoliceAdapter(Context context) {
         this.context = context;
     }
 
@@ -83,7 +83,7 @@ public class PoliceAdapter extends BaseAdapter implements View.OnClickListener {
     @Override
     public void onClick(View v) {
         Intent intent = null;
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.office_name:
                 intent = new Intent();
                 intent.putExtra("id", (int) v.getTag());
@@ -94,7 +94,7 @@ public class PoliceAdapter extends BaseAdapter implements View.OnClickListener {
                 intent = new Intent(Intent.ACTION_DIAL, telUri);
                 break;
         }
-        if(null != intent){
+        if (null != intent) {
             this.context.startActivity(intent);
         }
     }

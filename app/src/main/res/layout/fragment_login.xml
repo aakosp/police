@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:padding="@dimen/default_padding">
+
+
+    <EditText
+        android:id="@+id/userid"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/newstitle_img_width"
+        android:background="@null"
+        android:drawableLeft="@drawable/id"
+        android:hint="@string/id"
+        android:padding="@dimen/default_padding"
+        android:textColorHint="@color/news_time"
+        android:textSize="@dimen/news_title_size" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/background" />
+
+    <EditText
+        android:id="@+id/userpwd"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:drawableLeft="@drawable/pwd"
+        android:hint="@string/pwd"
+        android:inputType="textPassword"
+        android:padding="@dimen/default_padding"
+        android:textColorHint="@color/news_time"
+        android:textSize="@dimen/news_title_size" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/background" />
+
+    <Button
+        android:id="@+id/login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/login_padding"
+        android:background="@color/default_blue_color"
+        android:padding="@dimen/default_padding"
+        android:text="@string/login"
+        android:textColor="@color/white"
+        android:textSize="@dimen/newstitle_title_size" />
+
+    <Button
+        android:id="@+id/register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@color/item_office_info_divider"
+        android:padding="@dimen/default_padding"
+        android:text="@string/register"
+        android:textColor="@color/news_content"
+        android:textSize="@dimen/newstitle_title_size" />
+
+    <Button
+        android:id="@+id/report"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/default_padding"
+        android:background="@color/item_office_info_divider"
+        android:padding="@dimen/default_padding"
+        android:text="@string/anonymous"
+        android:textColor="@color/news_content"
+        android:textSize="@dimen/newstitle_title_size" />
+
+</LinearLayout>

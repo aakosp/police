@@ -37,7 +37,6 @@ public class ActivityLogin extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Api.getInstance().getAddrs();
         intent = new Intent();
         topbar = (TopNavigationBar) findViewById(R.id.topbar);
         topbar.setActivity(this);

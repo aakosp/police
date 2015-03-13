@@ -76,6 +76,14 @@
         <activity
             android:name=".ui.activity.ActivityChangePwd"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.activity.ActivityArea"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppDialog"/>
+        <activity
+            android:name=".ui.activity.ActivitySex"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppDialog"/>
 
         <service
             android:name="com.baidu.location.f"

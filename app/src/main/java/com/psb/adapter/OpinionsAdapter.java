@@ -6,12 +6,14 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.psb.R;
 import com.psb.entity.NewsInfo;
 import com.psb.entity.Opinion;
 import com.psb.entity.Opinions;
 import com.psb.ui.util.ImageUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,10 +75,9 @@ public class OpinionsAdapter extends BaseAdapter {
         }
         Opinion item = list.get(position);
         holder.title.setText(item.getTitle());
-        if(Opinion.ANONYMOUS.equals(item.getType())){
+        if (Opinion.ANONYMOUS.equals(item.getType())) {
             holder.name.setText("匿名");
-        }
-        else{
+        } else {
             holder.name.setText(item.getUser().getName());
         }
         return convertView;

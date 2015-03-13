@@ -98,7 +98,7 @@ public class ActivityPoliceInfo extends BaseActivity implements AdapterView.OnIt
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.office_name:
                 Intent intent = new Intent();
                 intent.putExtra("id", (int) v.getTag());

@@ -36,7 +36,7 @@ public class ActivityNewsDetail extends BaseActivity {
         detail.setText(bundle.getString("content"));
         if (!StringUtils.isEmpty(bundle.getString("url"))) {
             img.setVisibility(View.VISIBLE);
-            ImageLoader.getInstance().displayImage(bundle.getString("url"), img, ImageUtil.options);
+            ImageLoader.getInstance().displayImage(bundle.getString("url") + ImageUtil.CONTENT, img, ImageUtil.options);
         }
 
     }

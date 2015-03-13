@@ -49,6 +49,10 @@ import java.util.Map;
 @SuppressLint("UseSparseArrays")
 public class ImageUtil {
 
+    public static final String LIST = "!list";
+    public static final String CONTENT = "!content";
+    public static final String BANNER = "!banner";
+
     public static DisplayImageOptions options = new DisplayImageOptions.Builder()
             .showDefault(getDefalut_img())
             .cacheInMemory(true)

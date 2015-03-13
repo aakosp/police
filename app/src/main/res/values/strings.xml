@@ -35,6 +35,7 @@
     <string name="minyi">民意测评</string>
     <string name="feedback">意见反馈</string>
     <string name="opinion">我的意见</string>
+    <string name="area">地区选择</string>
 
     <string name="zhanghao">账号：</string>
     <string name="mima">密码：</string>
@@ -48,6 +49,7 @@
     <string name="old_pwd">原密码：</string>
     <string name="new_pwd">新密码：</string>
     <string name="ok">确定</string>
+    <string name="click">点击选择</string>
 
     <string name="hit_zhanghao">6至20个字母或数字</string>
     <string name="hit_mima">6至20个字母、数字或下划线</string>

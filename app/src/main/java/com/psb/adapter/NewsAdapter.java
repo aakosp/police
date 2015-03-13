@@ -5,11 +5,13 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
+
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.psb.R;
 import com.psb.entity.Article;
 import com.psb.entity.NewsInfo;
 import com.psb.ui.util.ImageUtil;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,7 +73,7 @@ public class NewsAdapter extends BaseAdapter {
             holder = (NewsInfoHolder) convertView.getTag();
         }
         NewsInfo item = news.get(position);
-        ImageLoader.getInstance().displayImage(item.getThumb(), holder.img, ImageUtil.options);
+        ImageLoader.getInstance().displayImage(item.getThumb() + ImageUtil.LIST, holder.img, ImageUtil.options);
         holder.title.setText(item.getTitle());
         holder.time.setText(item.getTime());
         return convertView;

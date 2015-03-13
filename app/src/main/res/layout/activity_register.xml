@@ -168,7 +168,8 @@
             <RadioGroup
                 android:id="@+id/sex"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
                 <RadioButton
                     android:id="@+id/male"
@@ -226,69 +227,35 @@
             android:layout_height="@dimen/divider"
             android:background="@color/item_office_info_divider" />
 
-        <!--<LinearLayout
+        <LinearLayout
+            android:id="@+id/area"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:orientation="horizontal"
-            android:padding="@dimen/default_padding">-->
+            android:padding="@dimen/default_padding">
 
-        <TextView
-            android:layout_width="@dimen/register_textview_width"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/default_padding"
-            android:background="@color/white"
-            android:gravity="right"
-            android:paddingBottom="@dimen/default_padding"
-            android:paddingTop="@dimen/default_padding"
-            android:text="@string/addr"
-            android:textColor="@color/news_title"
-            android:textSize="@dimen/newstitle_title_size" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <!--<View
-                android:layout_width="@dimen/map_padding"
-                android:layout_height="match_parent" />
-
-            <kankan.wheel.widget.WheelView
-                android:id="@+id/xian"
-                android:layout_width="0dp"
+            <TextView
+                android:layout_width="@dimen/register_textview_width"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/white" />-->
+                android:gravity="right"
+                android:text="@string/addr"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
 
-            <View
-                android:layout_width="@dimen/map_padding"
-                android:layout_height="match_parent" />
-
-            <kankan.wheel.widget.WheelView
-                android:id="@+id/xiang"
-                android:layout_width="0dp"
+            <EditText
+                android:id="@+id/text_area"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/white" />
+                android:layout_marginLeft="@dimen/map_padding"
+                android:editable="false"
+                android:background="@null"
+                android:text="@string/click"
+                android:textColor="@color/news_time"
+                android:textSize="@dimen/newstitle_title_size" />
 
-            <View
-                android:layout_width="@dimen/map_padding"
-                android:layout_height="match_parent" />
-
-            <kankan.wheel.widget.WheelView
-                android:id="@+id/cun"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/white" />
-
-            <View
-                android:layout_width="@dimen/map_padding"
-                android:layout_height="match_parent" />
         </LinearLayout>
 
-        <!--</LinearLayout>-->
 
         <Button
             android:id="@+id/register"

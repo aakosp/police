@@ -8,6 +8,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.decode.RoundImageDecoder;
+import com.psb.protocol.Api;
 import com.util.LocationUtils;
 
 /**
@@ -38,7 +39,7 @@ public class AppContext extends Application {
                 .tasksProcessingOrder(QueueProcessingType.FIFO)
                 .imageDecoder(new RoundImageDecoder(false)).build();
         ImageLoader.getInstance().init(config);
-
+        Api.getInstance().getAddrs();
         appContext = this;
     }
 
