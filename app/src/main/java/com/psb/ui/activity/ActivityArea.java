@@ -7,6 +7,7 @@ import android.widget.Button;
 
 import com.psb.R;
 import com.psb.entity.Addr;
+import com.psb.event.Event;
 import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseActivity;
 
@@ -41,6 +42,7 @@ public class ActivityArea extends BaseActivity implements OnWheelChangedListener
             public void onClick(View v) {
                 Intent intent = new Intent();
                 intent.putExtra("area", mCurrentCunName);
+                setResult(Event.RESULT_AREA, intent);
                 finish();
             }
         });

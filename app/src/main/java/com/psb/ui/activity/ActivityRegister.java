@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.psb.R;
 import com.psb.event.Event;
 import com.psb.event.EventNotifyCenter;
@@ -77,6 +78,15 @@ public class ActivityRegister extends BaseActivity implements View.OnClickListen
             return;
         }
 
+        if(areaId == 0){
+            ToastUtil.showToast(this, "请选择所在地区", 0);
+            return;
+        }
+
+        if(sex == -1){
+            ToastUtil.showToast(this, "请选择性别", 0);
+            return;
+        }
         String s = "WOMEN";
         if (sex == 1) {
             s = "MEN";
@@ -104,13 +114,30 @@ public class ActivityRegister extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.sex:
+                intent.setClass(this, ActivitySex.class);
+                this.startActivityForResult(intent, Event.RESULT_AREA);
+                break;
             case R.id.area:
                 intent.setClass(this, ActivityArea.class);
-                this.startActivity(intent);
+                this.startActivityForResult(intent, Event.RESULT_AREA);
                 break;
             case R.id.register:
                 register();
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode) {
+            case Event.RESULT_SEX:
+                sex = data.getIntExtra("sex", -1);
+                break;
+            case Event.RESULT_AREA:
+                areaId = data.getIntExtra("area", 0);
+                break;
+        }
+
     }
 }

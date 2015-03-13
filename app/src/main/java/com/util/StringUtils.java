@@ -15,6 +15,12 @@ public class StringUtils {
     private final static Pattern emailer = Pattern
             .compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
 
+    private final static Pattern ID = Pattern
+            .compile("^[0-9a-zA-Z]{6,20}$");
+
+    private final static Pattern PWD = Pattern
+            .compile("[a-z0-9A-Z _]{6,20}$");
+
     /**
      * 判断给定字符串是否空白串。
      *
@@ -25,6 +31,18 @@ public class StringUtils {
         if (input == null || 0 == TextUtils.getTrimmedLength(input))
             return true;
         return false;
+    }
+
+    public static boolean isId(String id) {
+        if (id == null)
+            return false;
+        return ID.matcher(id).matches();
+    }
+
+    public static boolean isPwd(String pwd) {
+        if (pwd == null)
+            return false;
+        return ID.matcher(pwd).matches();
     }
 
     /**

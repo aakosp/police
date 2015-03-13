@@ -31,4 +31,8 @@ public class Event {
     public static final int CHANGE_PWD = 20;            //修改密码
 
     public static final int COMMIT_WORK = 21;            //提交工作记录
+
+
+    public static final int RESULT_SEX = 100;           //获取性别
+    public static final int RESULT_AREA = 101;          //获取地区
 }
