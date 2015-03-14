@@ -36,6 +36,7 @@
     <string name="feedback">意见反馈</string>
     <string name="opinion">我的意见</string>
     <string name="area">地区选择</string>
+    <string name="nouser">暂无民警信息</string>
 
     <string name="zhanghao">账号：</string>
     <string name="mima">密码：</string>

@@ -25,7 +25,17 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider" />
 
+    <TextView
+        android:id="@+id/nouser"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="@dimen/newstitle_title_size"
+        android:textColor="@color/news_title"
+        android:text="@string/nouser"
+        android:visibility="gone"/>
+
     <LinearLayout
+        android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -101,6 +111,4 @@
             </LinearLayout>
         </LinearLayout>
     </LinearLayout>
-
-
 </LinearLayout>

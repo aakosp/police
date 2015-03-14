@@ -58,6 +58,7 @@ public class PoliceAdapter extends BaseAdapter implements View.OnClickListener {
         if (null == convertView) {
             convertView = View.inflate(parent.getContext(), R.layout.item_police, null);
             policeViewHolder = new PoliceViewHolder();
+            policeViewHolder.nouser = (TextView) convertView.findViewById(R.id.nouser);
             policeViewHolder.name = (TextView) convertView.findViewById(R.id.name);
             policeViewHolder.tel = (TextView) convertView.findViewById(R.id.tel);
             policeViewHolder.tel.setOnClickListener(this);
@@ -71,12 +72,17 @@ public class PoliceAdapter extends BaseAdapter implements View.OnClickListener {
         }
 
         PoliceInfo info = this.policeInfos.get(position);
-        policeViewHolder.name.setText(info.getPolice().getPolice_name());
-        policeViewHolder.tel.setText(info.getPolice().getPhone());
-        policeViewHolder.tel.setTag(info.getPolice().getPhone());
-        policeViewHolder.addr.setText(info.getAddress().getName());
-        policeViewHolder.office.setText(info.getPolice().getPolice_station_id() + "警务室");
-        policeViewHolder.office.setTag(info.getPolice().getPolice_station_id());
+        if(null != info.getPolice()){
+            policeViewHolder.nouser.setVisibility(View.VISIBLE);
+        }
+        else{
+            policeViewHolder.name.setText(info.getPolice().get(0).getPolice_name());
+            policeViewHolder.tel.setText(info.getPolice().get(0).getPhone());
+            policeViewHolder.tel.setTag(info.getPolice().get(0).getPhone());
+            policeViewHolder.office.setText(info.getPolice().get(0).getPolice_station_name());
+            policeViewHolder.office.setTag(info.getPolice().get(0).getPolice_station_id());
+        }
+        policeViewHolder.addr.setText(info.getName());
         return convertView;
     }
 
@@ -100,7 +106,7 @@ public class PoliceAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
     private static class PoliceViewHolder {
-        public TextView addr, name, office, tel;
+        public TextView addr, name, office, tel, nouser;
         public ImageView img;
     }
 }

@@ -151,6 +151,7 @@
             android:background="@color/item_office_info_divider" />
 
         <LinearLayout
+            android:id="@+id/sex"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@color/white"
@@ -165,29 +166,16 @@
                 android:textColor="@color/news_title"
                 android:textSize="@dimen/newstitle_title_size" />
 
-            <RadioGroup
-                android:id="@+id/sex"
+            <TextView
+                android:id="@+id/text_sex"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
-
-                <RadioButton
-                    android:id="@+id/male"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:tag="@string/men"
-                    android:text="男" />
-
-                <RadioButton
-                    android:id="@+id/female"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:tag="@string/women"
-                    android:text="女" />
-
-            </RadioGroup>
+                android:layout_marginLeft="@dimen/map_padding"
+                android:background="@null"
+                android:editable="false"
+                android:text="@string/click"
+                android:textColor="@color/news_time"
+                android:textSize="@dimen/newstitle_title_size" />
 
         </LinearLayout>
 
@@ -243,13 +231,13 @@
                 android:textColor="@color/news_title"
                 android:textSize="@dimen/newstitle_title_size" />
 
-            <EditText
+            <TextView
                 android:id="@+id/text_area"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/map_padding"
-                android:editable="false"
                 android:background="@null"
+                android:editable="false"
                 android:text="@string/click"
                 android:textColor="@color/news_time"
                 android:textSize="@dimen/newstitle_title_size" />

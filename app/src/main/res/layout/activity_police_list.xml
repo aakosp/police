@@ -16,97 +16,105 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider" />
 
-    <TextView
-        android:id="@+id/addr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding"
-        android:background="@color/bkg_tab"
-        android:paddingBottom="@dimen/map_padding"
-        android:paddingLeft="@dimen/default_padding"
-        android:paddingTop="@dimen/map_padding"
-        android:textColor="@color/news_time"
-        android:textSize="@dimen/newstitle_time_size" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider" />
-
     <LinearLayout
+        android:id="@+id/lay_addr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/default_padding">
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="@dimen/police_img_width"
-            android:layout_height="@dimen/police_img_height"
-            android:scaleType="centerCrop" />
+        <TextView
+            android:id="@+id/addr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding"
+            android:background="@color/bkg_tab"
+            android:paddingBottom="@dimen/map_padding"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingTop="@dimen/map_padding"
+            android:textColor="@color/news_time"
+            android:textSize="@dimen/newstitle_time_size" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
+            android:background="@color/white"
+            android:orientation="horizontal"
             android:padding="@dimen/default_padding">
 
-            <TextView
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/map_padding"
-                android:paddingLeft="@dimen/default_padding"
-                android:paddingRight="@dimen/default_padding"
-                android:textColor="@color/news_title"
-                android:textSize="@dimen/newstitle_title_size" />
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="@dimen/police_img_width"
+                android:layout_height="@dimen/police_img_height"
+                android:scaleType="centerCrop" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/map_padding"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/default_padding"
-                android:paddingRight="@dimen/default_padding">
-
-                <ImageView
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/position" />
+                android:orientation="vertical"
+                android:padding="@dimen/default_padding">
 
                 <TextView
-                    android:id="@+id/office_name"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/name"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/news_time"
-                    android:textSize="@dimen/news_title_size" />
-            </LinearLayout>
+                    android:layout_marginTop="@dimen/map_padding"
+                    android:paddingLeft="@dimen/default_padding"
+                    android:paddingRight="@dimen/default_padding"
+                    android:textColor="@color/news_title"
+                    android:textSize="@dimen/newstitle_title_size" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/default_padding"
-                android:paddingRight="@dimen/default_padding">
-
-                <ImageView
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/tel" />
-
-                <TextView
-                    android:id="@+id/tel"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autoLink="phone"
-                    android:textColor="@color/default_blue_color"
-                    android:textSize="@dimen/news_title_size" />
+                    android:layout_marginTop="@dimen/map_padding"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/default_padding"
+                    android:paddingRight="@dimen/default_padding">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_size"
+                        android:layout_height="@dimen/icon_size"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/position" />
+
+                    <TextView
+                        android:id="@+id/office_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/news_time"
+                        android:textSize="@dimen/news_title_size" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/default_padding"
+                    android:paddingRight="@dimen/default_padding">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_size"
+                        android:layout_height="@dimen/icon_size"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/tel" />
+
+                    <TextView
+                        android:id="@+id/tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autoLink="phone"
+                        android:textColor="@color/default_blue_color"
+                        android:textSize="@dimen/news_title_size" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
     <View
