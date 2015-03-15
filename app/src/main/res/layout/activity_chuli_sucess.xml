@@ -24,7 +24,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/horizontal_item_img_height"
-            android:background="@drawable/report_sucess"
+            android:background="@drawable/success"
             android:minHeight="@dimen/newstitle_img_width"
             android:minWidth="@dimen/newstitle_img_width"
             android:scaleType="centerInside" />

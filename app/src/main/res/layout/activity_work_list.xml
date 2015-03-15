@@ -14,7 +14,6 @@
     <com.handmark.pulltorefresh.library.PullToRefreshListView
         android:id="@+id/list"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@color/item_office_info_divider" />
+        android:layout_height="match_parent" />
 
 </LinearLayout>

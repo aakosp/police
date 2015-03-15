@@ -117,7 +117,9 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
             Log.e("uri", uri.toString());
             adapter.addImage(uri);
         } else if (requestCode == Event.RESULT_WORK) {
+
             strType = data.getStringExtra("id");
+            Log.d("id", strType);
             type.setText(data.getStringExtra("type"));
         }
     }
@@ -179,7 +181,7 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
                     ToastUtil.showToast(this, res.getError(), 0);
                 } else if (res.getId() > -1) {
                     Intent intent = new Intent();
-                    intent.setClass(this, ActivityReportSucess.class);
+                    intent.setClass(this, ActivityWorkSuccess.class);
                     this.startActivity(intent);
                     this.finish();
                 }

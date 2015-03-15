@@ -38,7 +38,7 @@ public class Cache {
     private Opinions opinions_undo;
     private Map<Integer, Opinion> opinions = new HashMap<>();
 //    private Map<Integer, Opinion> opinionsMap = new HashMap<>();
-    private ID register, opi, chuli, workid;
+    private ID register, opi, chuli, workid, sign;
     private List<PoliceInfo> policeInfo = new ArrayList<>();
     private List<Work> works = new ArrayList<>();
 
@@ -77,7 +77,7 @@ public class Cache {
                 break;
 
             case Event.SGIN:
-                ID sign = JSON.parseObject(responseBody, ID.class);
+                sign = JSON.parseObject(responseBody, ID.class);
                 break;
 
             case Event.GET_ADDRS:
@@ -248,5 +248,9 @@ public class Cache {
 
     public synchronized ID getWorkid(){
         return workid;
+    }
+
+    public synchronized ID getSign(){
+        return sign;
     }
 }

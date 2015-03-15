@@ -26,6 +26,14 @@ public class ActivityChuliSuccess extends BaseActivity {
         setContentView(R.layout.activity_chuli_sucess);
         top = (TopNavigationBar) findViewById(R.id.top);
         fanhui = (Button) findViewById(R.id.fanhui);
+        txt = (TextView) findViewById(R.id.text);
+        Intent intent = getIntent();
+        if(null != intent){
+            if(intent.getBooleanExtra("sign", false)){
+                top.setTitleText("签到");
+                txt.setText("签到成功");
+            }
+        }
         top.setActivity(this);
 
         fanhui.setOnClickListener(new View.OnClickListener() {

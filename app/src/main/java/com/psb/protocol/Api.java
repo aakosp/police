@@ -197,7 +197,7 @@ public class Api {
     public void commitWork(String strTitle, String strType, String info, String pic) {
         String url = base_url + "/daily_log";
         List<NameValuePair> params = new ArrayList<>();
-        NameValuePair id = new BasicNameValuePair("user_id", "" + Cache.getInstance().getUser().getId());
+        NameValuePair id = new BasicNameValuePair("police_id", "" + Cache.getInstance().getUser().getId());
         params.add(id);
         NameValuePair title = new BasicNameValuePair("title", strTitle);
         params.add(title);

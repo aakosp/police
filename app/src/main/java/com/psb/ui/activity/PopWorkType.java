@@ -2,6 +2,7 @@ package com.psb.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
@@ -16,11 +17,10 @@ import kankan.wheel.widget.adapters.ArrayWheelAdapter;
 /**
  * Created by aako on 2015/3/15.
  */
-public class PopWorkType extends BaseActivity implements OnWheelChangedListener {
+public class PopWorkType extends BaseActivity {
 
     private Button ok;
     private WheelView type;
-    private WheelView wvCun;
     private WorkTypeItem[] typeData;
     private String strType;
     private String strId;
@@ -35,12 +35,16 @@ public class PopWorkType extends BaseActivity implements OnWheelChangedListener 
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
+                strType = typeData[type.getCurrentItem()].type;
+                strId = typeData[type.getCurrentItem()].id;
                 intent.putExtra("type", strType);
                 intent.putExtra("id", strId);
                 setResult(Event.RESULT_WORK, intent);
                 finish();
             }
         });
+//        strType = "社情民意";
+//        strId = "OPINION";
         WorkTypeItem item1 = new WorkTypeItem("OPINION", "社情民意");
         WorkTypeItem item2 = new WorkTypeItem("DISPUTE", "矛盾纠纷");
         WorkTypeItem item3 = new WorkTypeItem("SECURITY", "治安防范");
@@ -49,14 +53,8 @@ public class PopWorkType extends BaseActivity implements OnWheelChangedListener 
 
         typeData = new WorkTypeItem[]{item1, item2, item3, item4, item5};
         type.setViewAdapter(new ArrayWheelAdapter<WorkTypeItem>(this, typeData));
-        type.addChangingListener(this);
         type.setVisibleItems(3);
-    }
-
-    @Override
-    public void onChanged(WheelView wheel, int oldValue, int newValue) {
-        strId = typeData[newValue].id;
-        strType = typeData[newValue].type;
+        type.setCurrentItem(0);
     }
 
     private class WorkTypeItem {

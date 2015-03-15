@@ -61,7 +61,6 @@ public class NewsGuide extends PullToRefreshListView implements PullToRefreshBas
 
     @Override
     public void onPullDownToRefresh(PullToRefreshBase<ListView> refreshView) {
-        Log.d("onRefresh", "onRefresh");
         request_time = System.currentTimeMillis();
         Api.getInstance().getArticle(event, 0);
     }

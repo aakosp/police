@@ -20,7 +20,7 @@ public class ActivityWorkSuccess extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_chuli_sucess);
+        setContentView(R.layout.activity_work_sucess);
         top = (TopNavigationBar) findViewById(R.id.top);
         fanhui = (Button) findViewById(R.id.fanhui);
         top.setActivity(this);

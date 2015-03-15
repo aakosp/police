@@ -1,5 +1,6 @@
 package com.psb.ui.activity;
 
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.os.Message;
 import android.widget.ListView;
@@ -13,6 +14,8 @@ import com.psb.event.EventNotifyCenter;
 import com.psb.protocol.Api;
 import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseActivity;
+import com.psb.ui.util.DisplayUtil;
+import com.psb.ui.util.ImageUtil;
 import com.psb.ui.widget.TopNavigationBar;
 
 /**
@@ -29,9 +32,12 @@ public class ActivityWorkList extends BaseActivity implements PullToRefreshBase.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work_list);
         top = (TopNavigationBar) findViewById(R.id.top);
+        top.setActivity(this);
         list = (PullToRefreshListView) findViewById(R.id.list);
         adapter = new WorkAdapter(this);
         list.setAdapter(adapter);
+        list.getRefreshableView().setDivider(new ColorDrawable(getResources().getColor(R.color.item_office_info_divider)));
+        list.getRefreshableView().setDividerHeight(DisplayUtil.dip2px(0.5f));
         list.setOnRefreshListener(this);
 
         Api.getInstance().getWork();
