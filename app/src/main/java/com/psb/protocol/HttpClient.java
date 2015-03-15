@@ -1,7 +1,9 @@
 package com.psb.protocol;
 
 import android.net.http.AndroidHttpClient;
+
 import com.util.StringUtils;
+
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
 import org.apache.http.HttpResponse;
@@ -16,6 +18,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
 import org.apache.http.client.protocol.HttpClientContext;
 import org.apache.http.protocol.HttpContext;
+
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.List;

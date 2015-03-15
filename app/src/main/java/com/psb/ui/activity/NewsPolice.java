@@ -161,7 +161,7 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
             this.onRefreshComplete();
             return;
         }
-        if (!Api.getInstance().getArticle(event, last_page)) {
+        if (!Api.getInstance().getArticle(event, current_page + 1)) {
             this.onRefreshComplete();
             return;
         }

@@ -26,12 +26,12 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <com.psb.ui.widget.RoundImageView
+                <ImageView
                     android:id="@+id/avatar"
                     android:layout_width="@dimen/avatar_size"
                     android:layout_height="@dimen/avatar_size"
                     android:layout_alignParentLeft="true"
-                    android:scaleType="centerInside"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/id" />
 
                 <TextView

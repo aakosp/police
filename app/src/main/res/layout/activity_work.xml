@@ -42,7 +42,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
-            android:hint="@string/type"
+            android:editable="false"
+            android:hint="@string/hit_xuanze"
             android:padding="@dimen/default_padding"
             android:textColor="@color/news_title"
             android:textColorHint="@color/news_title"
@@ -68,83 +69,13 @@
             android:textColorHint="@color/news_title" />
     </LinearLayout>
 
-    <TableLayout
+    <com.psb.ui.widget.ImageGridView
+        android:id="@+id/imgs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/default_padding">
-
-        <TableRow>
-
-            <ImageView
-                android:id="@+id/img1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/map_padding"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:minHeight="@dimen/newstitle_img_height"
-                android:scaleType="centerInside"
-                android:src="@drawable/add" />
-
-            <ImageView
-                android:id="@+id/img2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/map_padding"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:minHeight="@dimen/newstitle_img_height"
-                android:scaleType="centerInside"
-                android:src="@drawable/add" />
-
-            <ImageView
-                android:id="@+id/img3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/map_padding"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:minHeight="@dimen/newstitle_img_height"
-                android:scaleType="centerInside"
-                android:src="@drawable/add" />
-        </TableRow>
-
-        <TableRow>
-
-            <ImageView
-                android:id="@+id/img4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/map_padding"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:minHeight="@dimen/newstitle_img_height"
-                android:scaleType="centerInside"
-                android:src="@drawable/add" />
-
-            <ImageView
-                android:id="@+id/img5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/map_padding"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:minHeight="@dimen/newstitle_img_height"
-                android:scaleType="centerInside"
-                android:src="@drawable/add" />
-
-            <ImageView
-                android:id="@+id/img6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/map_padding"
-                android:layout_weight="1"
-                android:background="@color/white"
-                android:minHeight="@dimen/newstitle_img_height"
-                android:scaleType="centerInside"
-                android:src="@drawable/add" />
-        </TableRow>
-    </TableLayout>
+        android:horizontalSpacing="@dimen/default_padding"
+        android:numColumns="3"
+        android:verticalSpacing="@dimen/default_padding" />
 
     <Button
         android:id="@+id/commit"

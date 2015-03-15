@@ -47,7 +47,8 @@
                 android:layout_marginLeft="@dimen/map_padding"
                 android:background="@null"
                 android:hint="@string/hit_zhanghao"
-                android:maxLength="20" />
+                android:maxLength="20"
+                android:textSize="@dimen/newstitle_title_size" />
 
         </LinearLayout>
 
@@ -79,8 +80,8 @@
                 android:background="@null"
                 android:hint="@string/hit_mima"
                 android:inputType="textPassword"
-                android:maxLength="20" />
-
+                android:maxLength="20"
+                android:textSize="@dimen/newstitle_title_size" />
         </LinearLayout>
 
         <View
@@ -109,10 +110,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/map_padding"
                 android:background="@null"
-                android:hint="@string/zaicishuru"
                 android:inputType="textPassword"
                 android:maxLength="20" />
-
         </LinearLayout>
 
         <View
@@ -141,8 +140,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="@dimen/map_padding"
                 android:background="@null"
-                android:maxLength="20" />
-
+                android:maxLength="8" />
         </LinearLayout>
 
         <View
@@ -176,7 +174,6 @@
                 android:text="@string/click"
                 android:textColor="@color/news_time"
                 android:textSize="@dimen/newstitle_title_size" />
-
         </LinearLayout>
 
         <View
@@ -207,7 +204,6 @@
                 android:background="@null"
                 android:inputType="number"
                 android:maxLength="11" />
-
         </LinearLayout>
 
         <View
@@ -241,9 +237,7 @@
                 android:text="@string/click"
                 android:textColor="@color/news_time"
                 android:textSize="@dimen/newstitle_title_size" />
-
         </LinearLayout>
-
 
         <Button
             android:id="@+id/register"
@@ -258,6 +252,6 @@
             android:text="@string/register"
             android:textColor="@color/white"
             android:textSize="@dimen/newstitle_title_size" />
-
     </LinearLayout>
+
 </ScrollView>

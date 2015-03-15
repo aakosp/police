@@ -1,5 +1,6 @@
 package com.psb.ui.activity;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
@@ -73,7 +74,7 @@ public class ActivityLogin extends BaseActivity implements View.OnClickListener 
                 intent.setClass(this, ActivityRegister.class);
                 break;
             case R.id.report:
-                intent.setClass(this, ActivityOpinionFeedBack.class);
+                intent.setClass(this, ActivityOptions.class);
                 intent.putExtra("login", true);
                 break;
             default:

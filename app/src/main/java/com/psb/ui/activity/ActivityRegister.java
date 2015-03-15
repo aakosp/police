@@ -64,11 +64,11 @@ public class ActivityRegister extends BaseActivity implements View.OnClickListen
         String strName = name.getText().toString();
         String strTel = tel.getText().toString();
 
-        if (StringUtils.isEmpty(strId)) {
+        if (!StringUtils.isId(strId)) {
             ToastUtil.showToast(this, "账号只能包含字母或数字，最少6位", 0);
             return;
         }
-        if (StringUtils.isEmpty(strPwd)) {
+        if (!StringUtils.isPwd(strPwd)) {
             ToastUtil.showToast(this, "密码只能包含字母、数字、下划线，最少6位", 0);
             return;
         }
@@ -81,12 +81,12 @@ public class ActivityRegister extends BaseActivity implements View.OnClickListen
             return;
         }
 
-        if(areaId == 0){
+        if (areaId == 0) {
             ToastUtil.showToast(this, "请选择所在地区", 0);
             return;
         }
 
-        if(sexid == -1){
+        if (sexid == -1) {
             ToastUtil.showToast(this, "请选择性别", 0);
             return;
         }
@@ -136,15 +136,15 @@ public class ActivityRegister extends BaseActivity implements View.OnClickListen
         switch (resultCode) {
             case Event.RESULT_SEX:
                 sexid = data.getIntExtra("sex", -1);
-                if(sexid == 1){
+                if (sexid == 1) {
                     text_sex.setText("男");
-                }else if(sexid == 0){
+                } else if (sexid == 0) {
                     text_sex.setText("女");
                 }
                 break;
             case Event.RESULT_AREA:
                 areaId = data.getIntExtra("areaid", 0);
-                if(areaId != 0){
+                if (areaId != 0) {
                     text_area.setText(data.getStringExtra("areastr"));
                 }
                 break;

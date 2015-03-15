@@ -16,7 +16,7 @@ public class StringUtils {
             .compile("\\w+([-+.]\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*");
 
     private final static Pattern ID = Pattern
-            .compile("^[0-9a-zA-Z]{6,20}$");
+            .compile("[A-Za-z0-9]{6,20}");
 
     private final static Pattern PWD = Pattern
             .compile("[a-z0-9A-Z _]{6,20}$");

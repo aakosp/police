@@ -32,7 +32,7 @@ import java.util.List;
 public class FragmentGuide extends BaseFragment implements AdapterView.OnItemClickListener, ViewPager.OnPageChangeListener {
 
     private View mView;
-    private View query;
+    //    private View query;
     private ViewPagerWithTitle viewPager;
 
     private String guideColumns[] = AppContext.getInstance().getResources().getStringArray(R.array.guide_columns);
@@ -47,7 +47,7 @@ public class FragmentGuide extends BaseFragment implements AdapterView.OnItemCli
             return mView;
         }
         mView = this.getActivity().getLayoutInflater().inflate(R.layout.activity_guide, container, false);
-        query = mView.findViewById(R.id.query);
+//        query = mView.findViewById(R.id.query);
         viewPager = (ViewPagerWithTitle) mView.findViewById(R.id.vp);
         viewPager.setOnPageChangeListener(this);
         this.initView();

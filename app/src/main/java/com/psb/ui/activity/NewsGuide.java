@@ -72,7 +72,7 @@ public class NewsGuide extends PullToRefreshListView implements PullToRefreshBas
             this.onRefreshComplete();
             return;
         }
-        if (!Api.getInstance().getArticle(event, lastPage)) {
+        if (!Api.getInstance().getArticle(event, current_page + 1)) {
             this.onRefreshComplete();
             return;
         }

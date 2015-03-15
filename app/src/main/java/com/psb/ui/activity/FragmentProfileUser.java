@@ -1,8 +1,10 @@
 package com.psb.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,11 +49,16 @@ public class FragmentProfileUser extends BaseFragment implements View.OnClickLis
         profile.setOnClickListener(this);
         pwd.setOnClickListener(this);
         intent = new Intent();
+
+        return mView;
+    }
+
+    @Override
+    public void init() {
         if (null != Cache.getInstance().getUser()) {
             name.setText(Cache.getInstance().getUser().getName());
             id.setText(Cache.getInstance().getUser().getUser_name());
         }
-        return mView;
     }
 
     @Override
@@ -60,13 +67,13 @@ public class FragmentProfileUser extends BaseFragment implements View.OnClickLis
             case R.id.minyi:
                 return;
             case R.id.feedback:
-                intent.setClass(this.getActivity(), ActivityOpinionFeedBack.class);
+                intent.setClass(this.getActivity(), ActivityOpinions.class);
                 break;
             case R.id.opinion:
-                intent.setClass(this.getActivity(), ActivityOpinionFeedBack.class);
+                intent.setClass(this.getActivity(), ActivityOpinionProcessing.class);
                 break;
             case R.id.profile:
-//                intent.setClass(this.getActivity(), ActivityOpinionFeedBack.class);
+//                intent.setClass(this.getActivity(), ActivityOpinionInfo.class);
                 return;
             case R.id.pwd:
                 intent.setClass(this.getActivity(), ActivityChangePwd.class);
@@ -76,4 +83,5 @@ public class FragmentProfileUser extends BaseFragment implements View.OnClickLis
         }
         this.getActivity().startActivity(intent);
     }
+
 }

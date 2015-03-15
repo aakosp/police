@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+    <com.psb.ui.widget.TopNavigationBar
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:titleText="@string/record" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/default_padding">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/horizontal_item_img_height"
+            android:background="@drawable/sucess"
+            android:minHeight="@dimen/newstitle_img_width"
+            android:minWidth="@dimen/newstitle_img_width"
+            android:scaleType="centerInside" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/default_padding"
+            android:text="@string/work_sucess"
+            android:textColor="@color/niming"
+            android:textSize="@dimen/activity_horizontal_margin"
+            android:textStyle="bold" />
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/fanhui"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/default_padding"
+        android:layout_marginTop="@dimen/newstitle_img_height"
+        android:background="@color/shiming"
+        android:padding="@dimen/default_padding"
+        android:text="@string/fanhuip"
+        android:textColor="@color/white"
+        android:textSize="@dimen/news_title_size" />
+
+</LinearLayout>

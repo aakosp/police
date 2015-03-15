@@ -11,6 +11,7 @@ import com.psb.R;
 import com.psb.entity.Article;
 import com.psb.entity.NewsInfo;
 import com.psb.ui.util.ImageUtil;
+import com.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -73,7 +74,12 @@ public class NewsAdapter extends BaseAdapter {
             holder = (NewsInfoHolder) convertView.getTag();
         }
         NewsInfo item = news.get(position);
-        ImageLoader.getInstance().displayImage(item.getThumb() + ImageUtil.LIST, holder.img, ImageUtil.options);
+        if (StringUtils.isEmpty(item.getThumb())) {
+            holder.img.setVisibility(View.GONE);
+        } else {
+            holder.img.setVisibility(View.VISIBLE);
+            ImageLoader.getInstance().displayImage(item.getThumb() + ImageUtil.LIST, holder.img, ImageUtil.options);
+        }
         holder.title.setText(item.getTitle());
         holder.time.setText(item.getTime());
         return convertView;

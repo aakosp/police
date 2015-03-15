@@ -10,7 +10,7 @@ public class PoliceInfo {
     private int parentid;
     private String name;
     private int order;
-    private List<Police> police;
+    private Police police;
 
     public int getId() {
         return id;
@@ -44,11 +44,11 @@ public class PoliceInfo {
         this.order = order;
     }
 
-    public List<Police> getPolice() {
+    public Police getPolice() {
         return police;
     }
 
-    public void setPolice(List<Police> police) {
+    public void setPolice(Police police) {
         this.police = police;
     }
 
