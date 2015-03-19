@@ -2,6 +2,7 @@ package com.psb.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -29,9 +30,11 @@ public class ActivityChuliSuccess extends BaseActivity {
         txt = (TextView) findViewById(R.id.text);
         Intent intent = getIntent();
         if (null != intent) {
+            Log.d("sign", intent.getBooleanExtra("sign", false) + "");
             if (intent.getBooleanExtra("sign", false)) {
                 top.setTitleText("签到");
                 txt.setText("签到成功");
+                fanhui.setText("返回个人中心");
             }
         }
         top.setActivity(this);

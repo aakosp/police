@@ -23,7 +23,7 @@ public class Api {
 
     private static Api api;
     private String base_url = "http://" + HttpClient.SERVER;
-//    private List<NameValuePair> params = new ArrayList<>();
+    //    private List<NameValuePair> params = new ArrayList<>();
     private Map<Integer, Long> requestTime = new HashMap<>();
     private Executor executor = ThreadPoolExecutorFactory.createExecutor();
 
@@ -61,7 +61,7 @@ public class Api {
         executor.execute(data);
     }
 
-    public void sign_up (String content, double location_x, double location_y) {
+    public void sign_up(String content, double location_x, double location_y) {
         String url = base_url + "/sign_up";
         List<NameValuePair> params = new ArrayList<>();
         NameValuePair user = new BasicNameValuePair("user_id", "" + Cache.getInstance().getUser().getId());
@@ -76,19 +76,21 @@ public class Api {
         executor.execute(data);
     }
 
-    public void sign_up_session (String session, double location_x, double location_y) {
-        String url = base_url + "/sign_up/"+session;
+    public void sign_up_session(String session, double location_x, double location_y) {
+        String url = base_url + "/sign_up/" + session;
         List<NameValuePair> params = new ArrayList<>();
-        NameValuePair x = new BasicNameValuePair("sign_up_location_x", "" + location_x);
-        NameValuePair y = new BasicNameValuePair("sign_up_location_y", "" + location_y);
+        NameValuePair s = new BasicNameValuePair("session_id", session);
+        NameValuePair x = new BasicNameValuePair("location_x", "" + location_x);
+        NameValuePair y = new BasicNameValuePair("location_y", "" + location_y);
+        params.add(s);
         params.add(x);
         params.add(y);
         HttpRequestData data = new HttpRequestData(params, url, Event.SGIN, HttpClient.RequestType.PUT);
         executor.execute(data);
     }
 
-    public void sign_up_end (String session) {
-        String url = base_url + "/sign_up/"+session;
+    public void sign_up_end(String session) {
+        String url = base_url + "/sign_up/" + session;
         HttpRequestData data = new HttpRequestData(null, url, Event.SGIN, HttpClient.RequestType.DELETE);
         executor.execute(data);
     }
@@ -96,7 +98,7 @@ public class Api {
     public void commitOpinion(String strTitle, String info, String pic, String strType) {
         String url = base_url + "/opinion";
         List<NameValuePair> params = new ArrayList<>();
-        if(null != Cache.getInstance().getUser()){
+        if (null != Cache.getInstance().getUser()) {
             NameValuePair id = new BasicNameValuePair("user_id", "" + Cache.getInstance().getUser().getId());
             params.add(id);
         }
@@ -117,11 +119,11 @@ public class Api {
     public void chuliOpinion(int id, String info) {
         String url = base_url + "/opinion_reply";
         List<NameValuePair> params = new ArrayList<>();
-        NameValuePair pid = new BasicNameValuePair("opinion_id", ""+id);
+        NameValuePair pid = new BasicNameValuePair("opinion_id", "" + id);
         params.add(pid);
         NameValuePair pinfo = new BasicNameValuePair("reply_content", info);
         params.add(pinfo);
-        NameValuePair uid = new BasicNameValuePair("user_id", ""+Cache.getInstance().getUser().getId());
+        NameValuePair uid = new BasicNameValuePair("user_id", "" + Cache.getInstance().getUser().getId());
         params.add(uid);
         HttpRequestData data = new HttpRequestData(params, url, Event.CHULI);
         executor.execute(data);
@@ -231,7 +233,7 @@ public class Api {
     }
 
     public void getWork() {
-        String url = base_url + "/daily_log?police_id="+Cache.getInstance().getUser().getId();
+        String url = base_url + "/daily_log?police_id=" + Cache.getInstance().getUser().getId();
         HttpRequestData data = new HttpRequestData(url, Event.GET_WORK);
         executor.execute(data);
     }

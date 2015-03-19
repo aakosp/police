@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.psb.R;
@@ -22,7 +23,7 @@ import com.psb.ui.widget.RoundImageView;
 public class FragmentProfileUser extends BaseFragment implements View.OnClickListener {
 
     private View mView, profile;
-    private ItemHorizontal minyi, feedback, opinion, pwd;
+    private ItemHorizontal minyi, feedback, opinion, pwd, logout;
     private RoundImageView avatar;
     private TextView name, id;
     private Intent intent;
@@ -42,7 +43,8 @@ public class FragmentProfileUser extends BaseFragment implements View.OnClickLis
         opinion = (ItemHorizontal) mView.findViewById(R.id.opinion);
         id = (TextView) mView.findViewById(R.id.id);
         pwd = (ItemHorizontal) mView.findViewById(R.id.pwd);
-
+        logout = (ItemHorizontal) mView.findViewById(R.id.logout);
+        logout.setOnClickListener(this);
         minyi.setOnClickListener(this);
         feedback.setOnClickListener(this);
         opinion.setOnClickListener(this);
@@ -55,15 +57,17 @@ public class FragmentProfileUser extends BaseFragment implements View.OnClickLis
 
     @Override
     public void init() {
-        if (null != Cache.getInstance().getUser()) {
-            name.setText(Cache.getInstance().getUser().getName());
-            id.setText(Cache.getInstance().getUser().getUser_name());
-        }
+        name.setText(Cache.getInstance().getName());
+        id.setText(Cache.getInstance().getId());
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.logout:
+                Cache.getInstance().setLogin(false);
+                FragmentProfile.choose();
+                return;
             case R.id.minyi:
                 return;
             case R.id.feedback:

@@ -165,5 +165,20 @@
             app:ItemHorizontal_text_color="@color/news_title"
             app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
 
+        <com.psb.ui.widget.ItemHorizontal
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding"
+            android:background="@color/white"
+            app:ItemHorizontal_img_height="@dimen/icon_size"
+            app:ItemHorizontal_img_width="@dimen/icon_size"
+            app:ItemHorizontal_text="@string/logout"
+            app:ItemHorizontal_text_color="@color/news_title"
+            app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_padding"/>
+
     </LinearLayout>
 </ScrollView>

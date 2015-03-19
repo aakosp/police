@@ -97,6 +97,7 @@ public class ActivityLogin extends BaseActivity implements View.OnClickListener 
                     Cache.getInstance().setId(strId);
                     Cache.getInstance().setUser(user);
                     Cache.getInstance().setLogin(true);
+
 //                    Log.d(user.getName(), "" + user.getAddress());
 //                    intent.setClass(this, ActivityMain.class);
 //                    this.startActivity(intent);

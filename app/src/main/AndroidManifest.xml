@@ -26,7 +26,7 @@
     <application
         android:name=".core.AppContext"
         android:allowBackup="true"
-        android:icon="@drawable/logo"
+        android:icon="@drawable/icon"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
@@ -111,15 +111,15 @@
             </intent-filter>
         </service>
 
-        <!-- company-->
+        <!-- company
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="eGRRzIYHNG2VfkfOknkAvifA"/>
+            android:value="eGRRzIYHNG2VfkfOknkAvifA"/>-->
 
-        <!-- home
+        <!-- home-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="eulwukjkSVyRtDOMoSUlQHC8" />-->
+            android:value="eulwukjkSVyRtDOMoSUlQHC8" />
 
     </application>
 

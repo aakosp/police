@@ -1,8 +1,11 @@
 package com.psb.protocol;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.psb.core.AppContext;
 import com.psb.entity.Addr;
 import com.psb.entity.Article;
 import com.psb.entity.ID;
@@ -28,7 +31,7 @@ public class Cache {
     private static Cache cache;
 
     private boolean isLogin = false;
-    private String id;
+    private String id, pwd, role, name;
     private User user;
     private Map<Integer, Article> articleMap = new HashMap<>();
     private Map<String, User> users = new HashMap<>();
@@ -37,12 +40,21 @@ public class Cache {
     private Opinions opinions_ok;
     private Opinions opinions_undo;
     private Map<Integer, Opinion> opinions = new HashMap<>();
-//    private Map<Integer, Opinion> opinionsMap = new HashMap<>();
+    //    private Map<Integer, Opinion> opinionsMap = new HashMap<>();
     private ID register, opi, chuli, workid, sign;
     private List<PoliceInfo> policeInfo = new ArrayList<>();
     private List<Work> works = new ArrayList<>();
 
+
     private Cache() {
+        Context ctx = AppContext.getInstance();
+        SharedPreferences sp = ctx.getSharedPreferences("police", Context.MODE_PRIVATE);
+        isLogin = sp.getBoolean("login", false);
+        id = sp.getString("id", "");
+        pwd = sp.getString("pwd", "");
+        role = sp.getString("role", "");
+        name = sp.getString("name", "");
+        Log.d("222", id+"  "+name+"   "+pwd+"   "+role);
     }
 
     public synchronized static Cache getInstance() {
@@ -70,7 +82,14 @@ public class Cache {
 
             case Event.GET_USER:
                 User item = JSON.parseObject(responseBody, User.class);
-
+                if(isLogin && item.getUser_name().equals(id)){
+                    if(null == user){
+                        user = item;
+                    }
+                    if(!item.getPassword().equals(pwd)){
+                        isLogin = false;
+                    }
+                }
                 if (null != item) {
                     users.put(item.getUser_name(), item);
                 }
@@ -101,14 +120,14 @@ public class Cache {
 
             case Event.GET_OPINION_LIST_OK:
                 opinions_ok = JSON.parseObject(responseBody, Opinions.class);
-                for(Opinion o :opinions_ok.getData()){
+                for (Opinion o : opinions_ok.getData()) {
                     opinions.put(o.getId(), o);
                 }
                 break;
 
             case Event.GET_OPINION_LIST_UNDO:
                 opinions_undo = JSON.parseObject(responseBody, Opinions.class);
-                for(Opinion o :opinions_undo.getData()){
+                for (Opinion o : opinions_undo.getData()) {
                     opinions.put(o.getId(), o);
                 }
                 break;
@@ -143,6 +162,11 @@ public class Cache {
 
     public void setLogin(boolean isLogin) {
         this.isLogin = isLogin;
+        Context ctx = AppContext.getInstance();
+        SharedPreferences sp = ctx.getSharedPreferences("police", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putBoolean("login", isLogin);
+        editor.commit();
     }
 
     public synchronized Article getArticle(int event) {
@@ -179,8 +203,21 @@ public class Cache {
 
     public void setUser(User user) {
         this.user = user;
-        Log.d(user.getPolice_name(), user.getUser_name());
+        Context ctx = AppContext.getInstance();
+        SharedPreferences sp = ctx.getSharedPreferences("police", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("id", user.getUser_name());
+        editor.putString("pwd", user.getPassword());
+        editor.putString("role", user.getRole());
+        if(user.getRole().equals(User.POLICE)){
+            editor.putString("name", user.getPolice_name());
+        }else{
+            editor.putString("name", user.getName());
+        }
+
+        editor.commit();
     }
+
 
     public synchronized List<OfficeInfo> getOffice() {
         return this.office;
@@ -198,30 +235,30 @@ public class Cache {
         return opinions_undo;
     }
 
-    public synchronized ID getOpi(){
+    public synchronized ID getOpi() {
         return opi;
     }
 
-    public synchronized ID getChuli(){
+    public synchronized ID getChuli() {
         return chuli;
     }
 
-    public synchronized Opinion getOpinion(int id){
+    public synchronized Opinion getOpinion(int id) {
         return opinions.get(id);
     }
 
-    public String getAddrStr(int id){
+    public String getAddrStr(int id) {
         String str = "";
-        if(null != addr){
-            for(Addr item : addr){
-                if(id == item.getId()){
+        if (null != addr) {
+            for (Addr item : addr) {
+                if (id == item.getId()) {
                     str = item.getName();
                     return str;
                 }
                 List<Addr> cun = item.getChild();
-                if(null != cun){
-                    for (Addr itemCun : cun){
-                        if(id == itemCun.getId()){
+                if (null != cun) {
+                    for (Addr itemCun : cun) {
+                        if (id == itemCun.getId()) {
                             str = itemCun.getName();
                             return str;
                         }
@@ -232,25 +269,34 @@ public class Cache {
         return str;
     }
 
-    public synchronized List<Work> getWorks(){
+    public synchronized List<Work> getWorks() {
         return works;
     }
 
-    public Work getWork(int id){
+    public Work getWork(int id) {
         Work work = null;
-        for (Work w : works){
-            if(w.getId() == id){
+        for (Work w : works) {
+            if (w.getId() == id) {
                 return w;
             }
         }
         return work;
     }
 
-    public synchronized ID getWorkid(){
+    public synchronized ID getWorkid() {
         return workid;
     }
 
-    public synchronized ID getSign(){
+    public synchronized ID getSign() {
         return sign;
+    }
+
+    public String getRole(){
+        return role;
+    }
+
+    public String getName(){
+        Log.d("name", name);
+        return name;
     }
 }

@@ -81,4 +81,5 @@
     <string name="fanhuip">返回个人中心</string>
     <string name="fanhuiyj">返回意见列表</string>
     <string name="work_sucess">提交成功</string>
+    <string name="logout">退出登录</string>
 </resources>

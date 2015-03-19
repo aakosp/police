@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         app:titleText="@string/police_sign" />
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -21,91 +21,88 @@
             android:id="@+id/bmapView"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="2"
+            android:layout_above="@+id/sign"
             android:clickable="true" />
 
-        <LinearLayout
+
+        <!--<LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:padding="@dimen/map_padding">
 
-            <!--<LinearLayout
-                android:layout_width="match_parent"
+            <TextView
+                android:layout_width="@dimen/newstitle_img_width"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:orientation="horizontal"
-                android:padding="@dimen/map_padding">
-
-                <TextView
-                    android:layout_width="@dimen/newstitle_img_width"
-                    android:layout_height="wrap_content"
-                    android:gravity="right"
-                    android:text="@string/time"
-                    android:textColor="@color/news_title"
-                    android:textSize="@dimen/newstitle_title_size" />
-
-                <EditText
-                    android:id="@+id/time"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/map_padding"
-                    android:background="@null"
-                    android:inputType="number"
-                    android:maxLength="11" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divider" />-->
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:padding="@dimen/map_padding">
-
-                <TextView
-                    android:layout_width="@dimen/newstitle_img_width"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="top"
-                    android:gravity="right"
-                    android:text="@string/work"
-                    android:textColor="@color/news_title"
-                    android:textSize="@dimen/newstitle_title_size" />
-
-                <EditText
-                    android:id="@+id/work"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/map_padding"
-                    android:background="@null"
-                    android:gravity="top"
-                    android:maxLines="7"
-                    android:minHeight="@dimen/newstitle_img_height"
-                    android:minLines="5" />
-
-            </LinearLayout>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/divider"
-                android:background="@color/item_office_info_divider" />
-
-            <Button
-                android:id="@+id/sign"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/default_padding"
-                android:layout_marginTop="@dimen/map_padding"
-                android:background="@color/selected_red"
-                android:padding="@dimen/activity_vertical_margin"
-                android:text="@string/sign_now"
-                android:textColor="@color/white"
+                android:gravity="right"
+                android:text="@string/time"
+                android:textColor="@color/news_title"
                 android:textSize="@dimen/newstitle_title_size" />
+
+            <EditText
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/map_padding"
+                android:background="@null"
+                android:inputType="number"
+                android:maxLength="11" />
+
         </LinearLayout>
 
-    </LinearLayout>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider" />-->
+
+        <!--<LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:padding="@dimen/map_padding">
+
+            <TextView
+                android:layout_width="@dimen/newstitle_img_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top"
+                android:gravity="right"
+                android:text="@string/work"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
+
+            <EditText
+                android:id="@+id/work"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/map_padding"
+                android:background="@null"
+                android:gravity="top"
+                android:maxLines="7"
+                android:minHeight="@dimen/newstitle_img_height"
+                android:minLines="5" />
+
+        </LinearLayout>-->
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:layout_above="@+id/sign"
+            android:background="@color/item_office_info_divider" />
+
+        <Button
+            android:id="@+id/sign"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/default_padding"
+            android:layout_marginTop="@dimen/map_padding"
+            android:background="@color/selected_red"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="@string/sign_now"
+            android:textColor="@color/white"
+            android:textSize="@dimen/newstitle_title_size" />
+    </RelativeLayout>
+    >
+
 
 </LinearLayout>

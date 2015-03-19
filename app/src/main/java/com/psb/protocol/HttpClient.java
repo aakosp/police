@@ -234,7 +234,7 @@ public class HttpClient {
         //post表单参数处理
         try {
             httpClient = getHttpClient();
-            switch (type){
+            switch (type) {
 
                 case POST:
                     break;
@@ -248,7 +248,7 @@ public class HttpClient {
 
             request = getHttpRequest(url, type);
             if (null != params && params.size() > 0) {
-                ((HttpEntityEnclosingRequestBase)request).setEntity(new UrlEncodedFormEntity(params, UTF_8));
+                ((HttpEntityEnclosingRequestBase) request).setEntity(new UrlEncodedFormEntity(params, UTF_8));
             }
             HttpResponse response = httpClient.execute(getHttpHost(), request, getHttpContext());
             int statusCode = response.getStatusLine().getStatusCode();

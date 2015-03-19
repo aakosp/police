@@ -9,6 +9,7 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.nostra13.universalimageloader.core.decode.RoundImageDecoder;
 import com.psb.protocol.Api;
+import com.psb.protocol.Cache;
 import com.util.LocationUtils;
 
 /**
@@ -41,6 +42,10 @@ public class AppContext extends Application {
         ImageLoader.getInstance().init(config);
         Api.getInstance().getAddrs();
         appContext = this;
+
+        if (Cache.getInstance().isLogin()){
+            Api.getInstance().getUser(Cache.getInstance().getId());
+        }
     }
 
 
