@@ -28,8 +28,8 @@ public class ActivityChuliSuccess extends BaseActivity {
         fanhui = (Button) findViewById(R.id.fanhui);
         txt = (TextView) findViewById(R.id.text);
         Intent intent = getIntent();
-        if(null != intent){
-            if(intent.getBooleanExtra("sign", false)){
+        if (null != intent) {
+            if (intent.getBooleanExtra("sign", false)) {
                 top.setTitleText("签到");
                 txt.setText("签到成功");
             }

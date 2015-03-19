@@ -61,6 +61,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
     private boolean bSgin = false;
     //轨迹
     List<LatLng> points = new ArrayList<LatLng>();
+    String session;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -103,13 +104,20 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.sign:
-                String work = content.getText().toString();
-//                Log.d("sign", "" + LocationUtils.getInstance().getmBDLocation().getLatitude() + " " + LocationUtils.getInstance().getmBDLocation().getLongitude());
-                if(null != mLocation){
-                    Api.getInstance().sgin(work, mLocation.getLongitude(), mLocation.getLatitude());
-                }
-                else{
-                    ToastUtil.showLongToast(this, "无法获取当前位置", 0);
+                if (!bSgin) {
+                    String work = content.getText().toString();
+                    if (null != mLocation) {
+                        Api.getInstance().sign_up(work, mLocation.getLongitude(), mLocation.getLatitude());
+                        sign.setText("签到结束");
+                        bSgin = true;
+                    } else {
+                        ToastUtil.showLongToast(this, "无法获取当前位置", 0);
+                    }
+                } else {
+                    if (!StringUtils.isEmpty(session)) {
+                        Api.getInstance().sign_up_end(session);
+                        bSgin = false;
+                    }
                 }
                 break;
         }
@@ -147,12 +155,23 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
                 if (!StringUtils.isEmpty(res.getError())) {
                     ToastUtil.showLongToast(this, res.getError(), 0);
                 } else if (res.getId() > -1) {
-                    EventNotifyCenter.getInstance().doNotify(Event.REFRESH_OPINION);
-                    Intent intent = new Intent();
-                    intent.setClass(this, ActivityChuliSuccess.class);
-                    intent.putExtra("sign", true);
-                    this.startActivity(intent);
-                    this.finish();
+                    session = res.getSession_id();
+                    if (StringUtils.isEmpty(session)) {
+                        ToastUtil.showLongToast(this, res.getError(), 0);
+                    }
+                    if (bSgin == false) {
+                        Intent intent = new Intent();
+                        intent.setClass(this, ActivityChuliSuccess.class);
+                        intent.putExtra("sign", true);
+                        this.startActivity(intent);
+                        this.finish();
+                    }
+//                    EventNotifyCenter.getInstance().doNotify(Event.REFRESH_OPINION);
+//                    Intent intent = new Intent();
+//                    intent.setClass(this, ActivityChuliSuccess.class);
+//                    intent.putExtra("sign", true);
+//                    this.startActivity(intent);
+//                    this.finish();
                 }
                 break;
         }
@@ -177,25 +196,28 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
             mBaiduMap.setMyLocationData(locData);
 
 
-            if(location.getLocType() == BDLocation.TypeNetWorkException){
+            if (location.getLocType() == BDLocation.TypeNetWorkException) {
                 return;
             }
-            if(points.size() > 0){
-                if(points.get(points.size() - 1).latitude == location.getLatitude() &&
-                        points.get(points.size() - 1).longitude == location.getLongitude()){
+            if (points.size() > 0) {
+                if (points.get(points.size() - 1).latitude == location.getLatitude() &&
+                        points.get(points.size() - 1).longitude == location.getLongitude()) {
                     return;
                 }
             }
             LatLng lat = new LatLng(location.getLatitude(), location.getLongitude());
             points.add(lat);
-            if(points.size() == 5){
+            if (points.size() == 5) {
                 OverlayOptions ooPolyline1 = new PolylineOptions().width(10)
                         .color(0xAAFF0000).points(points);
                 mBaiduMap.addOverlay(ooPolyline1);
                 points.clear();
                 points.add(lat);
             }
-            Api.getInstance().sign_up_session(location.getLongitude(), location.getLatitude(), "");
+            if (bSgin && !StringUtils.isEmpty(session)) {
+                Api.getInstance().sign_up_session("", location.getLongitude(), location.getLatitude());
+            }
+
 
             if (isFirstLoc) {
                 isFirstLoc = false;

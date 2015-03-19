@@ -76,6 +76,23 @@ public class Api {
         executor.execute(data);
     }
 
+    public void sign_up_session (String session, double location_x, double location_y) {
+        String url = base_url + "/sign_up/"+session;
+        List<NameValuePair> params = new ArrayList<>();
+        NameValuePair x = new BasicNameValuePair("sign_up_location_x", "" + location_x);
+        NameValuePair y = new BasicNameValuePair("sign_up_location_y", "" + location_y);
+        params.add(x);
+        params.add(y);
+        HttpRequestData data = new HttpRequestData(params, url, Event.SGIN, HttpClient.RequestType.PUT);
+        executor.execute(data);
+    }
+
+    public void sign_up_end (String session) {
+        String url = base_url + "/sign_up/"+session;
+        HttpRequestData data = new HttpRequestData(null, url, Event.SGIN, HttpClient.RequestType.DELETE);
+        executor.execute(data);
+    }
+
     public void commitOpinion(String strTitle, String info, String pic, String strType) {
         String url = base_url + "/opinion";
         List<NameValuePair> params = new ArrayList<>();
@@ -144,7 +161,6 @@ public class Api {
         if (page != -1) {
             url += "&page=" + page;
         }
-        Log.d("GET_OPINION_LIST_OK", url);
         HttpRequestData data = new HttpRequestData(url, Event.GET_OPINION_LIST_OK);
         executor.execute(data);
     }
