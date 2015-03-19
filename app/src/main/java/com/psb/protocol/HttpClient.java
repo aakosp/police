@@ -11,6 +11,8 @@ import org.apache.http.client.config.AuthSchemes;
 import org.apache.http.client.config.CookieSpecs;
 import org.apache.http.client.config.RequestConfig;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
+import org.apache.http.client.methods.HttpDelete;
+import org.apache.http.client.methods.HttpEntityEnclosingRequestBase;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.client.methods.HttpPut;
@@ -90,6 +92,9 @@ public class HttpClient {
             case PUT:
                 httpRequest = new HttpPut(url);
                 break;
+            case DELETE:
+                httpRequest = new HttpDelete(url);
+                break;
         }
         httpRequest.addHeader("Host", SERVER);
         httpRequest.addHeader("Connection", "Keep-Alive");
@@ -165,16 +170,6 @@ public class HttpClient {
             if (statusCode != HttpStatus.SC_OK) {
                 //throw AppException.http(statusCode);
             } else if (statusCode == HttpStatus.SC_OK) {
-//                    Cookie[] cookies =
-//                    String tmpcookies = "";
-//                    for (Cookie ck : cookies) {
-//                        tmpcookies += ck.toString()+";";
-//                    }
-//                    //保存cookie
-//                    if(appContext != null && tmpcookies != ""){
-//                        AppConfig.getAppConfig(AppContext.getInstance()).set("cookie", tmpcookies);
-//                        appCookie = tmpcookies;
-//                    }
             }
             InputStream is = response.getEntity().getContent();
             String responseBody = StringUtils.toConvertString(is);
@@ -210,16 +205,53 @@ public class HttpClient {
             if (statusCode != HttpStatus.SC_OK) {
                 //throw AppException.http(statusCode);
             } else if (statusCode == HttpStatus.SC_OK) {
-//                    Cookie[] cookies =
-//                    String tmpcookies = "";
-//                    for (Cookie ck : cookies) {
-//                        tmpcookies += ck.toString()+";";
-//                    }
-//                    //保存cookie
-//                    if(appContext != null && tmpcookies != ""){
-//                        AppConfig.getAppConfig(AppContext.getInstance()).set("cookie", tmpcookies);
-//                        appCookie = tmpcookies;
-//                    }
+            }
+            InputStream is = response.getEntity().getContent();
+            String responseBody = StringUtils.toConvertString(is);
+            Cache.getInstance().parse(responseBody, event);
+        } catch (Exception e) {
+            // 发生网络异常
+            e.printStackTrace();
+        } finally {
+            // 释放连接
+//            httpClient.close();
+//            Log.d("httpClient.close()", "httpClient.close()");
+        }
+    }
+
+    /**
+     * 公用post方法
+     *
+     * @param url
+     * @param event
+     */
+    public static void doRequest(String url, List<NameValuePair> params, int event, RequestType type) {
+        AndroidHttpClient httpClient = null;
+        HttpRequest request = null;
+        //post表单参数处理
+        try {
+            httpClient = getHttpClient();
+            switch (type){
+
+                case POST:
+                    break;
+                case GET:
+                    break;
+                case PUT:
+                    break;
+                case DELETE:
+                    break;
+            }
+
+            request = getHttpRequest(url, type);
+            if (null != params && params.size() > 0) {
+                ((HttpEntityEnclosingRequestBase)request).setEntity(new UrlEncodedFormEntity(params, UTF_8));
+            }
+            HttpResponse response = httpClient.execute(getHttpHost(), request, getHttpContext());
+            int statusCode = response.getStatusLine().getStatusCode();
+            if (statusCode != HttpStatus.SC_OK) {
+                //throw AppException.http(statusCode);
+            } else if (statusCode == HttpStatus.SC_OK) {
             }
             InputStream is = response.getEntity().getContent();
             String responseBody = StringUtils.toConvertString(is);
@@ -241,6 +273,7 @@ public class HttpClient {
     enum RequestType {
         POST,
         GET,
-        PUT
+        PUT,
+        DELETE
     }
 }

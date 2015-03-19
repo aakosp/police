@@ -21,6 +21,8 @@ import com.baidu.mapapi.map.MapView;
 import com.baidu.mapapi.map.MyLocationConfiguration;
 import com.baidu.mapapi.map.MyLocationConfiguration.LocationMode;
 import com.baidu.mapapi.map.MyLocationData;
+import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.psb.R;
 import com.psb.event.Event;
@@ -31,6 +33,9 @@ import com.psb.ui.base.BaseActivity;
 import com.psb.ui.util.ToastUtil;
 import com.psb.ui.widget.TopNavigationBar;
 import com.util.LocationUtils;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * 此demo用来展示如何结合定位SDK实现定位，并使用MyLocationOverlay绘制定位位置 同时展示如何使用自定义图标绘制并点击时弹出泡泡
@@ -48,6 +53,10 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
     private LocationMode mCurrentMode = LocationMode.FOLLOWING;
     private EditText content;
     private Button sign;
+
+    private boolean bSgin = false;
+    //轨迹
+    List<LatLng> points = new ArrayList<LatLng>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -146,6 +155,28 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
                     .direction(100).latitude(location.getLatitude())
                     .longitude(location.getLongitude()).build();
             mBaiduMap.setMyLocationData(locData);
+
+
+            if(location.getLocType() == BDLocation.TypeNetWorkException){
+                return;
+            }
+            if(points.size() > 0){
+                if(points.get(points.size() - 1).latitude == location.getLatitude() &&
+                        points.get(points.size() - 1).longitude == location.getLongitude()){
+                    return;
+                }
+            }
+            LatLng lat = new LatLng(location.getLatitude(), location.getLongitude());
+            points.add(lat);
+            if(points.size() == 5){
+                OverlayOptions ooPolyline1 = new PolylineOptions().width(10)
+                        .color(0xAAFF0000).points(points);
+                mBaiduMap.addOverlay(ooPolyline1);
+                points.clear();
+                points.add(lat);
+            }
+            Api.getInstance().sign_up_session(location.getLongitude(), location.getLatitude(), "");
+
             if (isFirstLoc) {
                 isFirstLoc = false;
                 LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());

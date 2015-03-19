@@ -62,7 +62,7 @@
 
     <string name="time">时间：</string>
     <string name="work">工作内容：</string>
-    <string name="sign_now">在当前位置签到</string>
+    <string name="sign_now">开始签到</string>
 
     <string name="commit">提交</string>
 

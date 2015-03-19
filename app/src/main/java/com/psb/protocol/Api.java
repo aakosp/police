@@ -19,7 +19,7 @@ public class Api {
 
     private static Api api;
     private String base_url = "http://" + HttpClient.SERVER;
-    private List<NameValuePair> params = new ArrayList<>();
+//    private List<NameValuePair> params = new ArrayList<>();
     private Map<Integer, Long> requestTime = new HashMap<>();
     private Executor executor = ThreadPoolExecutorFactory.createExecutor();
 
@@ -57,7 +57,7 @@ public class Api {
         executor.execute(data);
     }
 
-    public void sgin(String content, double location_x, double location_y) {
+    public void sign_up (String content, double location_x, double location_y) {
         String url = base_url + "/sign_up";
         List<NameValuePair> params = new ArrayList<>();
         NameValuePair user = new BasicNameValuePair("user_id", "" + Cache.getInstance().getUser().getId());
@@ -69,6 +69,28 @@ public class Api {
         params.add(x);
         params.add(y);
         HttpRequestData data = new HttpRequestData(params, url, Event.SGIN);
+        executor.execute(data);
+    }
+
+    public void sign_up_session (double location_x, double location_y, String sessionId) {
+        String url = base_url + "/sign_up/"+sessionId;
+        List<NameValuePair> params = new ArrayList<>();
+        NameValuePair user = new BasicNameValuePair("user_id", "" + Cache.getInstance().getUser().getId());
+        NameValuePair x = new BasicNameValuePair("sign_up_location_x", "" + location_x);
+        NameValuePair y = new BasicNameValuePair("sign_up_location_y", "" + location_y);
+        params.add(user);
+        params.add(x);
+        params.add(y);
+        HttpRequestData data = new HttpRequestData(params, url, Event.SGIN, HttpClient.RequestType.PUT);
+        executor.execute(data);
+    }
+
+    public void sign_up_end (double location_x, double location_y, String sessionId) {
+        String url = base_url + "/sign_up/"+sessionId;
+        List<NameValuePair> params = new ArrayList<>();
+//        NameValuePair user = new BasicNameValuePair("user_id", "" + Cache.getInstance().getUser().getId());
+//        params.add(user);
+        HttpRequestData data = new HttpRequestData(null, url, Event.SGIN, HttpClient.RequestType.PUT);
         executor.execute(data);
     }
 

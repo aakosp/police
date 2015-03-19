@@ -35,16 +35,17 @@ public class HttpRequestData implements Runnable {
 
     @Override
     public void run() {
-        switch (type) {
-            case GET:
-                HttpClient.get(url, event);
-                break;
-            case POST:
-                HttpClient.post(url, params, event);
-                break;
-            case PUT:
-                HttpClient.put(url, params, event);
-                break;
-        }
+//        switch (type) {
+//            case GET:
+//                HttpClient.get(url, event);
+//                break;
+//            case POST:
+//                HttpClient.post(url, params, event);
+//                break;
+//            case PUT:
+//                HttpClient.put(url, params, event);
+//                break;
+//        }
+        HttpClient.doRequest(url, params, event, type);
     }
 }
