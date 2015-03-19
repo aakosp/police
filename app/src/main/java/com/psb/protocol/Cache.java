@@ -206,12 +206,17 @@ public class Cache {
         Context ctx = AppContext.getInstance();
         SharedPreferences sp = ctx.getSharedPreferences("police", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
+        role = user.getRole();
+        id = user.getUser_name();
+        pwd = user.getPassword();
         editor.putString("id", user.getUser_name());
         editor.putString("pwd", user.getPassword());
         editor.putString("role", user.getRole());
         if(user.getRole().equals(User.POLICE)){
+            name = user.getPolice_name();
             editor.putString("name", user.getPolice_name());
         }else{
+            name = user.getName();
             editor.putString("name", user.getName());
         }
 
