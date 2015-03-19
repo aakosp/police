@@ -156,7 +156,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
                     ToastUtil.showLongToast(this, res.getError(), 0);
                 } else if (res.getId() > -1) {
                     session = res.getSession_id();
-                    if (StringUtils.isEmpty(session)) {
+                    if (!StringUtils.isEmpty(session)) {
                         ToastUtil.showLongToast(this, res.getError(), 0);
                     }
                     if (bSgin == false) {
