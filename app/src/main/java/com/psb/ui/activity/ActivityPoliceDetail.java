@@ -41,23 +41,7 @@ public class ActivityPoliceDetail extends BaseActivity {
         if (i > 0) {
             Api.getInstance().getPolice(i);
         }
-
-//        List<PoliceInfo> item = new ArrayList<>();
-//        for (int n = 0; n < 4; n++) {
-//            User user = new User();
-//            user.setId(i);
-//            user.setName("民警" + (n + 1));
-//            user.setPhone("1383857123" + n);
-//            Addr addr = new Addr();
-//            addr.setName(this.getIntent().getStringExtra("strAddr") + "第" + (n + 1) + "村");
-//            PoliceInfo info = new PoliceInfo();
-//            info.setPolice(user);
-//            info.setAddr(addr);
-//            item.add(info);
-//        }
-
         adapter = new PoliceAdapter(this);
-//        adapter.setPoliceInfos(item);
         list.setAdapter(adapter);
 
     }

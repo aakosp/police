@@ -7,11 +7,14 @@ import com.psb.entity.Addr;
 import com.psb.entity.Article;
 import com.psb.entity.ID;
 import com.psb.entity.OfficeInfo;
+import com.psb.entity.Opinion;
 import com.psb.entity.Opinions;
 import com.psb.entity.PoliceInfo;
 import com.psb.entity.User;
+import com.psb.entity.Work;
 import com.psb.event.Event;
 import com.psb.event.EventNotifyCenter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -31,9 +34,13 @@ public class Cache {
     private Map<String, User> users = new HashMap<>();
     private List<OfficeInfo> office;
     private List<Addr> addr;
-    private Opinions opinions;
-    private ID register;
+    private Opinions opinions_ok;
+    private Opinions opinions_undo;
+    private Map<Integer, Opinion> opinions = new HashMap<>();
+//    private Map<Integer, Opinion> opinionsMap = new HashMap<>();
+    private ID register, opi, chuli, workid, sign;
     private List<PoliceInfo> policeInfo = new ArrayList<>();
+    private List<Work> works = new ArrayList<>();
 
     private Cache() {
     }
@@ -60,15 +67,17 @@ public class Cache {
                 Article article = JSON.parseObject(responseBody, Article.class);
                 articleMap.put(event, article);
                 break;
+
             case Event.GET_USER:
-                User user = JSON.parseObject(responseBody, User.class);
-                if (null != user) {
-                    users.put(user.getUser_name(), user);
+                User item = JSON.parseObject(responseBody, User.class);
+
+                if (null != item) {
+                    users.put(item.getUser_name(), item);
                 }
                 break;
 
             case Event.SGIN:
-                ID sign = JSON.parseObject(responseBody, ID.class);
+                sign = JSON.parseObject(responseBody, ID.class);
                 break;
 
             case Event.GET_ADDRS:
@@ -90,8 +99,38 @@ public class Cache {
             case Event.CHANGE_PWD:
                 break;
 
-            case Event.GET_OPINION_LIST:
-                opinions = JSON.parseObject(responseBody, Opinions.class);
+            case Event.GET_OPINION_LIST_OK:
+                opinions_ok = JSON.parseObject(responseBody, Opinions.class);
+                for(Opinion o :opinions_ok.getData()){
+                    opinions.put(o.getId(), o);
+                }
+                break;
+
+            case Event.GET_OPINION_LIST_UNDO:
+                opinions_undo = JSON.parseObject(responseBody, Opinions.class);
+                for(Opinion o :opinions_undo.getData()){
+                    opinions.put(o.getId(), o);
+                }
+                break;
+
+            case Event.COMMIT_OPINION:
+                opi = JSON.parseObject(responseBody, ID.class);
+                break;
+
+            case Event.GET_WORK:
+                works = JSON.parseArray(responseBody, Work.class);
+                break;
+
+            case Event.CHULI:
+                chuli = JSON.parseObject(responseBody, ID.class);
+                break;
+
+            case Event.GET_OPINION:
+//                opinion = JSON.parseObject(responseBody, Opinion.class);
+                break;
+
+            case Event.COMMIT_WORK:
+                workid = JSON.parseObject(responseBody, ID.class);
                 break;
         }
 
@@ -138,19 +177,80 @@ public class Cache {
         return user;
     }
 
-    public synchronized void setUser(User user) {
+    public void setUser(User user) {
         this.user = user;
+        Log.d(user.getPolice_name(), user.getUser_name());
     }
 
     public synchronized List<OfficeInfo> getOffice() {
         return this.office;
     }
 
-    public Opinions getOpinions(){
-        return opinions;
-    }
-
     public synchronized List<PoliceInfo> getPoliceInfo() {
         return policeInfo;
+    }
+
+    public synchronized Opinions getOpinions_ok() {
+        return opinions_ok;
+    }
+
+    public synchronized Opinions getOpinions_undo() {
+        return opinions_undo;
+    }
+
+    public synchronized ID getOpi(){
+        return opi;
+    }
+
+    public synchronized ID getChuli(){
+        return chuli;
+    }
+
+    public synchronized Opinion getOpinion(int id){
+        return opinions.get(id);
+    }
+
+    public String getAddrStr(int id){
+        String str = "";
+        if(null != addr){
+            for(Addr item : addr){
+                if(id == item.getId()){
+                    str = item.getName();
+                    return str;
+                }
+                List<Addr> cun = item.getChild();
+                if(null != cun){
+                    for (Addr itemCun : cun){
+                        if(id == itemCun.getId()){
+                            str = itemCun.getName();
+                            return str;
+                        }
+                    }
+                }
+            }
+        }
+        return str;
+    }
+
+    public synchronized List<Work> getWorks(){
+        return works;
+    }
+
+    public Work getWork(int id){
+        Work work = null;
+        for (Work w : works){
+            if(w.getId() == id){
+                return w;
+            }
+        }
+        return work;
+    }
+
+    public synchronized ID getWorkid(){
+        return workid;
+    }
+
+    public synchronized ID getSign(){
+        return sign;
     }
 }

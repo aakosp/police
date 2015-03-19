@@ -58,25 +58,36 @@ public class PoliceAdapter extends BaseAdapter implements View.OnClickListener {
         if (null == convertView) {
             convertView = View.inflate(parent.getContext(), R.layout.item_police, null);
             policeViewHolder = new PoliceViewHolder();
+            policeViewHolder.nouser = (TextView) convertView.findViewById(R.id.nouser);
             policeViewHolder.name = (TextView) convertView.findViewById(R.id.name);
             policeViewHolder.tel = (TextView) convertView.findViewById(R.id.tel);
             policeViewHolder.tel.setOnClickListener(this);
             policeViewHolder.addr = (TextView) convertView.findViewById(R.id.addr);
             policeViewHolder.addr.setOnClickListener(this);
             policeViewHolder.office = (TextView) convertView.findViewById(R.id.office_name);
-            policeViewHolder.img = (ImageView) convertView.findViewById(R.id.img);
+            policeViewHolder.layaddr = convertView.findViewById(R.id.v_addr);
+            policeViewHolder.layaddr.setOnClickListener(this);
+//            policeViewHolder.img = (ImageView) convertView.findViewById(R.id.img);
+            policeViewHolder.info = convertView.findViewById(R.id.info);
             convertView.setTag(policeViewHolder);
         } else {
             policeViewHolder = (PoliceViewHolder) convertView.getTag();
         }
 
         PoliceInfo info = this.policeInfos.get(position);
-        policeViewHolder.name.setText(info.getPolice().getPolice_name());
-        policeViewHolder.tel.setText(info.getPolice().getPhone());
-        policeViewHolder.tel.setTag(info.getPolice().getPhone());
-        policeViewHolder.addr.setText(info.getAddress().getName());
-        policeViewHolder.office.setText(info.getPolice().getPolice_station_id() + "警务室");
-        policeViewHolder.office.setTag(info.getPolice().getPolice_station_id());
+        if (null == info.getPolice()) {
+            policeViewHolder.nouser.setVisibility(View.VISIBLE);
+            policeViewHolder.info.setVisibility(View.GONE);
+        } else {
+            policeViewHolder.info.setVisibility(View.VISIBLE);
+            policeViewHolder.nouser.setVisibility(View.GONE);
+            policeViewHolder.name.setText(info.getPolice().getPolice_name());
+            policeViewHolder.tel.setText(info.getPolice().getPhone());
+            policeViewHolder.tel.setTag(info.getPolice().getPhone());
+            policeViewHolder.office.setText(info.getPolice().getPolice_station_name());
+            policeViewHolder.layaddr.setTag(info.getPolice().getPolice_station_id());
+        }
+        policeViewHolder.addr.setText(info.getName());
         return convertView;
     }
 
@@ -84,7 +95,7 @@ public class PoliceAdapter extends BaseAdapter implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent = null;
         switch (v.getId()) {
-            case R.id.office_name:
+            case R.id.v_addr:
                 intent = new Intent();
                 intent.putExtra("id", (int) v.getTag());
                 intent.setClass(this.context, ActivityMap.class);
@@ -100,7 +111,8 @@ public class PoliceAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
     private static class PoliceViewHolder {
-        public TextView addr, name, office, tel;
-        public ImageView img;
+        public TextView addr, name, office, tel, nouser;
+        //        public ImageView img;
+        public View info, layaddr;
     }
 }

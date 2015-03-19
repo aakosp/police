@@ -14,13 +14,13 @@
             android:id="@+id/img"
             android:layout_width="@dimen/newstitle_img_width"
             android:layout_height="@dimen/newstitle_img_height"
-            android:scaleType="centerInside" />
+            android:layout_marginRight="@dimen/default_padding"
+            android:scaleType="centerCrop" />
 
         <TextView
             android:id="@+id/title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/default_padding"
             android:layout_toRightOf="@+id/img"
             android:ellipsize="end"
             android:gravity="top"

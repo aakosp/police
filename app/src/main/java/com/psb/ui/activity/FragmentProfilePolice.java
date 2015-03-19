@@ -1,11 +1,14 @@
 package com.psb.ui.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.psb.R;
@@ -21,7 +24,7 @@ public class FragmentProfilePolice extends BaseFragment implements View.OnClickL
 
     private View mView, profile;
     private ItemHorizontal notice, processing, record, history, sign, pwd;
-    private RoundImageView avatar;
+    private ImageView avatar;
     private TextView name, id;
     private Intent intent;
 
@@ -29,6 +32,7 @@ public class FragmentProfilePolice extends BaseFragment implements View.OnClickL
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         if (null != mView) {
             ((ViewGroup) mView.getParent()).removeView(mView);
+            Log.d(Cache.getInstance().getUser().getPolice_name(), Cache.getInstance().getUser().getName());
             return mView;
         }
         mView = this.getActivity().getLayoutInflater().inflate(R.layout.fragment_profile_police, container, false);
@@ -38,7 +42,7 @@ public class FragmentProfilePolice extends BaseFragment implements View.OnClickL
         history = (ItemHorizontal) mView.findViewById(R.id.record_history);
         sign = (ItemHorizontal) mView.findViewById(R.id.sign);
         profile = mView.findViewById(R.id.profile);
-        avatar = (RoundImageView) mView.findViewById(R.id.avatar);
+        avatar = (ImageView) mView.findViewById(R.id.avatar);
         name = (TextView) mView.findViewById(R.id.name);
         id = (TextView) mView.findViewById(R.id.id);
         pwd = (ItemHorizontal) mView.findViewById(R.id.pwd);
@@ -51,11 +55,15 @@ public class FragmentProfilePolice extends BaseFragment implements View.OnClickL
         profile.setOnClickListener(this);
         pwd.setOnClickListener(this);
         intent = new Intent();
+        return mView;
+    }
+
+    @Override
+    public void init() {
         if (null != Cache.getInstance().getUser()) {
-            name.setText(Cache.getInstance().getUser().getName());
+            name.setText(Cache.getInstance().getUser().getPolice_name());
             id.setText(Cache.getInstance().getUser().getUser_name());
         }
-        return mView;
     }
 
     @Override
@@ -71,10 +79,10 @@ public class FragmentProfilePolice extends BaseFragment implements View.OnClickL
                 break;
             case R.id.record:
                 intent.setClass(this.getActivity(), ActivityWork.class);
-                return;
+                break;
             case R.id.record_history:
-//                intent.setClass(this.getActivity(), ActivityChangePwd.class);
-                return;
+                intent.setClass(this.getActivity(), ActivityWorkList.class);
+                break;
             case R.id.sign:
                 intent.setClass(this.getActivity(), ActivitySign.class);
                 break;
@@ -86,4 +94,5 @@ public class FragmentProfilePolice extends BaseFragment implements View.OnClickL
         }
         this.getActivity().startActivity(intent);
     }
+
 }

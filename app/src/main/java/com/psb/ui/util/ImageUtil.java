@@ -334,7 +334,7 @@ public class ImageUtil {
         try {
             byte[] mContent = readInputStream(AppContext.getInstance()
                     .getContentResolver()
-                    .openInputStream(Uri.parse(uri.toString())));
+                    .openInputStream(uri));
             BitmapFactory.Options opts = new BitmapFactory.Options();
             opts.inJustDecodeBounds = true;
             BitmapFactory.decodeByteArray(mContent, 0, mContent.length, opts);

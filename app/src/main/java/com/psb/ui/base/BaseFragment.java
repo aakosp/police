@@ -56,4 +56,6 @@ public class BaseFragment extends Fragment {
 
     protected void handlerPacketMsg(Message msg) {
     }
+
+    public void init(){}
 }

@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+
 import com.psb.R;
 import com.psb.event.Event;
 import com.psb.event.EventNotifyCenter;
@@ -25,10 +26,10 @@ public class ActivityRegister extends BaseActivity implements View.OnClickListen
     private TopNavigationBar topbar;
     private EditText id, pwd, rePwd, name, tel;
     private Button reg;
-    private TextView text_area;
-    private View area;
+    private TextView text_area, text_sex;
+    private View area, sex;
     private int areaId = 0;
-    private int sex = -1;
+    private int sexid = -1;
 
     private Intent intent;
 
@@ -45,8 +46,11 @@ public class ActivityRegister extends BaseActivity implements View.OnClickListen
         tel = (EditText) findViewById(R.id.tel);
         reg = (Button) findViewById(R.id.register);
         text_area = (TextView) findViewById(R.id.text_area);
+        text_sex = (TextView) findViewById(R.id.text_sex);
         area = findViewById(R.id.area);
+        sex = findViewById(R.id.sex);
         area.setOnClickListener(this);
+        sex.setOnClickListener(this);
         reg.setOnClickListener(this);
         intent = new Intent();
         EventNotifyCenter.getInstance().register(this.getHandler(), Event.REGISTER);
@@ -60,11 +64,11 @@ public class ActivityRegister extends BaseActivity implements View.OnClickListen
         String strName = name.getText().toString();
         String strTel = tel.getText().toString();
 
-        if (StringUtils.isEmpty(strId)) {
+        if (!StringUtils.isId(strId)) {
             ToastUtil.showToast(this, "账号只能包含字母或数字，最少6位", 0);
             return;
         }
-        if (StringUtils.isEmpty(strPwd)) {
+        if (!StringUtils.isPwd(strPwd)) {
             ToastUtil.showToast(this, "密码只能包含字母、数字、下划线，最少6位", 0);
             return;
         }
@@ -77,8 +81,17 @@ public class ActivityRegister extends BaseActivity implements View.OnClickListen
             return;
         }
 
+        if (areaId == 0) {
+            ToastUtil.showToast(this, "请选择所在地区", 0);
+            return;
+        }
+
+        if (sexid == -1) {
+            ToastUtil.showToast(this, "请选择性别", 0);
+            return;
+        }
         String s = "WOMEN";
-        if (sex == 1) {
+        if (sexid == 1) {
             s = "MEN";
         }
         Api.getInstance().register(strId, strPwd, strName, areaId, s, strTel);
@@ -104,13 +117,38 @@ public class ActivityRegister extends BaseActivity implements View.OnClickListen
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.sex:
+                intent.setClass(this, ActivitySex.class);
+                this.startActivityForResult(intent, Event.RESULT_SEX);
+                break;
             case R.id.area:
                 intent.setClass(this, ActivityArea.class);
-                this.startActivity(intent);
+                this.startActivityForResult(intent, Event.RESULT_AREA);
                 break;
             case R.id.register:
                 register();
                 break;
         }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        switch (resultCode) {
+            case Event.RESULT_SEX:
+                sexid = data.getIntExtra("sex", -1);
+                if (sexid == 1) {
+                    text_sex.setText("男");
+                } else if (sexid == 0) {
+                    text_sex.setText("女");
+                }
+                break;
+            case Event.RESULT_AREA:
+                areaId = data.getIntExtra("areaid", 0);
+                if (areaId != 0) {
+                    text_area.setText(data.getStringExtra("areastr"));
+                }
+                break;
+        }
+
     }
 }

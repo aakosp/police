@@ -1,18 +1,16 @@
 package com.psb.adapter;
 
-import android.util.Log;
+import android.app.Activity;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.nostra13.universalimageloader.core.ImageLoader;
 import com.psb.R;
-import com.psb.entity.NewsInfo;
 import com.psb.entity.Opinion;
 import com.psb.entity.Opinions;
-import com.psb.ui.util.ImageUtil;
+import com.psb.ui.activity.ActivityOpinionInfo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,13 +18,16 @@ import java.util.List;
 /**
  * Created by zl on 2015/3/3.
  */
-public class OpinionsAdapter extends BaseAdapter {
+public class OpinionsAdapter extends BaseAdapter implements View.OnClickListener {
 
     private List<Opinion> list;
+    private Activity activity;
+    private Intent intent;
 
-    public OpinionsAdapter(List<Opinion> opinions) {
+    public OpinionsAdapter(Activity activity) {
+        this.activity = activity;
         list = new ArrayList<>();
-        list.addAll(opinions);
+        intent = new Intent();
     }
 
     public void setOpinions(Opinions opinions) {
@@ -35,6 +36,7 @@ public class OpinionsAdapter extends BaseAdapter {
         } else {
             this.addOpinions(opinions.getData());
         }
+        this.notifyDataSetChanged();
     }
 
     public void setOpinions(List<Opinion> opinions) {
@@ -70,10 +72,12 @@ public class OpinionsAdapter extends BaseAdapter {
             holder.title = (TextView) convertView.findViewById(R.id.title);
             holder.name = (TextView) convertView.findViewById(R.id.name);
             convertView.setTag(holder);
+            convertView.setOnClickListener(this);
         } else {
             holder = (NewsInfoHolder) convertView.getTag();
         }
         Opinion item = list.get(position);
+        holder.id = item.getId();
         holder.title.setText(item.getTitle());
         if (Opinion.ANONYMOUS.equals(item.getType())) {
             holder.name.setText("匿名");
@@ -83,7 +87,16 @@ public class OpinionsAdapter extends BaseAdapter {
         return convertView;
     }
 
+    @Override
+    public void onClick(View v) {
+        NewsInfoHolder holder = (NewsInfoHolder) v.getTag();
+        intent.setClass(activity, ActivityOpinionInfo.class);
+        intent.putExtra("id", holder.id);
+        this.activity.startActivity(intent);
+    }
+
     private static class NewsInfoHolder {
+        public int id;
         public TextView title;
         public TextView name;
     }

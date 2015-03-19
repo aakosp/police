@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
+
 import com.psb.R;
+import com.psb.event.Event;
 import com.psb.ui.base.BaseActivity;
 
 /**
@@ -30,7 +32,7 @@ public class ActivitySex extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.ok:
                 Intent intent = new Intent();
                 int isMale = 1;
@@ -38,6 +40,7 @@ public class ActivitySex extends BaseActivity implements View.OnClickListener {
                     isMale = 0;
                 }
                 intent.putExtra("sex", isMale);
+                this.setResult(Event.RESULT_SEX, intent);
                 finish();
                 break;
         }

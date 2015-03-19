@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.psb.ui.widget.TopNavigationBar
+            android:id="@+id/top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:titleText="@string/feedback" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/default_padding">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/news_title"
+                    android:textSize="@dimen/news_title_size" />
+
+                <TextView
+                    android:id="@+id/jieguo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/item_img_padding"
+                    android:textColor="@color/niming"
+                    android:textSize="@dimen/news_title_size" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/news_content"
+                android:textSize="@dimen/newstitle_mi_size" />
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/default_padding"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider"
+                android:background="@color/news_time" />
+
+            <TextView
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/item_img_padding"
+                android:paddingTop="@dimen/item_img_padding"
+                android:textColor="@color/news_content"
+                android:textSize="@dimen/newstitle_title_size" />
+
+            <ImageView
+                android:id="@+id/img"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/banner_img_height"
+                android:padding="@dimen/default_padding"
+                android:scaleType="centerCrop"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider"
+            android:background="@color/news_time" />
+
+        <LinearLayout
+            android:id="@+id/df"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/default_padding">
+
+            <TextView
+                android:id="@+id/df_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/news_title_size" />
+
+            <TextView
+                android:id="@+id/df_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/default_padding"
+                android:textColor="@color/news_content"
+                android:textSize="@dimen/newstitle_mi_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider"
+                android:background="@color/news_time" />
+
+            <TextView
+                android:id="@+id/df_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="@dimen/item_img_padding"
+                android:textColor="@color/news_content"
+                android:textSize="@dimen/newstitle_title_size" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/chuli"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="@dimen/default_padding"
+            android:visibility="gone">
+
+            <TextView
+                android:id="@+id/chuli_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:minHeight="@dimen/default_padding"
+                android:paddingBottom="@dimen/default_padding"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/news_title_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider"
+                android:background="@color/news_time" />
+
+            <EditText
+                android:id="@+id/chuli_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="top"
+                android:hint="@string/dfinfo"
+                android:lines="7"
+                android:minHeight="@dimen/feedback_info_height"
+                android:paddingTop="@dimen/item_img_padding"
+                android:textColor="@color/news_content"
+                android:textSize="@dimen/newstitle_title_size" />
+
+            <Button
+                android:id="@+id/commit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:background="@color/shiming"
+                android:paddingBottom="@dimen/item_img_padding"
+                android:paddingLeft="@dimen/horizontal_item_img_width"
+                android:paddingRight="@dimen/horizontal_item_img_width"
+                android:paddingTop="@dimen/item_img_padding"
+                android:text="@string/df"
+                android:textColor="@color/white"
+                android:textSize="@dimen/newstitle_title_size" />
+        </LinearLayout>
+    </LinearLayout>
+
+</ScrollView>

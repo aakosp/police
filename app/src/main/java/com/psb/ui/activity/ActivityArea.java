@@ -2,11 +2,13 @@ package com.psb.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
 import com.psb.R;
 import com.psb.entity.Addr;
+import com.psb.event.Event;
 import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseActivity;
 
@@ -28,6 +30,7 @@ public class ActivityArea extends BaseActivity implements OnWheelChangedListener
     private AddrItem[] mXiangDatas;
     private Map<Integer, AddrItem[]> mCunDatasMap = new HashMap<>();
     private int mCurrentXiangName, mCurrentCunName;
+    private String strCun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +43,10 @@ public class ActivityArea extends BaseActivity implements OnWheelChangedListener
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent();
-                intent.putExtra("area", mCurrentCunName);
+                intent.putExtra("areaid", mCurrentCunName);
+                intent.putExtra("areastr", strCun);
+                Log.d("cun", strCun);
+                setResult(Event.RESULT_AREA, intent);
                 finish();
             }
         });
@@ -77,6 +83,7 @@ public class ActivityArea extends BaseActivity implements OnWheelChangedListener
             updateAreas();
         } else if (wheel == wvCun) {
             mCurrentCunName = mCunDatasMap.get(mCurrentXiangName)[newValue].id;
+            strCun = mCunDatasMap.get(mCurrentXiangName)[newValue].addr;
         }
     }
 
@@ -91,6 +98,7 @@ public class ActivityArea extends BaseActivity implements OnWheelChangedListener
         wvCun.setViewAdapter(new ArrayWheelAdapter<AddrItem>(this, areas));
         wvCun.setCurrentItem(0);
         mCurrentCunName = mCunDatasMap.get(mCurrentXiangName)[0].id;
+        strCun = mCunDatasMap.get(mCurrentXiangName)[0].addr;
     }
 
 

@@ -1,12 +1,12 @@
 <resources>
-    <string name="app_name">汤阴县一村一警</string>
+    <string name="app_name">一村一警</string>
 
     <string name="news">警务资讯</string>
     <string name="navigation">一村一警</string>
     <string name="guide">办事指南</string>
     <string name="profile">个人中心</string>
 
-    <string name="news_detail">咨询详情</string>
+    <string name="news_detail">资讯详情</string>
 
     <string name="loading">loading</string>
     <string name="back">返回</string>
@@ -36,6 +36,11 @@
     <string name="feedback">意见反馈</string>
     <string name="opinion">我的意见</string>
     <string name="area">地区选择</string>
+    <string name="work_type">工作类型</string>
+    <string name="nouser">暂无民警信息</string>
+    <string name="gensui">当前位置</string>
+    <string name="df">确认答复</string>
+    <string name="dfinfo">答复内容</string>
 
     <string name="zhanghao">账号：</string>
     <string name="mima">密码：</string>
@@ -50,6 +55,7 @@
     <string name="new_pwd">新密码：</string>
     <string name="ok">确定</string>
     <string name="click">点击选择</string>
+    <string name="success">注册成功</string>
 
     <string name="hit_zhanghao">6至20个字母或数字</string>
     <string name="hit_mima">6至20个字母、数字或下划线</string>
@@ -70,4 +76,9 @@
     <string name="process">已处理</string>
 
     <string name="to_login">请登录后再继续操作</string>
+    <string name="nimingchenggong">已成功匿名提交了您的意见</string>
+    <string name="chuli">答复成功</string>
+    <string name="fanhuip">返回个人中心</string>
+    <string name="fanhuiyj">返回意见列表</string>
+    <string name="work_sucess">提交成功</string>
 </resources>

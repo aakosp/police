@@ -3,31 +3,40 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_vertical"
-    android:orientation="horizontal">
+    android:orientation="horizontal"
+    android:padding="@dimen/activity_horizontal_margin">
 
-    <TextView
-        android:id="@+id/title"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
-        android:layout_toLeftOf="@id/name"
-        android:ellipsize="end"
-        android:lines="2"
-        android:textColor="@color/news_title"
-        android:textSize="@dimen/newstitle_title_size" />
+        android:layout_toLeftOf="@+id/arrow">
 
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textColor="@color/news_time"
-        android:textSize="@dimen/newstitle_title_size" />
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:gravity="left"
+            android:textColor="@color/news_title"
+            android:textSize="@dimen/newstitle_title_size" />
+
+        <TextView
+            android:id="@+id/name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/activity_horizontal_margin"
+            android:textColor="@color/news_time"
+            android:textSize="@dimen/newstitle_title_size" />
+
+    </LinearLayout>
+
 
     <ImageView
-        android:layout_width="@dimen/divider"
-        android:layout_height="@dimen/divider"
+        android:id="@+id/arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
-        android:padding="16dp"
         android:src="@drawable/arrow_more" />
 
 </RelativeLayout>

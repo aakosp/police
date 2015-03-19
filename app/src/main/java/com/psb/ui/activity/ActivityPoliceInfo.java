@@ -33,7 +33,8 @@ public class ActivityPoliceInfo extends BaseActivity implements AdapterView.OnIt
 
     private TopNavigationBar topbar;
     private TextView addr, name, office_addr, tel;
-    private ImageView img;
+    //    private ImageView img;
+    private View layAddr;
     private ListView list;
     private Intent intent;
 
@@ -43,17 +44,23 @@ public class ActivityPoliceInfo extends BaseActivity implements AdapterView.OnIt
         setContentView(R.layout.activity_police_list);
         topbar = (TopNavigationBar) findViewById(R.id.topbar);
         topbar.setActivity(this);
+        layAddr = findViewById(R.id.lay_addr);
         addr = (TextView) findViewById(R.id.addr);
         name = (TextView) findViewById(R.id.name);
         office_addr = (TextView) findViewById(R.id.office_name);
         office_addr.setOnClickListener(this);
         tel = (TextView) findViewById(R.id.tel);
         tel.setOnClickListener(this);
-        img = (ImageView) findViewById(R.id.img);
+//        img = (ImageView) findViewById(R.id.img);
         list = (ListView) findViewById(R.id.list);
         intent = new Intent();
         EventNotifyCenter.getInstance().register(this.getHandler(), Event.GET_POLICE_LIST);
-        Api.getInstance().getPolice(Cache.getInstance().getUser().getAddress());
+        if (!Cache.getInstance().isLogin()) {
+            layAddr.setVisibility(View.GONE);
+        } else {
+            layAddr.setVisibility(View.VISIBLE);
+            Api.getInstance().getPolice(Cache.getInstance().getUser().getAddress());
+        }
         this.init();
     }
 
@@ -85,13 +92,18 @@ public class ActivityPoliceInfo extends BaseActivity implements AdapterView.OnIt
                     return;
                 }
                 PoliceInfo info = Cache.getInstance().getPoliceInfo().get(0);
-                addr.setText(info.getAddress().getName());
-                name.setText(info.getPolice().getPolice_name());
-                office_addr.setText(info.getPolice().getPolice_station_id() + "警务室");
-                office_addr.setTag(info.getPolice().getPolice_station_id());
-                tel.setText(info.getPolice().getPhone());
-                tel.setTag(info.getPolice().getPhone());
-                ImageLoader.getInstance().displayImage("", img, ImageUtil.options);
+                if (null == info || null == info.getPolice()) {
+                    layAddr.setVisibility(View.GONE);
+                } else {
+                    layAddr.setVisibility(View.VISIBLE);
+                    addr.setText(info.getName());
+                    name.setText(info.getPolice().getPolice_name());
+                    office_addr.setText(info.getPolice().getPolice_station_name());
+                    office_addr.setTag(info.getPolice().getPolice_station_id());
+                    tel.setText(info.getPolice().getPhone());
+                    tel.setTag(info.getPolice().getPhone());
+//                    ImageLoader.getInstance().displayImage("", img, ImageUtil.options);
+                }
                 break;
         }
     }

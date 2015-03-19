@@ -1,13 +1,15 @@
 package com.psb.entity;
 
+import java.util.List;
+
 /**
  * Created by aako on 2015/2/8.
  */
 public class PoliceInfo {
     private int id;
-    private int address_id;
-    private int police_id;
-    private PoliceAddr address;
+    private int parentid;
+    private String name;
+    private int order;
     private Police police;
 
     public int getId() {
@@ -18,28 +20,28 @@ public class PoliceInfo {
         this.id = id;
     }
 
-    public int getAddress_id() {
-        return address_id;
+    public int getParentid() {
+        return parentid;
     }
 
-    public void setAddress_id(int address_id) {
-        this.address_id = address_id;
+    public void setParentid(int parentid) {
+        this.parentid = parentid;
     }
 
-    public int getPolice_id() {
-        return police_id;
+    public String getName() {
+        return name;
     }
 
-    public void setPolice_id(int police_id) {
-        this.police_id = police_id;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public PoliceAddr getAddress() {
-        return address;
+    public int getOrder() {
+        return order;
     }
 
-    public void setAddress(PoliceAddr address) {
-        this.address = address;
+    public void setOrder(int order) {
+        this.order = order;
     }
 
     public Police getPolice() {
@@ -57,6 +59,7 @@ public class PoliceInfo {
         private int police_station_id;
         private String phone;
         private String description;
+        private String police_station_name;
 
         public int getId() {
             return id;
@@ -97,45 +100,14 @@ public class PoliceInfo {
         public void setDescription(String description) {
             this.description = description;
         }
-    }
 
-    public class PoliceAddr {
-
-        private int id;
-        private int parentid;
-        private String name;
-        private int order;
-
-        public int getId() {
-            return id;
+        public String getPolice_station_name() {
+            return police_station_name;
         }
 
-        public void setId(int id) {
-            this.id = id;
-        }
-
-        public int getParentid() {
-            return parentid;
-        }
-
-        public void setParentid(int parentid) {
-            this.parentid = parentid;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public void setName(String name) {
-            this.name = name;
-        }
-
-        public int getOrder() {
-            return order;
-        }
-
-        public void setOrder(int order) {
-            this.order = order;
+        public void setPolice_station_name(String police_station_name) {
+            this.police_station_name = police_station_name;
         }
     }
+
 }

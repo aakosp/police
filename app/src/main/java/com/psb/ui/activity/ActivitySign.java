@@ -1,5 +1,6 @@
 package com.psb.ui.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.util.Log;
@@ -25,6 +26,7 @@ import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.psb.R;
+import com.psb.entity.ID;
 import com.psb.event.Event;
 import com.psb.event.EventNotifyCenter;
 import com.psb.protocol.Api;
@@ -33,6 +35,7 @@ import com.psb.ui.base.BaseActivity;
 import com.psb.ui.util.ToastUtil;
 import com.psb.ui.widget.TopNavigationBar;
 import com.util.LocationUtils;
+import com.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -53,6 +56,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
     private LocationMode mCurrentMode = LocationMode.FOLLOWING;
     private EditText content;
     private Button sign;
+    BDLocation mLocation;
 
     private boolean bSgin = false;
     //轨迹
@@ -101,7 +105,12 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
             case R.id.sign:
                 String work = content.getText().toString();
 //                Log.d("sign", "" + LocationUtils.getInstance().getmBDLocation().getLatitude() + " " + LocationUtils.getInstance().getmBDLocation().getLongitude());
-                Api.getInstance().sgin(work, LocationUtils.getInstance().getmBDLocation().getLongitude(), LocationUtils.getInstance().getmBDLocation().getLatitude());
+                if(null != mLocation){
+                    Api.getInstance().sgin(work, mLocation.getLongitude(), mLocation.getLatitude());
+                }
+                else{
+                    ToastUtil.showLongToast(this, "无法获取当前位置", 0);
+                }
                 break;
         }
     }
@@ -134,7 +143,17 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
     protected void handlerPacketMsg(Message msg) {
         switch (msg.what) {
             case Event.SGIN:
-                ToastUtil.showToast(this, "签到成功", 0);
+                ID res = Cache.getInstance().getSign();
+                if (!StringUtils.isEmpty(res.getError())) {
+                    ToastUtil.showLongToast(this, res.getError(), 0);
+                } else if (res.getId() > -1) {
+                    EventNotifyCenter.getInstance().doNotify(Event.REFRESH_OPINION);
+                    Intent intent = new Intent();
+                    intent.setClass(this, ActivityChuliSuccess.class);
+                    intent.putExtra("sign", true);
+                    this.startActivity(intent);
+                    this.finish();
+                }
                 break;
         }
     }
@@ -149,6 +168,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
             // map view 销毁后不在处理新接收的位置
             if (location == null || mMapView == null)
                 return;
+            mLocation = location;
             MyLocationData locData = new MyLocationData.Builder()
                     .accuracy(location.getRadius())
                             // 此处设置开发者获取到的方向信息，顺时针0-360

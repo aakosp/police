@@ -16,46 +16,48 @@
         android:layout_width="match_parent"
         android:layout_height="@dimen/divider" />
 
-    <TextView
-        android:id="@+id/addr"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding"
-        android:background="@color/bkg_tab"
-        android:paddingBottom="@dimen/map_padding"
-        android:paddingLeft="@dimen/default_padding"
-        android:paddingTop="@dimen/map_padding"
-        android:textColor="@color/news_time"
-        android:textSize="@dimen/newstitle_time_size" />
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider" />
-
     <LinearLayout
+        android:id="@+id/lay_addr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:orientation="horizontal"
-        android:padding="@dimen/default_padding">
+        android:orientation="vertical">
 
-        <ImageView
-            android:id="@+id/img"
-            android:layout_width="@dimen/police_img_width"
-            android:layout_height="@dimen/police_img_height"
-            android:scaleType="centerCrop" />
+        <TextView
+            android:id="@+id/addr"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_padding"
+            android:background="@color/bkg_tab"
+            android:paddingBottom="@dimen/map_padding"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingTop="@dimen/map_padding"
+            android:textColor="@color/news_time"
+            android:textSize="@dimen/newstitle_time_size" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/divider" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="@dimen/default_padding">
+            android:background="@color/white"
+            android:orientation="horizontal"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/default_padding"
+            android:paddingRight="@dimen/default_padding"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
+            <!--<ImageView
+                android:id="@+id/img"
+                android:layout_width="@dimen/police_img_width"
+                android:layout_height="@dimen/police_img_height"
+                android:scaleType="centerCrop" />-->
 
             <TextView
                 android:id="@+id/name"
-                android:layout_width="match_parent"
+                android:layout_width="@dimen/police_img_width"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/map_padding"
                 android:paddingLeft="@dimen/default_padding"
                 android:paddingRight="@dimen/default_padding"
                 android:textColor="@color/news_title"
@@ -64,49 +66,56 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/map_padding"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/default_padding"
-                android:paddingRight="@dimen/default_padding">
+                android:layout_marginLeft="@dimen/default_padding"
+                android:orientation="vertical">
 
-                <ImageView
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/position" />
-
-                <TextView
-                    android:id="@+id/office_name"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textColor="@color/news_time"
-                    android:textSize="@dimen/news_title_size" />
-            </LinearLayout>
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/default_padding"
+                    android:paddingRight="@dimen/default_padding">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:paddingLeft="@dimen/default_padding"
-                android:paddingRight="@dimen/default_padding">
+                    <ImageView
+                        android:layout_width="@dimen/icon_size"
+                        android:layout_height="@dimen/icon_size"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/position" />
 
-                <ImageView
-                    android:layout_width="@dimen/icon_size"
-                    android:layout_height="@dimen/icon_size"
-                    android:scaleType="centerInside"
-                    android:src="@drawable/tel" />
+                    <TextView
+                        android:id="@+id/office_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/news_time"
+                        android:textSize="@dimen/newstitle_mi_size" />
+                </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tel"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:autoLink="phone"
-                    android:textColor="@color/default_blue_color"
-                    android:textSize="@dimen/news_title_size" />
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingLeft="@dimen/default_padding"
+                    android:paddingRight="@dimen/default_padding">
+
+                    <ImageView
+                        android:layout_width="@dimen/icon_size"
+                        android:layout_height="@dimen/icon_size"
+                        android:scaleType="centerInside"
+                        android:src="@drawable/tel" />
+
+                    <TextView
+                        android:id="@+id/tel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:autoLink="phone"
+                        android:textColor="@color/default_blue_color"
+                        android:textSize="@dimen/newstitle_mi_size" />
+                </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
     </LinearLayout>
 
     <View

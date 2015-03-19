@@ -22,6 +22,7 @@ public class LocationUtils {
     private LocationClientOption.LocationMode tempMode = LocationClientOption.LocationMode.Hight_Accuracy;
     private String tempcoor = "bd09ll";
     private int span = 30000;
+
     private LocationUtils() {
     }
 

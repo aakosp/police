@@ -16,6 +16,15 @@
         android:minWidth="@dimen/newstitle_img_width"
         android:scaleType="centerInside" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/default_padding"
+        android:text="@string/success"
+        android:textColor="@color/niming"
+        android:textSize="@dimen/activity_horizontal_margin"
+        android:textStyle="bold" />
+
     <Button
         android:id="@+id/login"
         android:layout_width="match_parent"

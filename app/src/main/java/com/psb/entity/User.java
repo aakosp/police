@@ -9,13 +9,12 @@ public class User {
 
     private int id;
     private String user_name;
+    private String police_name;
     private String role;
     private String name;
     private String password;
-    private int police_station_id;
     private int address;
     private String phone;
-
     private String description;
 
     public int getId() {
@@ -50,28 +49,12 @@ public class User {
         this.name = name;
     }
 
-    public int getPolice_station_id() {
-        return police_station_id;
-    }
-
-    public void setPolice_station_id(int police_station_id) {
-        this.police_station_id = police_station_id;
-    }
-
     public String getPhone() {
         return phone;
     }
 
     public void setPhone(String phone) {
         this.phone = phone;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
     }
 
     public String getPassword() {
@@ -88,5 +71,21 @@ public class User {
 
     public void setAddress(int address) {
         this.address = address;
+    }
+
+    public String getPolice_name() {
+        return police_name;
+    }
+
+    public void setPolice_name(String police_name) {
+        this.police_name = police_name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

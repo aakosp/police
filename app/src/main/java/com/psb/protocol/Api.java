@@ -1,11 +1,15 @@
 package com.psb.protocol;
 
+import android.util.Log;
+
 import com.psb.ThreadUtil.ThreadPoolExecutorFactory;
 import com.psb.core.AppContext;
 import com.psb.event.Event;
 import com.util.StringUtils;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -72,44 +76,37 @@ public class Api {
         executor.execute(data);
     }
 
-    public void sign_up_session (double location_x, double location_y, String sessionId) {
-        String url = base_url + "/sign_up/"+sessionId;
-        List<NameValuePair> params = new ArrayList<>();
-        NameValuePair user = new BasicNameValuePair("user_id", "" + Cache.getInstance().getUser().getId());
-        NameValuePair x = new BasicNameValuePair("sign_up_location_x", "" + location_x);
-        NameValuePair y = new BasicNameValuePair("sign_up_location_y", "" + location_y);
-        params.add(user);
-        params.add(x);
-        params.add(y);
-        HttpRequestData data = new HttpRequestData(params, url, Event.SGIN, HttpClient.RequestType.PUT);
-        executor.execute(data);
-    }
-
-    public void sign_up_end (double location_x, double location_y, String sessionId) {
-        String url = base_url + "/sign_up/"+sessionId;
-        List<NameValuePair> params = new ArrayList<>();
-//        NameValuePair user = new BasicNameValuePair("user_id", "" + Cache.getInstance().getUser().getId());
-//        params.add(user);
-        HttpRequestData data = new HttpRequestData(null, url, Event.SGIN, HttpClient.RequestType.PUT);
-        executor.execute(data);
-    }
-
-    public void commitOpinion(String strTitle, String info, String pic, String strType){
+    public void commitOpinion(String strTitle, String info, String pic, String strType) {
         String url = base_url + "/opinion";
         List<NameValuePair> params = new ArrayList<>();
-        NameValuePair id = new BasicNameValuePair("user_id", ""+Cache.getInstance().getUser().getId());
-        params.add(id);
-        NameValuePair type = new BasicNameValuePair("title", strType);
+        if(null != Cache.getInstance().getUser()){
+            NameValuePair id = new BasicNameValuePair("user_id", "" + Cache.getInstance().getUser().getId());
+            params.add(id);
+        }
+        NameValuePair type = new BasicNameValuePair("type", strType);
         params.add(type);
         NameValuePair title = new BasicNameValuePair("title", strTitle);
         params.add(title);
         NameValuePair content = new BasicNameValuePair("content", info);
         params.add(content);
-        if(!StringUtils.isEmpty(pic)){
+        if (!StringUtils.isEmpty(pic)) {
             NameValuePair picture = new BasicNameValuePair("picture", pic);
             params.add(picture);
         }
-        HttpRequestData data = new HttpRequestData(params, url, Event.COMMIT_WORK);
+        HttpRequestData data = new HttpRequestData(params, url, Event.COMMIT_OPINION);
+        executor.execute(data);
+    }
+
+    public void chuliOpinion(int id, String info) {
+        String url = base_url + "/opinion_reply";
+        List<NameValuePair> params = new ArrayList<>();
+        NameValuePair pid = new BasicNameValuePair("opinion_id", ""+id);
+        params.add(pid);
+        NameValuePair pinfo = new BasicNameValuePair("reply_content", info);
+        params.add(pinfo);
+        NameValuePair uid = new BasicNameValuePair("user_id", ""+Cache.getInstance().getUser().getId());
+        params.add(uid);
+        HttpRequestData data = new HttpRequestData(params, url, Event.CHULI);
         executor.execute(data);
     }
 
@@ -132,15 +129,36 @@ public class Api {
         executor.execute(data);
     }
 
-    public void getOpinion(String id) {
+    public void getOpinion(int id) {
         String url = base_url + "/opinion/" + id;
         HttpRequestData data = new HttpRequestData(url, Event.GET_OPINION);
         executor.execute(data);
     }
 
-    public void getOpinions() {
-        String url = base_url + "/opinion";
-        HttpRequestData data = new HttpRequestData(url, Event.GET_OPINION_LIST);
+    public void getOpinionsOK(int id, int page) {
+        String url = base_url + "/opinion?reply=REPLYED";
+        if (id != -1) {
+            url += "&user_id=" + id;
+        }
+
+        if (page != -1) {
+            url += "&page=" + page;
+        }
+        Log.d("GET_OPINION_LIST_OK", url);
+        HttpRequestData data = new HttpRequestData(url, Event.GET_OPINION_LIST_OK);
+        executor.execute(data);
+    }
+
+    public void getOpinionsUndo(int id, int page) {
+        String url = base_url + "/opinion?reply=NOT_REPLY";
+        if (id != -1) {
+            url += "&user_id=" + id;
+        }
+        if (page != -1) {
+            url += "&page=" + page;
+        }
+        Log.d("getOpinionsUndo", url);
+        HttpRequestData data = new HttpRequestData(url, Event.GET_OPINION_LIST_UNDO);
         executor.execute(data);
     }
 
@@ -177,20 +195,28 @@ public class Api {
         executor.execute(data);
     }
 
-    public void commitWork(String strTitle, String info, String pic){
+    public void commitWork(String strTitle, String strType, String info, String pic) {
         String url = base_url + "/daily_log";
         List<NameValuePair> params = new ArrayList<>();
-        NameValuePair id = new BasicNameValuePair("user_id", ""+Cache.getInstance().getUser().getId());
+        NameValuePair id = new BasicNameValuePair("police_id", "" + Cache.getInstance().getUser().getId());
         params.add(id);
         NameValuePair title = new BasicNameValuePair("title", strTitle);
         params.add(title);
+        NameValuePair type = new BasicNameValuePair("type", strType);
+        params.add(type);
         NameValuePair content = new BasicNameValuePair("content", info);
         params.add(content);
-        if(!StringUtils.isEmpty(pic)){
+        if (!StringUtils.isEmpty(pic)) {
             NameValuePair picture = new BasicNameValuePair("picture", pic);
             params.add(picture);
         }
         HttpRequestData data = new HttpRequestData(params, url, Event.COMMIT_WORK);
+        executor.execute(data);
+    }
+
+    public void getWork() {
+        String url = base_url + "/daily_log?police_id="+Cache.getInstance().getUser().getId();
+        HttpRequestData data = new HttpRequestData(url, Event.GET_WORK);
         executor.execute(data);
     }
 
