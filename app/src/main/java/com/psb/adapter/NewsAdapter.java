@@ -23,6 +23,10 @@ public class NewsAdapter extends BaseAdapter {
 
     private List<NewsInfo> news;
 
+    public NewsAdapter() {
+        news = new ArrayList<>();
+    }
+
     public NewsAdapter(List<NewsInfo> titles) {
         news = new ArrayList<>();
         news.addAll(titles);

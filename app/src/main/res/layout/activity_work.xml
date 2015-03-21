@@ -60,11 +60,11 @@
             android:layout_height="wrap_content"
             android:background="@null"
             android:gravity="top|left"
-            android:textColor="@color/news_title"
             android:hint="@string/info"
             android:lines="7"
             android:minHeight="@dimen/feedback_info_height"
-            android:padding="@dimen/default_padding" />
+            android:padding="@dimen/default_padding"
+            android:textColor="@color/news_title" />
     </LinearLayout>
 
     <com.psb.ui.widget.ImageGridView

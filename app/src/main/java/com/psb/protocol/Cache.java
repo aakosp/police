@@ -54,7 +54,7 @@ public class Cache {
         pwd = sp.getString("pwd", "");
         role = sp.getString("role", "");
         name = sp.getString("name", "");
-        Log.d("222", id+"  "+name+"   "+pwd+"   "+role);
+        Log.d("222", id + "  " + name + "   " + pwd + "   " + role);
     }
 
     public synchronized static Cache getInstance() {
@@ -76,29 +76,23 @@ public class Cache {
             case Event.NEWS_7:
             case Event.NEWS_8:
             case Event.NEWS_9:
+            case Event.NOTICE:
                 Article article = JSON.parseObject(responseBody, Article.class);
                 articleMap.put(event, article);
                 break;
 
             case Event.GET_USER:
                 User item = JSON.parseObject(responseBody, User.class);
-                if(isLogin && item.getUser_name().equals(id)){
-                    if(null == user){
+                if (isLogin && item.getUser_name().equals(id)) {
+                    if (null == user) {
                         user = item;
                     }
-                    if(!item.getPassword().equals(pwd)){
+                    if (!item.getPassword().equals(pwd)) {
                         isLogin = false;
                     }
                 }
                 if (null != item) {
-                    if(User.POLICE.equals(user.getRole())){
-                        Log.d(" put ", item.getPolice_name());
-                        users.put(item.getPolice_name(), item);
-                    }
-                    else{
-                        Log.d(" put ", item.getUser_name());
-                        users.put(item.getUser_name(), item);
-                    }
+                    users.put(item.getUser_name(), item);
                 }
                 break;
 
@@ -219,10 +213,10 @@ public class Cache {
         editor.putString("id", user.getUser_name());
         editor.putString("pwd", user.getPassword());
         editor.putString("role", user.getRole());
-        if(user.getRole().equals(User.POLICE)){
+        if (user.getRole().equals(User.POLICE)) {
             name = user.getPolice_name();
             editor.putString("name", user.getPolice_name());
-        }else{
+        } else {
             name = user.getName();
             editor.putString("name", user.getName());
         }
@@ -303,11 +297,11 @@ public class Cache {
         return sign;
     }
 
-    public String getRole(){
+    public String getRole() {
         return role;
     }
 
-    public String getName(){
+    public String getName() {
         Log.d("name", name);
         return name;
     }

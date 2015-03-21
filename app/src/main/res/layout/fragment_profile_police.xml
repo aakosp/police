@@ -176,9 +176,10 @@
             app:ItemHorizontal_text="@string/logout"
             app:ItemHorizontal_text_color="@color/news_title"
             app:ItemHorizontal_text_size="@dimen/newstitle_title_size" />
+
         <View
             android:layout_width="match_parent"
-            android:layout_height="@dimen/default_padding"/>
+            android:layout_height="@dimen/default_padding" />
 
     </LinearLayout>
 </ScrollView>

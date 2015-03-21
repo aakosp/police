@@ -92,6 +92,9 @@
             android:name=".ui.activity.ActivityOpinionInfo"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.activity.ActivityNotice"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.ActivityArea"
             android:screenOrientation="portrait"
             android:theme="@style/AppDialog"/>
@@ -114,15 +117,15 @@
             </intent-filter>
         </service>
 
-        <!-- company-->
+        <!-- company
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="eGRRzIYHNG2VfkfOknkAvifA"/>
+            android:value="eGRRzIYHNG2VfkfOknkAvifA"/>-->
 
-        <!-- home
+        <!-- home-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="eulwukjkSVyRtDOMoSUlQHC8" />-->
+            android:value="eulwukjkSVyRtDOMoSUlQHC8" />
 
     </application>
 

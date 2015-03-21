@@ -32,12 +32,17 @@ public class ActivityNewsDetail extends BaseActivity {
         topbar.setActivity(this);
 
         Bundle bundle = this.getIntent().getExtras();
-        title.setText(bundle.getString("title"));
-        detail.setText(bundle.getString("content"));
-        if (!StringUtils.isEmpty(bundle.getString("url"))) {
-            img.setVisibility(View.VISIBLE);
-            ImageLoader.getInstance().displayImage(bundle.getString("url") + ImageUtil.CONTENT, img, ImageUtil.options);
+        if(null != bundle){
+            boolean notice = bundle.getBoolean("notice", false);
+            if(notice){
+                topbar.setTitleText(this.getResources().getText(R.string.notice));
+            }
+            title.setText(bundle.getString("title"));
+            detail.setText(bundle.getString("content"));
+            if (!StringUtils.isEmpty(bundle.getString("url"))) {
+                img.setVisibility(View.VISIBLE);
+                ImageLoader.getInstance().displayImage(bundle.getString("url") + ImageUtil.CONTENT, img, ImageUtil.options);
+            }
         }
-
     }
 }

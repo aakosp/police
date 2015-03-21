@@ -76,8 +76,8 @@ public class FragmentProfilePolice extends BaseFragment implements View.OnClickL
             case R.id.profile:
                 return;
             case R.id.notice:
-//                intent.setClass(this.getActivity(), ActivityOpinionFeedBack.class);
-                return;
+                intent.setClass(this.getActivity(), ActivityNotice.class);
+                break;
             case R.id.processing:
                 intent.setClass(this.getActivity(), ActivityOpinionProcessing.class);
                 break;

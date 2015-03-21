@@ -17,7 +17,9 @@ public class Event {
     public static final int NEWS_8 = 8;                 //消防
     public static final int NEWS_9 = 9;                 //出入境
 
-    public static final int GET_USER = 10;              //获取用户资料
+    public static final int NOTICE = 10;                 //通知通报
+
+    public static final int GET_USER = 26;              //获取用户资料
     public static final int SGIN = 11;                  //签到
     public static final int GET_FEEDBACK = 12;          //获取单个意见回复
     public static final int GET_OPINION = 13;           //获取意见
@@ -35,6 +37,8 @@ public class Event {
     public static final int COMMIT_OPINION = 23;         //提交意见
     public static final int GET_WORK = 24;                 //获取工作记录
     public static final int CHULI = 25;                 //处理意见
+
+
 
     public static final int REFRESH_OPINION = 26;          //刷新意见列表
     public static final int RESULT_SEX = 100;           //获取性别

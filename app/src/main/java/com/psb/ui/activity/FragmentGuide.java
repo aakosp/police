@@ -84,7 +84,6 @@ public class FragmentGuide extends BaseFragment implements AdapterView.OnItemCli
             case Event.NEWS_7:
             case Event.NEWS_8:
             case Event.NEWS_9:
-                Log.d("news", "" + msg.what);
                 NewsGuide news = (NewsGuide) pageViews.get(msg.what - 5);
                 news.onRefreshComplete();
                 news.setArticle(Cache.getInstance().getArticle(msg.what));
