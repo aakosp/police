@@ -4,12 +4,10 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
-
 import com.alibaba.fastjson.JSON;
 import com.psb.R;
 import com.psb.adapter.AlbumPhotosAdapter;
@@ -69,6 +67,7 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
         if (id != -1) {
             Work work = Cache.getInstance().getWork(id);
             title.setText(work.getTitle());
+            title.setEnabled(false);
             switch (work.getType()) {
                 case Work.DISPUTE:
                     type.setText("矛盾纠纷");
@@ -87,6 +86,7 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
                     break;
             }
             info.setText(work.getContent());
+            info.setEnabled(false);
             imgs.setAdapter(new PhotosAdapter(this));
             adapter.notifyDataSetChanged();
         } else {
@@ -114,12 +114,9 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0 && resultCode == RESULT_OK) {
             Uri uri = data.getData();
-            Log.e("uri", uri.toString());
             adapter.addImage(uri);
         } else if (requestCode == Event.RESULT_WORK) {
-
             strType = data.getStringExtra("id");
-            Log.d("id", strType);
             type.setText(data.getStringExtra("type"));
         }
     }
