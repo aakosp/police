@@ -27,7 +27,6 @@
             android:hint="@string/title"
             android:padding="@dimen/default_padding"
             android:textColor="@color/news_title"
-            android:textColorHint="@color/news_title"
             android:textSize="@dimen/newstitle_title_size" />
 
         <View
@@ -46,7 +45,6 @@
             android:hint="@string/hit_xuanze"
             android:padding="@dimen/default_padding"
             android:textColor="@color/news_title"
-            android:textColorHint="@color/news_title"
             android:textSize="@dimen/newstitle_title_size" />
 
         <View
@@ -65,8 +63,7 @@
             android:hint="@string/info"
             android:lines="7"
             android:minHeight="@dimen/feedback_info_height"
-            android:padding="@dimen/default_padding"
-            android:textColorHint="@color/news_title" />
+            android:padding="@dimen/default_padding" />
     </LinearLayout>
 
     <com.psb.ui.widget.ImageGridView

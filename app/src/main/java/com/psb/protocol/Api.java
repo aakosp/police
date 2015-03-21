@@ -214,6 +214,7 @@ public class Api {
     }
 
     public void commitWork(String strTitle, String strType, String info, String pic) {
+        Log.d("type----------", "22222222222222222222   "+strType);
         String url = base_url + "/daily_log";
         List<NameValuePair> params = new ArrayList<>();
         NameValuePair id = new BasicNameValuePair("police_id", "" + Cache.getInstance().getUser().getId());

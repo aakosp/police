@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -86,19 +87,24 @@ public class FragmentProfileLogin extends BaseFragment implements View.OnClickLi
     protected void handlerPacketMsg(Message msg) {
         switch (msg.what) {
             case Event.GET_USER:
-                User user = Cache.getInstance().getUser(strId);
-                if (null == user) {
-                    ToastUtil.showToast(this.getActivity(), "用户名或密码错误", 0);
-                    return;
-                }
-                String md5 = Md5Helper.encode(strPwd);
-                if (md5.equals(user.getPassword())) {
-                    Cache.getInstance().setId(strId);
-                    Cache.getInstance().setUser(user);
-                    Cache.getInstance().setLogin(true);
-                    FragmentProfile.choose();
-                } else {
-                    ToastUtil.showToast(this.getActivity(), "用户名或密码错误", 0);
+                if(!Cache.getInstance().isLogin()) {
+                    if(StringUtils.isEmpty(strId)){
+                        strId = Cache.getInstance().getId();
+                    }
+                    User user = Cache.getInstance().getUser(strId);
+                    if (null == user) {
+                        ToastUtil.showToast(this.getActivity(), "用户名或密码错误", 0);
+                        return;
+                    }
+                    String md5 = Md5Helper.encode(strPwd);
+                    if (md5.equals(user.getPassword())) {
+                        Cache.getInstance().setId(strId);
+                        Cache.getInstance().setUser(user);
+                        Cache.getInstance().setLogin(true);
+                        FragmentProfile.choose();
+                    } else {
+                        ToastUtil.showToast(this.getActivity(), "用户名或密码错误", 0);
+                    }
                 }
                 break;
         }

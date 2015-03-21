@@ -91,7 +91,14 @@ public class Cache {
                     }
                 }
                 if (null != item) {
-                    users.put(item.getUser_name(), item);
+                    if(User.POLICE.equals(user.getRole())){
+                        Log.d(" put ", item.getPolice_name());
+                        users.put(item.getPolice_name(), item);
+                    }
+                    else{
+                        Log.d(" put ", item.getUser_name());
+                        users.put(item.getUser_name(), item);
+                    }
                 }
                 break;
 

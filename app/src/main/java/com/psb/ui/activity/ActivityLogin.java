@@ -89,7 +89,7 @@ public class ActivityLogin extends BaseActivity implements View.OnClickListener 
             case Event.GET_USER:
                 User user = Cache.getInstance().getUser(strId);
                 if (null == user) {
-                    ToastUtil.showToast(this, "用户名或密码错误", 0);
+//                    ToastUtil.showToast(this, "用户名或密码错误", 0);
                     return;
                 }
                 String md5 = Md5Helper.encode(strPwd);
@@ -103,7 +103,7 @@ public class ActivityLogin extends BaseActivity implements View.OnClickListener 
 //                    this.startActivity(intent);
                     this.finish();
                 } else {
-                    ToastUtil.showToast(this, "用户名或密码错误", 0);
+//                    ToastUtil.showToast(this, "用户名或密码错误", 0);
                 }
                 break;
         }

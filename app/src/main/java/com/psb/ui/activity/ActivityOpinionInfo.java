@@ -123,9 +123,12 @@ public class ActivityOpinionInfo extends BaseActivity implements View.OnClickLis
             if (Opinion.ANONYMOUS.equals(opinion.getType())) {
                 type.setText("匿名");
             } else {
-                String name = opinion.getUser().getName();
-                name += "，" + Cache.getInstance().getAddrStr(opinion.getUser().getAddress());
-                name += "，" + opinion.getUser().getPhone();
+                String name = "";
+                if(null != opinion.getUser()){
+                    name = opinion.getUser().getName();
+                    name += "，" + Cache.getInstance().getAddrStr(opinion.getUser().getAddress());
+                    name += "，" + opinion.getUser().getPhone();
+                }
                 type.setText(name);
             }
             info.setText(opinion.getContent());

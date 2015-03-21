@@ -20,19 +20,19 @@
             android:padding="@dimen/default_padding">
 
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/avatar_size"
                 android:layout_alignParentLeft="true"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <ImageView
+                <!--<ImageView
                     android:id="@+id/avatar"
                     android:layout_width="@dimen/avatar_size"
                     android:layout_height="@dimen/avatar_size"
                     android:layout_alignParentLeft="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/id" />
+                    android:src="@drawable/id" />-->
 
                 <TextView
                     android:id="@+id/name"
@@ -52,14 +52,14 @@
 
             </LinearLayout>
 
-            <ImageView
+            <!--<ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:padding="16dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/arrow_more" />
+                android:src="@drawable/arrow_more" />-->
 
         </RelativeLayout>
 

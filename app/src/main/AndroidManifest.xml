@@ -71,6 +71,9 @@
             android:name=".ui.activity.ActivityChuliSuccess"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.activity.ActivityWorkSuccess"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.ActivityReportSucess"
             android:screenOrientation="portrait" />
         <activity
@@ -111,15 +114,15 @@
             </intent-filter>
         </service>
 
-        <!-- company
+        <!-- company-->
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="eGRRzIYHNG2VfkfOknkAvifA"/>-->
+            android:value="eGRRzIYHNG2VfkfOknkAvifA"/>
 
-        <!-- home-->
+        <!-- home
         <meta-data
             android:name="com.baidu.lbsapi.API_KEY"
-            android:value="eulwukjkSVyRtDOMoSUlQHC8" />
+            android:value="eulwukjkSVyRtDOMoSUlQHC8" />-->
 
     </application>
 
