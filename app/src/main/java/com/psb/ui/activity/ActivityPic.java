@@ -21,6 +21,7 @@ public class ActivityPic extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_pic);
         top = (TopNavigationBar) findViewById(R.id.top);
         top.setActivity(this);
         img = (ImageView) findViewById(R.id.pic);

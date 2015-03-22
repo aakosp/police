@@ -6,6 +6,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -45,7 +46,7 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener, 
     private boolean shibai = false;
     private String strType = "";
     private int id = -1;
-    private Intent intent;
+    private Intent intentPic;
     private View root;
 
     @Override
@@ -97,8 +98,9 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener, 
             info.setEnabled(false);
             imgs.setAdapter(new PhotosAdapter(this, work.getPicture()));
             imgs.setOnItemClickListener(this);
-            intent = new Intent();
-            intent.setClass(this, ActivityPic.class);
+            intentPic = new Intent();
+            intentPic.setClass(this, ActivityPic.class);
+            Log.d("intentPic", ""+(null==intentPic));
             adapter.notifyDataSetChanged();
         } else {
             imgs.setAdapter(adapter);
@@ -210,11 +212,12 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        if (null != intent) {
+        Log.d("item", ""+(null==intentPic));
+        if (null != intentPic) {
             PhotosAdapter ad = (PhotosAdapter) parent.getAdapter();
             String url = (String) ad.getItem(position);
-            intent.putExtra("url", url);
-            this.startActivity(intent);
+            intentPic.putExtra("url", url);
+            this.startActivity(intentPic);
         }
 
     }
