@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.baidu.mapapi.model.LatLng;
 import com.psb.core.AppContext;
 import com.psb.entity.Addr;
 import com.psb.entity.Article;
@@ -44,6 +45,9 @@ public class Cache {
     private ID register, opi, chuli, workid, sign;
     private List<PoliceInfo> policeInfo = new ArrayList<>();
     private List<Work> works = new ArrayList<>();
+
+    private boolean isSign = false;
+    private List<List<LatLng>> points = new ArrayList<>();
 
 
     private Cache() {
@@ -304,5 +308,24 @@ public class Cache {
     public String getName() {
         Log.d("name", name);
         return name;
+    }
+
+    public void setSign(boolean sign) {
+        this.isSign = sign;
+        if(!isSign){
+            points.clear();
+        }
+    }
+
+    public void setPoints(List<LatLng> points) {
+        this.points.add(points);
+    }
+
+    public boolean isSign() {
+        return isSign;
+    }
+
+    public List<List<LatLng>> getPoints() {
+        return points;
     }
 }

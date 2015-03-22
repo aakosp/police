@@ -87,8 +87,8 @@ public class FragmentProfileLogin extends BaseFragment implements View.OnClickLi
     protected void handlerPacketMsg(Message msg) {
         switch (msg.what) {
             case Event.GET_USER:
-                if(!Cache.getInstance().isLogin()) {
-                    if(StringUtils.isEmpty(strId)){
+                if (!Cache.getInstance().isLogin()) {
+                    if (StringUtils.isEmpty(strId)) {
                         strId = Cache.getInstance().getId();
                     }
                     User user = Cache.getInstance().getUser(strId);

@@ -32,9 +32,9 @@ public class ActivityNewsDetail extends BaseActivity {
         topbar.setActivity(this);
 
         Bundle bundle = this.getIntent().getExtras();
-        if(null != bundle){
+        if (null != bundle) {
             boolean notice = bundle.getBoolean("notice", false);
-            if(notice){
+            if (notice) {
                 topbar.setTitleText(this.getResources().getText(R.string.notice));
             }
             title.setText(bundle.getString("title"));

@@ -124,7 +124,7 @@ public class ActivityOpinionInfo extends BaseActivity implements View.OnClickLis
                 type.setText("匿名");
             } else {
                 String name = "";
-                if(null != opinion.getUser()){
+                if (null != opinion.getUser()) {
                     name = opinion.getUser().getName();
                     name += "，" + Cache.getInstance().getAddrStr(opinion.getUser().getAddress());
                     name += "，" + opinion.getUser().getPhone();

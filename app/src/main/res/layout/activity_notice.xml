@@ -17,6 +17,6 @@
         android:layout_height="match_parent"
         android:layout_marginTop="@dimen/default_padding"
         android:divider="@color/background"
-        android:dividerHeight="@dimen/divider"/>
+        android:dividerHeight="@dimen/divider" />
 
 </LinearLayout>

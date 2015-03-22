@@ -39,7 +39,7 @@ public class ActivityWorkList extends BaseActivity implements PullToRefreshBase.
         list.getRefreshableView().setDivider(new ColorDrawable(getResources().getColor(R.color.item_office_info_divider)));
         list.getRefreshableView().setDividerHeight(DisplayUtil.dip2px(0.5f));
         list.setOnRefreshListener(this);
-
+        list.setMode(PullToRefreshBase.Mode.PULL_FROM_START);
         Api.getInstance().getWork();
         EventNotifyCenter.getInstance().register(this.getHandler(), Event.GET_WORK);
     }

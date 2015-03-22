@@ -25,13 +25,13 @@ import com.psb.ui.widget.TopNavigationBar;
 /**
  * Created by aako on 2015/3/21.
  */
-public class ActivityNotice extends BaseActivity implements PullToRefreshBase.OnRefreshListener2<ListView>, AdapterView.OnItemClickListener{
+public class ActivityNotice extends BaseActivity implements PullToRefreshBase.OnRefreshListener2<ListView>, AdapterView.OnItemClickListener {
 
     private TopNavigationBar top;
     private PullToRefreshListView list;
     private int current_page = 1;
     private int lastPage = 1;
-//    private long request_time = 0;
+    //    private long request_time = 0;
     private NewsAdapter adapter;
     private Intent intent;
 

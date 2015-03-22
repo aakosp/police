@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
+
 import com.alibaba.fastjson.JSON;
 import com.psb.R;
 import com.psb.adapter.AlbumPhotosAdapter;
@@ -65,6 +66,8 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
             id = intent.getIntExtra("id", -1);
         }
         if (id != -1) {
+            topbar.setTitleText("查看工作记录");
+            commit.setVisibility(View.GONE);
             Work work = Cache.getInstance().getWork(id);
             title.setText(work.getTitle());
             title.setEnabled(false);

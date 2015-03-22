@@ -48,7 +48,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
 
     public MyLocationListenner myListener = new MyLocationListenner();
     // 定位相关
-    LocationClient mLocClient;
+//    LocationClient mLocClient;
     BitmapDescriptor mCurrentMarker;
     MapView mMapView;
     BaiduMap mBaiduMap;
@@ -58,7 +58,6 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
     //    private EditText content;
     private Button sign;
     BDLocation mLocation;
-
     private boolean bSgin = false;
     //轨迹
     List<LatLng> points = new ArrayList<LatLng>();
@@ -78,28 +77,33 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
         mBaiduMap = mMapView.getMap();
         // 开启定位图层
         mBaiduMap.setMyLocationEnabled(true);
-//        LatLng southwest = new LatLng(34.738562, 113.620144);
-//        LatLng northeast = new LatLng(34.738562, 113.620144);
-//        LatLngBounds bounds = new LatLngBounds.Builder().include(northeast).include(southwest).build();
-//        MapStatusUpdate msu = MapStatusUpdateFactory.newLatLng(bounds.getCenter());
         MapStatusUpdate zoom = MapStatusUpdateFactory.zoomTo(14.0f);
         mBaiduMap.setMapStatus(zoom);
-//        mBaiduMap.setMapStatus(msu);
         mCurrentMarker = BitmapDescriptorFactory.fromResource(R.drawable.mark);
         mBaiduMap.setMyLocationConfigeration(new MyLocationConfiguration(mCurrentMode, false, mCurrentMarker));
+        LocationUtils.getInstance().start();
+        LocationUtils.getInstance().setmBDLocationListener(myListener);
         // 定位初始化
-        mLocClient = new LocationClient(this);
-        mLocClient.registerLocationListener(myListener);
-        LocationClientOption option = new LocationClientOption();
-        option.setOpenGps(true);// 打开gps
-        option.setCoorType("bd09ll"); // 设置坐标类型
-        option.setScanSpan(5000);
-        mLocClient.setLocOption(option);
-        mLocClient.start();
-
+//        mLocClient = new LocationClient(this);
+//        mLocClient.registerLocationListener(myListener);
+//        LocationClientOption option = new LocationClientOption();
+//        option.setOpenGps(true);// 打开gps
+//        option.setCoorType("bd09ll"); // 设置坐标类型
+//        option.setScanSpan(5000);
+//        mLocClient.setLocOption(option);
+//        mLocClient.start();
+        LocationUtils.getInstance().start();
 //        content = (EditText) findViewById(R.id.work);
         sign = (Button) findViewById(R.id.sign);
         sign.setOnClickListener(this);
+
+        if(Cache.getInstance().isSign()){
+            for(List<LatLng> pp : Cache.getInstance().getPoints()){
+                OverlayOptions ooPolyline = new PolylineOptions().width(10)
+                        .color(0xAAFF0000).points(pp);
+                mBaiduMap.addOverlay(ooPolyline);
+            }
+        }
 
         EventNotifyCenter.getInstance().register(this.getHandler(), Event.SGIN);
     }
@@ -112,14 +116,18 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
                     String work = "";//content.getText().toString();
                     if (null != mLocation) {
                         Api.getInstance().sign_up(work, mLocation.getLongitude(), mLocation.getLatitude());
-                        sign.setText("签到结束");
+                        Cache.getInstance().setSign(true);
+                        sign.setText("正在签到，点击结束");
+                        topbar.setTitleText("正在签到");
                         bSgin = true;
                     } else {
                         ToastUtil.showLongToast(this, "无法获取当前位置", 0);
                     }
                 } else {
                     if (!StringUtils.isEmpty(session)) {
+                        LocationUtils.getInstance().stop();
                         Api.getInstance().sign_up_end(session);
+                        Cache.getInstance().setSign(false);
                         bSgin = false;
                     }
                 }
@@ -142,7 +150,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         // 退出时销毁定位
-        mLocClient.stop();
+//        mLocClient.stop();
         // 关闭定位图层
         mBaiduMap.setMyLocationEnabled(false);
         mMapView.onDestroy();
@@ -170,12 +178,6 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
                         this.startActivity(intent);
                         this.finish();
                     }
-//                    EventNotifyCenter.getInstance().doNotify(Event.REFRESH_OPINION);
-//                    Intent intent = new Intent();
-//                    intent.setClass(this, ActivityChuliSuccess.class);
-//                    intent.putExtra("sign", true);
-//                    this.startActivity(intent);
-//                    this.finish();
                 }
                 break;
         }
@@ -203,24 +205,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
             if (location.getLocType() == BDLocation.TypeNetWorkException) {
                 return;
             }
-
-//            if (points.size() > 0) {
-//                if (points.get(points.size() - 1).latitude == location.getLatitude() &&
-//                        points.get(points.size() - 1).longitude == location.getLongitude()) {
-//                    return;
-//                }
-//            }
-//            if(x==0){
-//                x = location.getLatitude();
-//            }
-//            else{
-//                x += 0.000005;
-//                BigDecimal bg = new BigDecimal(x);
-//                x = bg.setScale(6, BigDecimal.ROUND_HALF_UP).doubleValue();
-//            }
-//            Log.d("" + session, bSgin +"      " +x + "   " + location.getLongitude());
             LatLng lat = new LatLng(location.getLatitude(), location.getLongitude());
-//            n++;
             if (bSgin) {
                 points.add(lat);
                 if (points.size() == 5) {
@@ -244,9 +229,6 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
                 MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
                 mBaiduMap.animateMapStatus(u);
             }
-        }
-
-        public void onReceivePoi(BDLocation poiLocation) {
         }
     }
 }

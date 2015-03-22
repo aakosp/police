@@ -9,6 +9,13 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
+import com.baidu.mapapi.map.OverlayOptions;
+import com.baidu.mapapi.map.PolylineOptions;
+import com.baidu.mapapi.model.LatLng;
+import com.psb.protocol.Cache;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by zl on 2015/1/28.
@@ -19,10 +26,8 @@ public class LocationUtils {
     public Vibrator mVibrator;
     private LocationClient mLocationClient;
     private BDLocation mBDLocation;
-    private LocationClientOption.LocationMode tempMode = LocationClientOption.LocationMode.Hight_Accuracy;
-    private String tempcoor = "bd09ll";
-    private int span = 30000;
-
+    private BDLocationListener mBDLocationListener;
+    private List<LatLng> points = new ArrayList<>();
     private LocationUtils() {
     }
 
@@ -41,52 +46,48 @@ public class LocationUtils {
         return mLocationClient;
     }
 
+    public void start() {
+        if (!mLocationClient.isStarted()) {
+            mLocationClient.start();
+        }
+    }
+
+    public void stop(){
+        mLocationClient.stop();
+    }
+
+    public void setmBDLocationListener(BDLocationListener mBDLocationListener) {
+        this.mBDLocationListener = mBDLocationListener;
+    }
+
     public void initLocation(Context context) {
         mLocationClient = new LocationClient(context);
         mLocationClient.registerLocationListener(new BDLocationListener() {
             @Override
             public void onReceiveLocation(BDLocation location) {
                 mBDLocation = location;
-                StringBuffer sb = new StringBuffer(256);
-                sb.append("time : ");
-                sb.append(location.getTime());
-                sb.append("\nerror code : ");
-                sb.append(location.getLocType());
-                sb.append("\nlatitude : ");
-                sb.append(location.getLatitude());
-                sb.append("\nlontitude : ");
-                sb.append(location.getLongitude());
-                sb.append("\nradius : ");
-                sb.append(location.getRadius());
-                if (location.getLocType() == BDLocation.TypeGpsLocation) {
-                    sb.append("\nspeed : ");
-                    sb.append(location.getSpeed());
-                    sb.append("\nsatellite : ");
-                    sb.append(location.getSatelliteNumber());
-                    sb.append("\ndirection : ");
-                    sb.append("\naddr : ");
-                    sb.append(location.getAddrStr());
-                    sb.append(location.getDirection());
-                } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {
-                    sb.append("\naddr : ");
-                    sb.append(location.getAddrStr());
-                    sb.append("\noperationers : ");
-                    sb.append(location.getOperators());
+                if (null != mBDLocationListener) {
+                    mBDLocationListener.onReceiveLocation(location);
+                    if (Cache.getInstance().isSign()) {
+                        if (location.getLocType() == BDLocation.TypeNetWorkException) {
+                            return;
+                        }
+                        LatLng lat = new LatLng(location.getLatitude(), location.getLongitude());
+                        points.add(lat);
+                        if(points.size() == 500){
+                            Cache.getInstance().getPoints().add(points);
+                            points.clear();
+                        }
+                    }
                 }
-                Log.i("BaiduLocationApiDem", sb.toString());
             }
         });
         mVibrator = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
         LocationClientOption option = new LocationClientOption();
-        option.setLocationMode(tempMode);
-        option.setCoorType(tempcoor);
-        option.setScanSpan(span);
-        option.setIsNeedAddress(true);
         option.setOpenGps(true);// 打开gps
+        option.setCoorType("bd09ll"); // 设置坐标类型
+        option.setScanSpan(8000);
         mLocationClient.setLocOption(option);
-//        if (!mLocationClient.isStarted()) {
-//            mLocationClient.start();
-//        }
     }
 
     public void getLoc() {

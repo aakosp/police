@@ -1,89 +1,95 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background"
     android:orientation="vertical">
 
-    <com.psb.ui.widget.TopNavigationBar
-        android:id="@+id/topbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:titleText="@string/record" />
-
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/default_padding"
-        android:background="@color/white"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/title"
+        <com.psb.ui.widget.TopNavigationBar
+            android:id="@+id/topbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:hint="@string/title"
-            android:padding="@dimen/default_padding"
-            android:textColor="@color/news_title"
-            android:textSize="@dimen/newstitle_title_size" />
+            app:titleText="@string/record" />
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/divider"
-            android:layout_marginLeft="@dimen/default_padding"
-            android:layout_marginRight="@dimen/default_padding"
-            android:background="@color/item_office_info_divider" />
-
-        <EditText
-            android:id="@+id/type"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:editable="false"
-            android:hint="@string/hit_xuanze"
-            android:padding="@dimen/default_padding"
-            android:textColor="@color/news_title"
-            android:textSize="@dimen/newstitle_title_size" />
+            android:layout_marginTop="@dimen/default_padding"
+            android:background="@color/white"
+            android:orientation="vertical">
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/divider"
-            android:layout_marginLeft="@dimen/default_padding"
-            android:layout_marginRight="@dimen/default_padding"
-            android:background="@color/item_office_info_divider" />
+            <EditText
+                android:id="@+id/title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:hint="@string/title"
+                android:padding="@dimen/default_padding"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
 
-        <EditText
-            android:id="@+id/info"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider"
+                android:layout_marginLeft="@dimen/default_padding"
+                android:layout_marginRight="@dimen/default_padding"
+                android:background="@color/item_office_info_divider" />
+
+            <EditText
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:editable="false"
+                android:hint="@string/hit_xuanze"
+                android:padding="@dimen/default_padding"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider"
+                android:layout_marginLeft="@dimen/default_padding"
+                android:layout_marginRight="@dimen/default_padding"
+                android:background="@color/item_office_info_divider" />
+
+            <EditText
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@null"
+                android:gravity="top|left"
+                android:hint="@string/info"
+                android:lines="7"
+                android:minHeight="@dimen/feedback_info_height"
+                android:padding="@dimen/default_padding"
+                android:textColor="@color/news_title" />
+        </LinearLayout>
+
+        <com.psb.ui.widget.ImageGridView
+            android:id="@+id/imgs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@null"
-            android:gravity="top|left"
-            android:hint="@string/info"
-            android:lines="7"
-            android:minHeight="@dimen/feedback_info_height"
+            android:horizontalSpacing="@dimen/default_padding"
+            android:numColumns="3"
+            android:verticalSpacing="@dimen/default_padding" />
+
+        <Button
+            android:id="@+id/commit"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/horizontal_item_img_height"
+            android:layout_margin="@dimen/default_padding"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:background="@color/shiming"
             android:padding="@dimen/default_padding"
-            android:textColor="@color/news_title" />
+            android:text="@string/commit"
+            android:textColor="@color/white" />
     </LinearLayout>
+</ScrollView>
 
-    <com.psb.ui.widget.ImageGridView
-        android:id="@+id/imgs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:horizontalSpacing="@dimen/default_padding"
-        android:numColumns="3"
-        android:verticalSpacing="@dimen/default_padding" />
-
-    <Button
-        android:id="@+id/commit"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/horizontal_item_img_height"
-        android:layout_margin="@dimen/default_padding"
-        android:layout_marginTop="@dimen/activity_vertical_margin"
-        android:background="@color/shiming"
-        android:padding="@dimen/default_padding"
-        android:text="@string/commit"
-        android:textColor="@color/white" />
-
-</LinearLayout>
