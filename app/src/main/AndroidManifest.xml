@@ -92,6 +92,9 @@
             android:name=".ui.activity.ActivityOpinionInfo"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.activity.ActivityPic"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.ActivityNotice"
             android:screenOrientation="portrait" />
         <activity

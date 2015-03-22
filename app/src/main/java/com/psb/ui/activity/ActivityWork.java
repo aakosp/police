@@ -1,15 +1,17 @@
 package com.psb.ui.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 
-import com.alibaba.fastjson.JSON;
 import com.psb.R;
 import com.psb.adapter.AlbumPhotosAdapter;
 import com.psb.adapter.PhotosAdapter;
@@ -31,7 +33,7 @@ import java.util.List;
 /**
  * Created by zl on 2015/2/6.
  */
-public class ActivityWork extends BaseActivity implements View.OnClickListener {
+public class ActivityWork extends BaseActivity implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private TopNavigationBar topbar;
     private EditText title, info, type;
@@ -43,11 +45,14 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
     private boolean shibai = false;
     private String strType = "";
     private int id = -1;
+    private Intent intent;
+    private View root;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_work);
+        root = findViewById(R.id.root);
         topbar = (TopNavigationBar) findViewById(R.id.topbar);
         topbar.setActivity(this);
         title = (EditText) findViewById(R.id.title);
@@ -58,7 +63,7 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
         commit.setOnClickListener(this);
 
         imgs = (GridView) findViewById(R.id.imgs);
-        adapter = new AlbumPhotosAdapter(this);
+        adapter = new AlbumPhotosAdapter(this, root);
 //        imgs.setAdapter(adapter);
 
         Intent intent = getIntent();
@@ -90,7 +95,10 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
             }
             info.setText(work.getContent());
             info.setEnabled(false);
-            imgs.setAdapter(new PhotosAdapter(this));
+            imgs.setAdapter(new PhotosAdapter(this, work.getPicture()));
+            imgs.setOnItemClickListener(this);
+            intent = new Intent();
+            intent.setClass(this, ActivityPic.class);
             adapter.notifyDataSetChanged();
         } else {
             imgs.setAdapter(adapter);
@@ -118,7 +126,19 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
         if (requestCode == 0 && resultCode == RESULT_OK) {
             Uri uri = data.getData();
             adapter.addImage(uri);
-        } else if (requestCode == Event.RESULT_WORK) {
+        } else if (requestCode == 1 && resultCode == RESULT_OK) {
+            Uri uri = null;
+            Bundle bundle = data.getExtras();
+            Bitmap bitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式
+            if (data.getData() != null) {
+                uri = data.getData();
+            } else {
+                uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null, null));
+            }
+            if (null != uri) {
+                adapter.addImage(uri);
+            }
+        } else if (requestCode == Event.RESULT_WORK && null != data) {
             strType = data.getStringExtra("id");
             type.setText(data.getStringExtra("type"));
         }
@@ -151,8 +171,7 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
                 public void onUploadComplete(int id, String path) {
                     urls.add(path);
                     if (urls.size() == uris.size()) {
-                        String pic = JSON.toJSONString(urls);
-                        Api.getInstance().commitWork(strTitle, strType, strInfo, pic);
+                        Api.getInstance().commitWork(strTitle, strType, strInfo, urls);
                     }
                 }
 
@@ -187,5 +206,16 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener {
                 }
                 break;
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        if (null != intent) {
+            PhotosAdapter ad = (PhotosAdapter) parent.getAdapter();
+            String url = (String) ad.getItem(position);
+            intent.putExtra("url", url);
+            this.startActivity(intent);
+        }
+
     }
 }

@@ -1,8 +1,9 @@
 package com.psb.ui.util;
 
-import android.content.Context;
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
+import android.provider.MediaStore;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
@@ -11,30 +12,32 @@ import android.widget.Button;
 import android.widget.PopupWindow;
 
 import com.psb.R;
-import com.psb.ui.activity.ActivityLogin;
-import com.psb.ui.activity.ActivityWork;
 
 /**
- * Created by zl on 2015/3/12.
+ * Created by aako on 2015/3/22.
  */
-public class TipsLogin implements View.OnClickListener {
+public class PhotoUtil implements View.OnClickListener {
 
-    public TipsLogin(Context context){
+    public PhotoUtil(Activity context, View root){
         this.context = context;
+        this.root = root;
     }
 
-    private Context context;
+    private Activity context;
     private PopupWindow popupWindow;
-    private Button login;
+    private Button pai, xiang;
+    private View root;
 
-    public void initPopuptWindow(View parent) {
+    public void initPopuptWindow() {
         if(null != popupWindow){
-            popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+            popupWindow.showAtLocation(root, Gravity.CENTER, 0, 0);
             return;
         }
-        View popupWindow_view = View.inflate(context, R.layout.tips, null);
-        login = (Button) popupWindow_view.findViewById(R.id.login);
-        login.setOnClickListener(this);
+        View popupWindow_view = View.inflate(context, R.layout.pop_photo, null);
+        pai = (Button) popupWindow_view.findViewById(R.id.pai);
+        xiang = (Button) popupWindow_view.findViewById(R.id.xiang);
+        pai.setOnClickListener(this);
+        xiang.setOnClickListener(this);
         popupWindow = new PopupWindow(popupWindow_view,
                 ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         popupWindow.setContentView(popupWindow_view);
@@ -52,16 +55,22 @@ public class TipsLogin implements View.OnClickListener {
                 return false;
             }
         });
-        popupWindow.showAtLocation(parent, Gravity.CENTER, 0, 0);
+        popupWindow.showAtLocation(root, Gravity.CENTER, 0, 0);
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.login:
-                Intent intent = new Intent();
-                intent.setClass(context, ActivityLogin.class);
-                this.context.startActivity(intent);
+            case R.id.pai:
+                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                context.startActivityForResult(intent, 1);
+                popupWindow.dismiss();
+                popupWindow = null;
+                break;
+
+            case R.id.xiang:
+                Intent xiang = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                context.startActivityForResult(xiang, 0);
                 popupWindow.dismiss();
                 popupWindow = null;
                 break;

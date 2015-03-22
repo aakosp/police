@@ -44,5 +44,6 @@ public class Event {
     public static final int RESULT_SEX = 100;           //获取性别
     public static final int RESULT_AREA = 101;          //获取地区
     public static final int RESULT_WORK = 102;          //获取地区
-
+    public static final int NOTICE_SIGN_BEGIN = 103;          //签到广播
+    public static final int NOTICE_SIGN_END = 104;          //签到广播
 }

@@ -82,7 +82,7 @@ public class OpinionsAdapter extends BaseAdapter implements View.OnClickListener
         if (Opinion.ANONYMOUS.equals(item.getType())) {
             holder.name.setText("匿名");
         } else {
-            if(null != item.getUser()){
+            if (null != item.getUser()) {
                 holder.name.setText(item.getUser().getName());
             }
         }

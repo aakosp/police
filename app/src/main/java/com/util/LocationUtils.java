@@ -12,8 +12,10 @@ import com.baidu.location.LocationClientOption;
 import com.baidu.mapapi.map.OverlayOptions;
 import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
+import com.psb.protocol.Api;
 import com.psb.protocol.Cache;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,8 +29,13 @@ public class LocationUtils {
     private LocationClient mLocationClient;
     private BDLocation mBDLocation;
     private BDLocationListener mBDLocationListener;
-    private List<LatLng> points = new ArrayList<>();
+    private List<List<LatLng>> allPoints = new ArrayList<>();
+    private List<LatLng> points = new ArrayList<LatLng>();
+    private boolean sign = false;
+    private String session;
+
     private LocationUtils() {
+        allPoints.add(points);
     }
 
     public synchronized static LocationUtils getInstance() {
@@ -52,7 +59,7 @@ public class LocationUtils {
         }
     }
 
-    public void stop(){
+    public void stop() {
         mLocationClient.stop();
     }
 
@@ -63,31 +70,65 @@ public class LocationUtils {
     public void initLocation(Context context) {
         mLocationClient = new LocationClient(context);
         mLocationClient.registerLocationListener(new BDLocationListener() {
+
+
+
             @Override
             public void onReceiveLocation(BDLocation location) {
                 mBDLocation = location;
                 if (null != mBDLocationListener) {
                     mBDLocationListener.onReceiveLocation(location);
-                    if (Cache.getInstance().isSign()) {
-                        if (location.getLocType() == BDLocation.TypeNetWorkException) {
-                            return;
-                        }
-                        LatLng lat = new LatLng(location.getLatitude(), location.getLongitude());
-                        points.add(lat);
-                        if(points.size() == 500){
-                            Cache.getInstance().getPoints().add(points);
-                            points.clear();
-                        }
+                }
+                if (sign) {
+                    if (location.getLocType() == BDLocation.TypeNetWorkException) {
+                        return;
+                    }
+                    if (!StringUtils.isEmpty(session)) {
+                        Api.getInstance().sign_up_session(session, location.getLongitude(), location.getLatitude());
+                    }
+                    LatLng lat = new LatLng(location.getLatitude(), location.getLongitude());
+                    points.add(lat);
+                    if (points.size() == 500) {
+                        points = new ArrayList<LatLng>();
+                        allPoints.add(points);
                     }
                 }
+
             }
         });
         mVibrator = (Vibrator) context.getSystemService(Service.VIBRATOR_SERVICE);
         LocationClientOption option = new LocationClientOption();
         option.setOpenGps(true);// 打开gps
         option.setCoorType("bd09ll"); // 设置坐标类型
-        option.setScanSpan(8000);
+        option.setScanSpan(10000);
         mLocationClient.setLocOption(option);
+    }
+
+    public List<List<LatLng>> getAllPoints() {
+        return allPoints;
+    }
+
+    public void setAllPoints(List<List<LatLng>> allPoints) {
+        this.allPoints = allPoints;
+    }
+
+    public boolean isSign() {
+        return sign;
+    }
+
+    public void setSign(boolean sign) {
+        this.sign = sign;
+        if (!sign) {
+            allPoints.clear();
+        }
+    }
+
+    public String getSession() {
+        return session;
+    }
+
+    public void setSession(String session) {
+        this.session = session;
     }
 
     public void getLoc() {

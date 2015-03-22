@@ -1,9 +1,11 @@
 package com.psb.ui.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Message;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +38,7 @@ public class ActivityOpinions extends BaseActivity implements View.OnClickListen
     private EditText title, info;
     private GridView imgs;
     private AlbumPhotosAdapter adapter;
-    private View def;
+    private View def, root;
     private Button shiming, niming, login_niming;
     private String type = "ANONYMOUS";
     private List<String> urls = new ArrayList<>();
@@ -47,6 +49,7 @@ public class ActivityOpinions extends BaseActivity implements View.OnClickListen
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_opinion);
+        root = findViewById(R.id.root);
         top = (TopNavigationBar) findViewById(R.id.topbar);
         top.setActivity(this);
         title = (EditText) findViewById(R.id.title);
@@ -64,7 +67,7 @@ public class ActivityOpinions extends BaseActivity implements View.OnClickListen
             def.setVisibility(View.GONE);
             login_niming.setVisibility(View.VISIBLE);
         }
-        adapter = new AlbumPhotosAdapter(this);
+        adapter = new AlbumPhotosAdapter(this, root);
         imgs.setAdapter(adapter);
 
         EventNotifyCenter.getInstance().register(this.getHandler(), Event.COMMIT_OPINION);
@@ -74,8 +77,19 @@ public class ActivityOpinions extends BaseActivity implements View.OnClickListen
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (resultCode == RESULT_OK) {
             Uri uri = data.getData();
-            Log.e("uri", uri.toString());
             adapter.addImage(uri);
+        } else if (requestCode == 1 && resultCode == RESULT_OK) {
+            Uri uri = null;
+            Bundle bundle = data.getExtras();
+            Bitmap bitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式
+            if (data.getData() != null) {
+                uri = data.getData();
+            } else {
+                uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null, null));
+            }
+            if (null != uri) {
+                adapter.addImage(uri);
+            }
         }
     }
 
@@ -115,9 +129,7 @@ public class ActivityOpinions extends BaseActivity implements View.OnClickListen
                 public void onUploadComplete(int id, String path) {
                     urls.add(path);
                     if (urls.size() == uris.size()) {
-                        String pic = JSON.toJSONString(urls);
-                        Log.d("pic", pic);
-                        Api.getInstance().commitOpinion(strTitle, strInfo, pic, type);
+                        Api.getInstance().commitOpinion(strTitle, strInfo, urls, type);
                     }
                 }
 

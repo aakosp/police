@@ -45,7 +45,6 @@ public class ActivityArea extends BaseActivity implements OnWheelChangedListener
                 Intent intent = new Intent();
                 intent.putExtra("areaid", mCurrentCunName);
                 intent.putExtra("areastr", strCun);
-                Log.d("cun", strCun);
                 setResult(Event.RESULT_AREA, intent);
                 finish();
             }

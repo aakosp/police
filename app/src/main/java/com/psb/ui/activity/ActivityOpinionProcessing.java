@@ -94,11 +94,13 @@ public class ActivityOpinionProcessing extends BaseActivity implements ViewPager
     protected void handlerPacketMsg(Message msg) {
         switch (msg.what) {
             case Event.GET_OPINION_LIST_OK:
+                okList.onRefreshComplete();
                 ok_page = Cache.getInstance().getOpinions_ok().getCurrent_page();
                 ok_lastpage = Cache.getInstance().getOpinions_ok().getLast_page();
                 ok.setOpinions(Cache.getInstance().getOpinions_ok());
                 break;
             case Event.GET_OPINION_LIST_UNDO:
+                unList.onRefreshComplete();
                 un_page = Cache.getInstance().getOpinions_undo().getCurrent_page();
                 un_lastpage = Cache.getInstance().getOpinions_undo().getLast_page();
                 undo.setOpinions(Cache.getInstance().getOpinions_undo());

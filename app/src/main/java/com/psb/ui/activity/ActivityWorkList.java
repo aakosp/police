@@ -58,6 +58,7 @@ public class ActivityWorkList extends BaseActivity implements PullToRefreshBase.
     protected void handlerPacketMsg(Message msg) {
         switch (msg.what) {
             case Event.GET_WORK:
+                list.onRefreshComplete();
                 adapter.setWorks(Cache.getInstance().getWorks());
                 adapter.notifyDataSetChanged();
                 break;

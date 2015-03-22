@@ -95,7 +95,7 @@ public class Api {
         executor.execute(data);
     }
 
-    public void commitOpinion(String strTitle, String info, String pic, String strType) {
+    public void commitOpinion(String strTitle, String info, List<String> pic, String strType) {
         String url = base_url + "/opinion";
         List<NameValuePair> params = new ArrayList<>();
         if (null != Cache.getInstance().getUser()) {
@@ -108,8 +108,8 @@ public class Api {
         params.add(title);
         NameValuePair content = new BasicNameValuePair("content", info);
         params.add(content);
-        if (!StringUtils.isEmpty(pic)) {
-            NameValuePair picture = new BasicNameValuePair("picture", pic);
+        for (int i=0; i<pic.size(); i++) {
+            NameValuePair picture = new BasicNameValuePair("picture["+i+"]", pic.get(i));
             params.add(picture);
         }
         HttpRequestData data = new HttpRequestData(params, url, Event.COMMIT_OPINION);
@@ -175,7 +175,6 @@ public class Api {
         if (page != -1) {
             url += "&page=" + page;
         }
-        Log.d("getOpinionsUndo", url);
         HttpRequestData data = new HttpRequestData(url, Event.GET_OPINION_LIST_UNDO);
         executor.execute(data);
     }
@@ -213,8 +212,7 @@ public class Api {
         executor.execute(data);
     }
 
-    public void commitWork(String strTitle, String strType, String info, String pic) {
-        Log.d("type----------", "22222222222222222222   " + strType);
+    public void commitWork(String strTitle, String strType, String info, List<String> pic) {
         String url = base_url + "/daily_log";
         List<NameValuePair> params = new ArrayList<>();
         NameValuePair id = new BasicNameValuePair("police_id", "" + Cache.getInstance().getUser().getId());
@@ -225,8 +223,8 @@ public class Api {
         params.add(type);
         NameValuePair content = new BasicNameValuePair("content", info);
         params.add(content);
-        if (!StringUtils.isEmpty(pic)) {
-            NameValuePair picture = new BasicNameValuePair("picture", pic);
+        for (int i=0; i<pic.size(); i++) {
+            NameValuePair picture = new BasicNameValuePair("picture["+i+"]", pic.get(i));
             params.add(picture);
         }
         HttpRequestData data = new HttpRequestData(params, url, Event.COMMIT_WORK);

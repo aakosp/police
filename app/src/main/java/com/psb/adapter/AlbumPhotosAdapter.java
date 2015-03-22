@@ -6,6 +6,7 @@ import java.util.List;
 import com.psb.R;
 import com.psb.ui.util.DisplayUtil;
 import com.psb.ui.util.ImageUtil;
+import com.psb.ui.util.PhotoUtil;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -25,9 +26,11 @@ public class AlbumPhotosAdapter extends BaseAdapter implements View.OnClickListe
     private Activity context;
     private LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     private View add;
+    PhotoUtil photo;
 
-    public AlbumPhotosAdapter(Activity context) {
+    public AlbumPhotosAdapter(Activity context, View root) {
         this.context = context;
+        photo = new PhotoUtil(context, root);
         //计算宽高
         this.params.width = (DisplayUtil.getDisplayMetrics().widthPixels - DisplayUtil.dip2px(32)) / 3;
         this.params.height = this.params.width;
@@ -102,8 +105,11 @@ public class AlbumPhotosAdapter extends BaseAdapter implements View.OnClickListe
 //            intent.setType("image/*");
 //            intent.putExtra("return-data", true);
 //            context.startActivityForResult(intent, 0);
-            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-            context.startActivityForResult(intent, 0);
+//            Intent intent = new Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+//            context.startActivityForResult(intent, 0);
+            if (null != photo) {
+                photo.initPopuptWindow();
+            }
         } else if (v.getId() == R.id.del) {
             Uri uri = (Uri) v.getTag();
             urls.remove(uri);

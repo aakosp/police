@@ -72,4 +72,5 @@ public class PopWorkType extends BaseActivity {
             return type;
         }
     }
+
 }

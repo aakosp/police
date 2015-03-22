@@ -7,6 +7,7 @@
     android:orientation="vertical">
 
     <LinearLayout
+        android:id="@+id/root"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -66,7 +67,6 @@
                 android:background="@null"
                 android:gravity="top|left"
                 android:hint="@string/info"
-                android:lines="7"
                 android:minHeight="@dimen/feedback_info_height"
                 android:padding="@dimen/default_padding"
                 android:textColor="@color/news_title" />

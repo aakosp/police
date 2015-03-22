@@ -3,9 +3,7 @@ package com.psb.protocol;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
-
 import com.alibaba.fastjson.JSON;
-import com.baidu.mapapi.model.LatLng;
 import com.psb.core.AppContext;
 import com.psb.entity.Addr;
 import com.psb.entity.Article;
@@ -46,9 +44,6 @@ public class Cache {
     private List<PoliceInfo> policeInfo = new ArrayList<>();
     private List<Work> works = new ArrayList<>();
 
-    private boolean isSign = false;
-    private List<List<LatLng>> points = new ArrayList<>();
-
 
     private Cache() {
         Context ctx = AppContext.getInstance();
@@ -58,7 +53,6 @@ public class Cache {
         pwd = sp.getString("pwd", "");
         role = sp.getString("role", "");
         name = sp.getString("name", "");
-        Log.d("222", id + "  " + name + "   " + pwd + "   " + role);
     }
 
     public synchronized static Cache getInstance() {
@@ -69,7 +63,7 @@ public class Cache {
     }
 
     public void parse(String responseBody, int event) {
-        Log.d("EVENT: " + event, " " + responseBody);
+//        Log.d("EVENT: " + event, " " + responseBody);
         switch (event) {
             case Event.NEWS_1:
             case Event.NEWS_2:
@@ -306,26 +300,6 @@ public class Cache {
     }
 
     public String getName() {
-        Log.d("name", name);
         return name;
-    }
-
-    public void setSign(boolean sign) {
-        this.isSign = sign;
-        if(!isSign){
-            points.clear();
-        }
-    }
-
-    public void setPoints(List<LatLng> points) {
-        this.points.add(points);
-    }
-
-    public boolean isSign() {
-        return isSign;
-    }
-
-    public List<List<LatLng>> getPoints() {
-        return points;
     }
 }

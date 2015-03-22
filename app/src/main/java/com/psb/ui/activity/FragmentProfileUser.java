@@ -24,7 +24,7 @@ public class FragmentProfileUser extends BaseFragment implements View.OnClickLis
 
     private View mView, profile;
     private ItemHorizontal minyi, feedback, opinion, pwd, logout;
-    private RoundImageView avatar;
+    //    private RoundImageView avatar;
     private TextView name, id;
     private Intent intent;
 
@@ -36,7 +36,7 @@ public class FragmentProfileUser extends BaseFragment implements View.OnClickLis
         }
         mView = this.getActivity().getLayoutInflater().inflate(R.layout.fragment_profile_user, container, false);
         profile = mView.findViewById(R.id.profile);
-        avatar = (RoundImageView) mView.findViewById(R.id.avatar);
+//        avatar = (RoundImageView) mView.findViewById(R.id.avatar);
         name = (TextView) mView.findViewById(R.id.name);
         minyi = (ItemHorizontal) mView.findViewById(R.id.minyi);
         feedback = (ItemHorizontal) mView.findViewById(R.id.feedback);

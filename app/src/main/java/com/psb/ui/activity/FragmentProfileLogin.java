@@ -92,9 +92,7 @@ public class FragmentProfileLogin extends BaseFragment implements View.OnClickLi
                         strId = Cache.getInstance().getId();
                     }
                     User user = Cache.getInstance().getUser(strId);
-                    Log.d("user", strId);
                     if (null == user) {
-                        Log.d("user", "null");
                         ToastUtil.showToast(this.getActivity(), "用户名或密码错误", 0);
                         return;
                     }

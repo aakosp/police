@@ -26,19 +26,18 @@
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
-                <com.psb.ui.widget.RoundImageView
+                <!--<com.psb.ui.widget.RoundImageView
                     android:id="@+id/avatar"
                     android:layout_width="@dimen/avatar_size"
                     android:layout_height="@dimen/avatar_size"
                     android:layout_alignParentLeft="true"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/id" />
+                    android:src="@drawable/id" />-->
 
                 <TextView
                     android:id="@+id/name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/default_padding"
                     android:textColor="@color/news_title"
                     android:textSize="@dimen/news_title_size" />
 
@@ -52,14 +51,14 @@
 
             </LinearLayout>
 
-            <ImageView
+            <!--<ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:layout_centerVertical="true"
                 android:padding="16dp"
                 android:scaleType="centerInside"
-                android:src="@drawable/arrow_more" />
+                android:src="@drawable/arrow_more" />-->
 
         </RelativeLayout>
 
@@ -83,7 +82,7 @@
             android:layout_marginTop="@dimen/default_padding"
             android:background="@color/white"
             app:ItemHorizontal_img_height="@dimen/icon_size"
-            app:ItemHorizontal_img_src="@drawable/opinion_handle"
+            app:ItemHorizontal_img_src="@drawable/opinion_feedback"
             app:ItemHorizontal_img_width="@dimen/icon_size"
             app:ItemHorizontal_text="@string/feedback"
             app:ItemHorizontal_text_color="@color/news_title"
@@ -108,7 +107,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             app:ItemHorizontal_img_height="@dimen/icon_size"
-            app:ItemHorizontal_img_src="@drawable/wrok_record"
+            app:ItemHorizontal_img_src="@drawable/opinion"
             app:ItemHorizontal_img_width="@dimen/icon_size"
             app:ItemHorizontal_text="@string/opinion"
             app:ItemHorizontal_text_color="@color/news_title"

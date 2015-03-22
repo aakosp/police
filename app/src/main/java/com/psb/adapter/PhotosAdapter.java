@@ -24,14 +24,13 @@ public class PhotosAdapter extends BaseAdapter {
     private List<String> urls = new ArrayList<String>(); // 图片链接地址集合
     private Activity context;
     private LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-    private View add;
 
-    public PhotosAdapter(Activity context) {
+    public PhotosAdapter(Activity context, List<String> imgs) {
         this.context = context;
         //计算宽高
         this.params.width = (DisplayUtil.getDisplayMetrics().widthPixels - DisplayUtil.dip2px(32)) / 3;
         this.params.height = this.params.width;
-        add = View.inflate(context, R.layout.item_img, null);
+        this.urls.addAll(imgs);
     }
 
     public List<String> getImgs() {

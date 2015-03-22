@@ -58,7 +58,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
     //    private EditText content;
     private Button sign;
     BDLocation mLocation;
-    private boolean bSgin = false;
+    private boolean bSgin = LocationUtils.getInstance().isSign();
     //轨迹
     List<LatLng> points = new ArrayList<LatLng>();
     String session;
@@ -96,13 +96,27 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
 //        content = (EditText) findViewById(R.id.work);
         sign = (Button) findViewById(R.id.sign);
         sign.setOnClickListener(this);
-
-        if(Cache.getInstance().isSign()){
-            for(List<LatLng> pp : Cache.getInstance().getPoints()){
-                OverlayOptions ooPolyline = new PolylineOptions().width(10)
-                        .color(0xAAFF0000).points(pp);
-                mBaiduMap.addOverlay(ooPolyline);
+        if (LocationUtils.getInstance().isSign()) {
+            for (List<LatLng> pp : LocationUtils.getInstance().getAllPoints()) {
+                if (pp.size() > 2) {
+                    OverlayOptions ooPolyline = new PolylineOptions().width(10)
+                            .color(0xAAFF0000).points(pp);
+                    mBaiduMap.addOverlay(ooPolyline);
+                }
             }
+            LatLng ll = new LatLng(LocationUtils.getInstance().getmBDLocation().getLatitude(), LocationUtils.getInstance().getmBDLocation().getLongitude());
+            MapStatusUpdate u = MapStatusUpdateFactory.newLatLng(ll);
+            mBaiduMap.animateMapStatus(u);
+            MyLocationData locData = new MyLocationData.Builder()
+                    .accuracy(LocationUtils.getInstance().getmBDLocation().getRadius())
+                            // 此处设置开发者获取到的方向信息，顺时针0-360
+                    .direction(100).latitude(ll.latitude)
+                    .longitude(ll.longitude).build();
+            mBaiduMap.setMyLocationData(locData);
+
+            sign.setText("正在签到，点击结束");
+            topbar.setTitleText("正在签到");
+            session = LocationUtils.getInstance().getSession();
         }
 
         EventNotifyCenter.getInstance().register(this.getHandler(), Event.SGIN);
@@ -116,9 +130,10 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
                     String work = "";//content.getText().toString();
                     if (null != mLocation) {
                         Api.getInstance().sign_up(work, mLocation.getLongitude(), mLocation.getLatitude());
-                        Cache.getInstance().setSign(true);
+                        LocationUtils.getInstance().setSign(true);
                         sign.setText("正在签到，点击结束");
                         topbar.setTitleText("正在签到");
+                        EventNotifyCenter.getInstance().doNotify(Event.NOTICE_SIGN_BEGIN);
                         bSgin = true;
                     } else {
                         ToastUtil.showLongToast(this, "无法获取当前位置", 0);
@@ -127,7 +142,8 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
                     if (!StringUtils.isEmpty(session)) {
                         LocationUtils.getInstance().stop();
                         Api.getInstance().sign_up_end(session);
-                        Cache.getInstance().setSign(false);
+                        LocationUtils.getInstance().setSign(false);
+                        EventNotifyCenter.getInstance().doNotify(Event.NOTICE_SIGN_END);
                         bSgin = false;
                     }
                 }
@@ -150,6 +166,9 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onDestroy() {
         // 退出时销毁定位
+        if (!LocationUtils.getInstance().isSign()) {
+            LocationUtils.getInstance().stop();
+        }
 //        mLocClient.stop();
         // 关闭定位图层
         mBaiduMap.setMyLocationEnabled(false);
@@ -168,6 +187,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
                     ToastUtil.showLongToast(this, res.getError(), 0);
                 } else if (res.getId() > -1) {
                     session = res.getSession_id();
+                    LocationUtils.getInstance().setSession(session);
 //                    if (!StringUtils.isEmpty(session)) {
 //                        ToastUtil.showLongToast(this, res.getError(), 0);
 //                    }
@@ -208,6 +228,7 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
             LatLng lat = new LatLng(location.getLatitude(), location.getLongitude());
             if (bSgin) {
                 points.add(lat);
+                Log.d("sign", lat.latitude + "  " + lat.longitude);
                 if (points.size() == 5) {
                     OverlayOptions ooPolyline = new PolylineOptions().width(10)
                             .color(0xAAFF0000).points(points);
@@ -216,13 +237,6 @@ public class ActivitySign extends BaseActivity implements View.OnClickListener {
                     points.add(lat);
                 }
             }
-
-
-            if (bSgin && !StringUtils.isEmpty(session)) {
-                Api.getInstance().sign_up_session(session, location.getLongitude(), location.getLatitude());
-            }
-
-
             if (isFirstLoc) {
                 isFirstLoc = false;
                 LatLng ll = new LatLng(location.getLatitude(), location.getLongitude());
