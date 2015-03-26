@@ -108,9 +108,11 @@ public class Api {
         params.add(title);
         NameValuePair content = new BasicNameValuePair("content", info);
         params.add(content);
-        for (int i=0; i<pic.size(); i++) {
-            NameValuePair picture = new BasicNameValuePair("picture["+i+"]", pic.get(i));
-            params.add(picture);
+        if(null != pic){
+            for (int i=0; i<pic.size(); i++) {
+                NameValuePair picture = new BasicNameValuePair("picture["+i+"]", pic.get(i));
+                params.add(picture);
+            }
         }
         HttpRequestData data = new HttpRequestData(params, url, Event.COMMIT_OPINION);
         executor.execute(data);
@@ -223,9 +225,11 @@ public class Api {
         params.add(type);
         NameValuePair content = new BasicNameValuePair("content", info);
         params.add(content);
-        for (int i=0; i<pic.size(); i++) {
-            NameValuePair picture = new BasicNameValuePair("picture["+i+"]", pic.get(i));
-            params.add(picture);
+        if(null != pic){
+            for (int i=0; i<pic.size(); i++) {
+                NameValuePair picture = new BasicNameValuePair("picture["+i+"]", pic.get(i));
+                params.add(picture);
+            }
         }
         HttpRequestData data = new HttpRequestData(params, url, Event.COMMIT_WORK);
         executor.execute(data);

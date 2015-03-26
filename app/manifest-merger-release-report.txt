@@ -94,7 +94,7 @@ MERGED from police:wheel:unspecified:11:5
 		ADDED from AndroidManifest.xml:31:9
 	android:name
 		ADDED from AndroidManifest.xml:27:9
-activity#com.psb.ui.activity.ActivityLogin
+activity#com.psb.ui.activity.ActivityIndex
 ADDED from AndroidManifest.xml:32:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:34:13
@@ -110,43 +110,43 @@ category#android.intent.category.LAUNCHER
 ADDED from AndroidManifest.xml:37:17
 	android:name
 		ADDED from AndroidManifest.xml:37:27
-activity#com.psb.ui.activity.ActivitySign
+activity#com.psb.ui.activity.ActivityMain
 ADDED from AndroidManifest.xml:40:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:42:13
 	android:name
 		ADDED from AndroidManifest.xml:41:13
-activity#com.psb.ui.activity.ActivityMap
+activity#com.psb.ui.activity.ActivitySign
 ADDED from AndroidManifest.xml:43:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:45:13
 	android:name
 		ADDED from AndroidManifest.xml:44:13
-activity#com.psb.ui.activity.ActivityNewsDetail
+activity#com.psb.ui.activity.ActivityMap
 ADDED from AndroidManifest.xml:46:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:48:13
 	android:name
 		ADDED from AndroidManifest.xml:47:13
-activity#com.psb.ui.activity.ActivityRegister
+activity#com.psb.ui.activity.ActivityNewsDetail
 ADDED from AndroidManifest.xml:49:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:51:13
 	android:name
 		ADDED from AndroidManifest.xml:50:13
-activity#com.psb.ui.activity.ActivityOffice
+activity#com.psb.ui.activity.ActivityRegister
 ADDED from AndroidManifest.xml:52:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:54:13
 	android:name
 		ADDED from AndroidManifest.xml:53:13
-activity#com.psb.ui.activity.ActivityOpinionFeedBack
+activity#com.psb.ui.activity.ActivityOffice
 ADDED from AndroidManifest.xml:55:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:57:13
 	android:name
 		ADDED from AndroidManifest.xml:56:13
-activity#com.psb.ui.activity.ActivityMain
+activity#com.psb.ui.activity.ActivityLogin
 ADDED from AndroidManifest.xml:58:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:60:13
@@ -176,38 +176,110 @@ ADDED from AndroidManifest.xml:70:9
 		ADDED from AndroidManifest.xml:72:13
 	android:name
 		ADDED from AndroidManifest.xml:71:13
-activity#com.psb.ui.activity.ActivityPoliceDetail
+activity#com.psb.ui.activity.ActivityChuliSuccess
 ADDED from AndroidManifest.xml:73:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:75:13
 	android:name
 		ADDED from AndroidManifest.xml:74:13
-activity#com.psb.ui.activity.ActivityChangePwd
+activity#com.psb.ui.activity.ActivityWorkSuccess
 ADDED from AndroidManifest.xml:76:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:78:13
 	android:name
 		ADDED from AndroidManifest.xml:77:13
-service#com.baidu.location.f
-ADDED from AndroidManifest.xml:80:9
-	android:enabled
-		ADDED from AndroidManifest.xml:82:13
-	android:process
-		ADDED from AndroidManifest.xml:83:13
-	android:name
+activity#com.psb.ui.activity.ActivityReportSucess
+ADDED from AndroidManifest.xml:79:9
+	android:screenOrientation
 		ADDED from AndroidManifest.xml:81:13
-intent-filter#com.baidu.location.service_v2.2
-ADDED from AndroidManifest.xml:84:13
-action#com.baidu.location.service_v2.2
-ADDED from AndroidManifest.xml:85:17
 	android:name
-		ADDED from AndroidManifest.xml:85:25
-meta-data#com.baidu.lbsapi.API_KEY
-ADDED from AndroidManifest.xml:90:9
-	android:value
+		ADDED from AndroidManifest.xml:80:13
+activity#com.psb.ui.activity.ActivityPoliceDetail
+ADDED from AndroidManifest.xml:82:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:84:13
+	android:name
+		ADDED from AndroidManifest.xml:83:13
+activity#com.psb.ui.activity.ActivityChangePwd
+ADDED from AndroidManifest.xml:85:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:87:13
+	android:name
+		ADDED from AndroidManifest.xml:86:13
+activity#com.psb.ui.activity.ActivityOpinions
+ADDED from AndroidManifest.xml:88:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:90:13
+	android:name
+		ADDED from AndroidManifest.xml:89:13
+activity#com.psb.ui.activity.ActivityWorkList
+ADDED from AndroidManifest.xml:91:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:93:13
+	android:name
 		ADDED from AndroidManifest.xml:92:13
+activity#com.psb.ui.activity.ActivityOpinionInfo
+ADDED from AndroidManifest.xml:94:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:96:13
 	android:name
-		ADDED from AndroidManifest.xml:91:13
+		ADDED from AndroidManifest.xml:95:13
+activity#com.psb.ui.activity.ActivityPic
+ADDED from AndroidManifest.xml:97:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:99:13
+	android:name
+		ADDED from AndroidManifest.xml:98:13
+activity#com.psb.ui.activity.ActivityNotice
+ADDED from AndroidManifest.xml:100:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:102:13
+	android:name
+		ADDED from AndroidManifest.xml:101:13
+activity#com.psb.ui.activity.ActivityArea
+ADDED from AndroidManifest.xml:103:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:105:13
+	android:theme
+		ADDED from AndroidManifest.xml:106:13
+	android:name
+		ADDED from AndroidManifest.xml:104:13
+activity#com.psb.ui.activity.ActivitySex
+ADDED from AndroidManifest.xml:107:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:109:13
+	android:theme
+		ADDED from AndroidManifest.xml:110:13
+	android:name
+		ADDED from AndroidManifest.xml:108:13
+activity#com.psb.ui.activity.PopWorkType
+ADDED from AndroidManifest.xml:112:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:114:13
+	android:theme
+		ADDED from AndroidManifest.xml:115:13
+	android:name
+		ADDED from AndroidManifest.xml:113:13
+service#com.baidu.location.f
+ADDED from AndroidManifest.xml:117:9
+	android:enabled
+		ADDED from AndroidManifest.xml:119:13
+	android:process
+		ADDED from AndroidManifest.xml:120:13
+	android:name
+		ADDED from AndroidManifest.xml:118:13
+intent-filter#com.baidu.location.service_v2.2
+ADDED from AndroidManifest.xml:121:13
+action#com.baidu.location.service_v2.2
+ADDED from AndroidManifest.xml:122:17
+	android:name
+		ADDED from AndroidManifest.xml:122:25
+meta-data#com.baidu.lbsapi.API_KEY
+ADDED from AndroidManifest.xml:127:9
+	android:value
+		ADDED from AndroidManifest.xml:129:13
+	android:name
+		ADDED from AndroidManifest.xml:128:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
 MERGED from police:library:unspecified:7:5

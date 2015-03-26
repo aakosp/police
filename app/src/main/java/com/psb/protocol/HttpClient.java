@@ -234,17 +234,17 @@ public class HttpClient {
         //post表单参数处理
         try {
             httpClient = getHttpClient();
-            switch (type) {
-
-                case POST:
-                    break;
-                case GET:
-                    break;
-                case PUT:
-                    break;
-                case DELETE:
-                    break;
-            }
+//            switch (type) {
+//
+//                case POST:
+//                    break;
+//                case GET:
+//                    break;
+//                case PUT:
+//                    break;
+//                case DELETE:
+//                    break;
+//            }
 
             request = getHttpRequest(url, type);
             if (null != params && params.size() > 0) {

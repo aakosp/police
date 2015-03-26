@@ -131,10 +131,10 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener, 
         } else if (requestCode == 1 && resultCode == RESULT_OK) {
             Uri uri = null;
             Bundle bundle = data.getExtras();
-            Bitmap bitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式
             if (data.getData() != null) {
                 uri = data.getData();
             } else {
+                Bitmap bitmap = (Bitmap) bundle.get("data");// 获取相机返回的数据，并转换为Bitmap图片格式
                 uri = Uri.parse(MediaStore.Images.Media.insertImage(getContentResolver(), bitmap, null, null));
             }
             if (null != uri) {
