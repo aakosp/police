@@ -1,8 +1,13 @@
 package com.psb.protocol;
 
 import android.net.http.AndroidHttpClient;
+import android.util.Base64;
+import android.util.Log;
 
+import com.upyun.api.utils.Base64Coder;
+import com.util.Md5Helper;
 import com.util.StringUtils;
+import com.util.TimeUtil;
 
 import org.apache.http.HttpHost;
 import org.apache.http.HttpRequest;
@@ -23,6 +28,7 @@ import org.apache.http.protocol.HttpContext;
 
 import java.io.InputStream;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -37,7 +43,7 @@ public class HttpClient {
     private final static int TIMEOUT_CONNECTION = 20000;
     private final static int TIMEOUT_SOCKET = 20000;
     private final static int TIMEOUT_REQUEST = 20000;
-    private final static String authorization = "Basic API:03db45e2904663c5c9305a9c6ed62af3";
+    private final static String KEY = "d866f5feab44c34627b64dc64602a4c1";
     private static String appCookie;
     private static String appUserAgent;
     private static HttpHost httpHost;
@@ -81,7 +87,8 @@ public class HttpClient {
         return context;
     }
 
-    private static HttpRequest getHttpRequest(String url, RequestType type) {
+    private static HttpRequest getHttpRequest(String route, String url_part, RequestType type) {
+        String url = "http://" + SERVER + url_part;
 
         HttpRequest httpRequest = null;
         switch (type) {
@@ -99,10 +106,17 @@ public class HttpClient {
                 httpRequest = new HttpDelete(url);
                 break;
         }
+        String date = TimeUtil.toGMT();
         httpRequest.addHeader("Host", SERVER);
         httpRequest.addHeader("Connection", "Keep-Alive");
         httpRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
-        httpRequest.addHeader("authorization", authorization);
+        httpRequest.addHeader("API-Date", date);
+
+        String author = type + "&" + route +"&"+ date + "&" + KEY;
+        Log.d("author", author);
+        String authorization =  Md5Helper.encode(author);
+        Log.d("authorization", authorization);
+        httpRequest.addHeader("API-Authorization", authorization);
 
 //        httpRequest.addHeader("Cookie", "");
 //        httpRequest.addHeader("User-Agent", userAgent);
@@ -115,44 +129,34 @@ public class HttpClient {
      * @param url
      * @param params
      */
-    public static void post(String url, List<NameValuePair> params, int event) {
-
-        AndroidHttpClient httpClient = null;
-        HttpPost httpPost = null;
-        //post表单参数处理
-        try {
-            httpClient = getHttpClient();
-            httpPost = (HttpPost) getHttpRequest(url, RequestType.POST);
-            if (null != params && params.size() > 0) {
-                httpPost.setEntity(new UrlEncodedFormEntity(params, UTF_8));
-            }
-            HttpResponse response = httpClient.execute(getHttpHost(), httpPost, getHttpContext());
-            int statusCode = response.getStatusLine().getStatusCode();
-            if (statusCode != HttpStatus.SC_OK) {
-                //throw AppException.http(statusCode);
-            } else if (statusCode == HttpStatus.SC_OK) {
-//                    Cookie[] cookies =
-//                    String tmpcookies = "";
-//                    for (Cookie ck : cookies) {
-//                        tmpcookies += ck.toString()+";";
-//                    }
-//                    //保存cookie
-//                    if(appContext != null && tmpcookies != ""){
-//                        AppConfig.getAppConfig(AppContext.getInstance()).set("cookie", tmpcookies);
-//                        appCookie = tmpcookies;
-//                    }
-            }
-            InputStream is = response.getEntity().getContent();
-            String responseBody = StringUtils.toConvertString(is);
-            Cache.getInstance().parse(responseBody, event);
-        } catch (Exception e) {
-            // 发生网络异常
-            e.printStackTrace();
-        } finally {
-            // 释放连接
-//            httpClient.close();
-        }
-    }
+//    public static void post(String url, List<NameValuePair> params, int event) {
+//
+//        AndroidHttpClient httpClient = null;
+//        HttpPost httpPost = null;
+//        //post表单参数处理
+//        try {
+//            httpClient = getHttpClient();
+//            httpPost = (HttpPost) getHttpRequest(url, RequestType.POST);
+//            if (null != params && params.size() > 0) {
+//                httpPost.setEntity(new UrlEncodedFormEntity(params, UTF_8));
+//            }
+//            HttpResponse response = httpClient.execute(getHttpHost(), httpPost, getHttpContext());
+//            int statusCode = response.getStatusLine().getStatusCode();
+//            if (statusCode != HttpStatus.SC_OK) {
+//                //throw AppException.http(statusCode);
+//            } else if (statusCode == HttpStatus.SC_OK) {
+//            }
+//            InputStream is = response.getEntity().getContent();
+//            String responseBody = StringUtils.toConvertString(is);
+//            Cache.getInstance().parse(responseBody, event);
+//        } catch (Exception e) {
+//            // 发生网络异常
+//            e.printStackTrace();
+//        } finally {
+//            // 释放连接
+////            httpClient.close();
+//        }
+//    }
 
     /**
      * 公用post方法
@@ -160,67 +164,32 @@ public class HttpClient {
      * @param url
      * @param event
      */
-    public static void get(String url, int event) {
-
-        AndroidHttpClient httpClient = null;
-        HttpGet get = null;
-        //post表单参数处理
-        try {
-            httpClient = getHttpClient();
-            get = (HttpGet) getHttpRequest(url, RequestType.GET);
-            HttpResponse response = httpClient.execute(getHttpHost(), get, getHttpContext());
-            int statusCode = response.getStatusLine().getStatusCode();
-            if (statusCode != HttpStatus.SC_OK) {
-                //throw AppException.http(statusCode);
-            } else if (statusCode == HttpStatus.SC_OK) {
-            }
-            InputStream is = response.getEntity().getContent();
-            String responseBody = StringUtils.toConvertString(is);
-            Cache.getInstance().parse(responseBody, event);
-        } catch (Exception e) {
-            // 发生网络异常
-            e.printStackTrace();
-        } finally {
-            // 释放连接
-//            httpClient.close();
-//            Log.d("httpClient.close()", "httpClient.close()");
-        }
-    }
-
-    /**
-     * 公用post方法
-     *
-     * @param url
-     * @param event
-     */
-    public static void put(String url, List<NameValuePair> params, int event) {
-        AndroidHttpClient httpClient = null;
-        HttpPut put = null;
-        //post表单参数处理
-        try {
-            httpClient = getHttpClient();
-            put = (HttpPut) getHttpRequest(url, RequestType.PUT);
-            if (null != params && params.size() > 0) {
-                put.setEntity(new UrlEncodedFormEntity(params, UTF_8));
-            }
-            HttpResponse response = httpClient.execute(getHttpHost(), put, getHttpContext());
-            int statusCode = response.getStatusLine().getStatusCode();
-            if (statusCode != HttpStatus.SC_OK) {
-                //throw AppException.http(statusCode);
-            } else if (statusCode == HttpStatus.SC_OK) {
-            }
-            InputStream is = response.getEntity().getContent();
-            String responseBody = StringUtils.toConvertString(is);
-            Cache.getInstance().parse(responseBody, event);
-        } catch (Exception e) {
-            // 发生网络异常
-            e.printStackTrace();
-        } finally {
-            // 释放连接
-//            httpClient.close();
-//            Log.d("httpClient.close()", "httpClient.close()");
-        }
-    }
+//    public static void get(String url, int event) {
+//
+//        AndroidHttpClient httpClient = null;
+//        HttpGet get = null;
+//        //post表单参数处理
+//        try {
+//            httpClient = getHttpClient();
+//            get = (HttpGet) getHttpRequest(url, RequestType.GET);
+//            HttpResponse response = httpClient.execute(getHttpHost(), get, getHttpContext());
+//            int statusCode = response.getStatusLine().getStatusCode();
+//            if (statusCode != HttpStatus.SC_OK) {
+//                //throw AppException.http(statusCode);
+//            } else if (statusCode == HttpStatus.SC_OK) {
+//            }
+//            InputStream is = response.getEntity().getContent();
+//            String responseBody = StringUtils.toConvertString(is);
+//            Cache.getInstance().parse(responseBody, event);
+//        } catch (Exception e) {
+//            // 发生网络异常
+//            e.printStackTrace();
+//        } finally {
+//            // 释放连接
+////            httpClient.close();
+////            Log.d("httpClient.close()", "httpClient.close()");
+//        }
+//    }
 
     /**
      * 公用post方法
@@ -228,25 +197,50 @@ public class HttpClient {
      * @param url
      * @param event
      */
-    public static void doRequest(String url, List<NameValuePair> params, int event, RequestType type) {
+//    public static void put(String url, List<NameValuePair> params, int event) {
+//        AndroidHttpClient httpClient = null;
+//        HttpPut put = null;
+//        //post表单参数处理
+//        try {
+//            httpClient = getHttpClient();
+//            put = (HttpPut) getHttpRequest(url, RequestType.PUT);
+//            if (null != params && params.size() > 0) {
+//                put.setEntity(new UrlEncodedFormEntity(params, UTF_8));
+//            }
+//            HttpResponse response = httpClient.execute(getHttpHost(), put, getHttpContext());
+//            int statusCode = response.getStatusLine().getStatusCode();
+//            if (statusCode != HttpStatus.SC_OK) {
+//                //throw AppException.http(statusCode);
+//            } else if (statusCode == HttpStatus.SC_OK) {
+//            }
+//            InputStream is = response.getEntity().getContent();
+//            String responseBody = StringUtils.toConvertString(is);
+//            Cache.getInstance().parse(responseBody, event);
+//        } catch (Exception e) {
+//            // 发生网络异常
+//            e.printStackTrace();
+//        } finally {
+//            // 释放连接
+////            httpClient.close();
+////            Log.d("httpClient.close()", "httpClient.close()");
+//        }
+//    }
+
+    /**
+     * 公用post方法
+     *
+     * @param url
+     * @param event
+     */
+    public static void doRequest(String route, String url, List<NameValuePair> params, int event, RequestType type) {
         AndroidHttpClient httpClient = null;
         HttpRequest request = null;
         //post表单参数处理
         try {
             httpClient = getHttpClient();
-//            switch (type) {
-//
-//                case POST:
-//                    break;
-//                case GET:
-//                    break;
-//                case PUT:
-//                    break;
-//                case DELETE:
-//                    break;
-//            }
+            Log.d("date", TimeUtil.toGMT());
 
-            request = getHttpRequest(url, type);
+            request = getHttpRequest(route, url, type);
             if (null != params && params.size() > 0) {
                 ((HttpEntityEnclosingRequestBase) request).setEntity(new UrlEncodedFormEntity(params, UTF_8));
             }
@@ -277,6 +271,13 @@ public class HttpClient {
         POST,
         GET,
         PUT,
-        DELETE
+        DELETE;
+
+//        @Override
+//        public String toString() {
+//            return super.toString();
+//        }
+
+
     }
 }

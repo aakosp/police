@@ -10,25 +10,29 @@ import java.util.List;
 public class HttpRequestData implements Runnable {
 
     private HttpClient.RequestType type = HttpClient.RequestType.GET;
+    private String route;
     private String url;
     private int event;
     private List<NameValuePair> params;
 
-    public HttpRequestData(List<NameValuePair> params, String url, int event) {
+    public HttpRequestData(List<NameValuePair> params, String route, String url, int event) {
+        this.route = route;
         this.type = HttpClient.RequestType.POST;
         this.url = url;
         this.event = event;
         this.params = params;
     }
 
-    public HttpRequestData(List<NameValuePair> params, String url, int event, HttpClient.RequestType type) {
+    public HttpRequestData(List<NameValuePair> params, String route, String url, int event, HttpClient.RequestType type) {
+        this.route = route;
         this.type = type;
         this.url = url;
         this.event = event;
         this.params = params;
     }
 
-    public HttpRequestData(String url, int event) {
+    public HttpRequestData(String route, String url, int event) {
+        this.route = route;
         this.url = url;
         this.event = event;
     }
@@ -46,6 +50,6 @@ public class HttpRequestData implements Runnable {
 //                HttpClient.put(url, params, event);
 //                break;
 //        }
-        HttpClient.doRequest(url, params, event, type);
+        HttpClient.doRequest(route, url, params, event, type);
     }
 }

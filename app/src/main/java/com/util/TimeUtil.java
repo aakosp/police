@@ -1,11 +1,14 @@
 package com.util;
 
+import android.location.Location;
 import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.Locale;
+import java.util.TimeZone;
 
 public class TimeUtil {
 
@@ -24,6 +27,9 @@ public class TimeUtil {
     private static String pat6 = "MM-dd HH:mm";
     private static SimpleDateFormat sdf6 = new SimpleDateFormat(pat6,
             Locale.getDefault());
+    private static String pat7 = "EEE, dd MMM yyyy HH:mm:ss 'GMT'";
+    private static SimpleDateFormat sdf7 = new SimpleDateFormat(pat7,
+            Locale.US);
 
     public static long getMillisecond(String string) {
         long lag = 0;
@@ -237,6 +243,10 @@ public class TimeUtil {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd",
                 Locale.getDefault());
         return format.format(new Date());
+    }
+
+    public static String toGMT(){
+        return sdf7.format(new Date());
     }
 
 }
