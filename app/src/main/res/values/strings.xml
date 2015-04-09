@@ -85,4 +85,17 @@
     <string name="pic">查看图片</string>
     <string name="p1">拍照</string>
     <string name="p2">相册</string>
+
+    <string name="minyi1">1、您是否认识自己辖区的“一村一警”包村民警？</string>
+    <string name="minyi2">2、您对自己居住的环境是否感到安全</string>
+    <string name="minyi3">1、您对您所属的「一村一警察」包村民警的工作是否满意</string>
+    <string name="minyi1_1">A.认识</string>
+    <string name="minyi1_2">B.不认识，但见过或听说过</string>
+    <string name="minyi1_3">C.不认识，也没见过或听说过</string>
+    <string name="minyi2_1">A.安全</string>
+    <string name="minyi2_2">B.基本安全</string>
+    <string name="minyi2_3">C.不安全</string>
+    <string name="minyi3_1">A.满意</string>
+    <string name="minyi3_2">B.基本满意</string>
+    <string name="minyi3_3">C.不满意</string>
 </resources>

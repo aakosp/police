@@ -69,7 +69,8 @@ public class FragmentProfileUser extends BaseFragment implements View.OnClickLis
                 FragmentProfile.choose();
                 return;
             case R.id.minyi:
-                return;
+                intent.setClass(this.getActivity(), ActivityMinyi.class);
+                break;
             case R.id.feedback:
                 intent.setClass(this.getActivity(), ActivityOpinions.class);
                 break;

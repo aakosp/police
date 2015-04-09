@@ -101,6 +101,9 @@
             android:name=".ui.activity.ActivityNotice"
             android:screenOrientation="portrait" />
         <activity
+            android:name=".ui.activity.ActivityMinyi"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.ActivityArea"
             android:screenOrientation="portrait"
             android:theme="@style/AppDialog"/>
