@@ -41,6 +41,11 @@ public class Event {
 
 
     public static final int REFRESH_OPINION = 26;          //刷新意见列表
+
+    public static final int GET_VOTE = 27;              //获取投票选项
+    public static final int SET_VOTE = 28;              //投票
+    public static final int CHECK_VOTE = 29;              //判断是否投票
+
     public static final int RESULT_SEX = 100;           //获取性别
     public static final int RESULT_AREA = 101;          //获取地区
     public static final int RESULT_WORK = 102;          //获取地区

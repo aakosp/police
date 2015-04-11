@@ -14,6 +14,7 @@ import com.psb.entity.Opinion;
 import com.psb.entity.Opinions;
 import com.psb.entity.PoliceInfo;
 import com.psb.entity.User;
+import com.psb.entity.Vote;
 import com.psb.entity.Work;
 import com.psb.event.Event;
 import com.psb.event.EventNotifyCenter;
@@ -41,9 +42,11 @@ public class Cache {
     private Opinions opinions_undo;
     private Map<Integer, Opinion> opinions = new HashMap<>();
     //    private Map<Integer, Opinion> opinionsMap = new HashMap<>();
-    private ID register, opi, chuli, workid, sign;
+    private ID register, opi, chuli, workid, sign, setVote;
     private List<PoliceInfo> policeInfo = new ArrayList<>();
     private List<Work> works = new ArrayList<>();
+    private List<Vote> votes;
+    private String voted;
 
 
     private Cache() {
@@ -150,6 +153,18 @@ public class Cache {
 
             case Event.COMMIT_WORK:
                 workid = JSON.parseObject(responseBody, ID.class);
+                break;
+
+            case Event.GET_VOTE:
+                votes = JSON.parseArray(responseBody, Vote.class);
+                break;
+
+            case Event.SET_VOTE:
+                setVote = JSON.parseObject(responseBody, ID.class);
+                break;
+
+            case Event.CHECK_VOTE:
+                voted = JSON.parseObject(responseBody,String.class);
                 break;
         }
 
@@ -302,5 +317,17 @@ public class Cache {
 
     public String getName() {
         return name;
+    }
+
+    public List<Vote> getVote(){
+        return votes;
+    }
+
+    public String getVoted(){
+        return voted;
+    }
+
+    public ID getVoteR(){
+        return setVote;
     }
 }

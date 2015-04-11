@@ -35,6 +35,16 @@ public class ActivityChuliSuccess extends BaseActivity {
                 txt.setText("签到成功");
                 fanhui.setText("返回个人中心");
             }
+            else if(intent.getBooleanExtra("minyi", false)){
+                top.setTitleText("民意测评");
+                txt.setText("意见已提交，非常感谢您的参与");
+                fanhui.setText("返回个人中心");
+            }
+            else if(intent.getBooleanExtra("minyi_s", false)){
+                top.setTitleText("民意测评");
+                txt.setText("您已提交过测评，请不要重复提交");
+                fanhui.setText("返回个人中心");
+            }
         }
         top.setActivity(this);
 

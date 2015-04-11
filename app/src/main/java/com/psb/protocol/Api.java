@@ -1,15 +1,11 @@
 package com.psb.protocol;
 
-import android.util.Log;
-
 import com.psb.ThreadUtil.ThreadPoolExecutorFactory;
 import com.psb.core.AppContext;
 import com.psb.event.Event;
 import com.util.StringUtils;
-
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -32,6 +28,7 @@ public class Api {
     private static final String ADDRESS = "/address";
     private static final String POLICE_STATION = "/police_station";
     private static final String DAILY_LOG = "/daily_log";
+    private static final String VOTE = "/vote";
 
     private Api() {
     }
@@ -269,6 +266,35 @@ public class Api {
         params.add(nameValuePair2);
         params.add(nameValuePair3);
         HttpRequestData data = new HttpRequestData(params, USER, url, Event.REGISTER);
+        executor.execute(data);
+    }
+
+    public void getVote() {
+        String url = "/vote";
+        HttpRequestData data = new HttpRequestData(VOTE, url, Event.GET_VOTE);
+        executor.execute(data);
+    }
+
+    public void checkVote() {
+        String url = "/vote/"+Cache.getInstance().getUser().getId();
+        HttpRequestData data = new HttpRequestData(VOTE, url, Event.CHECK_VOTE);
+        executor.execute(data);
+    }
+
+    public void vote(List<String> vote) {
+        String url = "/vote";
+        List<NameValuePair> params = new ArrayList<>();
+        NameValuePair id = new BasicNameValuePair("user_id", ""+Cache.getInstance().getUser().getId());
+        params.add(id);
+        int i = 1;
+        for(String a : vote){
+            if(!StringUtils.isEmpty(a)){
+                NameValuePair p = new BasicNameValuePair("answer_"+i, a);
+                params.add(p);
+            }
+            i++;
+        }
+        HttpRequestData data = new HttpRequestData(params, VOTE, url, Event.SET_VOTE);
         executor.execute(data);
     }
 }
