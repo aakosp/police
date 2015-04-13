@@ -75,6 +75,7 @@ public class Vote {
     }
 
     public class Voted{
+
         private String voted;
 
         public String getVoted() {

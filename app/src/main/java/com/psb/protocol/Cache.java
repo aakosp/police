@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.util.Log;
 
 import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.parser.Feature;
 import com.psb.core.AppContext;
 import com.psb.entity.Addr;
 import com.psb.entity.Article;
@@ -164,7 +165,7 @@ public class Cache {
                 break;
 
             case Event.CHECK_VOTE:
-                voted = JSON.parseObject(responseBody,String.class);
+                voted = (String) JSON.parseObject(responseBody).get("voted");
                 break;
         }
 

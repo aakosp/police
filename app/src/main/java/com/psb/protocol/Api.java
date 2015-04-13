@@ -1,5 +1,7 @@
 package com.psb.protocol;
 
+import android.util.Log;
+
 import com.psb.ThreadUtil.ThreadPoolExecutorFactory;
 import com.psb.core.AppContext;
 import com.psb.event.Event;
@@ -88,13 +90,13 @@ public class Api {
         params.add(s);
         params.add(x);
         params.add(y);
-        HttpRequestData data = new HttpRequestData(params, SIGN, url, Event.SGIN, HttpClient.RequestType.PUT);
+        HttpRequestData data = new HttpRequestData(params, url, url, Event.SGIN, HttpClient.RequestType.PUT);
         executor.execute(data);
     }
 
     public void sign_up_end(String session) {
         String url = "/sign_up/" + session;
-        HttpRequestData data = new HttpRequestData(null, SIGN, url, Event.SGIN, HttpClient.RequestType.DELETE);
+        HttpRequestData data = new HttpRequestData(null, url, url, Event.SGIN, HttpClient.RequestType.DELETE);
         executor.execute(data);
     }
 
@@ -136,7 +138,7 @@ public class Api {
 
     public void getFeedBack(String id) {
         String url = "/opinion_reply/" + id;
-        HttpRequestData data = new HttpRequestData(OPINION_REPLY, url, Event.GET_FEEDBACK);
+        HttpRequestData data = new HttpRequestData(url, url, Event.GET_FEEDBACK);
         executor.execute(data);
     }
 
@@ -155,7 +157,7 @@ public class Api {
 
     public void getOpinion(int id) {
         String url = "/opinion/" + id;
-        HttpRequestData data = new HttpRequestData(OPINION, url, Event.GET_OPINION);
+        HttpRequestData data = new HttpRequestData(url, url, Event.GET_OPINION);
         executor.execute(data);
     }
 
@@ -192,7 +194,7 @@ public class Api {
 
     public void getAddrByParent(String id) {
         String url = "/address&parentid=" + id;
-        HttpRequestData data = new HttpRequestData(ADDRESS, url, Event.GET_ADDRS);
+        HttpRequestData data = new HttpRequestData(url, url, Event.GET_ADDRS);
         executor.execute(data);
     }
 
@@ -204,7 +206,7 @@ public class Api {
 
     public void getPolice(int addr) {
         String url = "/address/" + addr;
-        HttpRequestData data = new HttpRequestData(ADDRESS, url, Event.GET_POLICE_LIST);
+        HttpRequestData data = new HttpRequestData(url, url, Event.GET_POLICE_LIST);
         executor.execute(data);
     }
 
@@ -213,7 +215,7 @@ public class Api {
         List<NameValuePair> params = new ArrayList<>();
         NameValuePair nameValuePair1 = new BasicNameValuePair("password", pwd);
         params.add(nameValuePair1);
-        HttpRequestData data = new HttpRequestData(params, USER, url, Event.CHANGE_PWD, HttpClient.RequestType.PUT);
+        HttpRequestData data = new HttpRequestData(params, url, url, Event.CHANGE_PWD, HttpClient.RequestType.PUT);
         executor.execute(data);
     }
 
@@ -277,7 +279,7 @@ public class Api {
 
     public void checkVote() {
         String url = "/vote/"+Cache.getInstance().getUser().getId();
-        HttpRequestData data = new HttpRequestData(VOTE, url, Event.CHECK_VOTE);
+        HttpRequestData data = new HttpRequestData(url, url, Event.CHECK_VOTE);
         executor.execute(data);
     }
 

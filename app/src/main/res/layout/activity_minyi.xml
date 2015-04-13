@@ -37,7 +37,8 @@
                 android:background="@color/shiming"
                 android:padding="@dimen/default_padding"
                 android:text="@string/commit"
-                android:textColor="@color/white" />
+                android:textColor="@color/white"
+                android:visibility="gone"/>
         </LinearLayout>
     </ScrollView>
 

@@ -113,9 +113,9 @@ public class HttpClient {
         httpRequest.addHeader("API-Date", date);
 
         String author = type + "&" + route +"&"+ date + "&" + KEY;
-        Log.d("author", author);
+//        Log.d("author", author);
         String authorization =  Md5Helper.encode(author);
-        Log.d("authorization", authorization);
+//        Log.d("authorization", authorization);
         httpRequest.addHeader("API-Authorization", authorization);
 
 //        httpRequest.addHeader("Cookie", "");
@@ -238,7 +238,7 @@ public class HttpClient {
         //post表单参数处理
         try {
             httpClient = getHttpClient();
-            Log.d("date", TimeUtil.toGMT());
+//            Log.d("date", TimeUtil.toGMT());
 
             request = getHttpRequest(route, url, type);
             if (null != params && params.size() > 0) {

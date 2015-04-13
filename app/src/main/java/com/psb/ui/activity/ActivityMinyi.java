@@ -66,7 +66,7 @@ public class ActivityMinyi extends BaseActivity implements View.OnClickListener{
                 }
                 break;
             case Event.CHECK_VOTE:
-                if(Vote.NO.equals(Cache.getInstance().getVoted())){
+                if(null!=Cache.getInstance().getVoted() && Vote.NO.equals(Cache.getInstance().getVoted())){
                     Api.getInstance().getVote();
                 }
                 else{
@@ -91,6 +91,7 @@ public class ActivityMinyi extends BaseActivity implements View.OnClickListener{
             vote.addView(item);
             listVote.add(item);
         }
+        commit.setVisibility(View.VISIBLE);
     }
 
     @Override
