@@ -43,6 +43,24 @@
                 android:layout_marginRight="@dimen/default_padding" />
 
             <EditText
+                android:id="@+id/type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:editable="false"
+                android:hint="@string/hit_fankui"
+                android:padding="@dimen/default_padding"
+                android:textColor="@color/news_title"
+                android:textColorHint="@color/news_title"
+                android:textSize="@dimen/newstitle_title_size"/>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/divider"
+                android:layout_marginLeft="@dimen/default_padding"
+                android:layout_marginRight="@dimen/default_padding" />
+
+            <EditText
                 android:id="@+id/info"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -61,6 +61,7 @@
     <string name="hit_mima">6至20个字母、数字或下划线</string>
     <string name="hit_zaici">再次输入要设置的密码</string>
     <string name="hit_xuanze">点击选择</string>
+    <string name="hit_fankui">反馈类型：点击选择</string>
 
     <string name="all_addr">所有乡镇</string>
     <string name="query_police">民警查询</string>

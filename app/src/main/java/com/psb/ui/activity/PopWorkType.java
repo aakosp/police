@@ -24,11 +24,16 @@ public class PopWorkType extends BaseActivity {
     private WorkTypeItem[] typeData;
     private String strType;
     private String strId;
+    private boolean isOpinion = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.pop_work_type);
+        Intent intent = getIntent();
+        if(null != intent){
+            isOpinion = intent.getBooleanExtra("isO", false);
+        }
         type = (WheelView) findViewById(R.id.type);
         ok = (Button) findViewById(R.id.ok);
         ok.setOnClickListener(new View.OnClickListener() {
@@ -43,15 +48,20 @@ public class PopWorkType extends BaseActivity {
                 finish();
             }
         });
-//        strType = "社情民意";
-//        strId = "OPINION";
-        WorkTypeItem item1 = new WorkTypeItem("OPINION", "社情民意");
-        WorkTypeItem item2 = new WorkTypeItem("DISPUTE", "矛盾纠纷");
-        WorkTypeItem item3 = new WorkTypeItem("SECURITY", "治安防范");
-        WorkTypeItem item4 = new WorkTypeItem("EDUCATION", "宣传教育");
-        WorkTypeItem item5 = new WorkTypeItem("SERVING", "服务群众");
+        if(!isOpinion){
+            WorkTypeItem item1 = new WorkTypeItem("OPINION", "社情民意");
+            WorkTypeItem item2 = new WorkTypeItem("DISPUTE", "矛盾纠纷");
+            WorkTypeItem item3 = new WorkTypeItem("SECURITY", "治安防范");
+            WorkTypeItem item4 = new WorkTypeItem("EDUCATION", "宣传教育");
+            WorkTypeItem item5 = new WorkTypeItem("SERVING", "服务群众");
+            typeData = new WorkTypeItem[]{item1, item2, item3, item4, item5};
+        }
+        else{
+            WorkTypeItem item1 = new WorkTypeItem("COMPLAIN", "投诉举报");
+            WorkTypeItem item2 = new WorkTypeItem("OPINION", "意见反馈");
+            typeData = new WorkTypeItem[]{item1, item2};
+        }
 
-        typeData = new WorkTypeItem[]{item1, item2, item3, item4, item5};
         type.setViewAdapter(new ArrayWheelAdapter<WorkTypeItem>(this, typeData));
         type.setVisibleItems(3);
         type.setCurrentItem(0);

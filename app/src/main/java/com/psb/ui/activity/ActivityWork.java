@@ -100,7 +100,7 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener, 
             imgs.setOnItemClickListener(this);
             intentPic = new Intent();
             intentPic.setClass(this, ActivityPic.class);
-            Log.d("intentPic", ""+(null==intentPic));
+            Log.d("intentPic", "" + (null == intentPic));
             adapter.notifyDataSetChanged();
         } else {
             imgs.setAdapter(adapter);
@@ -212,7 +212,7 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Log.d("item", ""+(null==intentPic));
+        Log.d("item", "" + (null == intentPic));
         if (null != intentPic) {
             PhotosAdapter ad = (PhotosAdapter) parent.getAdapter();
             String url = (String) ad.getItem(position);

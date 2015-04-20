@@ -100,7 +100,7 @@ public class Api {
         executor.execute(data);
     }
 
-    public void commitOpinion(String strTitle, String info, List<String> pic, String strType) {
+    public void commitOpinion(String strTitle, String info, List<String> pic, String strType, String opinion_type) {
         String url = "/opinion";
         List<NameValuePair> params = new ArrayList<>();
         if (null != Cache.getInstance().getUser()) {
@@ -109,6 +109,8 @@ public class Api {
         }
         NameValuePair type = new BasicNameValuePair("type", strType);
         params.add(type);
+        NameValuePair opinionType = new BasicNameValuePair("opinion_type", opinion_type);
+        params.add(opinionType);
         NameValuePair title = new BasicNameValuePair("title", strTitle);
         params.add(title);
         NameValuePair content = new BasicNameValuePair("content", info);
@@ -283,11 +285,13 @@ public class Api {
         executor.execute(data);
     }
 
-    public void vote(List<String> vote) {
+    public void vote(int policeId, List<String> vote) {
         String url = "/vote";
         List<NameValuePair> params = new ArrayList<>();
         NameValuePair id = new BasicNameValuePair("user_id", ""+Cache.getInstance().getUser().getId());
         params.add(id);
+        NameValuePair pid = new BasicNameValuePair("police_id", ""+policeId);
+        params.add(pid);
         int i = 1;
         for(String a : vote){
             if(!StringUtils.isEmpty(a)){

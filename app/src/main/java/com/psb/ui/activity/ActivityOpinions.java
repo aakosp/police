@@ -35,12 +35,13 @@ import java.util.List;
 public class ActivityOpinions extends BaseActivity implements View.OnClickListener {
 
     private TopNavigationBar top;
-    private EditText title, info;
+    private EditText title, info, etType;
     private GridView imgs;
     private AlbumPhotosAdapter adapter;
     private View def, root;
     private Button shiming, niming, login_niming;
     private String type = "ANONYMOUS";
+    private String opinionType = "";
     private List<String> urls = new ArrayList<>();
     private List<Uri> uris;
     private boolean shibai = false;
@@ -53,6 +54,8 @@ public class ActivityOpinions extends BaseActivity implements View.OnClickListen
         top = (TopNavigationBar) findViewById(R.id.topbar);
         top.setActivity(this);
         title = (EditText) findViewById(R.id.title);
+        etType = (EditText) findViewById(R.id.type);
+        etType.setOnClickListener(this);
         info = (EditText) findViewById(R.id.info);
         imgs = (GridView) findViewById(R.id.imgs);
         shiming = (Button) findViewById(R.id.shiming);
@@ -90,12 +93,21 @@ public class ActivityOpinions extends BaseActivity implements View.OnClickListen
             if (null != uri) {
                 adapter.addImage(uri);
             }
+        } else if (requestCode == Event.RESULT_WORK && null != data) {
+            opinionType = data.getStringExtra("id");
+            etType.setText(data.getStringExtra("type"));
         }
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
+            case R.id.type:
+                Intent intent = new Intent();
+                intent.setClass(this, PopWorkType.class);
+                intent.putExtra("isO", true);
+                this.startActivityForResult(intent, Event.RESULT_WORK);
+                break;
             case R.id.shiming:
                 type = "ONYMOUS";
             case R.id.niming:
@@ -106,6 +118,11 @@ public class ActivityOpinions extends BaseActivity implements View.OnClickListen
     }
 
     public void commit() {
+        if(StringUtils.isEmpty(opinionType)){
+            ToastUtil.showLongToast(this, "请选择反馈类型", 0);
+            return;
+        }
+
         shibai = false;
         final String strTitle = title.getText().toString();
         if (StringUtils.isEmpty(strTitle)) {
@@ -119,7 +136,7 @@ public class ActivityOpinions extends BaseActivity implements View.OnClickListen
         }
         uris = adapter.getImgs();
         if (uris.size() == 0) {
-            Api.getInstance().commitOpinion(strTitle, strInfo, null, type);
+            Api.getInstance().commitOpinion(strTitle, strInfo, null, type, opinionType);
             return;
         }
         for (int i = 0; i < uris.size(); i++) {
@@ -129,7 +146,7 @@ public class ActivityOpinions extends BaseActivity implements View.OnClickListen
                 public void onUploadComplete(int id, String path) {
                     urls.add(path);
                     if (urls.size() == uris.size()) {
-                        Api.getInstance().commitOpinion(strTitle, strInfo, urls, type);
+                        Api.getInstance().commitOpinion(strTitle, strInfo, urls, type, opinionType);
                     }
                 }
 

@@ -6,6 +6,7 @@
     android:orientation="vertical">
 
     <com.psb.ui.widget.TopNavigationBar
+        android:id="@+id/top"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:titleText="@string/minyi" />
@@ -22,11 +23,18 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <TextView
+                android:id="@+id/police"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/news_title"
+                android:textSize="@dimen/news_title_size" />
+
             <LinearLayout
                 android:id="@+id/vote"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"/>
+                android:orientation="vertical" />
 
             <Button
                 android:id="@+id/commit"
@@ -38,7 +46,7 @@
                 android:padding="@dimen/default_padding"
                 android:text="@string/commit"
                 android:textColor="@color/white"
-                android:visibility="gone"/>
+                android:visibility="gone" />
         </LinearLayout>
     </ScrollView>
 
