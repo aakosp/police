@@ -34,5 +34,8 @@ dependencies {
     compile files('libs/android_api_1.1_forsdk.jar')
     compile files('libs/galaxy_mini.jar')
     compile project(':wheel')
-    compile files('libs/MiPush_SDK_Client_2_2_14_sdk.jar')
+    compile files('libs/jg_filter_sdk_1.1.jar')
+    compile files('libs/mid-sdk-2.10.jar')
+    compile files('libs/wup-1.0.0-SNAPSHOT.jar')
+    compile files('libs/Xg_sdk_v2.38_20150405_2046.jar')
 }

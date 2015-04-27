@@ -19,6 +19,8 @@ import com.psb.entity.Vote;
 import com.psb.entity.Work;
 import com.psb.event.Event;
 import com.psb.event.EventNotifyCenter;
+import com.tencent.android.tpush.XGIOperateCallback;
+import com.tencent.android.tpush.XGPushManager;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -48,6 +50,7 @@ public class Cache {
     private List<Work> works = new ArrayList<>();
     private List<Vote> votes;
     private String voted;
+    private String token;
 
 
     private Cache() {
@@ -90,9 +93,7 @@ public class Cache {
                     if (null == user) {
                         user = item;
                     }
-                    if (!item.getPassword().equals(pwd)) {
-                        isLogin = false;
-                    }
+                    setLogin(item.getPassword().equals(pwd));
                 }
                 if (null != item) {
                     users.put(item.getUser_name(), item);
@@ -183,6 +184,29 @@ public class Cache {
         SharedPreferences.Editor editor = sp.edit();
         editor.putBoolean("login", isLogin);
         editor.commit();
+
+        if (isLogin) {
+            // 注册接口
+            XGPushManager.registerPush(AppContext.getInstance(), "" + user.getId(),
+                    new XGIOperateCallback() {
+                        @Override
+                        public void onSuccess(Object data, int flag) {
+                            Log.w("onSuccess",
+                                    "+++ register push sucess. token:" + data);
+                            setToken("" + data);
+                        }
+
+                        @Override
+                        public void onFail(Object data, int errCode, String msg) {
+                            Log.w("onFail",
+                                    "+++ register push fail. token:" + data
+                                            + ", errCode:" + errCode + ",msg:"
+                                            + msg);
+                        }
+                    });
+            Log.d("registerPush", "=========================================");
+        }
+
     }
 
     public synchronized Article getArticle(int event) {
@@ -320,15 +344,23 @@ public class Cache {
         return name;
     }
 
-    public List<Vote> getVote(){
+    public List<Vote> getVote() {
         return votes;
     }
 
-    public String getVoted(){
+    public String getVoted() {
         return voted;
     }
 
-    public ID getVoteR(){
+    public ID getVoteR() {
         return setVote;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

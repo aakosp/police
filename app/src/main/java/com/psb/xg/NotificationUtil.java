@@ -1,4 +1,4 @@
-package com.psb.core;
+package com.psb.xg;
 
 import java.util.List;
 import android.annotation.SuppressLint;
@@ -16,6 +16,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.os.Bundle;
 import com.psb.R;
+import com.psb.core.AppContext;
 import com.psb.ui.activity.ActivityMain;
 
 @SuppressLint("NewApi")

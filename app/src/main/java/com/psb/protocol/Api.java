@@ -6,8 +6,10 @@ import com.psb.ThreadUtil.ThreadPoolExecutorFactory;
 import com.psb.core.AppContext;
 import com.psb.event.Event;
 import com.util.StringUtils;
+
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -280,7 +282,7 @@ public class Api {
     }
 
     public void checkVote() {
-        String url = "/vote/"+Cache.getInstance().getUser().getId();
+        String url = "/vote/" + Cache.getInstance().getUser().getId();
         HttpRequestData data = new HttpRequestData(url, url, Event.CHECK_VOTE);
         executor.execute(data);
     }
@@ -288,14 +290,14 @@ public class Api {
     public void vote(int policeId, List<String> vote) {
         String url = "/vote";
         List<NameValuePair> params = new ArrayList<>();
-        NameValuePair id = new BasicNameValuePair("user_id", ""+Cache.getInstance().getUser().getId());
+        NameValuePair id = new BasicNameValuePair("user_id", "" + Cache.getInstance().getUser().getId());
         params.add(id);
-        NameValuePair pid = new BasicNameValuePair("police_id", ""+policeId);
+        NameValuePair pid = new BasicNameValuePair("police_id", "" + policeId);
         params.add(pid);
         int i = 1;
-        for(String a : vote){
-            if(!StringUtils.isEmpty(a)){
-                NameValuePair p = new BasicNameValuePair("answer_"+i, a);
+        for (String a : vote) {
+            if (!StringUtils.isEmpty(a)) {
+                NameValuePair p = new BasicNameValuePair("answer_" + i, a);
                 params.add(p);
             }
             i++;

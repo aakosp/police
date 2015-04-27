@@ -112,9 +112,9 @@ public class HttpClient {
         httpRequest.addHeader("Content-Type", "application/x-www-form-urlencoded");
         httpRequest.addHeader("API-Date", date);
 
-        String author = type + "&" + route +"&"+ date + "&" + KEY;
+        String author = type + "&" + route + "&" + date + "&" + KEY;
 //        Log.d("author", author);
-        String authorization =  Md5Helper.encode(author);
+        String authorization = Md5Helper.encode(author);
 //        Log.d("authorization", authorization);
         httpRequest.addHeader("API-Authorization", authorization);
 
