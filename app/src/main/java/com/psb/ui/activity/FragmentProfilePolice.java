@@ -14,12 +14,19 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.psb.R;
+import com.psb.core.AppContext;
 import com.psb.event.Event;
 import com.psb.event.EventNotifyCenter;
 import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseFragment;
 import com.psb.ui.widget.ItemHorizontal;
 import com.psb.ui.widget.RoundImageView;
+import com.psb.xg.NotificationService;
+import com.psb.xg.NotificationUtil;
+import com.psb.xg.XGNotification;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 /**
  * Created by zl on 2015/3/13.

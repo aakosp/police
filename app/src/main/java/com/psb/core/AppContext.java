@@ -14,6 +14,7 @@ import com.psb.protocol.Api;
 import com.psb.protocol.Cache;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
+import com.util.AudioUtil;
 import com.util.LocationUtils;
 
 /**
@@ -46,9 +47,6 @@ public class AppContext extends Application {
         ImageLoader.getInstance().init(config);
         Api.getInstance().getAddrs();
         appContext = this;
-        XGPushManager.registerPush(this);
-
-
         if (Cache.getInstance().isLogin()){
             Api.getInstance().getUser(Cache.getInstance().getId());
         }

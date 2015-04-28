@@ -1,6 +1,8 @@
 package com.psb.protocol;
 
+import android.app.PendingIntent;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 
@@ -19,6 +21,8 @@ import com.psb.entity.Vote;
 import com.psb.entity.Work;
 import com.psb.event.Event;
 import com.psb.event.EventNotifyCenter;
+import com.psb.ui.activity.ActivityMain;
+import com.tencent.android.tpush.XGCustomPushNotificationBuilder;
 import com.tencent.android.tpush.XGIOperateCallback;
 import com.tencent.android.tpush.XGPushManager;
 
@@ -71,7 +75,7 @@ public class Cache {
     }
 
     public void parse(String responseBody, int event) {
-        Log.d("EVENT: " + event, " " + responseBody);
+//        Log.d("EVENT: " + event, " " + responseBody);
         switch (event) {
             case Event.NEWS_1:
             case Event.NEWS_2:
@@ -185,26 +189,25 @@ public class Cache {
         editor.putBoolean("login", isLogin);
         editor.commit();
 
-        if (isLogin) {
+        if (isLogin && User.POLICE.equals(user.getRole())) {
             // 注册接口
+//            XGPushManager.registerPush(this);
             XGPushManager.registerPush(AppContext.getInstance(), "" + user.getId(),
                     new XGIOperateCallback() {
                         @Override
                         public void onSuccess(Object data, int flag) {
-                            Log.w("onSuccess",
-                                    "+++ register push sucess. token:" + data);
-                            setToken("" + data);
+//                            Log.w("onSuccess",
+//                                    "+++ register push sucess. token:" + data);
                         }
 
                         @Override
                         public void onFail(Object data, int errCode, String msg) {
-                            Log.w("onFail",
-                                    "+++ register push fail. token:" + data
-                                            + ", errCode:" + errCode + ",msg:"
-                                            + msg);
+//                            Log.w("onFail",
+//                                    "+++ register push fail. token:" + data
+//                                            + ", errCode:" + errCode + ",msg:"
+//                                            + msg);
                         }
                     });
-            Log.d("registerPush", "=========================================");
         }
 
     }

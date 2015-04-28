@@ -1,8 +1,6 @@
 -- Merging decision tree log ---
 manifest
 ADDED from AndroidManifest.xml:1:1
-	xmlns:android
-		ADDED from AndroidManifest.xml:1:11
 	package
 		ADDED from AndroidManifest.xml:2:5
 		INJECTED from AndroidManifest.xml:0:0
@@ -10,6 +8,8 @@ ADDED from AndroidManifest.xml:1:1
 	android:versionName
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
+	xmlns:android
+		ADDED from AndroidManifest.xml:1:11
 	android:versionCode
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0
@@ -65,200 +65,216 @@ uses-permission#android.permission.WRITE_SETTINGS
 ADDED from AndroidManifest.xml:17:5
 	android:name
 		ADDED from AndroidManifest.xml:17:22
-supports-screens
+uses-permission#android.permission.GET_TASKS
+ADDED from AndroidManifest.xml:18:5
+	android:name
+		ADDED from AndroidManifest.xml:18:22
+uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
 ADDED from AndroidManifest.xml:19:5
-	android:resizeable
-		ADDED from AndroidManifest.xml:23:9
-	android:largeScreens
-		ADDED from AndroidManifest.xml:21:9
-	android:anyDensity
-		ADDED from AndroidManifest.xml:20:9
-	android:normalScreens
-		ADDED from AndroidManifest.xml:22:9
-	android:smallScreens
-		ADDED from AndroidManifest.xml:24:9
-application
+	android:name
+		ADDED from AndroidManifest.xml:19:22
+uses-permission#android.permission.RESTART_PACKAGES
+ADDED from AndroidManifest.xml:20:5
+	android:name
+		ADDED from AndroidManifest.xml:20:22
+uses-permission#android.permission.BROADCAST_STICKY
+ADDED from AndroidManifest.xml:21:5
+	android:name
+		ADDED from AndroidManifest.xml:21:22
+uses-permission#android.permission.RECEIVE_USER_PRESENT
+ADDED from AndroidManifest.xml:22:5
+	android:name
+		ADDED from AndroidManifest.xml:22:22
+uses-permission#android.permission.KILL_BACKGROUND_PROCESSES
+ADDED from AndroidManifest.xml:23:5
+	android:name
+		ADDED from AndroidManifest.xml:23:22
+uses-permission#android.permission.BLUETOOTH
+ADDED from AndroidManifest.xml:25:5
+	android:name
+		ADDED from AndroidManifest.xml:25:22
+uses-permission#android.permission.BATTERY_STATS
 ADDED from AndroidManifest.xml:26:5
-MERGED from police_b:library:unspecified:11:5
+	android:name
+		ADDED from AndroidManifest.xml:26:22
+supports-screens
+ADDED from AndroidManifest.xml:28:5
+	android:largeScreens
+		ADDED from AndroidManifest.xml:30:9
+	android:smallScreens
+		ADDED from AndroidManifest.xml:33:9
+	android:normalScreens
+		ADDED from AndroidManifest.xml:31:9
+	android:resizeable
+		ADDED from AndroidManifest.xml:32:9
+	android:anyDensity
+		ADDED from AndroidManifest.xml:29:9
+application
+ADDED from AndroidManifest.xml:35:5
+MERGED from police_n:library:unspecified:11:5
 MERGED from com.android.support:recyclerview-v7:21.0.0:17:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
 MERGED from com.android.support:support-v4:21.0.3:16:5
-MERGED from police_b:wheel:unspecified:11:5
+MERGED from police_n:wheel:unspecified:11:5
 	android:label
-		ADDED from AndroidManifest.xml:30:9
+		ADDED from AndroidManifest.xml:39:9
 	android:allowBackup
-		ADDED from AndroidManifest.xml:28:9
+		ADDED from AndroidManifest.xml:37:9
 	android:icon
-		ADDED from AndroidManifest.xml:29:9
+		ADDED from AndroidManifest.xml:38:9
 	android:theme
-		ADDED from AndroidManifest.xml:31:9
+		ADDED from AndroidManifest.xml:40:9
 	android:name
-		ADDED from AndroidManifest.xml:27:9
+		ADDED from AndroidManifest.xml:36:9
 activity#com.psb.ui.activity.ActivityIndex
-ADDED from AndroidManifest.xml:32:9
+ADDED from AndroidManifest.xml:41:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:34:13
+		ADDED from AndroidManifest.xml:43:13
 	android:name
-		ADDED from AndroidManifest.xml:33:13
-intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:35:13
-action#android.intent.action.MAIN
-ADDED from AndroidManifest.xml:36:17
-	android:name
-		ADDED from AndroidManifest.xml:36:25
-category#android.intent.category.LAUNCHER
-ADDED from AndroidManifest.xml:37:17
-	android:name
-		ADDED from AndroidManifest.xml:37:27
-activity#com.psb.ui.activity.ActivityMain
-ADDED from AndroidManifest.xml:40:9
-	android:screenOrientation
 		ADDED from AndroidManifest.xml:42:13
+intent-filter#android.intent.action.MAIN+android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:44:13
+action#android.intent.action.MAIN
+ADDED from AndroidManifest.xml:45:17
 	android:name
-		ADDED from AndroidManifest.xml:41:13
-activity#com.psb.ui.activity.ActivitySign
-ADDED from AndroidManifest.xml:43:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:45:13
+		ADDED from AndroidManifest.xml:45:25
+category#android.intent.category.LAUNCHER
+ADDED from AndroidManifest.xml:46:17
 	android:name
-		ADDED from AndroidManifest.xml:44:13
-activity#com.psb.ui.activity.ActivityMap
-ADDED from AndroidManifest.xml:46:9
-	android:screenOrientation
-		ADDED from AndroidManifest.xml:48:13
-	android:name
-		ADDED from AndroidManifest.xml:47:13
-activity#com.psb.ui.activity.ActivityNewsDetail
+		ADDED from AndroidManifest.xml:46:27
+activity#com.psb.ui.activity.ActivityMain
 ADDED from AndroidManifest.xml:49:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:51:13
 	android:name
 		ADDED from AndroidManifest.xml:50:13
-activity#com.psb.ui.activity.ActivityRegister
+activity#com.psb.ui.activity.ActivitySign
 ADDED from AndroidManifest.xml:52:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:54:13
 	android:name
 		ADDED from AndroidManifest.xml:53:13
-activity#com.psb.ui.activity.ActivityOffice
+activity#com.psb.ui.activity.ActivityMap
 ADDED from AndroidManifest.xml:55:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:57:13
 	android:name
 		ADDED from AndroidManifest.xml:56:13
-activity#com.psb.ui.activity.ActivityLogin
+activity#com.psb.ui.activity.ActivityNewsDetail
 ADDED from AndroidManifest.xml:58:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:60:13
 	android:name
 		ADDED from AndroidManifest.xml:59:13
-activity#com.psb.ui.activity.ActivityPoliceInfo
+activity#com.psb.ui.activity.ActivityRegister
 ADDED from AndroidManifest.xml:61:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:63:13
 	android:name
 		ADDED from AndroidManifest.xml:62:13
-activity#com.psb.ui.activity.ActivityWork
+activity#com.psb.ui.activity.ActivityOffice
 ADDED from AndroidManifest.xml:64:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:66:13
 	android:name
 		ADDED from AndroidManifest.xml:65:13
-activity#com.psb.ui.activity.ActivityOpinionProcessing
+activity#com.psb.ui.activity.ActivityLogin
 ADDED from AndroidManifest.xml:67:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:69:13
 	android:name
 		ADDED from AndroidManifest.xml:68:13
-activity#com.psb.ui.activity.ActivityRegisterSuccess
+activity#com.psb.ui.activity.ActivityPoliceInfo
 ADDED from AndroidManifest.xml:70:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:72:13
 	android:name
 		ADDED from AndroidManifest.xml:71:13
-activity#com.psb.ui.activity.ActivityChuliSuccess
+activity#com.psb.ui.activity.ActivityWork
 ADDED from AndroidManifest.xml:73:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:75:13
 	android:name
 		ADDED from AndroidManifest.xml:74:13
-activity#com.psb.ui.activity.ActivityWorkSuccess
+activity#com.psb.ui.activity.ActivityOpinionProcessing
 ADDED from AndroidManifest.xml:76:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:78:13
 	android:name
 		ADDED from AndroidManifest.xml:77:13
-activity#com.psb.ui.activity.ActivityReportSucess
+activity#com.psb.ui.activity.ActivityRegisterSuccess
 ADDED from AndroidManifest.xml:79:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:81:13
 	android:name
 		ADDED from AndroidManifest.xml:80:13
-activity#com.psb.ui.activity.ActivityPoliceDetail
+activity#com.psb.ui.activity.ActivityChuliSuccess
 ADDED from AndroidManifest.xml:82:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:84:13
 	android:name
 		ADDED from AndroidManifest.xml:83:13
-activity#com.psb.ui.activity.ActivityChangePwd
+activity#com.psb.ui.activity.ActivityWorkSuccess
 ADDED from AndroidManifest.xml:85:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:87:13
 	android:name
 		ADDED from AndroidManifest.xml:86:13
-activity#com.psb.ui.activity.ActivityOpinions
+activity#com.psb.ui.activity.ActivityReportSucess
 ADDED from AndroidManifest.xml:88:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:90:13
 	android:name
 		ADDED from AndroidManifest.xml:89:13
-activity#com.psb.ui.activity.ActivityWorkList
+activity#com.psb.ui.activity.ActivityPoliceDetail
 ADDED from AndroidManifest.xml:91:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:93:13
 	android:name
 		ADDED from AndroidManifest.xml:92:13
-activity#com.psb.ui.activity.ActivityOpinionInfo
+activity#com.psb.ui.activity.ActivityChangePwd
 ADDED from AndroidManifest.xml:94:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:96:13
 	android:name
 		ADDED from AndroidManifest.xml:95:13
-activity#com.psb.ui.activity.ActivityPic
+activity#com.psb.ui.activity.ActivityOpinions
 ADDED from AndroidManifest.xml:97:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:99:13
 	android:name
 		ADDED from AndroidManifest.xml:98:13
-activity#com.psb.ui.activity.ActivityNotice
+activity#com.psb.ui.activity.ActivityWorkList
 ADDED from AndroidManifest.xml:100:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:102:13
 	android:name
 		ADDED from AndroidManifest.xml:101:13
-activity#com.psb.ui.activity.ActivityMinyi
+activity#com.psb.ui.activity.ActivityOpinionInfo
 ADDED from AndroidManifest.xml:103:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:105:13
 	android:name
 		ADDED from AndroidManifest.xml:104:13
-activity#com.psb.ui.activity.ActivityArea
+activity#com.psb.ui.activity.ActivityPic
 ADDED from AndroidManifest.xml:106:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:108:13
-	android:theme
-		ADDED from AndroidManifest.xml:109:13
 	android:name
 		ADDED from AndroidManifest.xml:107:13
-activity#com.psb.ui.activity.ActivitySex
-ADDED from AndroidManifest.xml:110:9
+activity#com.psb.ui.activity.ActivityNotice
+ADDED from AndroidManifest.xml:109:9
 	android:screenOrientation
-		ADDED from AndroidManifest.xml:112:13
-	android:theme
-		ADDED from AndroidManifest.xml:113:13
-	android:name
 		ADDED from AndroidManifest.xml:111:13
-activity#com.psb.ui.activity.PopWorkType
+	android:name
+		ADDED from AndroidManifest.xml:110:13
+activity#com.psb.ui.activity.ActivityMinyi
+ADDED from AndroidManifest.xml:112:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:114:13
+	android:name
+		ADDED from AndroidManifest.xml:113:13
+activity#com.psb.ui.activity.ActivityArea
 ADDED from AndroidManifest.xml:115:9
 	android:screenOrientation
 		ADDED from AndroidManifest.xml:117:13
@@ -266,33 +282,159 @@ ADDED from AndroidManifest.xml:115:9
 		ADDED from AndroidManifest.xml:118:13
 	android:name
 		ADDED from AndroidManifest.xml:116:13
-service#com.baidu.location.f
-ADDED from AndroidManifest.xml:120:9
-	android:process
-		ADDED from AndroidManifest.xml:123:13
-	android:enabled
+activity#com.psb.ui.activity.ActivitySex
+ADDED from AndroidManifest.xml:119:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:121:13
+	android:theme
 		ADDED from AndroidManifest.xml:122:13
 	android:name
-		ADDED from AndroidManifest.xml:121:13
-intent-filter#com.baidu.location.service_v2.2
-ADDED from AndroidManifest.xml:124:13
-action#com.baidu.location.service_v2.2
-ADDED from AndroidManifest.xml:125:17
+		ADDED from AndroidManifest.xml:120:13
+activity#com.psb.ui.activity.PopWorkType
+ADDED from AndroidManifest.xml:124:9
+	android:screenOrientation
+		ADDED from AndroidManifest.xml:126:13
+	android:theme
+		ADDED from AndroidManifest.xml:127:13
 	android:name
-		ADDED from AndroidManifest.xml:125:25
-meta-data#com.baidu.lbsapi.API_KEY
-ADDED from AndroidManifest.xml:130:9
-	android:name
+		ADDED from AndroidManifest.xml:125:13
+service#com.baidu.location.f
+ADDED from AndroidManifest.xml:129:9
+	android:enabled
 		ADDED from AndroidManifest.xml:131:13
-	android:value
+	android:process
 		ADDED from AndroidManifest.xml:132:13
+	android:name
+		ADDED from AndroidManifest.xml:130:13
+intent-filter#com.baidu.location.service_v2.2
+ADDED from AndroidManifest.xml:133:13
+action#com.baidu.location.service_v2.2
+ADDED from AndroidManifest.xml:134:17
+	android:name
+		ADDED from AndroidManifest.xml:134:25
+meta-data#com.baidu.lbsapi.API_KEY
+ADDED from AndroidManifest.xml:139:9
+	android:value
+		ADDED from AndroidManifest.xml:141:13
+	android:name
+		ADDED from AndroidManifest.xml:140:13
+receiver#com.tencent.android.tpush.XGPushReceiver
+ADDED from AndroidManifest.xml:150:9
+	android:process
+		ADDED from AndroidManifest.xml:152:13
+	android:name
+		ADDED from AndroidManifest.xml:151:13
+intent-filter#android.bluetooth.adapter.action.STATE_CHANGED+android.intent.action.ACTION_POWER_CONNECTED+android.intent.action.ACTION_POWER_DISCONNECTED+android.intent.action.USER_PRESENT+android.net.conn.CONNECTIVITY_CHANGE+com.tencent.android.tpush.action.INTERNAL_PUSH_MESSAGE+com.tencent.android.tpush.action.SDK
+ADDED from AndroidManifest.xml:153:13
+	android:priority
+		ADDED from AndroidManifest.xml:153:28
+action#com.tencent.android.tpush.action.SDK
+ADDED from AndroidManifest.xml:156:17
+	android:name
+		ADDED from AndroidManifest.xml:156:25
+action#com.tencent.android.tpush.action.INTERNAL_PUSH_MESSAGE
+ADDED from AndroidManifest.xml:157:17
+	android:name
+		ADDED from AndroidManifest.xml:157:25
+action#android.intent.action.USER_PRESENT
+ADDED from AndroidManifest.xml:159:17
+	android:name
+		ADDED from AndroidManifest.xml:159:25
+action#android.net.conn.CONNECTIVITY_CHANGE
+ADDED from AndroidManifest.xml:160:17
+	android:name
+		ADDED from AndroidManifest.xml:160:25
+action#android.bluetooth.adapter.action.STATE_CHANGED
+ADDED from AndroidManifest.xml:163:17
+	android:name
+		ADDED from AndroidManifest.xml:163:25
+action#android.intent.action.ACTION_POWER_CONNECTED
+ADDED from AndroidManifest.xml:164:17
+	android:name
+		ADDED from AndroidManifest.xml:164:25
+action#android.intent.action.ACTION_POWER_DISCONNECTED
+ADDED from AndroidManifest.xml:165:17
+	android:name
+		ADDED from AndroidManifest.xml:165:25
+intent-filter#android.intent.action.MEDIA_CHECKING+android.intent.action.MEDIA_EJECT+android.intent.action.MEDIA_REMOVED+android.intent.action.MEDIA_UNMOUNTED
+ADDED from AndroidManifest.xml:168:13
+	android:priority
+		ADDED from AndroidManifest.xml:168:28
+action#android.intent.action.MEDIA_UNMOUNTED
+ADDED from AndroidManifest.xml:169:17
+	android:name
+		ADDED from AndroidManifest.xml:169:25
+action#android.intent.action.MEDIA_REMOVED
+ADDED from AndroidManifest.xml:170:17
+	android:name
+		ADDED from AndroidManifest.xml:170:25
+action#android.intent.action.MEDIA_CHECKING
+ADDED from AndroidManifest.xml:171:17
+	android:name
+		ADDED from AndroidManifest.xml:171:25
+action#android.intent.action.MEDIA_EJECT
+ADDED from AndroidManifest.xml:172:17
+	android:name
+		ADDED from AndroidManifest.xml:172:25
+data
+ADDED from AndroidManifest.xml:174:17
+	android:scheme
+		ADDED from AndroidManifest.xml:174:23
+service#com.tencent.android.tpush.service.XGPushService
+ADDED from AndroidManifest.xml:178:9
+	android:process
+		ADDED from AndroidManifest.xml:182:13
+	android:exported
+		ADDED from AndroidManifest.xml:180:13
+	android:persistent
+		ADDED from AndroidManifest.xml:181:13
+	android:name
+		ADDED from AndroidManifest.xml:179:13
+service#com.tencent.android.tpush.rpc.XGRemoteService
+ADDED from AndroidManifest.xml:185:9
+	android:exported
+		ADDED from AndroidManifest.xml:187:13
+	android:name
+		ADDED from AndroidManifest.xml:186:13
+intent-filter#com.qq.xgdemo.PUSH_ACTION
+ADDED from AndroidManifest.xml:188:13
+action#com.qq.xgdemo.PUSH_ACTION
+ADDED from AndroidManifest.xml:190:17
+	android:name
+		ADDED from AndroidManifest.xml:190:25
+receiver#com.psb.xg.MessageReceiver
+ADDED from AndroidManifest.xml:194:9
+	android:name
+		ADDED from AndroidManifest.xml:194:19
+intent-filter#com.tencent.android.tpush.action.FEEDBACK+com.tencent.android.tpush.action.PUSH_MESSAGE
+ADDED from AndroidManifest.xml:195:13
+action#com.tencent.android.tpush.action.PUSH_MESSAGE
+ADDED from AndroidManifest.xml:197:17
+	android:name
+		ADDED from AndroidManifest.xml:197:25
+action#com.tencent.android.tpush.action.FEEDBACK
+ADDED from AndroidManifest.xml:199:17
+	android:name
+		ADDED from AndroidManifest.xml:199:25
+meta-data#XG_V2_ACCESS_ID
+ADDED from AndroidManifest.xml:204:9
+	android:value
+		ADDED from AndroidManifest.xml:206:13
+	android:name
+		ADDED from AndroidManifest.xml:205:13
+meta-data#XG_V2_ACCESS_KEY
+ADDED from AndroidManifest.xml:208:9
+	android:value
+		ADDED from AndroidManifest.xml:210:13
+	android:name
+		ADDED from AndroidManifest.xml:209:13
 uses-sdk
 INJECTED from AndroidManifest.xml:0:0 reason: use-sdk injection requested
-MERGED from police_b:library:unspecified:7:5
+MERGED from police_n:library:unspecified:7:5
 MERGED from com.android.support:recyclerview-v7:21.0.0:15:5
 MERGED from com.android.support:support-v4:21.0.3:15:5
 MERGED from com.android.support:support-v4:21.0.3:15:5
-MERGED from police_b:wheel:unspecified:7:5
+MERGED from police_n:wheel:unspecified:7:5
 	android:targetSdkVersion
 		INJECTED from AndroidManifest.xml:0:0
 		INJECTED from AndroidManifest.xml:0:0

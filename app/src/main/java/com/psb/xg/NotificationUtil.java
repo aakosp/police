@@ -18,6 +18,7 @@ import android.os.Bundle;
 import com.psb.R;
 import com.psb.core.AppContext;
 import com.psb.ui.activity.ActivityMain;
+import com.util.AudioUtil;
 
 @SuppressLint("NewApi")
 public class NotificationUtil {
@@ -32,10 +33,7 @@ public class NotificationUtil {
 	}
 
 
-	public static void showNotification(Context context, String title,
-			Bundle bundle_msg, Bundle attrs, int flag) {
-
-		String msg = "";
+	public static void showNotification(Context context, String msg) {
 
 //		if (isAppOnForeground()) {
 //			AudioUtil.recvMsg(AudioUtil.MSG_SOUND, true);
@@ -45,9 +43,7 @@ public class NotificationUtil {
 		if (null == context) {
 			context = AppContext.getInstance();
 		}
-		if (title != null) {
-            title = "一村一警";
-		}
+		String title = "一村一警 通知通报";
 //
 //
 //		if (bundle_msg != null) {
@@ -69,8 +65,8 @@ public class NotificationUtil {
 
 		Intent notificationIntent = new Intent(); // 点击该通知后要跳转的Activity
 		notificationIntent.setClass(context, ActivityMain.class);
-		notificationIntent.setAction(Intent.ACTION_MAIN);
-		notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
+        notificationIntent.setAction(Intent.ACTION_MAIN);
+        notificationIntent.addCategory(Intent.CATEGORY_LAUNCHER);
 
 		Bundle b = new Bundle();
 		b.putInt(MSGNOTIFICATION, 1);
@@ -118,7 +114,7 @@ public class NotificationUtil {
 		notification.ledARGB = R.color.black;
 		notification.ledOnMS = 5000; // 闪光时间，毫秒
 		notificationManager.notify(50, notification);// 显示通知 break; }
-//		AudioUtil.recvMsg(AudioUtil.PUSH_SOUND, true);
+		AudioUtil.recvMsg(AudioUtil.PUSH_SOUND, true);
 	}
 
 	public static void showNotificationLogin(Context context, String title,
