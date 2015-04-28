@@ -189,25 +189,24 @@ public class Cache {
         editor.putBoolean("login", isLogin);
         editor.commit();
 
-        if (isLogin && User.POLICE.equals(user.getRole())) {
-            // 注册接口
-//            XGPushManager.registerPush(this);
-            XGPushManager.registerPush(AppContext.getInstance(), "" + user.getId(),
-                    new XGIOperateCallback() {
-                        @Override
-                        public void onSuccess(Object data, int flag) {
-//                            Log.w("onSuccess",
-//                                    "+++ register push sucess. token:" + data);
-                        }
+        if (isLogin)
+        {
+            if(User.POLICE.equals(user.getRole())){
+                // 注册接口
+                XGPushManager.registerPush(AppContext.getInstance(), "" + user.getId(),
+                        new XGIOperateCallback() {
+                            @Override
+                            public void onSuccess(Object data, int flag) {
+                            }
 
-                        @Override
-                        public void onFail(Object data, int errCode, String msg) {
-//                            Log.w("onFail",
-//                                    "+++ register push fail. token:" + data
-//                                            + ", errCode:" + errCode + ",msg:"
-//                                            + msg);
-                        }
-                    });
+                            @Override
+                            public void onFail(Object data, int errCode, String msg) {
+                            }
+                        });
+            }
+            else{
+                XGPushManager.unregisterPush(AppContext.getInstance());
+            }
         }
 
     }
