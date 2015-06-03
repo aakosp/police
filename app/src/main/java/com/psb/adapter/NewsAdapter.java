@@ -46,7 +46,7 @@ public class NewsAdapter extends BaseAdapter {
     }
 
     public void addNews(List<NewsInfo> titles) {
-        news.addAll(titles);
+        news.addAll(news.size(), titles);
     }
 
     @Override

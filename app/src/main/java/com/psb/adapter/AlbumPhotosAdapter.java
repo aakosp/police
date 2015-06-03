@@ -91,8 +91,9 @@ public class AlbumPhotosAdapter extends BaseAdapter implements View.OnClickListe
         } else {
             item = (ImageItem) convertView.getTag();
         }
-//        Bitmap bitmap = ImageUtil.getBitmapFromUri(urls.get(position));
-        item.img.setImageURI(urls.get(position));
+        Bitmap bitmap = ImageUtil.getBitmapFromUri(urls.get(position));
+        item.img.setImageBitmap(bitmap);
+//        item.img.setImageURI(urls.get(position));
         item.del.setVisibility(View.VISIBLE);
         item.del.setTag(urls.get(position));
         return convertView;

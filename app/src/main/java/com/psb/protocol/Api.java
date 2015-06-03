@@ -53,10 +53,11 @@ public class Api {
         requestTime.put(type, System.currentTimeMillis());
         String url = "";
         if (page > 1) {
-            url = "/article?article_cat_id=" + type + "?page=" + page;
+            url = "/article?article_cat_id=" + type + "&page=" + page;
         } else {
             url = "/article?article_cat_id=" + type;
         }
+        Log.d("getArticle", url);
         HttpRequestData data = new HttpRequestData(ARTICLE, url, type);
         executor.execute(data);
         return true;

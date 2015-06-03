@@ -39,7 +39,7 @@ public class GuideAdapter extends BaseAdapter {
     }
 
     public void addList(List<NewsInfo> list) {
-        this.list.addAll(list);
+        this.list.addAll( this.list.size(), list);
     }
 
     @Override

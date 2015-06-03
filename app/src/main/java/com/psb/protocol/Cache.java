@@ -75,7 +75,7 @@ public class Cache {
     }
 
     public void parse(String responseBody, int event) {
-//        Log.d("EVENT: " + event, " " + responseBody);
+        Log.d("EVENT: " + event, " " + responseBody);
         switch (event) {
             case Event.NEWS_1:
             case Event.NEWS_2:
