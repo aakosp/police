@@ -1,7 +1,10 @@
 package com.psb.adapter;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -23,6 +26,10 @@ public class WorkAdapter extends BaseAdapter implements View.OnClickListener {
     private List<Work> list;
     private Activity activity;
     private Intent intent;
+    private AlertDialog operation_dialog = null;
+    private TextView operation_del = null;
+    private DelClick delClick = new DelClick();
+    private int pos = -1;
 
     public WorkAdapter(Activity activity) {
         this.activity = activity;
@@ -55,7 +62,7 @@ public class WorkAdapter extends BaseAdapter implements View.OnClickListener {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         NewsInfoHolder holder = null;
         if (null == convertView) {
             convertView = View.inflate(parent.getContext(), R.layout.item_opinion, null);
@@ -64,6 +71,14 @@ public class WorkAdapter extends BaseAdapter implements View.OnClickListener {
             holder.time = (TextView) convertView.findViewById(R.id.name);
             convertView.setTag(holder);
             convertView.setOnClickListener(this);
+            convertView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    pos = position;
+                    showAlertMenu();
+                    return false;
+                }
+            });
         } else {
             holder = (NewsInfoHolder) convertView.getTag();
         }
@@ -86,5 +101,29 @@ public class WorkAdapter extends BaseAdapter implements View.OnClickListener {
         public int id;
         public TextView title;
         public TextView time;
+    }
+
+    public void showAlertMenu() {
+        if (null == operation_dialog) {
+            operation_dialog = new AlertDialog.Builder(this.activity)
+                    .create();
+            View menuView = LayoutInflater.from(this.activity).inflate(
+                    R.layout.alert_msg_menu, null);
+            operation_dialog.setView(menuView);
+            operation_del.setOnClickListener(delClick);
+        }
+        operation_dialog.show();
+    }
+
+    public class DelClick implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            if(v.getId() == R.id.del){
+                list.remove(pos);
+                WorkAdapter.this.notifyDataSetChanged();
+                operation_dialog.dismiss();
+            }
+        }
     }
 }

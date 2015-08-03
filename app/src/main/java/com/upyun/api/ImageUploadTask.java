@@ -39,8 +39,8 @@ public class ImageUploadTask extends AsyncTask<String, Void, String> {
             if (null == bitmap) {
                 return null;
             }
-            Bitmap newbm = null;
-            newbm = ImageUtil.scalingBitmap(bitmap, 640, 960);
+//            Bitmap newbm = null;
+//            newbm = ImageUtil.scalingBitmap(bitmap, 640, 960);
 
 //            String targetFolder = File.separator;
 //            if (params.length > 1 && params[1] != null) {
@@ -62,8 +62,8 @@ public class ImageUploadTask extends AsyncTask<String, Void, String> {
             String signature = UpYunUtils.signature(policy + "&" + API_KEY);
 
             // 上传文件到对应的bucket中去。
-            string = Uploader.upload(policy, signature, BUCKET, newbm);
-            newbm.recycle();
+            string = Uploader.upload(policy, signature, BUCKET, bitmap);
+            bitmap.recycle();
             string = DOMAIN + string;
         } catch (UpYunException e) {
             //e.printStackTrace();

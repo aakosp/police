@@ -12,6 +12,7 @@ public class Work {
     public static final String SECURITY = "SECURITY";
     public static final String EDUCATION = "EDUCATION";
     public static final String SERVING = "SERVING";
+    public static final String OTHER = "OTHER";
 
     private int id;
     private int police_id;

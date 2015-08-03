@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.psb.R;
+import com.psb.ui.activity.ActivityImg;
+import com.psb.ui.activity.ActivityWorkSuccess;
 import com.psb.ui.util.DisplayUtil;
 import com.psb.ui.util.ImageUtil;
 import com.psb.ui.util.PhotoUtil;
@@ -26,6 +28,7 @@ public class AlbumPhotosAdapter extends BaseAdapter implements View.OnClickListe
     private Activity context;
     private LayoutParams params = new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
     private View add;
+    Intent intent = new Intent();
     PhotoUtil photo;
 
     public AlbumPhotosAdapter(Activity context, View root) {
@@ -85,6 +88,7 @@ public class AlbumPhotosAdapter extends BaseAdapter implements View.OnClickListe
             convertView = LayoutInflater.from(context).inflate(R.layout.item_img, null);
             item = new ImageItem();
             item.img = (ImageView) convertView.findViewById(R.id.img);
+            item.img.setOnClickListener(this);
             item.del = (ImageView) convertView.findViewById(R.id.del);
             item.del.setOnClickListener(this);
             convertView.setTag(item);
@@ -93,9 +97,9 @@ public class AlbumPhotosAdapter extends BaseAdapter implements View.OnClickListe
         }
         Bitmap bitmap = ImageUtil.getBitmapFromUri(urls.get(position));
         item.img.setImageBitmap(bitmap);
-//        item.img.setImageURI(urls.get(position));
+        item.img.setTag(position);
         item.del.setVisibility(View.VISIBLE);
-        item.del.setTag(urls.get(position));
+        item.del.setTag(position);
         return convertView;
     }
 
@@ -112,13 +116,18 @@ public class AlbumPhotosAdapter extends BaseAdapter implements View.OnClickListe
                 photo.initPopuptWindow();
             }
         } else if (v.getId() == R.id.del) {
-            Uri uri = (Uri) v.getTag();
+            Uri uri = urls.get((int)v.getTag());
+//            Uri uri = (Uri) v.getTag();
             urls.remove(uri);
             notifyDataSetChanged();
+        } else if(v.getId() == R.id.img){
+            intent.setClass(context, ActivityImg.class);
+            intent.putExtra("uri", urls.get((int)v.getTag()));
+            context.startActivity(intent);
         }
     }
 
-    private class ImageItem {
+    static class ImageItem {
         public ImageView img;
         public ImageView del;
     }

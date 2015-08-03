@@ -246,8 +246,14 @@ public class Api {
     }
 
     public void getWork() {
-        String url = "/daily_log?police_id=" + Cache.getInstance().getUser().getId();
+        String url = "daily_log/<id>" + Cache.getInstance().getUser().getId();
         HttpRequestData data = new HttpRequestData(DAILY_LOG, url, Event.GET_WORK);
+        executor.execute(data);
+    }
+
+    public void delWork(String id){
+        String url = "/daily_log/" + id;
+        HttpRequestData data = new HttpRequestData(null, url, url, Event.DEL_WORK, HttpClient.RequestType.DELETE);
         executor.execute(data);
     }
 

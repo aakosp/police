@@ -93,6 +93,9 @@ public class ActivityWork extends BaseActivity implements View.OnClickListener, 
                 case Work.SERVING:
                     type.setText("服务群众");
                     break;
+                case Work.OTHER:
+                    type.setText("其他");
+                    break;
             }
             info.setText(work.getContent());
             info.setEnabled(false);

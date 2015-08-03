@@ -36,7 +36,8 @@ public class Event {
     public static final int COMMIT_WORK = 22;            //提交工作记录
     public static final int COMMIT_OPINION = 23;         //提交意见
     public static final int GET_WORK = 24;                 //获取工作记录
-    public static final int CHULI = 25;                 //处理意见
+    public static final int CHULI = 25;                  //处理意见
+    public static final int DEL_WORK = 30;               //删除工作记录
 
 
 
