@@ -59,8 +59,8 @@ public class PopWorkType extends BaseActivity {
         }
         else{
             WorkTypeItem item1 = new WorkTypeItem("COMPLAIN", "投诉举报");
-            WorkTypeItem item2 = new WorkTypeItem("OPINION", "意见反馈");
-            WorkTypeItem item3 = new WorkTypeItem("CONSULTING", "我要咨询");
+            WorkTypeItem item2 = new WorkTypeItem("OPINION", "我要看");
+            WorkTypeItem item3 = new WorkTypeItem("CONSULTING", "我要问");
 
             typeData = new WorkTypeItem[]{item1, item2, item3};
         }

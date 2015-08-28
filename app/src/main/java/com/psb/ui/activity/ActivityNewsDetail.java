@@ -1,6 +1,7 @@
 package com.psb.ui.activity;
 
 import android.os.Bundle;
+import android.text.Html;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -38,7 +39,8 @@ public class ActivityNewsDetail extends BaseActivity {
                 topbar.setTitleText(this.getResources().getText(R.string.notice));
             }
             title.setText(bundle.getString("title"));
-            detail.setText(bundle.getString("content"));
+//            detail.setText(bundle.getString("content"));
+            detail.setText(Html.fromHtml(bundle.getString("content")));
             if (!StringUtils.isEmpty(bundle.getString("url"))) {
                 img.setVisibility(View.VISIBLE);
                 ImageLoader.getInstance().displayImage(bundle.getString("url") + ImageUtil.CONTENT, img, ImageUtil.options);

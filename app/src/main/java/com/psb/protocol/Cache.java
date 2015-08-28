@@ -17,6 +17,7 @@ import com.psb.entity.Opinion;
 import com.psb.entity.Opinions;
 import com.psb.entity.PoliceInfo;
 import com.psb.entity.User;
+import com.psb.entity.Version;
 import com.psb.entity.Vote;
 import com.psb.entity.Work;
 import com.psb.event.Event;
@@ -55,6 +56,7 @@ public class Cache {
     private List<Vote> votes;
     private String voted;
     private String token;
+    private Version version;
 
 
     private Cache() {
@@ -171,6 +173,10 @@ public class Cache {
 
             case Event.CHECK_VOTE:
                 voted = (String) JSON.parseObject(responseBody).get("voted");
+                break;
+
+            case Event.CHECK_VERSION:
+                version = JSON.parseObject(responseBody, Version.class);
                 break;
         }
 
@@ -364,5 +370,9 @@ public class Cache {
 
     public void setToken(String token) {
         this.token = token;
+    }
+
+    public Version getVersion(){
+        return version;
     }
 }

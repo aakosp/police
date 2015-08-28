@@ -2,6 +2,7 @@ package com.psb.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -31,7 +32,9 @@ public class ActivityImg extends BaseActivity {
             });
             Intent intent = getIntent();
             if(null != intent){
+
                 String uri = intent.getStringExtra("uri");
+                Log.d("uri", uri);
                 ImageLoader.getInstance().displayImage(uri, img, ImageUtil.options);
             }
         }

@@ -47,6 +47,8 @@ public class Event {
     public static final int SET_VOTE = 28;              //投票
     public static final int CHECK_VOTE = 29;              //判断是否投票
 
+
+    public static final int CHECK_VERSION = 80;          //获取最新版本
     public static final int RESULT_SEX = 100;           //获取性别
     public static final int RESULT_AREA = 101;          //获取地区
     public static final int RESULT_WORK = 102;          //获取地区

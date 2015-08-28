@@ -1,17 +1,29 @@
 package com.psb.ui.activity;
 
+import android.app.ProgressDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.os.Message;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 
 import com.psb.R;
+import com.psb.core.AppContext;
+import com.psb.entity.Version;
+import com.psb.event.Event;
+import com.psb.event.EventNotifyCenter;
 import com.psb.protocol.Api;
+import com.psb.protocol.Cache;
 import com.psb.ui.base.BaseFragmentActivity;
 import com.psb.ui.widget.NaviTabButton;
 import com.psb.ui.widget.TopNavigationBar;
+import com.util.DialogHelper;
+import com.util.UpdateUtil;
 
 /**
  * Created by zl on 2014/11/21.
@@ -21,6 +33,10 @@ public class ActivityMain extends BaseFragmentActivity {
     private TopNavigationBar topbar;
     private NaviTabButton mTabButtons[];
     private Fragment mFragments[];
+    private ProgressDialog updateProgressDialog;
+    private UpdateUtil updateUtil;
+    private  UpdateUtil.UpdateCallback appUpdateCb;
+    private int versionCode = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +47,9 @@ public class ActivityMain extends BaseFragmentActivity {
         initTab();
         initFragment();
         setFragmentIndicator(0);
+
+        Api.getInstance().checkVersion();
+        EventNotifyCenter.getInstance().register(this.getHandler(), Event.CHECK_VERSION);
     }
 
     private void initTab() {
@@ -96,4 +115,147 @@ public class ActivityMain extends BaseFragmentActivity {
         mTabButtons[which].setSelectedButton(true);
     }
 
+    @Override
+    protected void handlerPacketMsg(Message msg) {
+        switch (msg.what){
+            case Event.CHECK_VERSION:
+                update();
+                break;
+        }
+    }
+
+    private void update(){
+        Version v = Cache.getInstance().getVersion();
+        if(null == v){
+            return;
+        }
+        int n = 0;
+        try{
+            n = Integer.valueOf(v.getVersion());
+        } catch (Exception e){
+            return;
+        }
+
+        try {
+            PackageInfo pInfo = AppContext.getInstance().getPackageManager().getPackageInfo(AppContext.getInstance().getPackageName(), 0);
+            versionCode = pInfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        if(n <= versionCode){
+            return;
+        }
+//        Log.d("update", v.getUrl());
+        if(null == appUpdateCb){
+            appUpdateCb = new UpdateUtil.UpdateCallback() {
+
+                Version ver = Cache.getInstance().getVersion();
+
+                public void downloadProgressChanged(int progress) {
+                    if (updateProgressDialog != null
+                            && updateProgressDialog.isShowing()) {
+                        updateProgressDialog.setProgress(progress);
+                    }
+
+                }
+
+                public void downloadCompleted(Boolean sucess, CharSequence errorMsg) {
+                    if (updateProgressDialog != null
+                            && updateProgressDialog.isShowing()) {
+                        updateProgressDialog.dismiss();
+                    }
+                    if (sucess) {
+                        updateUtil.update();
+                    } else {
+                        DialogHelper.Confirm(ActivityMain.this,
+                                R.string.dialog_error_title,
+                                R.string.dialog_downfailed_msg,
+                                R.string.dialog_downfailed_btnnext,
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        updateUtil.downloadPackage(ver.getUrl());
+                                    }
+                                }, R.string.dialog_cancel, null);
+                    }
+                }
+
+                public void downloadCanceled() {
+                    // TODO Auto-generated method stub
+
+                }
+
+                public void checkUpdateCompleted(Boolean hasUpdate,
+                                                 CharSequence updateInfo) {
+                    if (hasUpdate) {
+                        DialogHelper.Confirm(ActivityMain.this,
+                                getText(R.string.dialog_update_title),
+                                getText(R.string.dialog_update_msg).toString(),
+                                getText(R.string.dialog_update_btnupdate),
+                                new DialogInterface.OnClickListener() {
+
+                                    public void onClick(DialogInterface dialog,
+                                                        int which) {
+                                        updateProgressDialog = new ProgressDialog(
+                                                ActivityMain.this);
+                                        updateProgressDialog
+                                                .setMessage(getText(R.string.dialog_downloading_msg));
+                                        updateProgressDialog.setIndeterminate(false);
+                                        updateProgressDialog
+                                                .setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                                        updateProgressDialog.setMax(100);
+                                        updateProgressDialog.setProgress(0);
+                                        updateProgressDialog.show();
+
+                                        updateUtil.downloadPackage(ver.getUrl());
+                                    }
+                                }, getText(R.string.dialog_cancel), null);
+                    }
+                }
+            };
+        }
+        if(null == updateUtil){
+            updateUtil = new UpdateUtil(this, appUpdateCb);
+        }
+//        if(null == updateOkListener){
+//            updateOkListener = new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    dialog.dismiss();
+//                    updateUtil.downloadPackage(v.getUrl());
+//                }
+//            };
+//        }
+//        if(null == updateListener){
+//            updateListener = new DialogInterface.OnClickListener() {
+//                @Override
+//                public void onClick(DialogInterface dialog, int which) {
+//                    dialog.dismiss();
+//                }
+//            };
+//        }
+//        DialogHelper.Confirm(this, "更新提示", "发现新版本", "确定", updateOkListener, "取消", updateListener);
+        DialogHelper.Confirm(ActivityMain.this,
+                getText(R.string.dialog_update_title),
+                getText(R.string.dialog_update_msg).toString(),
+                getText(R.string.dialog_update_btnupdate),
+                new DialogInterface.OnClickListener() {
+                    Version ver = Cache.getInstance().getVersion();
+                    public void onClick(DialogInterface dialog,
+                                        int which) {
+                        updateProgressDialog = new ProgressDialog(
+                                ActivityMain.this);
+                        updateProgressDialog
+                                .setMessage(getText(R.string.dialog_downloading_msg));
+                        updateProgressDialog.setIndeterminate(false);
+                        updateProgressDialog
+                                .setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+                        updateProgressDialog.setMax(100);
+                        updateProgressDialog.setProgress(0);
+                        updateProgressDialog.show();
+
+                        updateUtil.downloadPackage(ver.getUrl());
+                    }
+                }, getText(R.string.dialog_cancel), null);
+    }
 }

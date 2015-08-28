@@ -101,6 +101,16 @@
     <string name="minyi3_3">C.不满意</string>
 
     <string name="del">删除</string>
+    <string name="loaderror">下载失败</string>
+    <string name="dialog_error_title">下载提醒</string>
+    <string name="dialog_downfailed_msg">下载失败是从重新下载</string>
+    <string name="dialog_downfailed_btnnext">重试</string>
+    <string name="dialog_update_title">更新提醒</string>
+    <string name="dialog_update_msg">发现新版本是否进行下载更新</string>
+    <string name="dialog_update_btnupdate">确定</string>
+    <string name="dialog_downloading_msg">下载ing</string>
+    <string name="dialog_cancel">取消</string>
+
 
     <string name="reset">已暂停推送, 点此重新启用</string>
     <string name="action_settings">Settings</string>

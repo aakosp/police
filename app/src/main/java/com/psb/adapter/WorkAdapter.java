@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.psb.R;
 import com.psb.entity.Work;
+import com.psb.protocol.Api;
 import com.psb.ui.activity.ActivityOpinionInfo;
 import com.psb.ui.activity.ActivityWork;
 
@@ -109,6 +110,7 @@ public class WorkAdapter extends BaseAdapter implements View.OnClickListener {
                     .create();
             View menuView = LayoutInflater.from(this.activity).inflate(
                     R.layout.alert_msg_menu, null);
+            operation_del = (TextView) menuView.findViewById(R.id.del);
             operation_dialog.setView(menuView);
             operation_del.setOnClickListener(delClick);
         }
@@ -120,6 +122,7 @@ public class WorkAdapter extends BaseAdapter implements View.OnClickListener {
         @Override
         public void onClick(View v) {
             if(v.getId() == R.id.del){
+                Api.getInstance().delWork(list.get(pos).getId());
                 list.remove(pos);
                 WorkAdapter.this.notifyDataSetChanged();
                 operation_dialog.dismiss();

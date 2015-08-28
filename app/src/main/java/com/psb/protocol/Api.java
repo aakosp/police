@@ -33,6 +33,7 @@ public class Api {
     private static final String POLICE_STATION = "/police_station";
     private static final String DAILY_LOG = "/daily_log";
     private static final String VOTE = "/vote";
+    private static final String VERSION = "/version";
 
     private Api() {
     }
@@ -246,12 +247,12 @@ public class Api {
     }
 
     public void getWork() {
-        String url = "daily_log/<id>" + Cache.getInstance().getUser().getId();
+        String url = "/daily_log?police_id=" + Cache.getInstance().getUser().getId();
         HttpRequestData data = new HttpRequestData(DAILY_LOG, url, Event.GET_WORK);
         executor.execute(data);
     }
 
-    public void delWork(String id){
+    public void delWork(int id){
         String url = "/daily_log/" + id;
         HttpRequestData data = new HttpRequestData(null, url, url, Event.DEL_WORK, HttpClient.RequestType.DELETE);
         executor.execute(data);
@@ -310,6 +311,12 @@ public class Api {
             i++;
         }
         HttpRequestData data = new HttpRequestData(params, VOTE, url, Event.SET_VOTE);
+        executor.execute(data);
+    }
+
+    public void checkVersion(){
+        String url = "/version";
+        HttpRequestData data = new HttpRequestData(VERSION, url, Event.CHECK_VERSION);
         executor.execute(data);
     }
 }

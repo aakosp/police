@@ -2,14 +2,11 @@ package com.psb.adapter;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import com.psb.R;
 import com.psb.ui.activity.ActivityImg;
-import com.psb.ui.activity.ActivityWorkSuccess;
 import com.psb.ui.util.DisplayUtil;
 import com.psb.ui.util.ImageUtil;
 import com.psb.ui.util.PhotoUtil;
-
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -122,7 +119,7 @@ public class AlbumPhotosAdapter extends BaseAdapter implements View.OnClickListe
             notifyDataSetChanged();
         } else if(v.getId() == R.id.img){
             intent.setClass(context, ActivityImg.class);
-            intent.putExtra("uri", urls.get((int)v.getTag()));
+            intent.putExtra("uri", urls.get((int)v.getTag()).toString());
             context.startActivity(intent);
         }
     }

@@ -54,10 +54,10 @@ public class HttpClient {
         return appUserAgent;
     }
 
-    private static AndroidHttpClient getHttpClient() {
-        if (null == client) {
-            client = AndroidHttpClient.newInstance(getUserAgent());
-        }
+    private synchronized static AndroidHttpClient getHttpClient() {
+            if (null == client) {
+                client = AndroidHttpClient.newInstance(getUserAgent());
+            }
         return client;
     }
 
@@ -89,7 +89,7 @@ public class HttpClient {
 
     private static HttpRequest getHttpRequest(String route, String url_part, RequestType type) {
         String url = "http://" + SERVER + url_part;
-
+//        Log.d("url", url);
         HttpRequest httpRequest = null;
         switch (type) {
 
