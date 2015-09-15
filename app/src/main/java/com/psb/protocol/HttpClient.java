@@ -37,7 +37,8 @@ import java.util.List;
 public class HttpClient {
 
     public static final String UTF_8 = "UTF-8";
-    public final static String SERVER = "112.126.81.69";
+//    public final static String SERVER = "112.126.81.69";
+    public final static String SERVER = "192.168.2.22";
     public final static int PORT = 80;
     private static final String LOG_TAG = "HttpClient";
     private final static int TIMEOUT_CONNECTION = 20000;

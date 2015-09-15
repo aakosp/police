@@ -54,7 +54,9 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
     public NewsPolice(Context context, AttributeSet attrs) {
         super(context, attrs);
         intent = new Intent();
-        intent.setClass(context, ActivityNewsDetail.class);
+//        intent.setClass(context, ActivityNewsDetail.class);
+        intent.setClass(context, ActivityWebView.class);
+//        intent.setClass(context, JSAndroidActivity.class);
         LayoutInflater.from(context).inflate(R.layout.news_police, this, true);
         mPullToRefreshScrollView = (PullToRefreshScrollView) findViewById(R.id.refresh_view);
         mPullToRefreshScrollView.setMode(PullToRefreshBase.Mode.BOTH);
@@ -126,9 +128,10 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         NewsInfo news = (NewsInfo) adapter.getItem(position);
         Bundle bundle = new Bundle();
-        bundle.putString("title", news.getTitle());
-        bundle.putString("content", news.getContent());
-        bundle.putString("url", news.getThumb());
+
+//        bundle.putString("title", news.getTitle());
+        bundle.putInt("id", news.getId());
+//        bundle.putString("url", news.getThumb());
         intent.putExtras(bundle);
         this.getContext().startActivity(intent);
     }
@@ -140,9 +143,10 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
             return;
         }
         Bundle bundle = new Bundle();
-        bundle.putString("title", news.getTitle());
-        bundle.putString("content", news.getContent());
-        bundle.putString("url", news.getThumb());
+//        bundle.putString("title", news.getTitle());
+//        bundle.putString("content", news.getContent());
+//        bundle.putString("url", news.getThumb());
+        bundle.putInt("id", news.getId());
         intent.putExtras(bundle);
         this.getContext().startActivity(intent);
     }

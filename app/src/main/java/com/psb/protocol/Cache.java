@@ -12,6 +12,7 @@ import com.psb.core.AppContext;
 import com.psb.entity.Addr;
 import com.psb.entity.Article;
 import com.psb.entity.ID;
+import com.psb.entity.NewsInfo;
 import com.psb.entity.OfficeInfo;
 import com.psb.entity.Opinion;
 import com.psb.entity.Opinions;
@@ -43,6 +44,7 @@ public class Cache {
     private String id, pwd, role, name;
     private User user;
     private Map<Integer, Article> articleMap = new HashMap<>();
+    private Map<Integer, NewsInfo> newsMap = new HashMap<>();
     private Map<String, User> users = new HashMap<>();
     private List<OfficeInfo> office;
     private List<Addr> addr;
@@ -219,6 +221,14 @@ public class Cache {
 
     public synchronized Article getArticle(int event) {
         return articleMap.get(event);
+    }
+
+    public synchronized NewsInfo getNewsInfo(int id) {
+        return newsMap.get(id);
+    }
+
+    public boolean existNews(int id){
+        return newsMap.containsKey(id);
     }
 
     public User getUser(String id) {

@@ -47,6 +47,7 @@ public class Event {
     public static final int SET_VOTE = 28;              //投票
     public static final int CHECK_VOTE = 29;              //判断是否投票
 
+    public static final int GET_NEWS = 40;                //获取新闻
 
     public static final int CHECK_VERSION = 80;          //获取最新版本
     public static final int RESULT_SEX = 100;           //获取性别

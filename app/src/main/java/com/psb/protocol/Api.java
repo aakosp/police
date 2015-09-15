@@ -64,6 +64,16 @@ public class Api {
         return true;
     }
 
+    public void getNewsById(int id){
+        //检查缓存 如果存在不请求服务
+        if(Cache.getInstance().existNews(id)){
+            return;
+        }
+        String url = "/article/" + id;
+        HttpRequestData data = new HttpRequestData(ARTICLE, url, Event.GET_NEWS);
+        executor.execute(data);
+    }
+
     public void getUser(String id) {
         String url = "/user?user_name=" + id;
         HttpRequestData data = new HttpRequestData(USER, url, Event.GET_USER);
