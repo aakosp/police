@@ -1,12 +1,13 @@
 package com.util;
 
-import java.lang.reflect.Field;
 import android.app.AlertDialog;
 import android.app.AlertDialog.Builder;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnClickListener;
 import android.view.View;
+
+import java.lang.reflect.Field;
 
 /**
  * Created by aako on 2015/8/10.
@@ -34,7 +35,7 @@ public class DialogHelper {
     }
 
     public static void Confirm(Context ctx, int titleId, int messageId,
-                               int okTextId, DialogInterface.OnClickListener oklistener,  int cancelTextId,
+                               int okTextId, DialogInterface.OnClickListener oklistener, int cancelTextId,
                                DialogInterface.OnClickListener cancellistener) {
         Confirm(ctx, ctx.getText(titleId), ctx.getText(messageId), ctx.getText(okTextId), oklistener, ctx.getText(cancelTextId), cancellistener);
     }
@@ -43,15 +44,14 @@ public class DialogHelper {
                                                     CharSequence message) {
         AlertDialog.Builder builder = new Builder(ctx);
         builder.setMessage(message);
-        if(title!=null)
-        {
+        if (title != null) {
             builder.setTitle(title);
         }
         return builder;
     }
 
     @SuppressWarnings("unused")
-    private static AlertDialog.Builder createDialog(Context ctx,int titleId, int messageId) {
+    private static AlertDialog.Builder createDialog(Context ctx, int titleId, int messageId) {
         AlertDialog.Builder builder = new Builder(ctx);
         builder.setMessage(messageId);
         builder.setTitle(titleId);
@@ -73,8 +73,7 @@ public class DialogHelper {
     }
 
     //
-    public static void SetDialogShowing(DialogInterface dialog, boolean showing)
-    {
+    public static void SetDialogShowing(DialogInterface dialog, boolean showing) {
         try {
             Field field = dialog.getClass().getSuperclass().getDeclaredField("mShowing");
             field.setAccessible(true);

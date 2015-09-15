@@ -214,9 +214,15 @@
         function updateHtml(data){
             document.getElementById("content").innerHTML = data;
         }
+        function updateTitle(data){
+            document.getElementById("title").innerHTML = data;
+        }
     </script>
 </head>
 <body>
+<div class="simditor-body">
+    <h2 id="title" style="margin-left: 0px; text-align: center;"></h2>
+</div>
 <div id="content" class="simditor-body">
 </div>
 </body>

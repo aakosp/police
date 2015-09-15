@@ -2,6 +2,7 @@ package com.psb.ui.activity;
 
 import android.os.Bundle;
 import android.os.Message;
+import android.util.Log;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
@@ -21,7 +22,8 @@ public class ActivityWebView extends BaseActivity {
 
     private TopNavigationBar topbar;
     private WebView mWebView;
-    private String strWews;
+    private String strWews = "";
+    private String strTitle = "";
     private int id = 0;
 
     @Override
@@ -48,7 +50,9 @@ public class ActivityWebView extends BaseActivity {
 //                ImageLoader.getInstance().displayImage(bundle.getString("url") + ImageUtil.CONTENT, img, ImageUtil.options);
 //            }
 //            strWews = bundle.getString("content");
+            strTitle = bundle.getString("title");
             id = bundle.getInt("id", 0);
+            Log.d("  id   == ", " "+id);
             if (id > 0) {
                 if (Cache.getInstance().existNews(id)) {
                     strWews = Cache.getInstance().getNewsInfo(id).getContent();
@@ -73,6 +77,7 @@ public class ActivityWebView extends BaseActivity {
         @Override
         public void onPageFinished(WebView view, String url) {
             super.onPageFinished(view, url);
+            mWebView.loadUrl("javascript:updateTitle('" + strTitle + "')");
             mWebView.loadUrl("javascript:updateHtml('" + strWews + "')");
         }
     }

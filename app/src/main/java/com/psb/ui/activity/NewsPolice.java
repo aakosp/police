@@ -99,7 +99,7 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
         if (null == article) {
             return;
         }
-        Log.d("article", ""+article.getData().size());
+//        Log.d("article", ""+article.getData().size());
         current_page = article.getCurrent_page();
         last_page = article.getLast_page();
         this.setBanner(article.getBanner());
@@ -129,7 +129,7 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
         NewsInfo news = (NewsInfo) adapter.getItem(position);
         Bundle bundle = new Bundle();
 
-//        bundle.putString("title", news.getTitle());
+        bundle.putString("title", news.getTitle());
         bundle.putInt("id", news.getId());
 //        bundle.putString("url", news.getThumb());
         intent.putExtras(bundle);
@@ -143,10 +143,10 @@ public class NewsPolice extends LinearLayout implements PullToRefreshBase.OnRefr
             return;
         }
         Bundle bundle = new Bundle();
-//        bundle.putString("title", news.getTitle());
+        bundle.putString("title", news.getTitle());
+        bundle.putInt("id", news.getId());
 //        bundle.putString("content", news.getContent());
 //        bundle.putString("url", news.getThumb());
-        bundle.putInt("id", news.getId());
         intent.putExtras(bundle);
         this.getContext().startActivity(intent);
     }

@@ -1,14 +1,11 @@
 package com.util;
 
-import android.location.Location;
 import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Locale;
-import java.util.TimeZone;
 
 public class TimeUtil {
 
@@ -245,7 +242,7 @@ public class TimeUtil {
         return format.format(new Date());
     }
 
-    public static String toGMT(){
+    public static String toGMT() {
         return sdf7.format(new Date());
     }
 

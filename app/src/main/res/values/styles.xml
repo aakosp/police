@@ -11,8 +11,7 @@
         <item name="android:windowNoTitle">true</item>
     </style>
 
-    <style name="RadioButton" parent="@android:style/Widget.CompoundButton.CheckBox">
-    </style>
+    <style name="RadioButton" parent="@android:style/Widget.CompoundButton.CheckBox"></style>
 
 
 </resources>

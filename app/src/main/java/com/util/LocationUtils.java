@@ -9,13 +9,9 @@ import com.baidu.location.BDLocation;
 import com.baidu.location.BDLocationListener;
 import com.baidu.location.LocationClient;
 import com.baidu.location.LocationClientOption;
-import com.baidu.mapapi.map.OverlayOptions;
-import com.baidu.mapapi.map.PolylineOptions;
 import com.baidu.mapapi.model.LatLng;
 import com.psb.protocol.Api;
-import com.psb.protocol.Cache;
 
-import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -70,7 +66,6 @@ public class LocationUtils {
     public void initLocation(Context context) {
         mLocationClient = new LocationClient(context);
         mLocationClient.registerLocationListener(new BDLocationListener() {
-
 
 
             @Override

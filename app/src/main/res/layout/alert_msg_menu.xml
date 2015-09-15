@@ -2,8 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/bkg_tab">
+    android:background="@color/bkg_tab"
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/title"
@@ -11,8 +11,8 @@
         android:layout_height="60dp"
         android:layout_marginLeft="10dp"
         android:gravity="center_vertical"
-        android:textColor="@color/news_title"
         android:text="@string/record_history"
+        android:textColor="@color/news_title"
         android:textSize="@dimen/news_title_size" />
 
     <View

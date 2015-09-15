@@ -52,7 +52,7 @@
                 android:padding="@dimen/default_padding"
                 android:textColor="@color/news_title"
                 android:textColorHint="@color/news_title"
-                android:textSize="@dimen/newstitle_title_size"/>
+                android:textSize="@dimen/newstitle_title_size" />
 
             <View
                 android:layout_width="match_parent"

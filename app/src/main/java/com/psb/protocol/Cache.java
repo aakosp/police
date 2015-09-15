@@ -180,6 +180,11 @@ public class Cache {
             case Event.CHECK_VERSION:
                 version = JSON.parseObject(responseBody, Version.class);
                 break;
+
+            case Event.GET_NEWS:
+                NewsInfo news = JSON.parseObject(responseBody, NewsInfo.class);
+                newsMap.put(news.getId(), news);
+                break;
         }
 
         EventNotifyCenter.getInstance().doNotify(event);

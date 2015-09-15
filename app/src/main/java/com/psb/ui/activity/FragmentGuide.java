@@ -95,10 +95,11 @@ public class FragmentGuide extends BaseFragment implements AdapterView.OnItemCli
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
         NewsInfo news = (NewsInfo) parent.getAdapter().getItem(position);
         Bundle bundle = new Bundle();
+        bundle.putInt("id", news.getId());
         bundle.putString("title", news.getTitle());
-        bundle.putString("content", news.getContent());
-        bundle.putString("url", news.getThumb());
-        intent.setClass(this.getActivity(), ActivityNewsDetail.class);
+//        bundle.putString("content", news.getContent());
+//        bundle.putString("url", news.getThumb());
+        intent.setClass(this.getActivity(), ActivityWebView.class);
         intent.putExtras(bundle);
         this.getActivity().startActivity(intent);
     }
